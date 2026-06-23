@@ -1,0 +1,58 @@
+{
+  "id": "heltec-wireless-stick-lite-v3",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/heltec-wireless-stick-litev3-902-928-mhz?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/44bGjgl"
+    },
+    {
+      "supplier": "Heltec",
+      "url": "https://heltec.org/project/wireless-stick-lite-v2/"
+    }
+  ],
+  "price": {
+    "min": 14.9,
+    "max": 32.99,
+    "currency": "USD"
+  },
+  "model": "Wireless Stick Lite V3",
+  "specifications": {
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "u.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Heltec",
+  "title": "Wireless Stick Lite V3",
+  "image": "/devices/heltec-stick-v3.webp",
+  "features": [
+    "Bluetooth",
+    "WiFi"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Compact ESP32-S3 board with WiFi, Bluetooth, and LoRa support in a breadboard-friendly form factor"
+}

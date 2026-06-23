@@ -1,0 +1,45 @@
+{
+  "id": "heltec-meshpocket-qi2",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Heltec",
+      "url": "https://heltec.org/products/meshpocket"
+    }
+  ],
+  "price": {
+    "min": 49.99,
+    "max": 59.99,
+    "currency": "USD"
+  },
+  "model": "MeshPocket Qi2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Heltec",
+  "title": "MeshPocket Qi2",
+  "image": "/devices/heltec-meshpocket-qi2.webp",
+  "features": [
+    "Bluetooth",
+    "E-Ink Display",
+    "SX1262"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A compact 6000mAh Qi2-compatible magnetic power bank designed for Meshtastic devices. Features MagSafe-style mounting, LED battery indicators, and both wireless and USB-C charging, making it ideal for portable and emergency use."
+}

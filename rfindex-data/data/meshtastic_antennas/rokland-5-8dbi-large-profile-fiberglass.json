@@ -1,0 +1,58 @@
+{
+  "slug": "rokland-5-8dbi-large-profile-fiberglass",
+  "sort_order": 30,
+  "title": "Rokland 5.8dBi Large Profile Fiberglass",
+  "manufacturer": {
+    "brand_name": "Rokland",
+    "part_number": "UNKNOWN",
+    "description": "5.8 dBi Large Profile",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://store.rokland.com/collections/802-11ah-wi-fi-halow/products/5-8-dbi-n-male-omni-outdoor-915-mhz-antenna-large-profile-32-height-for-helium-rak-miner-2-nebra-indoor-bobcat?ref=rfindex"
+  },
+  "suppliers": [
+    {
+      "name": "Rokland",
+      "part_number": "UNKNOWN",
+      "purchase_cost": "$39.97",
+      "url": "https://store.rokland.com/collections/802-11ah-wi-fi-halow/products/5-8-dbi-n-male-omni-outdoor-915-mhz-antenna-large-profile-32-height-for-helium-rak-miner-2-nebra-indoor-bobcat?ref=rfindex"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.062:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.013:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.074:1"
+        }
+      ],
+      "notes": "",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-08-12"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/Rockland-5_8dBi-Large-Profile.pdf",
+  "dimensions": {
+    "length": 800,
+    "width": 25
+  },
+  "connector_type": "N-Type Male",
+  "gain": "5.8 dBi",
+  "image": "rokland-5-8dbi-large-profile-fiberglass.webp",
+  "description": "Medium gain 915 MHz fiberglass antenna from Rokland. Large profile and solid VSWR across the ISM band make it ideal for base stations needing extended range.",
+  "commentary": "Solid performer and generally the very first fiberglass antenna we recommend to anyone looking for their first one. There are better antennas, but benefits diminish quickly from here while price generally increases quickly."
+}

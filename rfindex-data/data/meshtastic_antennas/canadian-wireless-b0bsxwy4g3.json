@@ -1,0 +1,56 @@
+{
+  "slug": "canadian-wireless-b0bsxwy4g3",
+  "title": "Canadian Wireless Supply 3 dBi Fiberglass",
+  "manufacturer": {
+    "brand_name": "Canadian Wireless Supply",
+    "part_number": "B0BSXWY4G3",
+    "description": "Lora Outdoor Antenna 30cm",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://amzn.to/3T04s2m"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon (Canada)",
+      "part_number": "B0BSXWY4G3",
+      "purchase_cost": "$25 CAD",
+      "url": "https://amzn.to/3T04s2m"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.670:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.643:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.608:1"
+        }
+      ],
+      "notes": "Tuning is a little off. Vendor specifies 1.5 SWR between 902 and 928 MHz, not true here, but should be OK to use.",
+      "metadata": {
+        "tester": "Frank's 3D Shop",
+        "date": "2024-03-03"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/B0BSXWY4G3.pdf",
+  "dimensions": {
+    "length": 300,
+    "width": 23
+  },
+  "connector_type": "N-Type Male",
+  "gain": "3 dBi",
+  "image": "canadian-wireless-b0bsxwy4g3.webp",
+  "description": "Compact 915 MHz outdoor LoRa antenna with N-Male connector. Slightly mistuned VSWR but acceptable for general use in the ISM band.",
+  "commentary": "We've seen a number of these on the mesh, but generally don't recommend them given the availability of antennas such as those from Rokland."
+}

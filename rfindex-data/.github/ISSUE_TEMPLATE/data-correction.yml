@@ -1,0 +1,23 @@
+name: Data correction
+description: Report incorrect data for an existing device or radio
+labels: ["data fix"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: Which file has the error?
+      placeholder: "e.g. data/meshtastic_devices/t-deck-lilygo.json"
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What needs to be corrected?
+      description: Describe what's wrong and what the correct value should be.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Link to documentation or product page with the correct info.

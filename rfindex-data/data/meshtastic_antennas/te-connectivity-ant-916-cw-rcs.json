@@ -1,0 +1,62 @@
+{
+  "slug": "te-connectivity-ant-916-cw-rcs",
+  "title": "TE Connectivity ANT-916-CW-RCS",
+  "manufacturer": {
+    "brand_name": "TE Connectivity Linx",
+    "part_number": "ANT-916-CW-RCS",
+    "description": "RP-SMA male right-angle whip. 3.3dBi. 1.9SWR",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CW-RCS_Series&DocType=Data+Sheet&DocLang=English&DocFormat=pdf&PartCntxt=ANT-916-CW-RCS"
+  },
+  "suppliers": [
+    {
+      "name": "DigiKey",
+      "part_number": "ANT-916-CW-RCS-ND",
+      "purchase_cost": "$6.54",
+      "url": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-916-CW-RCS/340139"
+    },
+    {
+      "name": "Mouser",
+      "part_number": "712-ANT-916-CW-RCS",
+      "purchase_cost": "$6.63",
+      "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-916-CW-RCS?qs=K5ta8V%252BWhtY4Dakf1TIzzg%3D%3D&mgh=1"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.353:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.202:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.289:1"
+        }
+      ],
+      "notes": "Antenna performs well but requires a ground plane. Depending on the device construction, this antenna may not perform well, especially if the amount of material available for a ground plane is low. Ensure your device gives ample clearance above the SMA connector to prevent reflections. SWR is within manufacturer specification of designed frequency range, and has remarkably good performance in the 915Mhz frequency band.",
+      "metadata": {
+        "tester": "Bradyn Claycomb (KC3IJL)",
+        "date": "2024-05-15"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/TE_Connectivity_Linx-ANT-916-CW-RCS-ND.pdf",
+  "dimensions": {
+    "length": 54,
+    "width": 9.4
+  },
+  "connector_type": "RP-SMA Male",
+  "gain": "3.3 dBi",
+  "image": "te-connectivity-ant-916-cw-rcs.webp",
+  "description": "Compact 915MHz whip antenna with RP-SMA connector, designed for sub-GHz ISM applications. Performs best with a ground plane."
+}

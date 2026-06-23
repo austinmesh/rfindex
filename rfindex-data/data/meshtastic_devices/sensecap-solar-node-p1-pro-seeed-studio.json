@@ -1,0 +1,56 @@
+{
+  "id": "sensecap-solar-node-p1-pro",
+  "sort_order": 30,
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/SenseCAP-Solar-Node-P1-Pro-for-Meshtastic-LoRa-p-6412.html?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4edWGxx"
+    }
+  ],
+  "price": {
+    "min": 74.99,
+    "max": 140.00,
+    "currency": "USD"
+  },
+  "model": "Solar Node P1 Pro",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "18650 Li-ion"
+    },
+    "antenna": "External SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Grove",
+      "UART"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "SenseCAP Solar Node P1 Pro",
+  "image": "/devices/sensecap-solar-node-p1-pro.webp",
+  "features": [
+    "GPS",
+    "Solar",
+    "External Antenna",
+    "Bluetooth"
+  ],
+  "category": [
+    "Solar",
+    "Standalone"
+  ],
+  "description": "Solar-powered Meshtastic LoRa node with XIAO nRF52840 Plus MCU, integrated GPS, and 5W solar panel in an IPX5 enclosure for long‑term outdoor networking.",
+  "commentary": "The P1 Pro is a great pre-built solar repeater. Next to the Atlavox Beacon(which is more expensive) this is our most recommended pre-built unit. Depending on the options you choose, you'll get up to 4 18650 batteries included as well. The mounting bracket offers many options, and even includes holes to upgrade from the included SMA antenna to a much stronger N-Type, which we strongly recommend. One gotcha with this unit - the SMA is reverse polarity (RP-SMA) so be sure to get the right accessories if you're adapting it."
+}

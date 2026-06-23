@@ -1,0 +1,59 @@
+{
+  "id": "lilygo-t-watch",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/lilygo-t-watch-s3-open-source-smartwatch-with-lora-and-esp32?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4jpcDkj"
+    },
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-watch-s3?bg_ref=NMDtT4rHQo"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_ooeDsQp"
+    }
+  ],
+  "price": {
+    "min": 39.99,
+    "max": 54.99,
+    "currency": "USD"
+  },
+  "model": "T-Watch",
+  "specifications": {
+    "lora_frequencies": [],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Watch",
+  "image": "/devices/lilygo-t-watch.webp",
+  "features": [
+    "Touchscreen",
+    "WiFi",
+    "Bluetooth",
+    "Color Display"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "ESP32-based smartwatch development board with touch display and Bluetooth/WiFi support.",
+  "commentary": "This is generally seen as a novelty by Austin Mesh. It's cool to play with, but we rarely see anyone actually using them day-to-day because the interfaces offered by Meshtastic and MeshCore are frustrating and slow compared to other devices or a phone app."
+}

@@ -1,0 +1,67 @@
+{
+  "slug": "linx-ant-916-cw-hw-sma",
+  "title": "Linx SMA 1/2 Dipole",
+  "manufacturer": {
+    "brand_name": "TE Connectivity / Linx Technologies",
+    "part_number": "ANT-916-CW-HW-SMA",
+    "description": "SMA 1/2 Wave Dipole (1.2 dBi)",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=ANT-916-CW-HW&DocType=Data+Sheet&DocLang=English&DocFormat=pdf&PartCntxt=ANT-916-CW-HW-SMA"
+  },
+  "suppliers": [
+    {
+      "name": "Mouser",
+      "part_number": "712-ANT-916-CWHWRSMA",
+      "purchase_cost": "$12.55 USD",
+      "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-916-CW-HWR-SMA?qs=K5ta8V%252BWhtZqsDF9HiOBpg%3D%3D"
+    },
+    {
+      "name": "Digikey",
+      "part_number": "ANT-916-CW-HW-ND",
+      "purchase_cost": "$8.60 USD",
+      "url": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-916-CW-HW/809424"
+    },
+    {
+      "name": "TE Connectivity / Linx Technologies",
+      "part_number": "ANT-916-CW-HW-SMA",
+      "purchase_cost": "$15.54 USD",
+      "url": "https://www.te.com/en/product-L9000128-01.html"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "2.562:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.736:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.236:1"
+        }
+      ],
+      "notes": "Sample is within the manufacturer's published specification of ≤ 2.0:1 VSWR at center of frequency band (915MHz).",
+      "metadata": {
+        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "date": "24 February 2022"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/ANT-916-CW-HW-SMA.pdf",
+  "dimensions": {
+    "length": 120,
+    "width": 9.25
+  },
+  "connector_type": "SMA Male",
+  "gain": "1.2 dBi",
+  "image": "te-connectivity-ant-916-cw-hw-sma.webp",
+  "commentary": "Solid antenna that looks pretty cool. Not flexible though so set expectations accordingly."
+}

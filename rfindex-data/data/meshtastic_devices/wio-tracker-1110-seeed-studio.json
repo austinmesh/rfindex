@@ -1,0 +1,50 @@
+{
+  "id": "seeedstudio-wio-tracker-1110",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/Wio-Tracker-1110-Dev-Board-p-5799.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 29,
+    "max": 39,
+    "currency": "USD"
+  },
+  "model": "Wio Tracker 1110",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "SMA antenna connector and U.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio Tracker 1110",
+  "image": "/devices/wio-tracker-1110-dev-board.webp",
+  "features": [
+    "Bluetooth",
+    "GPS",
+    "SX1262"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "LoRa-enabled development board based on WM1110 with onboard GNSS and BLE, ideal for asset tracking."
+}

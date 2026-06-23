@@ -1,0 +1,56 @@
+{
+  "id": "seeedstudio-sensecap-t1000e",
+  "sort_order": 60,
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/SenseCAP-Card-Tracker-T1000-E-for-LoRaWAN-p-6408.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4j11UNa"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oB95mkd"
+    }
+  ],
+  "price": {
+    "min": 35,
+    "max": 45,
+    "currency": "USD"
+  },
+  "model": "SenseCAP T1000e",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "Li-ion"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "Proprietary USB magnetic charging cable"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "SenseCAP T1000e",
+  "image": "/devices/sensecap-t1000e.webp",
+  "features": [
+    "Bluetooth",
+    "GPS",
+    "LR1110"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Ultra-compact LoRaWAN tracker with GPS and BLE, rechargeable battery, and IP65 case.",
+  "commentary": "This is the device you can give to your friend, parents, or neighbor, and they can simply slip it into a pocket or purse. The internal antenna lacks RF performance, so be prepared to hold it up high to make contact in weaker mesh areas. We generally like this little device, but for a little sacrifice(like a unit with an external antenna) you'll get much better performance."
+}

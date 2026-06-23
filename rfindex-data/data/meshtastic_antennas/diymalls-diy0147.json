@@ -1,0 +1,56 @@
+{
+  "slug": "diymalls-diy0147",
+  "title": "DIYMalls DIY0147",
+  "manufacturer": {
+    "brand_name": "DIYMalls",
+    "part_number": "DIY0147",
+    "description": "5DBi Omni-directional",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://s.click.aliexpress.com/e/_oELRd2d"
+  },
+  "suppliers": [
+    {
+      "name": "AliExpress: DIYmalls Store",
+      "part_number": "DIY0147",
+      "purchase_cost": "$6.15",
+      "url": "https://s.click.aliexpress.com/e/_oCaBQXL"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "850MHz",
+          "vswr": "2.15:1"
+        },
+        {
+          "frequency": "869MHz",
+          "vswr": "1.94:1"
+        },
+        {
+          "frequency": "880MHz",
+          "vswr": "2.33:1"
+        }
+      ],
+      "notes": "Best result at 90° bend. Tested across 4 antennas on nanoVNA V2. All antennas were consistent with minor differences. Averaged sweep: 9/4 @ 501 points.",
+      "metadata": {
+        "tester": "Kirosbr",
+        "date": "2024-06-20"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/DIYmalls_DIY0147.pdf",
+  "dimensions": {
+    "length": 195,
+    "width": 13
+  },
+  "connector_type": "SMA Male",
+  "gain": "5 dBi",
+  "image": "diymalls-diy0147.webp",
+  "description": "Affordable 868 MHz omni-directional antenna with RP-SMA connector. Best performance achieved when bent 90°. Suitable for short- to mid-range ISM band use."
+}

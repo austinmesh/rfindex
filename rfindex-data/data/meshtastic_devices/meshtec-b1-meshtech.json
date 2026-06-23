@@ -1,0 +1,52 @@
+{
+  "id": "meshtech-b1",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Meshtech",
+      "url": "https://w0aez.com/products/meshtech-b1"
+    },
+    {
+      "supplier": "Printables",
+      "url": "https://www.printables.com/model/1193230-meshtech-b1"
+    }
+  ],
+  "price": {
+    "min": 60,
+    "max": 75,
+    "currency": "USD"
+  },
+  "model": "B1",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Meshtech",
+  "title": "Meshtec B1",
+  "image": "/devices/meshtech-b1.webp",
+  "features": [
+    "Bluetooth",
+    "SX1262",
+    "GPS support",
+    "Color Display",
+    "External Antenna"
+  ],
+  "category": [
+    "Complete",
+    "DIY"
+  ],
+  "description": "Meshtastic node based on RAK WisMesh B1 with SX1262 LoRa module and 2000mAh LiPo battery in a custom enclosure."
+}

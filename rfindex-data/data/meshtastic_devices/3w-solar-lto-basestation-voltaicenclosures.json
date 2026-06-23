@@ -1,0 +1,45 @@
+{
+  "id": "voltaic-enclosures-3w-solar-lto-basestation",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "VoltaicEnclosures",
+      "url": "https://www.etsy.com/listing/1312727008/3w-meshtastic-solar-base-station-with"
+    }
+  ],
+  "price": {
+    "min": 455,
+    "max": 455,
+    "currency": "USD"
+  },
+  "model": "3W Solar LTO Basestation",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LTO"
+    },
+    "antenna": "External via N-Type connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "VoltaicEnclosures",
+  "title": "3W Solar LTO Basestation",
+  "image": "/devices/voltaic-enclosures-3w-solar-lto-basestation.webp",
+  "features": [
+    "Bluetooth",
+    "Solar",
+    "SX1262"
+  ],
+  "category": [
+    "Complete",
+    "Solar"
+  ],
+  "description": "A solar-powered LoRa base station designed for off-grid applications in extreme environments. Features special LTO batteries, charge controller, a 3W solar panel, and a robust enclosure for outdoor use."
+}

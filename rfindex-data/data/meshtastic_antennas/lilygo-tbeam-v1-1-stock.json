@@ -1,0 +1,55 @@
+{
+  "slug": "lilygo-tbeam-v1-1-stock",
+  "title": "LILYGO T-Beam V1.1 Stock Antenna",
+  "manufacturer": {
+    "brand_name": "LILYGO",
+    "part_number": "UNKNOWN",
+    "description": "Stock LoRa antenna included with T-Beam V1.1 boards.",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "N/A"
+  },
+  "suppliers": [
+    {
+      "name": "RF Index",
+      "part_number": "UNKNOWN",
+      "purchase_cost": "$29.02 (Includes Radio)",
+      "url": "/meshtastic/devices/lilygo-t-beam-v1-1"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "6.154:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "6.278:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "6.267:1"
+        }
+      ],
+      "notes": "Included with T-Beam V1.1 boards. Performance is poor in the 902–928 MHz band. Replacement strongly recommended for optimal performance.",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/Stock_T-Beam.pdf",
+  "dimensions": {
+    "length": 180,
+    "width": 9.5
+  },
+  "connector_type": "SMA Male",
+  "gain": "Unknown",
+  "description": "Basic 915MHz LoRa antenna bundled with LILYGO T-Beam V1.1. Limited performance. Not recommended for serious range use.",
+  "commentary": "Get a different antenna immediately if not sooner."
+}

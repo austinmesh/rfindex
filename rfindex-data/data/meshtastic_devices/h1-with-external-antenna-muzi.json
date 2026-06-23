@@ -1,0 +1,44 @@
+{
+  "id": "muzi-works-h1-heltec-v3-whip-antenna",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "url": "https://muzi.works/products/h1-complete-device-with-upgraded-whip-antenna-heltec-v3-running-meshtastic"
+    }
+  ],
+  "price": {
+    "min": 75,
+    "max": 75,
+    "currency": "USD"
+  },
+  "model": "H1 - Heltec V3",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz",
+      "868 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External whip with SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "title": "H1 with External Antenna",
+  "image": "/devices/muzi-works-h1-external-antenna.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A hand-assembled, ready-to-use Meshtastic® device featuring the Heltec V3 LoRa board, enclosed in a unique 3D-printed PLA Carbon Fiber case for enhanced grip and ruggedness. It includes an upgraded whip antenna for improved performance and a 1200mAh lithium-ion polymer battery."
+}

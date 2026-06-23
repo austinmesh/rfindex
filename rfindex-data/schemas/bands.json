@@ -1,0 +1,11 @@
+{
+"type": "object",
+  "required": ["title", "wavelength", "lower_frequency", "upper_frequency"],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "wavelength": { "type": "string", "enum": ["LF", "MF", "HF", "VHF", "UHF", "SHF", "UHF/SHF", ""] },
+    "lower_frequency": { "type": "string" },
+    "upper_frequency": { "type": "string" }
+  }
+}

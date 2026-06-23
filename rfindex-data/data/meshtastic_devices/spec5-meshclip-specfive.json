@@ -1,0 +1,43 @@
+{
+  "id": "spec5-meshclip",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-meshclip-device"
+    }
+  ],
+  "price": {
+    "min": 79.99,
+    "max": 79.99,
+    "currency": "USD"
+  },
+  "model": "S5 MeshClip",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 MeshClip",
+  "image": "/devices/spec5-meshclip-device.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A portable LoRa device designed for ultimate convenience and mobility. Its compact design includes a steel ring, allowing it to be magnetically attached to the back of your phone for seamless on-the-go communication. The MeshClip operates within a LoRa mesh network, enabling users to send text messages and share GPS locations."
+}

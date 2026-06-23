@@ -1,0 +1,48 @@
+{
+  "id": "atlavox-m1",
+  "sort_order": 50,
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "AtlaVox",
+      "url": "https://atlavox.com/products/atlavox-m1?bg_ref=Xc9U3S3ona"
+    }
+  ],
+  "price": {
+    "min": 76.99,
+    "max": 118.96,
+    "currency": "USD"
+  },
+  "model": "M1",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO"
+    ]
+  },
+  "manufacturer": "AtlaVox",
+  "title": "AtlaVox M1",
+  "image": "/devices/atlavox-m1.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "GPS support",
+    "SX1262"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Compact, rugged Meshtastic node with based on the RAK19007/4631 with an integrated rechargeable LiPo battery. Optional GPS support available.",
+  "commentary": "Atlavox is a solid brand. While the M1 is less common to see than it's solar powered brother, the Beacon, we are impressed by build quality. Buy with confidence."
+}

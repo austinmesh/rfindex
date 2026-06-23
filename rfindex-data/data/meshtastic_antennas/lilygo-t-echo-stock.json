@@ -1,0 +1,55 @@
+{
+  "slug": "lilygo-t-echo-stock",
+  "title": "LILYGO T-Echo Stock Antenna",
+  "manufacturer": {
+    "brand_name": "LILYGO",
+    "part_number": "UNKNOWN",
+    "description": "Stock LoRa antenna included with LILYGO T-Echo device.",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "N/A"
+  },
+  "suppliers": [
+    {
+      "name": "RF Index",
+      "part_number": "UNKNOWN",
+      "purchase_cost": "$56.51",
+      "url": "/meshtastic/devices/lilygo-t-echo"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "3.907:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "3.677:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "3.343:1"
+        }
+      ],
+      "notes": "Included with LILYGO T-Echo board. Exhibits high VSWR across the ISM band, indicating poor performance. Antenna replacement is recommended for improved range and efficiency.",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/Stock_T-Echo.pdf",
+  "dimensions": {
+    "length": 60,
+    "width": 18
+  },
+  "connector_type": "SMA Male",
+  "gain": "Unknown",
+  "description": "915MHz antenna bundled with LILYGO T-Echo. Performance is suboptimal in ISM band and may hinder radio range.",
+  "commentary": "Get a different antenna immediately if not sooner."
+}

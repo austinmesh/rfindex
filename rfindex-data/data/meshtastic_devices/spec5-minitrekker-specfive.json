@@ -1,0 +1,44 @@
+{
+  "id": "spec5-minitrekker",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-minitrekker"
+    }
+  ],
+  "price": {
+    "min": 69.99,
+    "max": 69.99,
+    "currency": "USD"
+  },
+  "model": "S5 MiniTrekker",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 MiniTrekker",
+  "image": "/devices/spec5-minitrekker.webp",
+  "features": [
+    "GPS",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A compact LoRa radio device that delivers powerful off-grid communication capabilities in a pocket-sized form. Its durable PETG case and integrated clip make it easy to carry during hikes or outdoor missions. Designed for simplicity, it provides text messaging and GPS location sharing over a LoRa mesh network."
+}

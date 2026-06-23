@@ -1,0 +1,66 @@
+{
+  "id": "lilygo-t-beam-supreme",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/lilygo-t-beam-supreme-esp32-s3-lora-development-board-sx1262-915mhz-gps-l76k-or-u-blox?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4i97f3C"
+    },
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-beam-supreme?bg_ref=NMDtT4rHQo"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oEdFiDP"
+    }
+  ],
+  "price": {
+    "min": 47.32,
+    "max": 64.99,
+    "currency": "USD"
+  },
+  "model": "T-Beam Supreme",
+  "specifications": {
+    "lora_frequencies": [
+      "144 MHz",
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Beam Supreme",
+  "image": "/devices/lilygo-t-beam-supreme.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "GPS",
+    "SX1262"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "High-performance LoRa development board with ESP32-S3, GPS, and SX1262.",
+  "commentary": "The T-Beam Supreme is a cool form factor and has lots of cases available. It's generally a power hungry device, but many users on our mesh run these every day."
+}

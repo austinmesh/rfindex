@@ -1,0 +1,76 @@
+{
+  "slug": "dswf-868-12dbi-375",
+  "title": "DSWF 868MHz 12dBi (37.5cm)",
+  "manufacturer": {
+    "brand_name": "DSWF",
+    "part_number": "DSWF-868-12dbi-37.5",
+    "description": "LoRa LoRaWAN Helium 12dBi",
+    "freq_spec": [
+      "862-876 MHz"
+    ],
+    "datasheet": "https://s.click.aliexpress.com/e/_oBHIATx"
+  },
+  "suppliers": [
+    {
+      "name": "AliExpress",
+      "part_number": "DSWF-868-12dbi-37.5",
+      "purchase_cost": "$3.44",
+      "url": "https://s.click.aliexpress.com/e/_oBHIATx"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "850MHz",
+          "vswr": "3.52:1"
+        },
+        {
+          "frequency": "869MHz",
+          "vswr": "2.38:1"
+        },
+        {
+          "frequency": "891MHz",
+          "vswr": "1.63:1"
+        }
+      ],
+      "notes": "Best result straight. Tested on 1 antenna using nanoVNA V2. Only 170mm of the antenna is active; the remaining 200mm is empty plastic housing.",
+      "metadata": {
+        "tester": "Kirosbr",
+        "date": "2024-06-20"
+      }
+    },
+    {
+      "markers": [
+        {
+          "frequency": "824MHz",
+          "vswr": "2.22:1"
+        },
+        {
+          "frequency": "869MHz",
+          "vswr": "3.80:1"
+        },
+        {
+          "frequency": "880MHz",
+          "vswr": "4.368:1"
+        }
+      ],
+      "notes": "Best result at 90° bend. Tested on 1 antenna using nanoVNA V2. Only 170mm of the antenna is active; the remaining 200mm is empty plastic housing.",
+      "metadata": {
+        "tester": "Kirosbr",
+        "date": "2024-06-20"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/DSWF_868_12dbi_375mm.pdf",
+  "dimensions": {
+    "length": 375,
+    "width": 13
+  },
+  "connector_type": "SMA Male",
+  "gain": "12 dBi(exaggerated)",
+  "image": "dswf-868-12dbi-375.webp",
+  "description": "Large 868 MHz antenna with exaggerated gain claim. Only 170mm of internal element is active; remainder is empty housing. Poor VSWR performance makes this antenna unsuitable for serious use."
+}

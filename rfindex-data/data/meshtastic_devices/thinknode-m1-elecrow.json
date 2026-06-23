@@ -1,0 +1,54 @@
+{
+  "id": "elecrow-thinknode-m1",
+  "sort_order": 130,
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Elecrow",
+      "url": "https://www.elecrow.com/thinknode-m1-meshtastic-lora-signal-transceiver-powered-by-nrf52840-with-154-screen-support-gps.html?ref=rfindex"
+    },
+    {
+      "supplier": "RobotShop",
+      "url": "https://www.robotshop.com/products/elecrow-thinknode-m1-lora-meshtastic-transceiver-154-epd-screen-gps-function-nrf52840-wo-case-868-mhz"
+    }
+  ],
+  "price": {
+    "min": 39.9,
+    "max": 53.9,
+    "currency": "USD"
+  },
+  "model": "Thinknode M1",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Elecrow",
+  "title": "Thinknode M1",
+  "image": "/devices/thinknode-m1.webp",
+  "features": [
+    "GPS",
+    "BLE",
+    "E-Ink Display",
+    "External Antenna"
+  ],
+  "category": [
+    "DIY",
+    "Complete"
+  ],
+  "description": "Meshtastic LoRa transceiver featuring nRF52840 microcontroller, GPS support, and 1.54-inch display, designed for outdoor communications and tracking.",
+  "commentary": "The M1 is a fairly common device to see on our mesh. Good battery life and a nice screen offer a solid combo of features. If you like the looks of this unit, we think it's a good option."
+}

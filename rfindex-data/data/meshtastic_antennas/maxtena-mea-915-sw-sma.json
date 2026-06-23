@@ -1,0 +1,61 @@
+{
+  "slug": "maxtena-mea-915-sw-sma",
+  "title": "Maxtena SMA",
+  "manufacturer": {
+    "brand_name": "Maxtena",
+    "url": "https://www.maxtena.com/Products/Antennas-Solutions/SigFox-LoRa-and-ISM-Antennas/ISM/External-ISM/MEA-915-SW-SMA",
+    "part_number": "MEA-915-SW-SMA",
+    "description": "915MHz 4dBi ISM Screw Mount",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://maxtenawwwstorage.blob.core.windows.net/products/126%2Fdoc%2F100-00182-01.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Mauser",
+      "url": "https://www.mouser.com/ProductDetail/Maxtena/MEA-915-SW-SMA?qs=aP1CjGhiNiGjQNdaSEvwhg%3D%3D",
+      "part_number": "259-MEA-915-SW-SMA",
+      "purchase_cost": "$10.49"
+    },
+    {
+      "name": "Digikey",
+      "url": "https://www.digikey.com/en/products/detail/maxtena-inc/MEA-915-SW-SMA-100-00182-01/21816477",
+      "part_number": "5420-MEA-915-SW-SMA/100-00182-01-ND",
+      "purchase_cost": "$10.50"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.423:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.538:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.789:1"
+        }
+      ],
+      "notes": "Antenna tested did not conform to the manufacturer's specification of < 1.4:1 VSWR due to ground plane size during testing. Still acceptable without ground plane.",
+      "metadata": {
+        "tester": "Ric Letson, NB2E",
+        "date": "02 March 2022"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/MEA-915-SW-SMA.pdf",
+  "dimensions": {
+    "length": 113,
+    "width": 9
+  },
+  "connector_type": "SMA Male",
+  "gain": "4 dBi",
+  "image": "maxtena-mea-915-sw-sma.webp"
+}

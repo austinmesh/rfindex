@@ -1,0 +1,54 @@
+{
+  "id": "seeedstudio-wio-wm1110-dev-kit",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_okzZKY9"
+    },
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/Wio-WM1110-Dev-Kit-p-5677.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 32,
+    "max": 49,
+    "currency": "USD"
+  },
+  "model": "Wio-WM1110 Dev Kit",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "SMA antenna connector and U.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio-WM1110 Dev Kit",
+  "image": "/devices/wio-wm1110-dev-kit.webp",
+  "features": [
+    "Bluetooth",
+    "GPS",
+    "SX1262"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Development kit based on the WM1110 module with BLE, GNSS, and LoRa support for prototyping location-based solutions."
+}

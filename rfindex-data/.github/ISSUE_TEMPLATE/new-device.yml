@@ -1,0 +1,37 @@
+name: New device request
+description: Request a new radio or Meshtastic device be added
+labels: ["new device"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Device type
+      options:
+        - Meshtastic device
+        - Ham radio
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Device name
+      placeholder: "e.g. Heltec Mesh Node T114"
+    validations:
+      required: true
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer
+      placeholder: "e.g. Heltec"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Product page URL
+      placeholder: "https://..."
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional details
+      description: Any specs, pricing, or other info you have.

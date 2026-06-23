@@ -1,0 +1,63 @@
+{
+  "id": "lilygo-t-deck-pro",
+  "sort_order": 120,
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/collections/lilygo-t-beam-series/products/lilygo-t-deck-pro-a7682e-4g-us-915-mhz?ref=rfindex"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_omv1Z2H"
+    },
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-deck-pro?bg_ref=NMDtT4rHQo"
+    }
+  ],
+  "price": {
+    "min": 81.79,
+    "max": 92.64,
+    "currency": "USD"
+  },
+  "model": "T-Deck Pro",
+  "specifications": {
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "u.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "Qwiic",
+      "3.5mm audio",
+      "MicroSD"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Deck Pro",
+  "image": "/devices/lilygo-t-deck-pro.webp",
+  "features": [
+    "E-Ink Display",
+    "Touchscreen",
+    "WiFi",
+    "Bluetooth",
+    "SX1262",
+    "GPS"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "ESP32-S3 based e-ink device with integrated keyboard, touchscreen, LoRa, and support for voice or 4G modules.",
+  "commentary": "The Pro version offers a really great case. The downside is that the battery isn't expandable, and the battery life is generally poor(<24h). Overall we still like this device as a standalone option, even with it's limitations."
+}

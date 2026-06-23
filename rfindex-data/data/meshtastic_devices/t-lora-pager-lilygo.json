@@ -1,0 +1,70 @@
+{
+  "id": "lilygo-t-lora-pager",
+  "sort_order": 70,
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/lilygo-t-lora-pager-us-915-mhz-lora-esp32-s3-handheld-aiot-programmable-development-device-k257-01"
+    },
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-lora-pager?bg_ref=NMDtT4rHQo"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/3SfntkL"
+    }
+  ],
+  "price": {
+    "min": 87.35,
+    "max": 114.97,
+    "currency": "USD"
+  },
+  "model": "T-Lora Pager",
+  "specifications": {
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 1500,
+      "estimated_runtime": "<24 hours"
+    },
+    "antenna": "Foldable external LoRa antenna",
+    "interfaces": [
+      "USB-C",
+      "MicroSD",
+      "Speaker",
+      "Microphone",
+      "3.5mm audio"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Lora Pager",
+  "image": "/devices/lilygo-t-lora-pager.webp",
+  "features": [
+    "QWERTY Keyboard",
+    "Rotary Encoder",
+    "IPS Display",
+    "WiFi",
+    "Bluetooth",
+    "SX1262",
+    "GPS",
+    "NFC",
+    "IMU"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "ESP32-S3 handheld with a 2.33-inch IPS strip display, full QWERTY keyboard, rotary encoder, GPS, and SX1262 LoRa. Runs Meshtastic, MeshCore.",
+  "commentary": "In our experience the battery life is poor(<24h) and the user interfaces from both Meshtastic and MeshCore tend to be confusing. Be prepared for a steep learning curve, but a really cool device. The lack of external antenna will harm rf performance in weaker meshes."
+}

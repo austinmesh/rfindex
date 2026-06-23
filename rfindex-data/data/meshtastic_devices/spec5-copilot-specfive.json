@@ -1,0 +1,46 @@
+{
+  "id": "spec5-copilot",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-copilot"
+    }
+  ],
+  "price": {
+    "min": 139.99,
+    "max": 139.99,
+    "currency": "USD"
+  },
+  "model": "S5 Copilot",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 1300,
+      "estimated_runtime": "6 hours active use, 8 hours standby"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Copilot",
+  "image": "/devices/spec5-copilot.webp",
+  "features": [
+    "GPS",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "The Spec5 Copilot is a personal LoRa assistant designed to transform your drone or unmanned aerial system (UAS) into a mobile LoRa antenna tower, significantly extending your network's range. Equipped with GPS tracking, it monitors the position of your UAS, ensuring you can track its location even if the drone's battery depletes."
+}

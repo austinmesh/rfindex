@@ -1,0 +1,123 @@
+{
+"type": "object",
+  "required": [
+    "id", "title", "manufacturer", "model", "category",
+    "purchase_urls", "price", "specifications", "supported_firmware"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "sort_order": { "type": "integer" },
+    "supported_firmware": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Meshtastic", "MeshCore"]
+      },
+      "minItems": 1
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "manufacturer": { "type": "string", "minLength": 1 },
+    "model": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "image": { "type": "string" },
+    "category": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["DIY", "Complete", "Solar", "Standalone"]
+      },
+      "minItems": 1
+    },
+    "purchase_urls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["supplier", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "supplier": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "required": ["min", "max", "currency"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "currency": { "type": "string", "minLength": 1 }
+      }
+    },
+    "specifications": {
+      "type": "object",
+      "required": ["lora_frequencies", "power_consumption", "battery", "antenna"],
+      "additionalProperties": false,
+      "properties": {
+        "lora_frequencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["144 MHz", "433 MHz", "868 MHz", "915 MHz", "2.4 GHz"]
+          }
+        },
+        "microcontroller": {
+          "type": "string",
+          "enum": ["ARM Cortex-M4", "ESP32", "ESP32-S3", "Raspberry Pi 5", "nRF52"]
+        },
+        "power_consumption": {
+          "type": "string",
+          "enum": ["Low", "Average", "High"]
+        },
+        "battery": {
+          "type": "object",
+          "required": ["type"],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["18650 Li-ion", "DIY", "External", "Li-ion", "LiPo", "LTO", "None"]
+            },
+            "capacity_mAh": { "type": "number" },
+            "estimated_runtime": { "type": "string" }
+          }
+        },
+        "antenna": { "type": "string", "minLength": 1 },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "3.5mm audio",
+              "Bluetooth Low Energy (BLE)",
+              "E-Ink",
+              "Ethernet",
+              "GPIO",
+              "Grove",
+              "I2C",
+              "LAN",
+              "M8 5-pin connector",
+              "Micro USB",
+              "Microphone",
+              "MicroSD",
+              "Proprietary USB magnetic charging cable",
+              "PWM",
+              "Qwiic",
+              "Speaker",
+              "SPI",
+              "UART",
+              "USB-C"
+            ]
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "commentary": { "type": "string" }
+  }
+}

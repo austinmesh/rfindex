@@ -1,0 +1,33 @@
+{
+  "name": "rfindex-data",
+  "version": "1.0.0",
+  "description": "a proof-of-concept for using Decap CMS to manage the radios data for rfindex.com.",
+  "homepage": "https://github.com/austinmesh/rfindex/tree/main/rfindex-data#readme",
+  "bugs": {
+    "url": "https://github.com/austinmesh/rfindex/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinmesh/rfindex.git",
+    "directory": "rfindex-data"
+  },
+  "license": "CC-BY-NC-4.0",
+  "author": "Tommy Ekstrand",
+  "type": "commonjs",
+  "main": "admin/index.html",
+  "scripts": {
+    "test": "node scripts/validate.js",
+    "validate": "node scripts/validate.js",
+    "serve": "npx netlify-cms-proxy-server & npx serve admin -p 8080",
+    "optimize-images": "node scripts/optimize-images.js",
+    "prepare": "git config core.hooksPath .githooks"
+  },
+  "dependencies": {
+    "netlify-cms-proxy-server": "^1.3.24",
+    "serve": "^14.2.4"
+  },
+  "devDependencies": {
+    "ajv": "^8.18.0",
+    "sharp": "^0.34.5"
+  }
+}

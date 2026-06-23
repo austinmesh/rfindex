@@ -1,0 +1,65 @@
+{
+  "slug": "rak-3dbi-fiberglass",
+  "title": "RAKwireless Fiberglass Antenna",
+  "manufacturer": {
+    "brand_name": "RAK",
+    "part_number": "UNKNOWN",
+    "description": "3dBi Fiberglass Antenna",
+    "freq_spec": [
+      "470-510 MHz",
+      "433 MHz",
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://tinyurl.com/3v4ap6bf"
+  },
+  "suppliers": [
+    {
+      "name": "Rokland",
+      "part_number": "915008",
+      "purchase_cost": "$38.97",
+      "url": "https://store.rokland.com/products/3-dbi-rak-brand-fiberglass-outdoor-antenna-bracket-mount-for-rak-bobcat-sensecap?ref=rfindex"
+    },
+    {
+      "name": "RAKwireless",
+      "part_number": "915008",
+      "purchase_cost": "$27.50",
+      "url": "https://store.rakwireless.com/products/3dbi-fiber-glass-antenna"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.130:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.215:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.291:1"
+        }
+      ],
+      "notes": "",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-08-12"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/RAK-3dBi.pdf",
+  "dimensions": {
+    "length": 360,
+    "width": 35
+  },
+  "connector_type": "N-Type Male",
+  "gain": "3 dBi",
+  "image": "rak-3dbi-fiberglass.webp",
+  "description": "High-quality fiberglass omnidirectional antenna suitable for outdoor base station use. Good VSWR across the 915 MHz ISM band.",
+  "commentary": "Solid performer, though for most installs in Central Texas we prefer the higher gain versions."
+}

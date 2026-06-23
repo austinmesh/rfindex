@@ -1,0 +1,58 @@
+{
+  "id": "heltec-vision-master-e213",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/heltec-vision-master-e213-lora-ble-wifi?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/424I6T8"
+    },
+    {
+      "supplier": "Heltec",
+      "url": "https://heltec.org/project/vision-master-e213/"
+    }
+  ],
+  "price": {
+    "min": 18.9,
+    "max": 29.9,
+    "currency": "USD"
+  },
+  "model": "HT-VME213",
+  "specifications": {
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "u.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Heltec",
+  "title": "Vision Master E213",
+  "image": "/devices/heltec-visionmaster-213.webp",
+  "features": [
+    "Bluetooth",
+    "E-Ink Display"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "E-Ink development kit with multiple wireless communication methods, featuring a 2.13-inch black and white E-Ink display."
+}

@@ -1,0 +1,77 @@
+{
+  "slug": "tenmory-5dbi-omni-tb-csa21",
+  "title": "Tenmory TB-CSA21",
+  "manufacturer": {
+    "brand_name": "Tenmory",
+    "part_number": "TB-CSA21",
+    "description": "915MHz LoRa Omni 5dBi",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "NO DATASHEET AVAIL https://amzn.to/4i3lSW6"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "Same As Mfg",
+      "purchase_cost": "$11.99/2",
+      "url": "https://amzn.to/4i3lSW6"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.067:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.178:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.434:1"
+        }
+      ],
+      "notes": "Measured in straight position.",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    },
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "2.259:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "2.351:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "2.521:1"
+        }
+      ],
+      "notes": "Measured in 90 degree position.",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/Tenmory_TB-CSA21.pdf",
+  "dimensions": {
+    "length": 194,
+    "width": 13
+  },
+  "connector_type": "SMA Male",
+  "gain": "3 dBi",
+  "image": "tenmory-5dbi-omni-tb-csa21.webp",
+  "description": "915MHz 5dBi LoRa Omni antenna. Hinged elbow design allows flexible orientation; performance varies significantly between straight and bent positions.",
+  "commentary": "Average antenna. We generally steer people toward the Gizont these days though."
+}

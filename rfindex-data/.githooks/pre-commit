@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# Pre-commit hook: optimize staged WebP images in meshtastic device images
+
+IMAGES_PATTERN="data/meshtastic_devices/images/.*\.webp$"
+
+# Get staged .webp files in the images directory
+STAGED_IMAGES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "$IMAGES_PATTERN" || true)
+
+if [ -z "$STAGED_IMAGES" ]; then
+  exit 0
+fi
+
+echo "Optimizing staged device images..."
+echo ""
+
+# Run the optimize script on each staged image
+FAILED=0
+for IMAGE in $STAGED_IMAGES; do
+  if [ -f "$IMAGE" ]; then
+    node scripts/optimize-images.js "$IMAGE"
+    if [ $? -ne 0 ]; then
+      FAILED=1
+    fi
+    # Re-stage the optimized file
+    git add "$IMAGE"
+  fi
+done
+
+# Final size check
+for IMAGE in $STAGED_IMAGES; do
+  if [ -f "$IMAGE" ]; then
+    SIZE=$(wc -c < "$IMAGE" | tr -d ' ')
+    MAX_SIZE=204800  # 200KB
+    if [ "$SIZE" -gt "$MAX_SIZE" ]; then
+      FILENAME=$(basename "$IMAGE")
+      SIZE_KB=$((SIZE / 1024))
+      echo ""
+      echo "ERROR: $FILENAME is ${SIZE_KB}KB — exceeds 200KB limit."
+      echo "Please reduce the image size before committing."
+      FAILED=1
+    fi
+  fi
+done
+
+if [ "$FAILED" -ne 0 ]; then
+  echo ""
+  echo "Commit aborted due to image optimization issues."
+  exit 1
+fi
+
+echo ""
+echo "Image optimization complete."
+exit 0

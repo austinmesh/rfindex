@@ -1,0 +1,44 @@
+{
+  "operating_voltage": 7.4,
+  "battery_capacity_mah": 2000,
+  "output_power": [
+    1,
+    5
+  ],
+  "form_factor": "Handheld",
+  "mpn": "test",
+  "supported_bands": [
+    "2m",
+    "70cm"
+  ],
+  "dimensions": {
+    "width": 180,
+    "height": 280,
+    "depth": 50
+  },
+  "memory_channels": 128,
+  "antenna_connector": "SMA-F",
+  "manufacturer": "Baofeng",
+  "antenna_impedance_ohm": 50,
+  "manufactured_start_year": 2012,
+  "modulations": [
+    "FM"
+  ],
+  "title": "UV-5R",
+  "weight": 340,
+  "memory_banks": 1,
+  "frequency_ranges": [
+    {
+      "tx": true,
+      "lower": 144,
+      "upper": 148
+    },
+    {
+      "tx": false,
+      "lower": 88,
+      "upper": 107
+    }
+  ],
+  "manufactured_country": "China",
+  "rigreference_id": 123
+}

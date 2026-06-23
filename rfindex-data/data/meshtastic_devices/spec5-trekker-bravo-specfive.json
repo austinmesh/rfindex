@@ -1,0 +1,44 @@
+{
+  "id": "spec5-trekker-bravo",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-trekker-bravo"
+    }
+  ],
+  "price": {
+    "min": 119.99,
+    "max": 119.99,
+    "currency": "USD"
+  },
+  "model": "S5 Trekker BRAVO",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Trekker BRAVO",
+  "image": "/devices/spec5-trekker-bravo.webp",
+  "features": [
+    "GPS",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "An enhanced version of the original Trekker, the Spec5 Trekker BRAVO offers reliable LoRa network integration for text messaging and precise GPS location sharing. It includes a high-gain antenna for extended range and improved signal clarity, making it ideal for adventurers seeking uncompromised performance."
+}

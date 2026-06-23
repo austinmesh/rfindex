@@ -1,0 +1,55 @@
+{
+  "id": "wismesh-ethernet-mqtt-gateway",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/wismesh-ethernet-gateway?ref=rfindex"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oBTJNHF"
+    },
+    {
+      "supplier": "RAKwireless",
+      "url": "https://rakwireless.kckb.st/rfindex-w8y"
+    }
+  ],
+  "price": {
+    "min": 43,
+    "max": 114,
+    "currency": "USD"
+  },
+  "model": "Ethernet MQTT Gateway",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "None"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Ethernet"
+    ]
+  },
+  "manufacturer": "RAKwireless",
+  "title": "WisMesh Ethernet MQTT Gateway",
+  "image": "/devices/wismesh-ethernet-gateway.webp",
+  "features": [
+    "Bluetooth",
+    "SX1262",
+    "GPS support"
+  ],
+  "category": [
+    "Complete",
+    "DIY"
+  ],
+  "description": "LoRa to MQTT gateway with Ethernet connectivity for permanent Meshtastic installations."
+}

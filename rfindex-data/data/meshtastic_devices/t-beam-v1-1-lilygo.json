@@ -1,0 +1,64 @@
+{
+  "id": "lilygo-t-beam-v1-1",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/lilygo-ttgo-meshtastic-t-beam-v1-1-esp32-lora-915-mhz-wireless-module-wifi-gps-neo-6m-with-oled-display-soldered-for-arduino-q349?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/3RbJ9uc"
+    },
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-beam?bg_ref=NMDtT4rHQo"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oFTHnXr"
+    }
+  ],
+  "price": {
+    "min": 30.77,
+    "max": 34.99,
+    "currency": "USD"
+  },
+  "model": "T-Beam",
+  "specifications": {
+    "lora_frequencies": [
+      "144 MHz",
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "18650 Li-ion"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "Micro USB",
+      "GPIO",
+      "I2C"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Beam V1.1",
+  "image": "/devices/lilygo-t-beam.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "GPS",
+    "SX1272"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "ESP32 LoRa device with GPS, SX1272, and 18650 battery holder.",
+  "commentary": "The T-Beam is the o.g. radio. This is what Austin Mesh started with back in 2021. It has tons of cases available and is generally a power hungry device, but many users on our mesh run these every day."
+}

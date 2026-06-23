@@ -1,0 +1,60 @@
+{
+  "slug": "arc-wireless-arc-pa0913c01",
+  "title": "ARC Wireless Flat Panel",
+  "manufacturer": {
+    "brand_name": "ARC Wireless",
+    "part_number": "ARC-PA0913C01",
+    "description": "902-928MHz 13.2dBi Flat Panel",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.streakwave.com/amfile/file/download/file/2012/product/21453/"
+  },
+  "suppliers": [
+    {
+      "name": "Streakwave",
+      "url": "https://www.streakwave.com/arc-wireless-arc-pa0913c01-arc-902-928mhz-132-dbi-flat-panel",
+      "part_number": "ARC-ARC-PA0913C01",
+      "purchase_cost": "$53.55"
+    },
+    {
+      "name": "Invictus Wireless",
+      "url": "https://www.invictuswireless.com/ARC-PA0913B01-p/arc-pa0913c01.htm",
+      "part_number": "ARC-PA0913C01",
+      "purchase_cost": "$41.95"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.535:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.179:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.224:1"
+        }
+      ],
+      "notes": "Sample is within the manufacturer's published specifications of ≤ 1.5 : 1 VSWR typical, 1.7 : 1 max. (915MHz).",
+      "metadata": {
+        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "date": "28 February 2022"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/ARC-PA0913C01.pdf",
+  "dimensions": {
+    "length": 389,
+    "width": 389
+  },
+  "connector_type": "N-Type Female",
+  "gain": "13.2 dBi",
+  "image": "arc-wireless-arc-pa0913c01.webp"
+}

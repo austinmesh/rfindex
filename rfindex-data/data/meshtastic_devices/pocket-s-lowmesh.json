@@ -1,0 +1,50 @@
+{
+  "id": "lowmesh-pocket-s",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/lowmesh-pocket-s-portable-solar-node-compatible-withmeshtastic-915-mhz?variant=44298209867982"
+    }
+  ],
+  "price": {
+    "min": 99.97,
+    "max": 129.97,
+    "currency": "USD"
+  },
+  "model": "LM-PS-01",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "Internal with u.FL/IPEX connector",
+    "interfaces": [
+      "USB-C",
+      "E-Ink",
+      "Speaker",
+      "Microphone"
+    ]
+  },
+  "manufacturer": "LowMesh",
+  "title": "Pocket-S",
+  "image": "/devices/lowmesh-pocket-s.webp",
+  "features": [
+    "Bluetooth",
+    "SX1262",
+    "Solar",
+    "Environment Sensors",
+    "GPS"
+  ],
+  "category": [
+    "Complete",
+    "Solar"
+  ],
+  "description": "A compact, ruggedized solar-powered Meshtastic node built around the T-Echo, featuring an e-ink display and durable 3D-printed enclosure."
+}
