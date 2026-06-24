@@ -5,13 +5,15 @@
   "scripts": {
     "build": "opennextjs-cloudflare build",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "cms": "decap-server",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev": "npx tsx lib/prebuild.ts && next dev",
     "dev:clean": "rm -rf .next && pnpm run dev",
     "lint": "next lint",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload"
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "validate": "node scripts/validate.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -68,6 +70,8 @@
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.19.11",
     "@types/node": "^22",
+    "ajv": "^8.18.0",
+    "decap-server": "^3.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "postcss": "^8",

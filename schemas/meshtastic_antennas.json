@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "required": ["slug", "title", "manufacturer", "suppliers", "test_results", "connector_type"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string", "minLength": 1 },
+    "sort_order": { "type": "integer" },
+    "title": { "type": "string", "minLength": 1 },
+    "manufacturer": {
+      "type": "object",
+      "required": ["brand_name", "part_number", "description", "freq_spec", "datasheet"],
+      "additionalProperties": false,
+      "properties": {
+        "brand_name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string" },
+        "part_number": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "freq_spec": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "datasheet": { "type": "string", "minLength": 1 }
+      }
+    },
+    "suppliers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "purchase_cost", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "part_number": { "type": "string" },
+          "purchase_cost": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 }
+        }
+      },
+      "minItems": 1
+    },
+    "test_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["markers", "notes", "metadata"],
+        "additionalProperties": false,
+        "properties": {
+          "markers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["frequency", "vswr"],
+              "additionalProperties": false,
+              "properties": {
+                "frequency": { "type": "string", "minLength": 1 },
+                "vswr": { "type": "string", "minLength": 1 }
+              }
+            },
+            "minItems": 1
+          },
+          "notes": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "required": ["tester", "date"],
+            "additionalProperties": false,
+            "properties": {
+              "tester": { "type": "string", "minLength": 1 },
+              "date": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "suggested": { "type": "boolean" },
+    "category": {
+      "type": "string",
+      "enum": ["Internal Device Antennas", "Fixed (Base) Antennas", "Portable Antennas", "Vehicle Antennas"]
+    },
+    "pdf": { "type": "string" },
+    "dimensions": {
+      "type": "object",
+      "required": ["length"],
+      "additionalProperties": false,
+      "properties": {
+        "length": { "type": "number" },
+        "width": { "type": ["number", "null"] }
+      }
+    },
+    "connector_type": {
+      "type": "string",
+      "enum": ["u.FL/IPEX", "N-Type Male", "N-Type Female", "SMA Male", "RP-SMA Male", "NMO"]
+    },
+    "gain": { "type": "string" },
+    "image": { "type": "string" },
+    "description": { "type": "string" },
+    "commentary": { "type": "string" }
+  }
+}

@@ -1,0 +1,404 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: austinmesh/rfindex
+  branch: main
+
+media_folder: "data/meshtastic_devices/images"
+public_folder: "/devices"
+
+collections:
+  - name: "bands"
+    label: "Ham Radio Bands"
+    label_singular: "Ham Radio Band"
+    folder: "data/bands"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - label: "Wavelength"
+        name: "wavelength"
+        widget: "select"
+        options: ["LF", "MF", "HF", "VHF", "UHF", "SHF"]
+      - { label: "Lower Frequency",  name: "lower_frequency",  widget: "string" }
+      - { label: "Upper Frequency",  name: "upper_frequency",  widget: "string" }
+
+  - name: "manufacturers"
+    label: "Manufacturers"
+    label_singular: "Manufacturer"
+    folder: "data/manufacturers"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+
+  - name: "meshtastic_manufacturers"
+    label: "Meshtastic Manufacturers"
+    label_singular: "Meshtastic Manufacturer"
+    folder: "data/meshtastic_manufacturers"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+
+  - name: "suppliers"
+    label: "Suppliers"
+    label_singular: "Supplier"
+    folder: "data/suppliers"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+
+  - name: "modulations"
+    label: "Modulations"
+    folder: "data/modulations"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+
+  - name: "antenna_connectors"
+    label: "Antenna Connectors"
+    label_singular: "Antenna Connector"
+    folder: "data/antenna_connectors"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+
+  - name: "radios"
+    label: "Radios"
+    label_singular: "Radio"
+    folder: "data/radios"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - { name: "title", label: "Model Name", widget: "string" }
+      - { name: "mpn", label: "MPN", widget: "string", required: false }
+      - { name: "rigreference_id", label: "RigReference ID", widget: "number" }
+      - label: "Manufacturer"
+        name: "manufacturer"
+        widget: "relation"
+        collection: "manufacturers"
+        searchFields: ["title"]
+        valueField: "title"
+        displayFields: ["title"]
+      - label: "Supported Bands"
+        name: "supported_bands"
+        widget: "relation"
+        collection: "bands"
+        searchFields: ["title"]
+        valueField: "title"
+        displayFields: ["title"]
+        multiple: true
+      - { name: "memory_channels", label: "Memory Channels", widget: "number" }
+      - { name: "memory_banks", label: "Memory Banks", widget: "number" }
+      - label: "Frequency Ranges"
+        label_singular: "Frequency Range"
+        name: "frequency_ranges"
+        widget: "list"
+        fields:
+          - { name: "tx", label: "TX supported", widget: "boolean", default: true }
+          - { name: "lower", label: "Lower Frequency", widget: "number", hint: "in MHz e.g. 144" }
+          - { name: "upper", label: "Upper Frequency", widget: "number", hint: "in MHz e.g. 148" }
+      - label: "Modulations"
+        name: "modulations"
+        widget: "relation"
+        collection: "modulations"
+        searchFields: ["title"]
+        valueField: "title"
+        displayFields: ["title"]
+        multiple: true
+      - name: "output_power"
+        label: "Output Powers"
+        label_singular: "Output Power"
+        widget: "list"
+        field: { name: "watt", label: "Watts", widget: "number", value_type: "float", step: 0.1 }
+      - label: "Antenna Connector"
+        name: "antenna_connector"
+        widget: "relation"
+        collection: "antenna_connectors"
+        searchFields: ["title"]
+        valueField: "title"
+        displayFields: ["title"]
+      - { name: "antenna_impedance_ohm", label: "Antenna Impedance (Ω)", widget: "number" }
+      - { name: "operating_voltage", label: "Operating Voltage", widget: "number", value_type: "float", step: 0.1 }
+      - { name: "battery_capacity_mah", label: "Battery Capacity (mAh)", widget: "number" }
+      - label: "Dimensions"
+        name: "dimensions"
+        widget: "object"
+        fields:
+          - { name: "width", label: "Width", widget: "number", hint: "mm" }
+          - { name: "height", label: "Height", widget: "number", hint: "mm" }
+          - { name: "depth", label: "Depth", widget: "number", hint: "mm" }
+      - { name: "weight", label: "Weight", widget: "number", hint: "grams" }
+      - label: "Form Factor"
+        name: "form_factor"
+        widget: "select"
+        options: ["Handheld", "Mobile", "Base", "Portable", "SDR", "Other"]
+      - { name: "manufactured_start_year", label: "Manufactured Start Year", widget: "number", required: false }
+      - { name: "manufactured_end_year", label: "Manufactured End Year", widget: "number", required: false }
+      - { name: "manufactured_country", label: "Manufactured Country", widget: "string", required: false }
+
+  - name: "meshtastic_features"
+    label: "Meshtastic Features"
+    label_singular: "Meshtastic Feature"
+    folder: "data/meshtastic_features"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    fields:
+      - name: "title"
+        label: "Name"
+        widget: "string"
+      - name: "description"
+        label: "Description"
+        widget: "text"
+
+  - name: "meshtastic_devices"
+    create: true
+    extension: "json"
+    folder: "data/meshtastic_devices"
+    editor:
+      preview: false
+    label: "Meshtastic Devices"
+    label_singular: "Meshtastic Device"
+    slug: "{{fields.title}}-{{fields.manufacturer}}"
+    summary: "{{manufacturer}} - {{model}}"
+    sortable_fields: ["manufacturer", "title", "model"]
+    view_groups: 
+      - label: Manufacturer
+        field: manufacturer
+    fields:
+      - { label: "ID", name: "id", widget: "string", hint: "URL slug used for routing (e.g. heltec-lora-32-v3). Must match existing site URLs." }
+      - { label: "Sort Order", name: "sort_order", widget: "number", value_type: "int", required: false, hint: "Optional manual ordering; lower numbers sort first." }
+      - label: "Supported Firmware"
+        name: "supported_firmware"
+        widget: "select"
+        options: ["Meshtastic", "MeshCore"]
+        multiple: true
+      - { name: "title", label: "Title", widget: "string" }
+      - label: "Manufacturer"
+        name: "manufacturer"
+        widget: "relation"
+        collection: "meshtastic_manufacturers"
+        searchFields: ["title"]
+        valueField: "title"
+        displayFields: ["title"]
+      - { name: "model", label: "Model", widget: "string" }
+      - { name: "description", label: "Description", widget: "text", required: false }
+      - { name: "commentary", label: "Commentary", widget: "text", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["DIY", "Complete", "Solar", "Standalone"]
+        multiple: true
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        media_folder: "images"
+        media_library:
+          config:
+            multiple: false
+            max_file_size: 200000
+      - label: "Suppliers"
+        label_singular: "Supplier"
+        name: "purchase_urls"
+        widget: "list"
+        fields:
+          - name: "supplier"
+            label: "Supplier"
+            widget: "relation"
+            collection: "suppliers"
+            searchFields: ["title"]
+            valueField: "title"
+            displayFields: ["title"]
+          - { name: "url", label: "URL", widget: "string" }
+      - label: "Price"
+        name: "price"
+        widget: "object"
+        fields:
+          - { name: "min", label: "Minimum Price", widget: "number", value_type: "float", step: .01 }
+          - { name: "max", label: "Maximum Price", widget: "number", value_type: "float", step: .01 }
+          - { name: "currency", label: "Currency", widget: "string" }
+      - label: "Specifications"
+        name: "specifications"
+        widget: "object"
+        fields:
+          - label: "LoRa Frequencies"
+            name: "lora_frequencies"
+            widget: "select"
+            options: ["144 MHz", "433 MHz", "868 MHz", "915 MHz", "2.4 GHz"]
+            multiple: true
+          - label: "Microcontroller"
+            name: "microcontroller"
+            widget: "select"
+            options: ["ARM Cortex-M4", "ESP32", "ESP32-S3", "Raspberry Pi 5", "nRF52"]
+            required: false
+          - label: "Power Consumption"
+            name: "power_consumption"
+            widget: "select"
+            options: ["Low", "Average", "High"]
+          - label: "Battery"
+            name: "battery"
+            widget: "object"
+            fields:
+              - name: "type"
+                label: "Type"
+                widget: "select"
+                options: ["18650 Li-ion", "DIY", "External", "Li-ion", "LiPo", "LTO", "None"]
+              - { name: "capacity_mAh", label: "Capacity (mAh)", widget: "number", required: false }
+              - { name: "estimated_runtime", label: "Estimated Runtime", widget: "string", required: false }
+          - label: "Antenna"
+            name: "antenna"
+            widget: "string"
+            hint: "e.g. Internal, u.FL/IPEX, External via SMA connector"
+          - label: "Interfaces"
+            name: "interfaces"
+            widget: "select"
+            options:
+              - "3.5mm audio"
+              - "Bluetooth Low Energy (BLE)"
+              - "E-Ink"
+              - "Ethernet"
+              - "GPIO"
+              - "Grove"
+              - "I2C"
+              - "LAN"
+              - "M8 5-pin connector"
+              - "Microphone"
+              - "MicroSD"
+              - "Proprietary USB magnetic charging cable"
+              - "PWM"
+              - "Qwiic"
+              - "Speaker"
+              - "SPI"
+              - "UART"
+              - "Micro USB"
+              - "USB-C"
+            multiple: true
+            optional: true
+      - label: "Features"
+        name: "features"
+        widget: "relation"
+        collection: "meshtastic_features"
+        searchFields: ["title"]
+        valueField: "title"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+
+  - name: "meshtastic_antennas"
+    label: "Meshtastic Antennas"
+    label_singular: "Meshtastic Antenna"
+    folder: "data/meshtastic_antennas"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    slug: "{{fields.slug}}"
+    summary: "{{manufacturer.brand_name}} - {{title}}"
+    sortable_fields: ["title", "manufacturer"]
+    fields:
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL slug used for routing. Must be unique." }
+      - { label: "Sort Order", name: "sort_order", widget: "number", value_type: "int", required: false, hint: "Optional manual ordering; lower numbers sort first." }
+      - { name: "title", label: "Title", widget: "string" }
+      - label: "Manufacturer"
+        name: "manufacturer"
+        widget: "object"
+        fields:
+          - { name: "brand_name", label: "Brand Name", widget: "string" }
+          - { name: "url", label: "URL", widget: "string", required: false }
+          - { name: "part_number", label: "Part Number", widget: "string" }
+          - { name: "description", label: "Description", widget: "string" }
+          - label: "Frequency Spec"
+            name: "freq_spec"
+            widget: "list"
+            field: { name: "freq", label: "Frequency Range", widget: "string" }
+          - { name: "datasheet", label: "Datasheet URL", widget: "string" }
+      - label: "Suppliers"
+        label_singular: "Supplier"
+        name: "suppliers"
+        widget: "list"
+        fields:
+          - { name: "name", label: "Name", widget: "string" }
+          - { name: "part_number", label: "Part Number", widget: "string", required: false }
+          - { name: "purchase_cost", label: "Purchase Cost", widget: "string" }
+          - { name: "url", label: "URL", widget: "string" }
+      - label: "Test Results"
+        label_singular: "Test Result"
+        name: "test_results"
+        widget: "list"
+        fields:
+          - label: "Markers"
+            label_singular: "Marker"
+            name: "markers"
+            widget: "list"
+            fields:
+              - { name: "frequency", label: "Frequency", widget: "string" }
+              - { name: "vswr", label: "VSWR", widget: "string" }
+          - { name: "notes", label: "Notes", widget: "text" }
+          - label: "Metadata"
+            name: "metadata"
+            widget: "object"
+            fields:
+              - { name: "tester", label: "Tester", widget: "string" }
+              - { name: "date", label: "Date", widget: "string" }
+      - { name: "suggested", label: "Suggested", widget: "boolean", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        options:
+          - "Internal Device Antennas"
+          - "Fixed (Base) Antennas"
+          - "Portable Antennas"
+          - "Vehicle Antennas"
+      - { name: "pdf", label: "PDF", widget: "string", required: false }
+      - label: "Dimensions"
+        name: "dimensions"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "length", label: "Length (mm)", widget: "number", value_type: "float" }
+          - { name: "width", label: "Width (mm)", widget: "number", value_type: "float", required: false }
+      - label: "Connector Type"
+        name: "connector_type"
+        widget: "select"
+        options:
+          - "u.FL/IPEX"
+          - "N-Type Male"
+          - "N-Type Female"
+          - "SMA Male"
+          - "RP-SMA Male"
+          - "NMO"
+      - { name: "gain", label: "Gain", widget: "string", required: false }
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        media_folder: "images"
+        media_library:
+          config:
+            multiple: false
+            max_file_size: 200000
+      - { name: "description", label: "Description", widget: "text", required: false }
+      - { name: "commentary", label: "Commentary", widget: "text", required: false }

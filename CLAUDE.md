@@ -10,6 +10,8 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 - `pnpm deploy` — build via OpenNext and deploy to Cloudflare Workers
 - `pnpm preview` — build via OpenNext and run the Worker locally (closest to production)
 - `pnpm lint` — run ESLint
+- `pnpm validate`: run `scripts/validate.js` to check every data JSON file against its JSON Schema in `schemas/` (fast; no Next build needed)
+- `pnpm cms`: start the Decap CMS local backend (`decap-server`); run alongside `pnpm dev`, then open `/admin/index.html` to edit `data/` through a web UI
 - `pnpm start` — start the Next production server locally (note: production runs on Cloudflare Workers, not `next start`)
 
 ## Tech Stack
@@ -60,6 +62,24 @@ All data lives in the `data/` directory (device/antenna JSON files and images).
 
 Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-generated.ts`, `public/devices/`, and `public/mesh/antennas/` are all regenerated from `data/` at build time.
 
+### Data Collections and Validation
+
+`data/` holds ten JSON collections. Only `meshtastic_devices` and `meshtastic_antennas` are rendered on the site (the prebuild turns just those two into generated TS). The other eight (`bands`, `radios`, `manufacturers`, `suppliers`, `modulations`, `antenna_connectors`, `meshtastic_features`, `meshtastic_manufacturers`) are reference and relation data managed through the CMS and validated, but not currently shown on the site.
+
+- `schemas/*.json` define the shape of every collection (one schema per collection).
+- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`.
+- CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR that touches `data/`, `schemas/`, or the validator. GitHub Actions is free for public repos and does not affect the $0 hosting budget.
+- When you change an allowed value (an enum), update BOTH `schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
+
+### Content Management (Decap CMS)
+
+`public/admin/` is a local-only [Decap CMS](https://decapcms.org) for editing `data/` through a web UI.
+
+- `public/admin/index.html` loads Decap from a CDN; `public/admin/config.yml` defines one collection per `data/` folder with full field schemas (relation widgets, image upload, enums).
+- Run locally: `pnpm dev` (serves the app and the admin UI) plus `pnpm cms` (the `decap-server` local backend), then open `http://localhost:3000/admin/index.html`. Edits write directly to the `data/` JSON and images in the working tree; commit and PR as normal.
+- Backend is `github` (`austinmesh/rfindex`) with `local_backend: true`. Editorial preview panes are disabled per collection (`editor.preview: false`), because the default Decap preview is an unstyled field dump for these data collections.
+- Production `rfindex.com/admin` is served but inert: GitHub login cannot complete until an OAuth proxy (a Cloudflare Worker) is added. The page is `noindex`.
+
 ### Types
 
 - `types/device.ts` — `Device` (includes `supported_firmware: string[]`), `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
@@ -105,6 +125,8 @@ The site is built and deployed to Cloudflare Workers through the OpenNext adapte
 
 It additionally produces the Cloudflare Worker bundle in `.open-next/`, so a clean run verifies the deploy artifact too. It is heavier/slower than a bare `next build`. A successful build with no errors means the change is safe to commit.
 
+For data-only changes (editing `data/` JSON or `schemas/`), run `pnpm validate` as a fast pre-check. It is not a substitute for `pnpm build`, which remains the required verification before committing.
+
 **Dev server caveat:** After restructuring imports or moving files, the dev server (`pnpm dev`) may show stale errors due to its incremental cache. If the dev server breaks but `pnpm build` passes, clear the cache with `rm -rf .next` and restart the dev server.
 
 ## Revenue: Referral Links
@@ -125,6 +147,15 @@ Some suppliers have no referral program so their URLs are plain links.
 
 When adding new purchase URLs, always use the appropriate referral format for supported stores.
 
+## License
+
+RF Index is dual licensed, both noncommercial:
+
+- **Code**: PolyForm Noncommercial License 1.0.0 (`LICENSE`)
+- **Data** (everything under `data/`): Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (`LICENSE-DATA.md`)
+
+The license is source-available, not OSI open source. Describe it as "source-available, noncommercial," not "open source."
+
 ## Conventions
 
 - **Pages are server components** — listing pages pass full data arrays to client filter components
@@ -136,6 +167,7 @@ When adding new purchase URLs, always use the appropriate referral format for su
 - **301 redirects** in `next.config.mjs` preserve old `/meshtastic/` URLs → `/mesh/`, and redirect the former `/mesh/meshtastic` and `/mesh/meshcore` landing pages → `/mesh/devices`
 - **Images are unoptimized** (`next.config.mjs` sets `images.unoptimized: true`)
 - **Filter state is URL-synced** — both filter components read/write URL search params via `useSearchParams`
+- **Contribution links go to GitHub issues** (not Google Forms). The header "Contribute" link points to the issue template chooser; footer links target specific templates in `.github/ISSUE_TEMPLATE/`. Never reintroduce the old `forms.gle` links.
 
 ## Adding Data
 

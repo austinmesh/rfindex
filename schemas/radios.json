@@ -1,0 +1,68 @@
+{
+"type": "object",
+  "required": [
+    "title", "rigreference_id", "manufacturer", "supported_bands",
+    "memory_channels", "memory_banks", "frequency_ranges", "modulations",
+    "output_power", "antenna_connector", "antenna_impedance_ohm",
+    "operating_voltage", "battery_capacity_mah", "dimensions", "weight",
+    "form_factor"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "mpn": { "type": "string" },
+    "rigreference_id": { "type": "number" },
+    "manufacturer": { "type": "string", "minLength": 1 },
+    "supported_bands": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "memory_channels": { "type": "number" },
+    "memory_banks": { "type": "number" },
+    "frequency_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tx", "lower", "upper"],
+        "additionalProperties": false,
+        "properties": {
+          "tx": { "type": "boolean" },
+          "lower": { "type": "number" },
+          "upper": { "type": "number" }
+        }
+      }
+    },
+    "modulations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "output_power": {
+      "type": "array",
+      "items": { "type": "number" }
+    },
+    "antenna_connector": { "type": "string", "minLength": 1 },
+    "antenna_impedance_ohm": { "type": "number" },
+    "operating_voltage": { "type": "number" },
+    "battery_capacity_mah": { "type": "number" },
+    "dimensions": {
+      "type": "object",
+      "required": ["width", "height", "depth"],
+      "additionalProperties": false,
+      "properties": {
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "depth": { "type": "number" }
+      }
+    },
+    "weight": { "type": "number" },
+    "form_factor": {
+      "type": "string",
+      "enum": ["Handheld", "Mobile", "Base", "Portable", "SDR", "Other"]
+    },
+    "manufactured_start_year": { "type": "number" },
+    "manufactured_end_year": { "type": "number" },
+    "manufactured_country": { "type": "string" }
+  }
+}
