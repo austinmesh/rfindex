@@ -6,3 +6,7 @@ allowBuilds:
   puppeteer: true
   sharp: true
   workerd: true
+
+minimumReleaseAgeExclude:
+  - miniflare@4.20260623.0
+  - wrangler@4.104.0
