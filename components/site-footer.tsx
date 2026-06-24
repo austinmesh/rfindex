@@ -39,7 +39,22 @@ export function SiteFooter() {
         </div>
         <div className="mt-8 pt-6 border-t">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} RF Index. All rights reserved.
+            &copy; {new Date().getFullYear()} RF Index. Code:{" "}
+            <Link
+              href="https://github.com/austinmesh/rfindex/blob/main/LICENSE"
+              target="_blank"
+              className="underline underline-offset-2 hover:text-foreground transition-colors"
+            >
+              PolyForm Noncommercial 1.0.0
+            </Link>{" "}
+            &middot; Data:{" "}
+            <Link
+              href="https://github.com/austinmesh/rfindex/blob/main/data/LICENSE.md"
+              target="_blank"
+              className="underline underline-offset-2 hover:text-foreground transition-colors"
+            >
+              CC BY-NC-SA 4.0
+            </Link>
           </p>
         </div>
       </div>
