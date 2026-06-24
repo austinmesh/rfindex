@@ -121,7 +121,7 @@ The site generates revenue through referral/affiliate links in device and antenn
 | AliExpress affiliate | AliExpress | `s.click.aliexpress.com/e/xxxxx` shortlinks |
 | RAKwireless affiliate | RAKwireless | `rakwireless.kckb.st/rfindex-xxx` shortlinks |
 
-Some suppliers have no referral program (Heltec direct, AtlaVox, muzi works, SpecFive, Pacific NW 3D, Mouser, Digikey, etc.) — their URLs are plain links.
+Some suppliers have no referral program so their URLs are plain links.
 
 When adding new purchase URLs, always use the appropriate referral format for supported stores.
 
