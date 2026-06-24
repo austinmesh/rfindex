@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "npx tsx lib/prebuild.ts && next build",
+    "build": "npx tsx lib/prebuild.ts && next build && opennextjs-cloudflare build --skipBuildingNextApp",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev": "npx tsx lib/prebuild.ts && next dev",
     "dev:clean": "rm -rf .next && pnpm run dev",
     "lint": "next lint",
-    "prebuild": "npx tsx lib/prebuild.ts",
+
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload"
