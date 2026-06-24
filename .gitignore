@@ -41,3 +41,12 @@ public/mesh/antennas/
 
 # ai
 /docs
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+!.env.example
