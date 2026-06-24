@@ -1,0 +1,20 @@
+name: Remove a device or antenna
+description: Request removal of a device or antenna from RF Index.
+title: "[Remove]: "
+labels: ["contribution", "remove"]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Which item?
+      description: Name and link to the RF Index page if possible.
+      placeholder: e.g. https://rfindex.com/mesh/devices/heltec-v3
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for removal
+      description: Why should this be removed? For example discontinued, duplicate, or incorrect.
+    validations:
+      required: true

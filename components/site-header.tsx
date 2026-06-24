@@ -24,7 +24,7 @@ export function SiteHeader() {
       ],
     },
     { href: "https://www.austinmesh.org", label: "Austin Mesh", target: "_blank" },
-    { href: "https://forms.gle/CNUbVP5eUTqZNsdX6", label: "Contribute", target: "_blank" },
+    { href: "https://github.com/austinmesh/rfindex/issues/new/choose", label: "Contribute", target: "_blank" },
     { href: "/about", label: "About" },
   ]
 

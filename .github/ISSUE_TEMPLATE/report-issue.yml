@@ -1,0 +1,29 @@
+name: Report an issue
+description: Report incorrect data, a broken link, or a website bug.
+title: "[Issue]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of issue?
+      options:
+        - Incorrect or outdated data
+        - Broken link
+        - Website bug
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Where?
+      description: URL of the page where you found the issue.
+      placeholder: https://rfindex.com/...
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong, and what did you expect to see?
+    validations:
+      required: true

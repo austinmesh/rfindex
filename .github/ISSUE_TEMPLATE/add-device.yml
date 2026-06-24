@@ -1,0 +1,50 @@
+name: Add a device or antenna
+description: Suggest a new mesh device or antenna to add to RF Index.
+title: "[Add]: "
+labels: ["contribution", "add"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping grow RF Index. Fill in as much as you can. Anything you leave blank, we will research.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: What are you adding?
+      options:
+        - Device
+        - Antenna
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Product or model name.
+      placeholder: e.g. Heltec V3
+    validations:
+      required: true
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer or brand
+      placeholder: e.g. Heltec
+    validations:
+      required: true
+  - type: input
+    id: product-url
+    attributes:
+      label: Product or purchase URL
+      description: Link to the product information page
+      placeholder: https://
+  - type: textarea
+    id: specs
+    attributes:
+      label: Specifications
+      description: Supported frequencies, microcontroller, battery, dimensions, key features, gain, etc.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Photos, pricing, test results, or other details.

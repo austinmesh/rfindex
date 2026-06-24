@@ -22,16 +22,16 @@ export function SiteFooter() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contribute</h3>
             <nav className="flex flex-col space-y-2">
-              <Link href="https://forms.gle/CNUbVP5eUTqZNsdX6" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
                 Add a device
               </Link>
-              <Link href="https://forms.gle/CNUbVP5eUTqZNsdX6" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=remove-device.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
                 Remove a device
               </Link>
-              <Link href="https://forms.gle/CNUbVP5eUTqZNsdX6" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=report-issue.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
                 Report an issue
               </Link>
-              <Link href="https://forms.gle/CNUbVP5eUTqZNsdX6" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=request-update.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
                 Request an update
               </Link>
             </nav>

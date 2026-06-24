@@ -1,0 +1,34 @@
+name: Request an update
+description: Request an update to an existing device or antenna (pricing, specs, links).
+title: "[Update]: "
+labels: ["contribution", "update"]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Which device or antenna?
+      description: Name and link to the RF Index page.
+      placeholder: https://rfindex.com/...
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: What needs updating?
+      multiple: true
+      options:
+        - Pricing
+        - Specifications
+        - Purchase links
+        - Image
+        - Firmware support
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What is the correct or updated information? Include sources if you have them.
+    validations:
+      required: true

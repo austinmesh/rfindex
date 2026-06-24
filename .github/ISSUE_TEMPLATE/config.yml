@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Browse RF Index
+    url: https://rfindex.com
+    about: Compare mesh devices and antennas before you submit a request.
+  - name: Austin Mesh
+    url: https://www.austinmesh.org
+    about: Learn more about the Austin Mesh community behind RF Index.
