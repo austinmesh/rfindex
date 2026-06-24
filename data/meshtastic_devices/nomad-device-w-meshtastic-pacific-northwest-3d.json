@@ -1,0 +1,44 @@
+{
+  "id": "pacific-nw-3d-nomad-heltec-v3",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Pacific Northwest 3D",
+      "url": "https://pacificnorthwest3d.com/products/nomad"
+    }
+  ],
+  "price": {
+    "min": 70,
+    "max": 70,
+    "currency": "USD"
+  },
+  "model": "Nomad",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "Pacific Northwest 3D",
+  "title": "NOMAD Device w/ Meshtastic®",
+  "image": "/devices/pacificnorthwest3d-nomad.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "The NOMAD device is built tough for adventures, securely housing a Heltec V3 LoRa board within a precision-crafted rugged case. It features a MakerFocus 2000mAh LiPo battery, providing over 10 hours of battery life for extended off-grid use."
+}

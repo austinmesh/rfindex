@@ -1,0 +1,57 @@
+{
+  "slug": "gizont-nb-iot",
+  "sort_order": 10,
+  "title": "Gizont NB-IoT",
+  "manufacturer": {
+    "brand_name": "Gizont",
+    "part_number": "nb-iot",
+    "description": "Nb-iot Soft Antenna 915 MHz",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oDi5Hup",
+      "part_number": "nb-iot",
+      "purchase_cost": "$6.80"
+    },
+    {
+      "name": "Amazon",
+      "url": "https://amzn.to/4chHhtr",
+      "part_number": "nb-iot",
+      "purchase_cost": "$15.99"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.292:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.329:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.531:1"
+        }
+      ],
+      "notes": "",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "20-Jun-2023"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "connector_type": "SMA Male",
+  "gain": "10 dBi(there is no way this is true)",
+  "image": "gizont-nb-iot.webp",
+  "commentary": "The one and only! This is our absolute very SMA antenna for pocket use due to it's flexibility and generally good performance. There are knockoff fakes out there though, so be careful where you buy from!"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "wismesh-pocket-v2",
+  "sort_order": 80,
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/wismesh-pocket?ref=rfindex"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_ooMsUJF"
+    },
+    {
+      "supplier": "RAKwireless",
+      "url": "https://rakwireless.kckb.st/rfindex-3dl"
+    }
+  ],
+  "price": {
+    "min": 89.99,
+    "max": 99.99,
+    "currency": "USD"
+  },
+  "model": "Pocket V2",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "RAKwireless",
+  "title": "WisMesh Pocket V2",
+  "image": "/devices/wismesh-pocket-2.webp",
+  "features": [
+    "Bluetooth",
+    "Color Display",
+    "SX1262",
+    "GPS"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Fully enclosed LoRa node with display, battery, GPS, and SX1262 for plug-and-play Meshtastic use.",
+  "commentary": "Solid option while slightly overpriced compared to DIY case options. They're a great option to get started with if you want something ready-to-go out of the box."
+}

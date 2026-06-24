@@ -1,0 +1,57 @@
+{
+  "id": "seeedstudio-sensecap-indicator",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_omqOTnf"
+    },
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/SenseCAP-Indicator-D1-p-5643.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 49,
+    "max": 89,
+    "currency": "USD"
+  },
+  "model": "SenseCAP Indicator",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "SenseCAP Indicator",
+  "image": "/devices/sensecap-indicator.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "Color Display",
+    "SX1262",
+    "GPS support"
+  ],
+  "category": [
+    "DIY",
+    "Complete"
+  ],
+  "description": "Smart display and controller for IoT applications, supports WiFi, BLE, LoRa via WM1110 module."
+}

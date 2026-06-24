@@ -1,0 +1,45 @@
+{
+  "id": "spec5-beacon",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-beacon"
+    }
+  ],
+  "price": {
+    "min": 179.99,
+    "max": 179.99,
+    "currency": "USD"
+  },
+  "model": "S5 Beacon",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ARM Cortex-M4",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "915 MHz LoRa antenna / GPS ceramic antenna",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Beacon",
+  "image": "/devices/spec5-beacon.webp",
+  "features": [
+    "Solar",
+    "Bluetooth"
+  ],
+  "category": [
+    "Solar"
+  ],
+  "description": "A solar-powered LoRa radio device designed to extend mesh network coverage in outdoor or remote settings. It features an integrated solar panel that prolongs battery life by 1 to 2 days under optimal sunlight conditions, ensuring consistent operation during extended activities.",
+  "commentary": "We do not recommend the Spec5 Beacon. We've seen multiple units fall apart with only 3 months of exposure to sun and wind. There are multiple weak points including the solar panel screw, waterproofing seal, and antenna reliability."
+}

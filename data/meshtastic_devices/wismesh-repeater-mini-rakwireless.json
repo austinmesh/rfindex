@@ -1,0 +1,58 @@
+{
+  "id": "wismesh-repeater-mini",
+  "sort_order": 90,
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/wismesh-repeater-mini-reliable-coverage-expansion-for-smart-networks?ref=rfindex"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oCqQOFF"
+    },
+    {
+      "supplier": "RAKwireless",
+      "url": "https://rakwireless.kckb.st/rfindex-jqd"
+    }
+  ],
+  "price": {
+    "min": 99.99,
+    "max": 99.99,
+    "currency": "USD"
+  },
+  "model": "Repeater Mini",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "RAKwireless",
+  "title": "WisMesh Repeater Mini",
+  "image": "/devices/wismesh-repeater-mini.webp",
+  "features": [
+    "Bluetooth",
+    "SX1262",
+    "GPS support",
+    "Solar"
+  ],
+  "category": [
+    "Complete",
+    "Solar"
+  ],
+  "description": "Smaller version of the WisMesh Repeater with external battery support and weather-resistant design.",
+  "commentary": "Strongly recommended. These little units have been deployed all over Central Texas for the last few years and hold up grade to the rain and sun. A simple 2500mah or 18650 battery is all you need to keep this and a RAK19007 or 19003 powered indefinitely."
+}

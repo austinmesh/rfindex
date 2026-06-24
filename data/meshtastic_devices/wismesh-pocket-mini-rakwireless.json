@@ -1,0 +1,54 @@
+{
+  "id": "wismesh-pocket-mini",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/rakwireless-wismesh-pocket-mini-all-in-one-meshtastic-handheld-915-mhz-radio-with-lora-antenna?ref=rfindex"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_oFyUGIZ"
+    },
+    {
+      "supplier": "RAKwireless",
+      "url": "https://rakwireless.kckb.st/rfindex-xjj"
+    }
+  ],
+  "price": {
+    "min": 49.99,
+    "max": 59.99,
+    "currency": "USD"
+  },
+  "model": "Pocket Mini",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "RAKwireless",
+  "title": "WisMesh Pocket Mini",
+  "image": "/devices/wismesh-mini-pocket-2.webp",
+  "features": [
+    "Bluetooth",
+    "Color Display",
+    "SX1262"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Compact LoRa node based on the RAK19003/4631 with external battery support, screen, and SX1262."
+}

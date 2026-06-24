@@ -1,0 +1,46 @@
+{
+  "id": "spec5-spectre",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-spectre-device"
+    }
+  ],
+  "price": {
+    "min": 144.99,
+    "max": 144.99,
+    "currency": "USD"
+  },
+  "model": "S5 Spectre",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "High",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External LoRa antenna",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Spectre",
+  "image": "/devices/spec5-spectre-device.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Touchscreen"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "The Spec5 Spectre is a versatile LoRa radio designed for secure communication and navigation. Featuring two-way voice communication, it allows real-time interaction with your group over off-grid channels. Its LoRa mesh network ensures reliable text messaging, enabling seamless coordination in remote areas. With an intuitive touch interface and extended battery life of up to 8 hours, the Spectre is a reliable companion for adventurers and network builders seeking advanced connectivity tools."
+}

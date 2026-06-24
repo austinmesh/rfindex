@@ -1,0 +1,62 @@
+{
+  "slug": "seeed-studio-318020612",
+  "title": "Seeed Studio Fiberglass",
+  "manufacturer": {
+    "brand_name": "Seeed Studio",
+    "part_number": "318020612",
+    "description": "Lora Fiberglass Antenna 5dBi",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "NO datasheet AVAILABLE — https://www.mouser.com/ProductDetail/713-318020612"
+  },
+  "suppliers": [
+    {
+      "name": "Seeed Studio",
+      "part_number": "318020612",
+      "purchase_cost": "$35.00 USD",
+      "url": "https://www.seeedstudio.com/Lora-Fiberglass-Antenna-860-930MHz-5dBi-600mm-p-4927.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    },
+    {
+      "name": "Mouser",
+      "part_number": "713-318020612",
+      "purchase_cost": "$35.00 USD",
+      "url": "https://www.mouser.com/ProductDetail/Seeed-Studio/318020612?qs=TuK3vfAjtkUc5jgrDpnp%252Bw%3D%3D"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "3.393:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "2.088:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "3.347:1"
+        }
+      ],
+      "notes": "Since there's no published datasheet for this antenna I can't say whether the abysmal SWR plot is within manufacturer specification or not. This antenna is offered by Seeed Studio as a higher gain antenna for the helium network, but at a 3.394:1 SWR would exhibit 5.275dB of return loss and 1.529 dB of mismatch loss (making their claimed 5dBi gain impossible.) If used in the 860-870MHz range where the VSWR is > 8:1 it would surely cause equipment damage.",
+      "metadata": {
+        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "date": "14 February 2022"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/318020612.pdf",
+  "dimensions": {
+    "length": 600,
+    "width": 40
+  },
+  "connector_type": "N-Type Male",
+  "gain": "5 dBi",
+  "image": "seeed-studio-318020612.webp",
+  "commentary": "Avoid, these aren't manufactured anymore but if you somehow get one look elsewhere."
+}

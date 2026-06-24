@@ -1,0 +1,59 @@
+{
+  "id": "heltec-vision-master-t190",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/heltec-vision-master-t190-esp32-lora-development-board-with-1-9-inch-tft?ref=rfindex"
+    },
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/42luVvS"
+    },
+    {
+      "supplier": "Heltec",
+      "url": "https://heltec.org/project/vision-master-t190/"
+    }
+  ],
+  "price": {
+    "min": 17.9,
+    "max": 24.97,
+    "currency": "USD"
+  },
+  "model": "HT-VMT190",
+  "specifications": {
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "u.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Heltec",
+  "title": "Vision Master T190",
+  "image": "/devices/heltec-visionmaster-190.webp",
+  "features": [
+    "Bluetooth",
+    "Color Display",
+    "SX1262"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Development kit featuring the ESP32-S3 microcontroller with optional LoRa module and a 1.9-inch TFT-LCD display."
+}

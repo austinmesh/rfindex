@@ -1,0 +1,55 @@
+{
+  "slug": "zdtech-zd-oa-915-7nm",
+  "title": "ZDTECH 7dBi Fiberglass",
+  "manufacturer": {
+    "brand_name": "ZDTECH",
+    "part_number": "ZD-OA-915_7NM",
+    "description": "LoRa Fiberglass 7dBi N Type",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://amzn.to/3G7CJK8"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "ZD-OA-915_7NM",
+      "purchase_cost": "$25.37 USD",
+      "url": "https://amzn.to/3G7CJK8"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.39:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.17:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.07:1"
+        }
+      ],
+      "notes": "Tested across 6 antennas on nanoVNA V2. All antennas were consistent with minor differences.",
+      "metadata": {
+        "tester": "Corey DeLasaux",
+        "date": "2023-10-09"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/ZDTECH-ZD-OA-915-7NM.pdf",
+  "dimensions": {
+    "length": 360,
+    "width": 23
+  },
+  "connector_type": "N-Type Male",
+  "gain": "7 dBi",
+  "image": "zdtech-zd-oa-915-7nm.webp",
+  "description": "Solid-performing 915 MHz 7dBi fiberglass LoRa antenna with N-Male connector. Consistent VSWR results across samples make it a reliable choice for base stations."
+}

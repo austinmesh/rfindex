@@ -1,0 +1,62 @@
+{
+  "slug": "ziisor-tx915-jz-5",
+  "title": "Ziisor TX915-JZ-5/2dBi",
+  "manufacturer": {
+    "brand_name": "Ziisor",
+    "part_number": "TX915-JZ-5/2dBi",
+    "description": "Compact 915 MHz antenna",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "http://image.ziisor.com/ZIISOR_TX915-JZ-5_EN_v2.0.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "TX915-JZ-5/2dBi",
+      "purchase_cost": "5 for Unknown",
+      "url": "https://amzn.to/41Yyj0P"
+    },
+    {
+      "name": "AliExpress",
+      "part_number": "TX915-JZ-5/2dBi",
+      "purchase_cost": "2.30",
+      "url": "https://s.click.aliexpress.com/e/_oC0Am1X"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "8.459:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "8.670:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "8.972:1"
+        }
+      ],
+      "notes": "Addition of any object under antenna improves SWR",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/Ziisor_TX915-JZ-5.pdf",
+  "dimensions": {
+    "length": 50,
+    "width": 10
+  },
+  "connector_type": "SMA Male",
+  "gain": "3 dBi",
+  "image": "ziisor-tx915-jz-5.webp",
+  "description": "Miniature 915 MHz antenna with extremely poor VSWR across ISM band. Not recommended for practical use unless range is not a concern.",
+  "commentary": "Average antenna. We generally steer people toward the Gizont these days though."
+}

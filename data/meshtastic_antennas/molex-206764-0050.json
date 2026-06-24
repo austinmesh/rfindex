@@ -1,0 +1,61 @@
+{
+  "slug": "molex-206764-0050",
+  "title": "Molex PCB ISM Dipole",
+  "manufacturer": {
+    "brand_name": "Molex",
+    "part_number": "206764-0050",
+    "description": "ISM Dipole Flex Ant 868/915 MHz 50MM",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.molex.com/en-us/products/part-detail/2067640050?display=pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Mouser",
+      "part_number": "538-206764-0050",
+      "purchase_cost": "$3.76",
+      "url": "https://www.mouser.com/ProductDetail/Molex/206764-0050?qs=F5EMLAvA7IBI1%2F7T0z2DEw%3D%3D"
+    },
+    {
+      "name": "Digikey",
+      "part_number": "5831-206764-0050TR-ND",
+      "purchase_cost": "$1.89",
+      "url": "https://www.digikey.com/en/products/detail/wee/206764-0050/26327582"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.220:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.551:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.820:1"
+        }
+      ],
+      "notes": "Antenna Flex PCB measures 100mm x 16mm and has a 50mm long micro coaxial cable terminated in a u.FL connector. Being a dipole the antenna exhibits a low VSWR and performs well regardless of orientation and without need for a ground plane. Three other part_numbers (206764-0100, 206764-0150 and 206764-0200) are available with longer attached coaxial cables (100mm, 150mm and 200mm).",
+      "metadata": {
+        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "date": "15 September 2023"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Internal Device Antennas",
+  "pdf": "PDFs/206764-0050.pdf",
+  "dimensions": {
+    "length": 100,
+    "width": 16
+  },
+  "connector_type": "u.FL/IPEX",
+  "gain": "1.3 dBi",
+  "image": "molex-206764-0050.webp"
+}

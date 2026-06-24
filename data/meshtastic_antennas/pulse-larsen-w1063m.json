@@ -1,0 +1,62 @@
+{
+  "slug": "pulse-larsen-w1063m",
+  "title": "Pulse Larsen SMA W1063M",
+  "manufacturer": {
+    "brand_name": "Pulse Larsen",
+    "part_number": "W1063M",
+    "description": "868-928MHz 1dBi SMA Male",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.mouser.com/datasheet/2/447/pulse_02122018_W1063M_1445_TDS-2903575.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Mouser",
+      "part_number": "673-W1063M",
+      "purchase_cost": "$8.51",
+      "url": "https://www.mouser.com/ProductDetail/Pulse-Electronics/W1063M?qs=opBjA1TV90175GTfjmKkCg%3D%3D"
+    },
+    {
+      "name": "Digikey",
+      "part_number": "553-2628-ND",
+      "purchase_cost": "$9.33",
+      "url": "https://www.digikey.com/en/products/detail/pulse-electronics/W1063M/3025800"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.480:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.332:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.401:1"
+        }
+      ],
+      "notes": "Antenna far exceeds the manufacturer’s published specification of <2:1 VSWR. Seems like a great low-cost option.",
+      "metadata": {
+        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "date": "2022-03-02"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/W1063M.pdf",
+  "dimensions": {
+    "length": 195,
+    "width": 13
+  },
+  "connector_type": "SMA Male",
+  "gain": "1 dBi",
+  "image": "pulse-larsen-w1063m.webp",
+  "description": "Compact and affordable 868–928 MHz antenna with strong VSWR performance. Ideal for handheld or mobile 915 MHz LoRa deployments."
+}

@@ -1,0 +1,46 @@
+{
+  "id": "spec5-ranger",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-ranger-device"
+    }
+  ],
+  "price": {
+    "min": 179.99,
+    "max": 179.99,
+    "currency": "USD"
+  },
+  "model": "S5 Ranger",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "High",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Ranger",
+  "image": "/devices/spec5-ranger.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Touchscreen"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "The Spec5 Ranger combines advanced LoRa communication with user-friendly hardware to meet the needs of outdoor enthusiasts and network builders. Featuring a touchscreen and a navigation ball for precise control, it allows users to manage their LoRa mesh networks with ease. It also comes with a full QWERTY keyboard allowing for use without the need to connect to your phone."
+}

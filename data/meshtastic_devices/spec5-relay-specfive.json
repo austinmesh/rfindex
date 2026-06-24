@@ -1,0 +1,44 @@
+{
+  "id": "spec5-relay",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-meshtastic-relay"
+    }
+  ],
+  "price": {
+    "min": 274.99,
+    "max": 274.99,
+    "currency": "USD"
+  },
+  "model": "Spec5 Relay",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ARM Cortex-M4",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "8DBI Fiberglass Aerial",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Relay",
+  "image": "/devices/spec5-relay.webp",
+  "features": [
+    "Bluetooth",
+    "Solar"
+  ],
+  "category": [
+    "Solar"
+  ],
+  "description": "A solar-powered Meshtastic LoRa relay system designed for autonomous operation as a relay station. Built for rugged, permanent installation on poles, buildings, or towers, it ensures reliable communication in remote areas or expansive networks."
+}

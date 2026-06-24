@@ -1,0 +1,67 @@
+{
+  "slug": "te-connectivity-ant-8-9-fpc-u-fl-100",
+  "title": "Linx PCB Flex",
+  "manufacturer": {
+    "brand_name": "TE Connectivity / Linx Technologies",
+    "part_number": "ANT-8/9-FPC-UFL-100",
+    "description": "Antenna FPC 868/915MHz 1.13",
+    "freq_spec": [
+      "862-876 MHz",
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.te.com/en/product-L9000128-01.datasheet.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Mouser",
+      "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-8-9-FPC-UFL-100?qs=DPoM0jnrROXUsiFgGxF1Jw%3D%3D",
+      "part_number": "712-T-8/9FPCUFL100",
+      "purchase_cost": "$4.66 USD"
+    },
+    {
+      "name": "Digikey",
+      "url": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-8-9-FPC-UFL-100/13245470",
+      "part_number": "343-ANT-8/9-FPC-UFL-100-ND",
+      "purchase_cost": "$4.66 USD"
+    },
+    {
+      "name": "TE Connectivity / Linx Technologies",
+      "url": "https://www.te.com/en/product-L9000128-01.html",
+      "part_number": "L9000128-01",
+      "purchase_cost": "$6.16 USD"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.752:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.704:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.711:1"
+        }
+      ],
+      "notes": "Antenna flex PCB measures 39x15mm and has a 100mm micro coaxial cable terminated in a u.FL connector. Lowest VSWR during testing was achieved by placing a 5mm x 1.5mm strip of foil tape approximately 3.5cm below, and parallel to, the antenna PCB element. Similar effect could also be produced by using the antenna's adhesive strip to mount the antenna approximately 3.5cm above and parallel to the device PCB to which the antenna connector will be attached.",
+      "metadata": {
+        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "date": "15 September 2023"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Internal Device Antennas",
+  "pdf": "PDFs/ANT-89-FPC-UFL-100.pdf",
+  "dimensions": {
+    "length": 39,
+    "width": 15
+  },
+  "connector_type": "u.FL/IPEX",
+  "gain": "<0 dBi",
+  "image": "te-connectivity-ant-8-9-fpc-u-fl-100.webp"
+}

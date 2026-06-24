@@ -1,0 +1,67 @@
+{
+  "slug": "te-connectivity-ma9-5n",
+  "title": "Laird MA9-5N Whip",
+  "manufacturer": {
+    "brand_name": "TE Connectivity / Laird",
+    "part_number": "MA9-5N",
+    "description": "RF ANT 900MHz Whip 16\"",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.te.com/usa-en/product-MA9-5N.datasheet.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Digikey",
+      "url": "https://www.digikey.com/en/products/detail/te-connectivity-laird/MA9-5N/3486940",
+      "part_number": "994-1233-ND",
+      "purchase_cost": "$18.16"
+    },
+    {
+      "name": "Mouser",
+      "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Laird-External-Antennas/MA9-5N?qs=EU6FO9ffTwex0YegmgkD9w%3D%3D",
+      "part_number": " 814-MA9-5N",
+      "purchase_cost": "$18.53"
+    },
+    {
+      "name": "Streakwave",
+      "url": "https://www.streakwave.com/laird-technologies-ma9-5n-55dbi-900mhz-mobile-omni-select-mount",
+      "part_number": "LAI-MA9-5N",
+      "purchase_cost": "$21.15"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.685:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.506:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.344:1"
+        }
+      ],
+      "notes": "This antenna may expect a ground plane such as a vehicle",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "12 Aug 2023"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Vehicle Antennas",
+  "pdf": "PDFs/MA9-5N.pdf",
+  "dimensions": {
+    "length": 6,
+    "width": 20
+  },
+  "connector_type": "N-Type Male",
+  "gain": "5.5 dBi",
+  "image": "te-connectivity-ma9-5n.webp",
+  "commentary": "While we used to recommend this antenna, it seems that manufacturing quality control has changed. SWR plots are regularly testing at 2.5-3 and ground planes do not resolve the issue."
+}

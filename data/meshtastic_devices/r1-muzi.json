@@ -1,0 +1,43 @@
+{
+  "id": "muzi-works-r1",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "url": "https://muzi.works/products/r1"
+    }
+  ],
+  "price": {
+    "min": 79,
+    "max": 79,
+    "currency": "USD"
+  },
+  "model": "R1",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz",
+      "868 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "title": "R1",
+  "image": "/devices/muzi-works-r1.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A compact, ready-to-use Meshtastic device featuring a unique 3D-printed PLA Carbon Fiber case, designed for portability and multi-day battery life. It includes internal PCB antennas and is powered by the RAKwireless WisBlock RAK4631 module."
+}

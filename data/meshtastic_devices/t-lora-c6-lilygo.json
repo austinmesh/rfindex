@@ -1,0 +1,50 @@
+{
+  "id": "lilygo-t-lora-c6",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-lora-c6?bg_ref=NMDtT4rHQo"
+    }
+  ],
+  "price": {
+    "min": 18,
+    "max": 24.99,
+    "currency": "USD"
+  },
+  "model": "T-Lora C6",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Lora C6",
+  "image": "/devices/lilygo-t-lora-c6.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "SX1262"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "ESP32-C6 board with SX1262 LoRa support and external antenna interface."
+}

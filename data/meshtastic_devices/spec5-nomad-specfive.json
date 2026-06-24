@@ -1,0 +1,47 @@
+{
+  "id": "spec5-nomad",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-nomad"
+    }
+  ],
+  "price": {
+    "min": 399.99,
+    "max": 399.99,
+    "currency": "USD"
+  },
+  "model": "S5 Nomad",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "Raspberry Pi 5",
+    "power_consumption": "High",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)",
+      "LAN"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Nomad",
+  "image": "/devices/spec5-nomad.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Touchscreen"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "A versatile LoRa communication device built around the Raspberry Pi 5, designed for off-grid explorers and emergency scenarios. The Nomad provides reliable mesh networking capabilities including text messaging and GPS location sharing, packaged in a rugged PETG case with a high-resolution touchscreen for easy operation."
+}

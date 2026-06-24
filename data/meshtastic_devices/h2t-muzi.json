@@ -1,0 +1,44 @@
+{
+  "id": "muzi-works-h2t-heltec-t114-gps-meshtastic",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "url": "https://muzi.works/products/h2t-complete-device-heltec-t114-with-gps-running-meshtastic"
+    }
+  ],
+  "price": {
+    "min": 99,
+    "max": 99,
+    "currency": "USD"
+  },
+  "model": "H2T - Heltec T114 V2",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz",
+      "868 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "external whip with SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "title": "H2T",
+  "image": "/devices/muzi-works-h2t.webp",
+  "features": [
+    "Bluetooth",
+    "GPS"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A GPS-enabled Meshtastic® device powered by the Heltec T114 V2 board, featuring a unique 3D-printed PLA and PLA Carbon Fiber case for enhanced grip and ruggedness. Utilizing the power-efficient nRF52850 chipset, the H2T offers over 2 days of battery life with GPS enabled and maintains connectivity to the Meshtastic® app on your smartphone via Bluetooth Low Energy (BLE)."
+}

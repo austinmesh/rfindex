@@ -1,0 +1,54 @@
+{
+  "id": "heltec-wireless-paper-v1-1",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/heltec-wireless-paper-wi-fi-lora-bt?ref=rfindex"
+    },
+    {
+      "supplier": "Heltec",
+      "url": "https://heltec.org/project/wireless-paper/"
+    }
+  ],
+  "price": {
+    "min": 22.9,
+    "max": 25.99,
+    "currency": "USD"
+  },
+  "model": "Wireless Paper V1.1",
+  "specifications": {
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "u.FL/IPEX",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Heltec",
+  "title": "Wireless Paper V1.1",
+  "image": "/devices/heltec-paper.webp",
+  "features": [
+    "Bluetooth",
+    "E-Ink Display"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "E-Ink development kit with multiple wireless communication methods, featuring a 2.13-inch black and white E-Ink display."
+}

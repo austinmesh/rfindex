@@ -1,0 +1,55 @@
+{
+  "id": "seeedstudio-wio-sx1262-xiao-nrf52840",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_olqxYhX"
+    },
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html"
+    }
+  ],
+  "price": {
+    "min": 12.82,
+    "max": 19.08,
+    "currency": "USD"
+  },
+  "model": "Wio SX1262 + XIAO nRF52840",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via IPEX connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio SX1262 with XIAO nRF52840",
+  "image": "/devices/seeedstudio-wio-sx1262-xiao-nrf52840.webp",
+  "features": [
+    "Bluetooth",
+    "SX1262",
+    "GPS support"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Ultra-compact LoRa development board combining the XIAO nRF52840 with an onboard SX1262 module. The low-power nRF52 chipset makes it ideal for battery-powered nodes.",
+  "commentary": "These are the absolute cheapest way to get started on the mesh. They are a bit trickier, requiring soldering skills for power, but are so small they fit just about anywhere. We've even put one <a href='https://www.austinmesh.org/projects/airborne-repeater-dji-air-3/' target='_blank'>inside of a DJI drone</a> to make an integrated airborne mesh node to expand the network."
+}

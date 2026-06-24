@@ -1,0 +1,89 @@
+{
+  "slug": "cdebyte-tx915-jkd-20",
+  "title": "CDEBYTE TX915-JKD-20",
+  "manufacturer": {
+    "brand_name": "CDEBYTE",
+    "part_number": "TX915-JKD-20",
+    "description": "LoRa Antenna 3.5dBi",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.lcsc.com/datasheet/lcsc_datasheet_2207191000_ZIISOR-TX915-JKD-20_C468328.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "TX915-JKD-20",
+      "purchase_cost": "$8.50",
+      "url": "https://amzn.to/4jiluEh"
+    },
+    {
+      "name": "LCSC Electronics",
+      "part_number": "C468328",
+      "purchase_cost": "$1.33",
+      "url": "https://www.lcsc.com/product-detail/Antennas_ZIISOR-TX915-JKD-20_C468328.html"
+    },
+    {
+      "name": "AliExpress",
+      "part_number": "TX915-JKD-20",
+      "purchase_cost": "$8.99/5",
+      "url": "https://s.click.aliexpress.com/e/_ok096rL"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "3.533:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "2.876:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "2.167:1"
+        }
+      ],
+      "notes": "Measured in straight position.",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    },
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.340:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.712:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "2.243:1"
+        }
+      ],
+      "notes": "Measured in 90 degree position.",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "2023-06-20"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "pdf": "PDFs/CDEBYTE_TX915-JKD-20.pdf",
+  "dimensions": {
+    "length": 200,
+    "width": 12
+  },
+  "connector_type": "SMA Male",
+  "gain": "3.5 dBi",
+  "image": "cdebyte-tx915-jkd-20.webp",
+  "description": "Low-cost 915 MHz antenna from CDEBYTE. Performance varies significantly with orientation, with improved VSWR when bent at 90 degrees.",
+  "commentary": "A very common antenna for handheld or pocket nodes, though we generally defer to the Gizont these days."
+}

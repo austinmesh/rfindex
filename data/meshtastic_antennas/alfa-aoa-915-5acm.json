@@ -1,0 +1,68 @@
+{
+  "slug": "alfa-aoa-915-5acm",
+  "sort_order": 20,
+  "title": "Alfa AOA Omni",
+  "manufacturer": {
+    "brand_name": "Alfa",
+    "part_number": "AOA-915-5ACM",
+    "description": "5dBi Omni Outdoor",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.alfa.com.tw/products/aoa-915-5acm"
+  },
+  "suppliers": [
+    {
+      "name": "Rokland",
+      "url": "https://store.rokland.com/products/alfa-aoa-915-5acm-5-dbi-omni-outdoor-915mhz-802-11ah-mini-antenna-for-lora-halow-application?ref=rfindex",
+      "part_number": "AOA-915-5ACM",
+      "purchase_cost": "$16.97"
+    },
+    {
+      "name": "Amazon",
+      "url": "https://amzn.to/42jdkEM",
+      "part_number": "AOA-915-5ACM",
+      "purchase_cost": "$16.97"
+    },
+    {
+      "name": "Alfa Network EU",
+      "url": "https://alfa-network.eu/antennas/aoa-915-5acm",
+      "part_number": "AOA-915-5ACM",
+      "purchase_cost": "€13.85"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.021:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.057:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.118:1"
+        }
+      ],
+      "notes": "",
+      "metadata": {
+        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "date": "12 August 2023"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "pdf": "PDFs/AOA-915-5ACM.pdf",
+  "dimensions": {
+    "length": 177,
+    "width": 21.5
+  },
+  "connector_type": "N-Type Male",
+  "gain": "5 dBi",
+  "image": "alfa-aoa-915-5acm.webp",
+  "commentary": "The Alfa is such a reliable antenna it now has many fake remakes selling for lower prices on marketplaces like Amazon and AliExpress. Generally the gain on this antenna is overstated, we estimate it to be closer to 1 or 2dbi. This is a great antenna when space is limited or you just need something you know will work. For rooftop or tower installs, spring for higher gain."
+}

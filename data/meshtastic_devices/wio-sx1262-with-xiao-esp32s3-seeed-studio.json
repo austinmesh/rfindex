@@ -1,0 +1,60 @@
+{
+  "id": "seeedstudio-wio-sx1262-xiao-esp32s3",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4ez0AQv"
+    },
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/Wio-SX1262-with-XIAO-ESP32S3-p-5982.html"
+    },
+    {
+      "supplier": "AliExpress",
+      "url": "https://s.click.aliexpress.com/e/_c3Ysagx7"
+    }
+  ],
+  "price": {
+    "min": 10.36,
+    "max": 18.99,
+    "currency": "USD"
+  },
+  "model": "Wio SX1262 + XIAO ESP32S3",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via IPEX connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio SX1262 with XIAO ESP32S3",
+  "image": "/devices/seeedstudio-wio-sx1262-xiao-esp32s3.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "SX1262",
+    "GPS support"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Ultra-compact LoRa development board combining the XIAO ESP32S3 with an onboard SX1262 module for wireless communication.",
+  "commentary": "Unless you have a specific need for the ESP32 version of this, we strongly recommend the nRF52 chipset version. These little units are great!"
+}

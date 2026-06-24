@@ -1,0 +1,54 @@
+{
+  "slug": "eifagur-alf1880",
+  "title": "Eifagur Magnetic Base",
+  "manufacturer": {
+    "brand_name": "Eifagur",
+    "part_number": "ALF1880",
+    "description": "Waterproof Replacement 5.8dBi Magnetic Base 915Mhz",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "url": "https://amzn.to/3XMskK9",
+      "part_number": "B09MRGDTPZ",
+      "purchase_cost": "$26.99"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.416:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.460:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.132:1"
+        }
+      ],
+      "notes": "Antenna performs well but requires a ground plane. Which shouldn't be an issue considering this is a magnetic base antenna.",
+      "metadata": {
+        "tester": "Bradyn Claycomb (KC3IJL)",
+        "date": "05/15/2024"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Vehicle Antennas",
+  "pdf": "PDFs/Eifagur-ALF1880-B09MRGDTPZ.pdf",
+  "dimensions": {
+    "length": 350,
+    "width": 80
+  },
+  "connector_type": "RP-SMA Male",
+  "gain": "5.8 dBi",
+  "image": "eifagur-alf1880.webp"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "spec5-trekker",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "SpecFive LLC",
+      "url": "https://specfive.com/products/spec5-trekker-device"
+    }
+  ],
+  "price": {
+    "min": 119.99,
+    "max": 119.99,
+    "currency": "USD"
+  },
+  "model": "S5 Trekker",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "SpecFive",
+  "title": "Spec5 Trekker",
+  "image": "/devices/spec5-trekker-device.webp",
+  "features": [
+    "GPS",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A portable LoRa radio designed for off-grid explorers and communication enthusiasts. It offers GPS location sharing and text messaging through a robust LoRa mesh network, providing reliable connectivity even in areas with no cellular coverage."
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "laird-tra9020s3cbn",
+  "title": "Laird TRA9020S3CBN",
+  "manufacturer": {
+    "brand_name": "TE Connectivity / Laird",
+    "part_number": "TRA9020S3CBN",
+    "description": "902-928 MHz Phantom Model 3dBi",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://www.ameradio.com/doc/Antenex-Laird-Technologies-Antennas-Catalog.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "TheAntennaFarm.com",
+      "part_number": "Same As Mfg",
+      "purchase_cost": "$48.95",
+      "url": "https://www.ameradio.com/doc/Antenex-Laird-Technologies-Antennas-Catalog.pdf"
+    }
+  ],
+  "test_results": [
+    {
+      "markers": [
+        {
+          "frequency": "902MHz",
+          "vswr": "1.573:1"
+        },
+        {
+          "frequency": "915MHz",
+          "vswr": "1.335:1"
+        },
+        {
+          "frequency": "928MHz",
+          "vswr": "1.457:1"
+        }
+      ],
+      "notes": "Antenna is within manufacturer published specifications of <2:1 VSWR. This model is a permanent mount, black Phantom-style antenna designed for government use. Civilian equivalent is the Laird TRAB9023NP.",
+      "metadata": {
+        "tester": "Ric Letson, NB2E",
+        "date": "2022-03-02"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Vehicle Antennas",
+  "pdf": "PDFs/TRA9020S3CBN.pdf",
+  "dimensions": {
+    "length": 68.6,
+    "width": 38.1
+  },
+  "connector_type": "NMO",
+  "gain": "3 dBi",
+  "image": "laird-tra9020s3cbn.webp",
+  "description": "Permanent-mount Phantom-style 902–928 MHz antenna designed by Laird for US government use. No ground plane required. Reliable and rugged."
+}
