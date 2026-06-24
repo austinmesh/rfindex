@@ -152,7 +152,7 @@ When adding new purchase URLs, always use the appropriate referral format for su
 RF Index is dual licensed, both noncommercial:
 
 - **Code**: PolyForm Noncommercial License 1.0.0 (`LICENSE`)
-- **Data** (everything under `data/`): Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (`LICENSE-DATA.md`)
+- **Data** (everything under `data/`): Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (`data/LICENSE.md`)
 
 The license is source-available, not OSI open source. Describe it as "source-available, noncommercial," not "open source."
 

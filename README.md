@@ -137,7 +137,7 @@ from both server and client.
 Images are copied into `public/` because `data/` is not a served directory on
 Cloudflare Workers (static assets are served from `public/`). Keeping the source
 images under `data/.../images/`, next to their JSON, keeps the licensed data (see
-[LICENSE-DATA.md](LICENSE-DATA.md)) as one self-contained unit and matches where
+[data/LICENSE.md](data/LICENSE.md)) as one self-contained unit and matches where
 the CMS writes uploads.
 
 **Accepted tradeoff:** the cost is a prebuild step, two gitignored generated
@@ -176,6 +176,6 @@ the data.
   share the source for any noncommercial purpose.
 - **Data** (everything under `data/`, including specs, pricing, test results, and
   images) is licensed under
-  [Creative Commons Attribution-NonCommercial-ShareAlike 4.0](LICENSE-DATA.md).
+  [Creative Commons Attribution-NonCommercial-ShareAlike 4.0](data/LICENSE.md).
 
 For commercial licensing, contact the maintainers.
