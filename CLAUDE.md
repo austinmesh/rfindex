@@ -4,11 +4,13 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 
 ## Commands
 
-- `npm run dev` — generate device + antenna data from `data/` + start dev server
-- `npm run dev:clean` — same as dev but clears `.next` cache first (use when dev server has stale errors)
-- `npm run build` — generate device + antenna data from `data/` + production build (TypeScript/ESLint errors are ignored via next.config.mjs)
-- `npm run lint` — run ESLint
-- `npm start` — start production server
+- `pnpm dev` — generate device + antenna data from `data/` + start dev server
+- `pnpm dev:clean` — same as dev but clears `.next` cache first (use when dev server has stale errors)
+- `pnpm build` — production build via OpenNext (`opennextjs-cloudflare build`): regenerates device + antenna data from `data/`, runs `next build`, and bundles to `.open-next/` for Cloudflare Workers. TypeScript/ESLint errors are ignored via next.config.mjs.
+- `pnpm deploy` — build via OpenNext and deploy to Cloudflare Workers
+- `pnpm preview` — build via OpenNext and run the Worker locally (closest to production)
+- `pnpm lint` — run ESLint
+- `pnpm start` — start the Next production server locally (note: production runs on Cloudflare Workers, not `next start`)
 
 ## Tech Stack
 
@@ -19,8 +21,8 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 - **Icons**: Lucide React
 - **Theming**: next-themes
 - **Analytics**: Google Analytics via `@next/third-parties`
-- **Package manager**: pnpm (Vercel install command: `pnpm install`). Always use pnpm, not npm.
-- **Deployment**: Vercel free tier (auto-deploys on push to `main`). **Operating cost must remain $0** — do not introduce features or dependencies that require paid services.
+- **Package manager**: pnpm (install command: `pnpm install`). Always use pnpm, not npm.
+- **Deployment**: Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`), deployed with Wrangler. Cloudflare Workers Builds auto-deploys on push to `main` (build command `pnpm run build`, deploy command `npx wrangler deploy`). **Operating cost must remain $0** — stay within the Cloudflare free tier; do not introduce features or dependencies that require paid services. See [Build & Deployment Pipeline](#build--deployment-pipeline).
 
 ## Architecture
 
@@ -83,17 +85,27 @@ Types are the single source of truth — data files import from `types/`.
 
 `@/*` maps to project root (configured in tsconfig.json). All imports use this alias.
 
+### Build & Deployment Pipeline
+
+The site is built and deployed to Cloudflare Workers through the OpenNext adapter.
+
+- `pnpm build` runs `opennextjs-cloudflare build`, which builds the Next app in standalone mode and bundles it into `.open-next/` (gitignored). `wrangler.jsonc` points `main` at `.open-next/worker.js` and serves static assets from `.open-next/assets`.
+- **The Next build command lives in `open-next.config.ts` as `buildCommand`, not in `package.json`.** It is set to `npx tsx lib/prebuild.ts && next build` for two reasons:
+  1. It runs the data prebuild before every OpenNext build, so `deploy`, `preview`, and `upload` (which call `opennextjs-cloudflare build` directly) all regenerate data.
+  2. **It prevents an infinite build loop.** Without an explicit `buildCommand`, OpenNext defaults to `pnpm build` on pnpm projects — which re-invokes `opennextjs-cloudflare build`, calling itself forever. Keep `buildCommand` pointed at `next build` (not `pnpm build`). If you ever need to skip the Next build, the real flag is `--skipNextBuild` (not `--skipBuildingNextApp`, which is silently ignored and re-triggers the loop).
+- **CI (Cloudflare Workers Builds):** build command `pnpm run build` produces `.open-next/`; deploy command `npx wrangler deploy` detects the OpenNext project and delegates to `opennextjs-cloudflare deploy`, which ships the already-built `.open-next/`. The build and deploy steps run in the same workspace, so the build output persists to deploy.
+
 ## Verification
 
-**Always run `npm run build` before committing or finalizing work.** This is the primary verification step for this repo. There is no unit test suite — the production build serves as the test because it:
+**Always run `pnpm build` before committing or finalizing work.** This is the primary verification step for this repo. There is no unit test suite — the production build serves as the test. `pnpm build` now runs the full OpenNext build, which includes `next build`, so it still:
 
 - Statically generates every device and antenna page via `generateStaticParams`, catching missing data or broken imports
 - Validates all TypeScript types and component props across the full render tree
 - Surfaces any runtime errors during page generation
 
-A successful build with no errors means the change is safe to commit.
+It additionally produces the Cloudflare Worker bundle in `.open-next/`, so a clean run verifies the deploy artifact too. It is heavier/slower than a bare `next build`. A successful build with no errors means the change is safe to commit.
 
-**Dev server caveat:** After restructuring imports or moving files, the dev server (`npm run dev`) may show stale errors due to its incremental cache. If the dev server breaks but `npm run build` passes, clear the cache with `rm -rf .next` and restart the dev server.
+**Dev server caveat:** After restructuring imports or moving files, the dev server (`pnpm dev`) may show stale errors due to its incremental cache. If the dev server breaks but `pnpm build` passes, clear the cache with `rm -rf .next` and restart the dev server.
 
 ## Revenue: Referral Links
 
