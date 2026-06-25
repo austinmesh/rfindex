@@ -1,12 +1,13 @@
 # Affiliate Programs
 
-RF Index uses referral/affiliate links in purchase URLs to generate revenue. This document lists all active programs and their link formats.
+Austin Mesh uses referral/affiliate links on RF Index in purchase URLs to help fund growing the mesh. This document lists all active programs and their link formats.
 
 ## Active Programs
 
 | Store | Program Dashboard | Link Format | Example |
 |-------|------------------|-------------|---------|
 | Amazon | [affiliate-program.amazon.com](https://affiliate-program.amazon.com/home) | `amzn.to/xxxxx` shortlinks | `https://amzn.to/3Yg442Y` |
+| AtlaVox | [atlavox.bixgrow.com](https://atlavox.bixgrow.com/dashboard) | `?bg_ref=Xc9U3S3ona` query param | `https://atlavox.com/products/atlavox-m1?bg_ref=Xc9U3S3ona` |
 | AliExpress | [portals.aliexpress.com](https://portals.aliexpress.com/affiportals/web/home.htm) | `s.click.aliexpress.com/e/xxxxx` shortlinks | `https://s.click.aliexpress.com/e/_oEdFiDP` |
 | LilyGo | [lilygo.bixgrow.com](https://lilygo.bixgrow.com/dashboard) | `?bg_ref=NMDtT4rHQo` query param | `https://lilygo.cc/products/t-deck?bg_ref=NMDtT4rHQo` |
 | RAKwireless | [kickbooster.me](https://kickbooster.me/booster_admin/programs/21889) | `rakwireless.kckb.st/rfindex-xxx` shortlinks | `https://rakwireless.kckb.st/rfindex-3dl` |
@@ -19,7 +20,6 @@ RF Index uses referral/affiliate links in purchase URLs to generate revenue. Thi
 These suppliers have plain links with no referral tracking:
 
 - Heltec (direct store)
-- AtlaVox
 - muzi works
 - SpecFive
 - Pacific Northwest 3D
