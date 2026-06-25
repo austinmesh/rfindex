@@ -133,19 +133,7 @@ For data-only changes (editing `data/` JSON or `schemas/`), run `pnpm validate` 
 
 The site generates revenue through referral/affiliate links in device and antenna purchase URLs. **Never remove or modify referral parameters from URLs.**
 
-| Program | Store | URL Pattern |
-|---------|-------|-------------|
-| Rokland referral | Rokland | `?ref=rfindex` |
-| Elecrow referral | Elecrow | `?ref=rfindex` |
-| Seeed Studio affiliate | Seeed Studio | `?sensecap_affiliate=WMeIXYu&referring_service=link` |
-| Amazon Associates | Amazon | `amzn.to/xxxxx` shortlinks |
-| LilyGo referral | LilyGo | `?bg_ref=NMDtT4rHQo` |
-| AliExpress affiliate | AliExpress | `s.click.aliexpress.com/e/xxxxx` shortlinks |
-| RAKwireless affiliate | RAKwireless | `rakwireless.kckb.st/rfindex-xxx` shortlinks |
-
-Some suppliers have no referral program so their URLs are plain links.
-
-When adding new purchase URLs, always use the appropriate referral format for supported stores.
+See [`AFFILIATES.md`](AFFILIATES.md) for the full list of active programs, their link formats, and program dashboards. When adding new purchase URLs, always use the appropriate referral format for supported stores. Some suppliers have no referral program, so their URLs are plain links.
 
 ## License
 
