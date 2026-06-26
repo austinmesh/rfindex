@@ -33,7 +33,33 @@ for (const [name, { schema, dir }] of Object.entries(collections)) {
   for (const file of files) {
     total++;
     const filePath = path.join(dataDir, file);
-    const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const raw = fs.readFileSync(filePath, "utf8");
+
+    let data;
+    try {
+      data = JSON.parse(raw);
+    } catch (err) {
+      failures++;
+      let where = "";
+      const m = /position (\d+)/.exec(err.message);
+      if (m) {
+        const pos = Number(m[1]);
+        let line = 1;
+        let col = 1;
+        for (let i = 0; i < pos && i < raw.length; i++) {
+          if (raw[i] === "\n") {
+            line++;
+            col = 1;
+          } else {
+            col++;
+          }
+        }
+        where = ` (line ${line}, col ${col})`;
+      }
+      console.error(`INVALID JSON: data/${dir}/${file}${where}`);
+      console.error(`  ${err.message}`);
+      continue;
+    }
 
     if (!validate(data)) {
       failures++;
