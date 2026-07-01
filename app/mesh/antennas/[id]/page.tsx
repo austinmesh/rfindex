@@ -188,6 +188,26 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
                 <div className="mb-6">{renderStatusAlert(antenna.suggested)}</div>
               </div>
 
+              {/* Austin Mesh community commentary */}
+              {antenna.commentary && (
+                <div className="mb-6 rounded-lg border bg-muted/30 p-4">
+                  <div className="mb-3 flex items-center gap-2">
+                    <Image
+                      src="/Austin-Mesh-Logo-Lockup.svg"
+                      alt="Austin Mesh"
+                      width={313}
+                      height={295}
+                      className="h-8 w-auto"
+                    />
+                    <h2 className="text-lg font-semibold">Comments from the Austin Mesh Community</h2>
+                  </div>
+                  <div
+                    className="text-muted-foreground [&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_strong]:text-foreground"
+                    dangerouslySetInnerHTML={{ __html: antenna.commentary }}
+                  />
+                </div>
+              )}
+
               {/* Purchase CTAs - Primary focus */}
               <Card className="p-6 mb-6 bg-muted/30">
                 <h2 className="text-xl font-semibold mb-4">Purchase Options</h2>

@@ -49,6 +49,7 @@ export type Antenna = {
   gain?: string
   image?: string
   description?: string
+  commentary?: string
   sort_order?: number
 }
 
