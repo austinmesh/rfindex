@@ -1,0 +1,47 @@
+{
+  "id": "seeedstudio-wio-tracker-l1-lite",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/Wio-Tracker-L1-Lite-p-6455.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 20,
+    "max": 30,
+    "currency": "USD"
+  },
+  "model": "Wio Tracker L1 Lite",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio Tracker L1 Lite",
+  "image": "/devices/wio-tracker-l1-lite.webp",
+  "features": [
+    "GPS",
+    "Bluetooth"
+  ],
+  "category": [
+    "DIY",
+    "Complete"
+  ],
+  "description": "L1 with no accessories at all."
+}

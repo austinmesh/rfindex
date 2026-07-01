@@ -1,0 +1,49 @@
+{
+  "id": "wismesh-1w-booster",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/coming-soon-wismesh-1w-booster-starter-kit-with-nrf52840-sx1262-and-sky66122-pa-for-extended-meshtastic-range?ref=rfindex"
+    },
+    {
+      "supplier": "RAKwireless",
+      "url": "https://store.rakwireless.com/products/wismesh-1w-booster-starter-kit"
+    }
+  ],
+  "price": {
+    "min": 39,
+    "max": 39,
+    "currency": "USD"
+  },
+  "model": "1W Booster Starter Kit",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "RAKwireless",
+  "title": "WisMesh 1W Booster Starter Kit",
+  "image": "/devices/wismesh-1w-booster.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "A 1w booster for the popular RAK 19003/7 boards.",
+  "commentary": "A bit complex to get power to, but a good upgrade for users who already have a RAK running in their setup. While we recommend these as upgrades, the jury is still out as to whether we would recommend these for new builds. We absolutely _do not_ recommend these for new users."
+}

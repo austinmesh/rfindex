@@ -41,7 +41,7 @@
   "image": "/devices/thinknode-m1.webp",
   "features": [
     "GPS",
-    "BLE",
+    "Bluetooth",
     "E-Ink Display",
     "External Antenna"
   ],

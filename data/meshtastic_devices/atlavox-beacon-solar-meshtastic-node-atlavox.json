@@ -21,6 +21,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo"
@@ -35,8 +36,7 @@
   "image": "/devices/atlavox-beacon.webp",
   "features": [
     "Bluetooth",
-    "SX1262",
-    "GPS support",
+    "GPS",
     "Solar"
   ],
   "category": [

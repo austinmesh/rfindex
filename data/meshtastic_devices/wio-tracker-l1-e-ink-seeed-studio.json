@@ -1,0 +1,48 @@
+{
+  "id": "seeedstudio-wio-tracker-l1-e-ink",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/Wio-Tracker-L1-E-ink-p-6456.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 30,
+    "max": 40,
+    "currency": "USD"
+  },
+  "model": "Wio Tracker L1 E-Ink",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio Tracker L1 E-Ink",
+  "image": "/devices/wio-tracker-l1-e-ink.webp",
+  "features": [
+    "E-Ink Display",
+    "GPS",
+    "Bluetooth",
+    "Joystick"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "L1 with an e-ink screen, GPS, and antenna."
+}

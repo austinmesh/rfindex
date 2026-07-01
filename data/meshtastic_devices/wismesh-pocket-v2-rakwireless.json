@@ -30,6 +30,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo"
@@ -45,7 +46,6 @@
   "features": [
     "Bluetooth",
     "Color Display",
-    "SX1262",
     "GPS"
   ],
   "category": [

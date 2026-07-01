@@ -1,0 +1,50 @@
+{
+  "id": "heltec-meshtower-v2",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Heltec",
+      "url": "https://heltec.org/project/meshtower/"
+    }
+  ],
+  "price": {
+    "min": 109,
+    "max": 129,
+    "currency": "USD"
+  },
+  "model": "MeshTower V2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "Li-ion",
+      "capacity_mAh": 8400
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Heltec",
+  "title": "MeshTower V2",
+  "image": "/devices/heltec-meshtower-v2.webp",
+  "features": [
+    "Solar",
+    "GPS",
+    "Bluetooth",
+    "Weatherproof"
+  ],
+  "category": [
+    "Solar",
+    "Complete"
+  ],
+  "description": "Outdoor solar powered mesh node with a 10w solar panel, 3 18650 batteries, and up to 1w transmit power.",
+  "commentary": "Austin Mesh does not recommend the MeshTower v1 or v2. While the hardware is generally good, it requires custom firmware which makes the process of maintaining the node considerably more difficult."
+}

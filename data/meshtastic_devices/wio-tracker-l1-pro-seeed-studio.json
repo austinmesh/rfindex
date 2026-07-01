@@ -1,0 +1,53 @@
+{
+  "id": "seeedstudio-wio-tracker-l1-pro",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Seeed Studio",
+      "url": "https://www.seeedstudio.com/Wio-Tracker-L1-Pro-p-6454.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 39.9,
+    "max": 46.99,
+    "currency": "USD"
+  },
+  "model": "Wio Tracker L1 Pro",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 2000,
+      "estimated_runtime": "Up to 5 days"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Seeed Studio",
+  "title": "Wio Tracker L1 Pro",
+  "image": "/devices/wio-tracker-l1-pro.webp",
+  "features": [
+    "OLED Display",
+    "GPS",
+    "Bluetooth",
+    "Joystick",
+    "Solar Input"
+  ],
+  "category": [
+    "Complete",
+    "Solar"
+  ],
+  "description": "L1 with a case with a switch, buttons, and joystick for navigation.",
+  "commentary": "Included antenna isn't great. Unfortunately the SMA interface is RP-SMA so most of the recommended antennas won't work unless you also plan to swap out the IPEX/SMA pigtail inside the unit which requires some surgery."
+}

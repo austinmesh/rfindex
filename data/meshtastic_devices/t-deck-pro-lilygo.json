@@ -31,6 +31,7 @@
       "915 MHz"
     ],
     "microcontroller": "ESP32",
+    "lora_radio": "SX1262",
     "power_consumption": "Average",
     "battery": {
       "type": "LiPo"
@@ -51,7 +52,6 @@
     "Touchscreen",
     "WiFi",
     "Bluetooth",
-    "SX1262",
     "GPS"
   ],
   "category": [

@@ -35,6 +35,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "External"
@@ -52,8 +53,7 @@
   "title": "RAK19007 with RAK4631",
   "image": "/devices/19007-meshtastic-starter-kit.webp",
   "features": [
-    "Bluetooth",
-    "SX1262"
+    "Bluetooth"
   ],
   "category": [
     "DIY"

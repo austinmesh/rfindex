@@ -1,0 +1,48 @@
+{
+  "id": "elecrow-thinknode-m4",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Muzi Works",
+      "url": "https://muzi.works/products/elecrow-thinknode-m4-power-bank"
+    }
+  ],
+  "price": {
+    "min": 69.99,
+    "max": 69.99,
+    "currency": "USD"
+  },
+  "model": "Thinknode M4",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "LR1110",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "Li-ion"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Elecrow",
+  "title": "Thinknode M4",
+  "image": "/devices/thinknode-m4.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Power Bank",
+    "Environmental Sensors"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A combination Battery Bank and Mesh radio",
+  "commentary": "A product trying to be more than one thing is generally not great at any of them. This is one of those cases."
+}

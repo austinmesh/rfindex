@@ -1,0 +1,49 @@
+{
+  "id": "bq-consulting-station-g2",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "B&Q Consulting",
+      "url": "https://shop.uniteng.com/product/meshtastic-mesh-device-station-g2/"
+    }
+  ],
+  "price": {
+    "min": 109,
+    "max": 109,
+    "currency": "USD"
+  },
+  "model": "Station G2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "High",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Grove",
+      "Qwiic"
+    ]
+  },
+  "manufacturer": "B&Q Consulting",
+  "title": "Station G2",
+  "image": "/devices/station-g2.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "OLED Display"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "High power (37dbm) amplifier with an inline LNA node that requires USB PD input.",
+  "commentary": "The station G2 is a very powerful radio. Users not familiar with radios in general should not buy this unit as it is capable of outputting signals over the legal limits. We've found the receive performance to be far below average, requiring both a very good antenna and ideally a dedicated cavity filter like the Acasom or Airframes. The USB PD input requirement makes powering this device even more challenging for solar setups. When the Station G2 came out, it was the only high power option. As of June 2026 there are many other good 1w options to consider before the G2."
+}

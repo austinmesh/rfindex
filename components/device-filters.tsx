@@ -19,7 +19,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allFirmwares } from "@/lib/data"
+import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares } from "@/lib/data"
 
 export function DeviceFilters({ devices }: { devices: Device[] }) {
   const router = useRouter()
@@ -43,6 +43,9 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   )
   const [selectedMicrocontrollers, setSelectedMicrocontrollers] = useState<string[]>(
     searchParams.get("microcontrollers")?.split(",").filter(Boolean) || [],
+  )
+  const [selectedLoraRadios, setSelectedLoraRadios] = useState<string[]>(
+    searchParams.get("radios")?.split(",").filter(Boolean) || [],
   )
   const [selectedFirmwares, setSelectedFirmwares] = useState<string[]>(
     searchParams.get("firmware")?.split(",").filter(Boolean) || [],
@@ -88,6 +91,12 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     const matchesMicrocontroller =
       selectedMicrocontrollers.length === 0 || selectedMicrocontrollers.includes(device.specifications.microcontroller)
 
+    // LoRa radio filter
+    const matchesLoraRadio =
+      selectedLoraRadios.length === 0 ||
+      (device.specifications.lora_radio !== undefined &&
+        selectedLoraRadios.includes(device.specifications.lora_radio))
+
     // Firmware filter
     const matchesFirmware =
       selectedFirmwares.length === 0 || device.supported_firmware.some((fw) => selectedFirmwares.includes(fw))
@@ -110,6 +119,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
       matchesFeatures &&
       matchesLoraFrequencies &&
       matchesMicrocontroller &&
+      matchesLoraRadio &&
       matchesFirmware &&
       matchesPrice
     )
@@ -153,6 +163,10 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedMicrocontrollers((prev) =>
       prev.includes(microcontroller) ? prev.filter((m) => m !== microcontroller) : [...prev, microcontroller],
     )
+  }
+
+  const toggleLoraRadio = (radio: string) => {
+    setSelectedLoraRadios((prev) => (prev.includes(radio) ? prev.filter((r) => r !== radio) : [...prev, radio]))
   }
 
   const toggleFirmware = (firmware: string) =>
@@ -205,6 +219,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedFeatures([])
     setSelectedLoraFrequencies([])
     setSelectedMicrocontrollers([])
+    setSelectedLoraRadios([])
     setSelectedFirmwares([])
     setPriceRange([0, 500])
     setSortOption("default")
@@ -217,6 +232,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedFeatures.length > 0 ||
     selectedLoraFrequencies.length > 0 ||
     selectedMicrocontrollers.length > 0 ||
+    selectedLoraRadios.length > 0 ||
     selectedFirmwares.length > 0 ||
     priceRange[0] > 0 ||
     priceRange[1] < 500 ||
@@ -241,6 +257,9 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
 
     if (selectedMicrocontrollers.length > 0) params.set("microcontrollers", selectedMicrocontrollers.join(","))
     else params.delete("microcontrollers")
+
+    if (selectedLoraRadios.length > 0) params.set("radios", selectedLoraRadios.join(","))
+    else params.delete("radios")
 
     if (selectedFirmwares.length > 0) params.set("firmware", selectedFirmwares.join(","))
     else params.delete("firmware")
@@ -268,6 +287,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedFeatures,
     selectedLoraFrequencies,
     selectedMicrocontrollers,
+    selectedLoraRadios,
     selectedFirmwares,
     priceRange,
     sortOption,
@@ -288,6 +308,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
       setSelectedFeatures(params.get("features")?.split(",").filter(Boolean) || [])
       setSelectedLoraFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
       setSelectedMicrocontrollers(params.get("microcontrollers")?.split(",").filter(Boolean) || [])
+      setSelectedLoraRadios(params.get("radios")?.split(",").filter(Boolean) || [])
       setSelectedFirmwares(params.get("firmware")?.split(",").filter(Boolean) || [])
 
       const min = params.get("priceMin") ? Number.parseInt(params.get("priceMin") || "0") : 0
@@ -353,24 +374,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
             <Separator />
 
             <div>
-              <h3 className="font-semibold mb-3">Features</h3>
-              <div className="space-y-2">
-                {allFeatures.map((feature) => (
-                  <div key={feature} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`feature-${feature}`}
-                      checked={selectedFeatures.includes(feature)}
-                      onCheckedChange={() => toggleFeature(feature)}
-                    />
-                    <Label htmlFor={`feature-${feature}`}>{feature}</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
               <h3 className="font-semibold mb-3">LoRa Frequencies</h3>
               <div className="space-y-2">
                 {allLoraFrequencies.map((frequency) => (
@@ -424,6 +427,24 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
             <Separator />
 
             <div>
+              <h3 className="font-semibold mb-3">LoRa Radio</h3>
+              <div className="space-y-2">
+                {allLoraRadios.map((radio) => (
+                  <div key={radio} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`radio-${radio}`}
+                      checked={selectedLoraRadios.includes(radio)}
+                      onCheckedChange={() => toggleLoraRadio(radio)}
+                    />
+                    <Label htmlFor={`radio-${radio}`}>{radio}</Label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Separator />
+
+            <div>
               <h3 className="font-semibold mb-3">Price Range</h3>
               <Slider
                 defaultValue={[0, 500]}
@@ -469,6 +490,24 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-2">Shows devices with any price overlap in this range</p>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="font-semibold mb-3">Features</h3>
+              <div className="space-y-2">
+                {allFeatures.map((feature) => (
+                  <div key={feature} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`feature-${feature}`}
+                      checked={selectedFeatures.includes(feature)}
+                      onCheckedChange={() => toggleFeature(feature)}
+                    />
+                    <Label htmlFor={`feature-${feature}`}>{feature}</Label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -533,24 +572,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                 <Separator />
 
                 <div>
-                  <h3 className="font-semibold mb-3">Features</h3>
-                  <div className="space-y-2">
-                    {allFeatures.map((feature) => (
-                      <div key={feature} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`mobile-feature-${feature}`}
-                          checked={selectedFeatures.includes(feature)}
-                          onCheckedChange={() => toggleFeature(feature)}
-                        />
-                        <Label htmlFor={`mobile-feature-${feature}`}>{feature}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div>
                   <h3 className="font-semibold mb-3">LoRa Frequencies</h3>
                   <div className="space-y-2">
                     {allLoraFrequencies.map((frequency) => (
@@ -596,6 +617,24 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                           onCheckedChange={() => toggleMicrocontroller(microcontroller)}
                         />
                         <Label htmlFor={`mobile-microcontroller-${microcontroller}`}>{microcontroller}</Label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-3">LoRa Radio</h3>
+                  <div className="space-y-2">
+                    {allLoraRadios.map((radio) => (
+                      <div key={radio} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`mobile-radio-${radio}`}
+                          checked={selectedLoraRadios.includes(radio)}
+                          onCheckedChange={() => toggleLoraRadio(radio)}
+                        />
+                        <Label htmlFor={`mobile-radio-${radio}`}>{radio}</Label>
                       </div>
                     ))}
                   </div>
@@ -651,6 +690,24 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                   <p className="text-xs text-muted-foreground mt-2">
                     Shows devices with any price overlap in this range
                   </p>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-3">Features</h3>
+                  <div className="space-y-2">
+                    {allFeatures.map((feature) => (
+                      <div key={feature} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`mobile-feature-${feature}`}
+                          checked={selectedFeatures.includes(feature)}
+                          onCheckedChange={() => toggleFeature(feature)}
+                        />
+                        <Label htmlFor={`mobile-feature-${feature}`}>{feature}</Label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </SheetContent>
@@ -865,6 +922,12 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                   <TableCell className="font-medium">LoRa Frequencies</TableCell>
                   {devicesToCompare.map((device) => (
                     <TableCell key={`${device.id}-lora`}>{device.specifications.lora_frequencies.join(", ")}</TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">LoRa Radio</TableCell>
+                  {devicesToCompare.map((device) => (
+                    <TableCell key={`${device.id}-lora-radio`}>{device.specifications.lora_radio ?? "N/A"}</TableCell>
                   ))}
                 </TableRow>
                 <TableRow>

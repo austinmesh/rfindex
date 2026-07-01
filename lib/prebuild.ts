@@ -22,6 +22,7 @@ type RawDevice = {
   specifications: {
     lora_frequencies: string[]
     microcontroller: string
+    lora_radio?: string
     power_consumption: string
     battery: {
       type: string

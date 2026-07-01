@@ -1,0 +1,48 @@
+{
+  "id": "canary-radio-canary-one",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Canary Radio Co.",
+      "url": "https://canaryradio.io/products/canaryone"
+    }
+  ],
+  "price": {
+    "min": 160,
+    "max": 160,
+    "currency": "USD"
+  },
+  "model": "Canary One",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Canary Radio Co.",
+  "title": "Canary One",
+  "image": "/devices/canary-one.webp",
+  "features": [
+    "E-Ink Display",
+    "GPS",
+    "Bluetooth",
+    "Weatherproof"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "\"Rugged\" handheld nRF52/SX1262, e-ink display, GPS, 24-72 hour battery.",
+  "commentary": "Austin Mesh has no direct experience with this device. Based on price and feature set we do not recommend this."
+}

@@ -1,0 +1,51 @@
+{
+  "id": "bq-consulting-nano-g2-ultra",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "B&Q Consulting",
+      "url": "https://shop.uniteng.com/product/meshtastic-mesh-device-nano-g2-ultra/"
+    },
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/meshtastic-mesh-device-nano-g2-ultra-low-power-wideband-lora-for-outdoor-adventures?ref=rfindex"
+    }
+  ],
+  "price": {
+    "min": 86,
+    "max": 86,
+    "currency": "USD"
+  },
+  "model": "Nano G2 Ultra",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo",
+      "estimated_runtime": "Up to 3.5 days"
+    },
+    "antenna": "Internal wideband antenna",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "B&Q Consulting",
+  "title": "Nano G2 Ultra",
+  "image": "/devices/nano-g2-ultra.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Handheld built on nRF52, internal antenna with up to 3.5 days of battery life.",
+  "commentary": "Not terrible as a handheld node, but the reset button requires battery removal which was annoying. Generally not our first pick."
+}

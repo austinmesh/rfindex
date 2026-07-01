@@ -67,6 +67,10 @@
           "type": "string",
           "enum": ["ARM Cortex-M4", "ESP32", "ESP32-S3", "Raspberry Pi 5", "nRF52"]
         },
+        "lora_radio": {
+          "type": "string",
+          "enum": ["SX1262", "SX1268", "SX1272", "SX1276", "SX1280", "LLCC68", "LR1110", "LR1120", "LR1121"]
+        },
         "power_consumption": {
           "type": "string",
           "enum": ["Low", "Average", "High"]

@@ -21,6 +21,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo"
@@ -35,8 +36,7 @@
   "image": "/devices/heltec-meshpocket-qi2.webp",
   "features": [
     "Bluetooth",
-    "E-Ink Display",
-    "SX1262"
+    "E-Ink Display"
   ],
   "category": [
     "Complete"

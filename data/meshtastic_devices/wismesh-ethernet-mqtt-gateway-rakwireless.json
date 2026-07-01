@@ -29,6 +29,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "None"
@@ -44,12 +45,12 @@
   "image": "/devices/wismesh-ethernet-gateway.webp",
   "features": [
     "Bluetooth",
-    "SX1262",
-    "GPS support"
+    "GPS"
   ],
   "category": [
     "Complete",
     "DIY"
   ],
-  "description": "LoRa to MQTT gateway with Ethernet connectivity for permanent Meshtastic installations."
+  "description": "LoRa to MQTT gateway with Ethernet connectivity for permanent Meshtastic installations.",
+  "commentary": "We generally discourage use of MQTT on the Austin Mesh network, so we don't see these often. If your use case calls for MQTT, this is a good off the shelf option."
 }

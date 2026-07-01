@@ -1,0 +1,50 @@
+{
+  "id": "muzi-works-base-uno",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "url": "https://muzi.works/products/base-uno"
+    }
+  ],
+  "price": {
+    "min": 25,
+    "max": 25,
+    "currency": "USD"
+  },
+  "model": "Base Uno",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "GPIO",
+      "I2C",
+      "SPI",
+      "UART",
+      "Grove",
+      "Qwiic"
+    ]
+  },
+  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "title": "Base Uno",
+  "image": "/devices/muzi-works-base-uno.webp",
+  "features": [
+    "Bluetooth"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Custom muzi works BASE System, nRF52 and SX1262 radio with modular IO board add-ons.",
+  "commentary": "These boards are fairly new as of June 2026. A number of Austin Mesh members are currently testing these devices out but we don't have recommendations as of now."
+}

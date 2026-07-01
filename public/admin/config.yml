@@ -253,6 +253,11 @@ collections:
             widget: "select"
             options: ["ARM Cortex-M4", "ESP32", "ESP32-S3", "Raspberry Pi 5", "nRF52"]
             required: false
+          - label: "LoRa Radio"
+            name: "lora_radio"
+            widget: "select"
+            options: ["SX1262", "SX1268", "SX1272", "SX1276", "SX1280", "LLCC68", "LR1110", "LR1120", "LR1121"]
+            required: false
           - label: "Power Consumption"
             name: "power_consumption"
             widget: "select"

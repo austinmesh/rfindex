@@ -31,6 +31,7 @@
       "2.4 GHz"
     ],
     "microcontroller": "ESP32",
+    "lora_radio": "SX1262",
     "power_consumption": "Average",
     "battery": {
       "type": "External"
@@ -50,8 +51,7 @@
   "features": [
     "WiFi",
     "Bluetooth",
-    "Color Display",
-    "SX1262"
+    "Color Display"
   ],
   "category": [
     "DIY"

@@ -1,0 +1,48 @@
+{
+  "id": "muzi-works-r1-neo",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "url": "https://muzi.works/products/r1-neo-complete-meshtastic-device"
+    }
+  ],
+  "price": {
+    "min": 89,
+    "max": 89,
+    "currency": "USD"
+  },
+  "model": "R1 Neo",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 1500
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "title": "R1 Neo",
+  "image": "/devices/muzi-works-r1-neo.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Weatherproof"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Compact weatherproof node with an SMA antenna and USB C power.",
+  "commentary": "This node never really gained momentum because the choice of 3d filament(PETG-CF). This filament either absorbs or reflects RF, so the Bluetooth performance is severely lacking. If you're okay with short range bluetooth, this is a solid option, with a price to match it's features."
+}

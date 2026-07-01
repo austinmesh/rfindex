@@ -30,6 +30,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo"
@@ -44,11 +45,11 @@
   "image": "/devices/wismesh-mini-pocket-2.webp",
   "features": [
     "Bluetooth",
-    "Color Display",
-    "SX1262"
+    "Color Display"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Compact LoRa node based on the RAK19003/4631 with external battery support, screen, and SX1262."
+  "description": "Discontinued. Replaced by WisMesh tag.",
+  "commentary": "Quickly discontinued. Was based around the 19003 but feature set was lacking."
 }

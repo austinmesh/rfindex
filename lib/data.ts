@@ -32,6 +32,10 @@ export const allMicrocontrollers = Array.from(
   new Set(devices.map((device) => device.specifications.microcontroller)),
 ).sort()
 
+export const allLoraRadios = Array.from(
+  new Set(devices.flatMap((device) => (device.specifications.lora_radio ? [device.specifications.lora_radio] : []))),
+).sort()
+
 export const allFirmwares = Array.from(
   new Set(devices.flatMap((device) => device.supported_firmware)),
 ).sort()

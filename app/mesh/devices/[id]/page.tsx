@@ -163,8 +163,8 @@ export default async function DeviceDetailsPage({ params }: { params: { id: stri
                     <span>{device.specifications.microcontroller}</span>
                   </li>
                   <li className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">LoRa Frequencies</span>
-                    <span>{device.specifications.lora_frequencies.join(", ")}</span>
+                    <span className="text-sm text-muted-foreground">LoRa Radio</span>
+                    <span>{device.specifications.lora_radio ?? "N/A"}</span>
                   </li>
                   <li className="flex flex-col">
                     <span className="text-sm text-muted-foreground">Estimated Runtime</span>
@@ -186,8 +186,8 @@ export default async function DeviceDetailsPage({ params }: { params: { id: stri
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-medium text-muted-foreground">LoRa Frequencies</h4>
-                      <p>{device.specifications.lora_frequencies.join(", ")}</p>
+                      <h4 className="font-medium text-muted-foreground">LoRa Radio</h4>
+                      <p>{device.specifications.lora_radio ?? "N/A"}</p>
                     </div>
                     <div>
                       <h4 className="font-medium text-muted-foreground">Microcontroller</h4>

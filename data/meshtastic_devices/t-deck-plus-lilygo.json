@@ -1,0 +1,56 @@
+{
+  "id": "lilygo-t-deck-plus",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "LilyGo",
+      "url": "https://lilygo.cc/products/t-deck-plus?bg_ref=NMDtT4rHQo"
+    }
+  ],
+  "price": {
+    "min": 79,
+    "max": 99,
+    "currency": "USD"
+  },
+  "model": "T-Deck Plus",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 2000
+    },
+    "antenna": "External via IPEX/U.FL connector",
+    "interfaces": [
+      "USB-C",
+      "Microphone",
+      "Speaker",
+      "GPIO"
+    ]
+  },
+  "manufacturer": "LILYGO",
+  "title": "T-Deck Plus",
+  "image": "/devices/lilygo-t-deck-plus.webp",
+  "features": [
+    "Keyboard",
+    "Color Display",
+    "Touchscreen",
+    "Trackball",
+    "GPS",
+    "WiFi",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "ESP32 powered node with a full keyboard, color screen, and metal case.",
+  "commentary": "Fine for what it is. The lack of external antenna limits performance. The metal case is very nice and feels great in the hand, however it also limits battery expansion which is an issue because this device will barely last you one day. The Firmware for T-Decks varies wildly. Meshtastic's is fine, but nowhere near as good as the mobile app. MeshCore's official firmware is non-existant, but many open source firmwares of varying quality exist. We do not recommend this as your only node, but it's a very cool one to have around!"
+}

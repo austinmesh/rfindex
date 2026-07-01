@@ -1,0 +1,51 @@
+{
+  "id": "wismesh-tag",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Rokland",
+      "url": "https://store.rokland.com/products/wismesh-tag-from-rakwireless-mokosmart-meshtastic-compatible-card-sized-node-us915-mhz?ref=rfindex"
+    },
+    {
+      "supplier": "RAKwireless",
+      "url": "https://store.rakwireless.com/products/wismesh-tag-meshtastic-gps-lora-tracker-ip66"
+    }
+  ],
+  "price": {
+    "min": 29,
+    "max": 39,
+    "currency": "USD"
+  },
+  "model": "Tag",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "RAKwireless",
+  "title": "WisMesh Tag",
+  "image": "/devices/wismesh-tag.webp",
+  "features": [
+    "E-Ink Display",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "A waterproof card sized radio with GPS and internal antenna.",
+  "commentary": "Slightly nicer than the t1000, but less tested as of July 2026. Internal antenna devices will always underperform external antennas, but for someone who would otherwise not carry a node with them, this is a great option."
+}

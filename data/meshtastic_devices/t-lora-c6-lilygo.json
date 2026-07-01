@@ -22,6 +22,7 @@
       "915 MHz"
     ],
     "microcontroller": "ESP32",
+    "lora_radio": "SX1262",
     "power_consumption": "Average",
     "battery": {
       "type": "External"
@@ -40,8 +41,7 @@
   "image": "/devices/lilygo-t-lora-c6.webp",
   "features": [
     "WiFi",
-    "Bluetooth",
-    "SX1262"
+    "Bluetooth"
   ],
   "category": [
     "DIY"

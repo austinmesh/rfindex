@@ -1,0 +1,54 @@
+{
+  "id": "elecrow-thinknode-m6",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4euZ0k3"
+    },
+    {
+      "supplier": "Elecrow",
+      "url": "https://www.elecrow.com/thinknode-m6-outdoor-solar-power-for-meshtastic-powered-by-nrf52840-supports-gps.html?ref=rfindex"
+    }
+  ],
+  "price": {
+    "min": 79.90,
+    "max": 89.99,
+    "currency": "USD"
+  },
+  "model": "Thinknode M6",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "Li-ion",
+      "capacity_mAh": 7000
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Elecrow",
+  "title": "Thinknode M6",
+  "image": "/devices/thinknode-m6.webp",
+  "features": [
+    "Solar",
+    "GPS",
+    "Bluetooth",
+    "Weatherproof"
+  ],
+  "category": [
+    "Solar",
+    "Complete"
+  ],
+  "description": "Radio with a 6w solar panel with 7000mah battery. SMA connectors for both LoRa and Bluetooth.",
+  "commentary": "Not recommended for areas with high temperatures(like Austin, Texas) due to coupling of solar panel with battery compartment. The SMA antennas will generally underperform so we recommend upgrading them to brand name or switching over to an N-Type fiberglass antenna for LoRa."
+}

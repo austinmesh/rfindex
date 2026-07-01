@@ -26,6 +26,7 @@
       "915 MHz"
     ],
     "microcontroller": "ESP32",
+    "lora_radio": "SX1262",
     "power_consumption": "Average",
     "battery": {
       "type": "External"
@@ -46,8 +47,7 @@
     "WiFi",
     "Bluetooth",
     "Color Display",
-    "SX1262",
-    "GPS support"
+    "GPS"
   ],
   "category": [
     "DIY",

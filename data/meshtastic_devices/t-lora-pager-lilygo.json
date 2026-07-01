@@ -8,7 +8,7 @@
   "purchase_urls": [
     {
       "supplier": "Rokland",
-      "url": "https://store.rokland.com/products/lilygo-t-lora-pager-us-915-mhz-lora-esp32-s3-handheld-aiot-programmable-development-device-k257-01"
+      "url": "https://store.rokland.com/products/lilygo-t-lora-pager-us-915-mhz-lora-esp32-s3-handheld-aiot-programmable-development-device-k257-01?ref=rfindex"
     },
     {
       "supplier": "LilyGo",
@@ -32,6 +32,7 @@
       "915 MHz"
     ],
     "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
     "power_consumption": "Average",
     "battery": {
       "type": "LiPo",
@@ -51,14 +52,12 @@
   "title": "T-Lora Pager",
   "image": "/devices/lilygo-t-lora-pager.webp",
   "features": [
-    "QWERTY Keyboard",
+    "Keyboard",
     "Rotary Encoder",
-    "IPS Display",
+    "Color Display",
     "WiFi",
     "Bluetooth",
-    "SX1262",
     "GPS",
-    "NFC",
     "IMU"
   ],
   "category": [

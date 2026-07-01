@@ -1,0 +1,53 @@
+{
+  "id": "elecrow-thinknode-m2",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/3SrSPVj"
+    },
+    {
+      "supplier": "Elecrow",
+      "url": "https://www.elecrow.com/thinknode-m2-meshtastic-lora-signal-transceiver-powered-by-esp32-s3-with-1-3-oled-display.html?ref=rfindex"
+    }
+  ],
+  "price": {
+    "min": 25.99,
+    "max": 43.9,
+    "currency": "USD"
+  },
+  "model": "Thinknode M2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 1000
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Elecrow",
+  "title": "Thinknode M2",
+  "image": "/devices/thinknode-m2.webp",
+  "features": [
+    "OLED Display",
+    "Bluetooth"
+  ],
+  "category": [
+    "DIY",
+    "Complete"
+  ],
+  "description": "Handheld ESP32/SX1262 radio, 1.3-inch OLED display, 1000mAh battery.",
+  "commentary": "Not a common node to see, but it does the job. We generally steer users towards newer ThinkNodes or other brands."
+}

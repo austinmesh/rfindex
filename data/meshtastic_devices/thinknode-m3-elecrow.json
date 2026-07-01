@@ -1,0 +1,49 @@
+{
+  "id": "elecrow-thinknode-m3",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4aU6g6F"
+    }
+  ],
+  "price": {
+    "min": 42.99,
+    "max": 42.99,
+    "currency": "USD"
+  },
+  "model": "Thinknode M3",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "LR1110",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 770
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "Proprietary USB magnetic charging cable"
+    ]
+  },
+  "manufacturer": "Elecrow",
+  "title": "Thinknode M3",
+  "image": "/devices/thinknode-m3.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Environmental Sensors",
+    "IMU",
+    "Weatherproof"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Tiny weatherproof tracker style radio with tie off and internal antenna"
+}

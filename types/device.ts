@@ -13,6 +13,7 @@ export type DeviceBattery = {
 export type DeviceSpecifications = {
   lora_frequencies: string[]
   microcontroller: string
+  lora_radio?: string
   power_consumption: string
   battery: DeviceBattery
   antenna: string

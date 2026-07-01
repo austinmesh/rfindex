@@ -31,6 +31,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "LR1110",
     "power_consumption": "Low",
     "battery": {
       "type": "Li-ion"
@@ -45,8 +46,7 @@
   "image": "/devices/sensecap-t1000e.webp",
   "features": [
     "Bluetooth",
-    "GPS",
-    "LR1110"
+    "GPS"
   ],
   "category": [
     "Complete"

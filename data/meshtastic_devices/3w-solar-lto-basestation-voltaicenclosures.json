@@ -20,6 +20,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "LTO"
@@ -34,8 +35,7 @@
   "image": "/devices/voltaic-enclosures-3w-solar-lto-basestation.webp",
   "features": [
     "Bluetooth",
-    "Solar",
-    "SX1262"
+    "Solar"
   ],
   "category": [
     "Complete",

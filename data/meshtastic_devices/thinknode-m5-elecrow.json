@@ -1,0 +1,53 @@
+{
+  "id": "elecrow-thinknode-m5",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "Amazon",
+      "url": "https://amzn.to/4vPCtVr"
+    },
+    {
+      "supplier": "Elecrow",
+      "url": "https://www.elecrow.com/thinknode-m5-meshtastic-lora-signal-transceiver-esp32-s3-1-54-screen-gps-function.html?ref=rfindex"
+    }
+  ],
+  "price": {
+    "min": 53.90,
+    "max": 63.99,
+    "currency": "USD"
+  },
+  "model": "Thinknode M5",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 1200
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "Elecrow",
+  "title": "Thinknode M5",
+  "image": "/devices/thinknode-m5.webp",
+  "features": [
+    "E-Ink Display",
+    "GPS",
+    "Bluetooth"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Pocket sized radio with an e-ink screen and external SMA antenna. Available in both nrf52 or esp32.",
+  "commentary": "One of the more defined ThinkNodes, and growing in popularity. If you're looking for a pocket node with a rotary encoder for navigation this should be on your short list."
+}

@@ -1,0 +1,47 @@
+{
+  "id": "circuitmess-chatter-2",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "CircuitMess",
+      "url": "https://circuitmess.com/products/chatter-2-0"
+    }
+  ],
+  "price": {
+    "min": 149,
+    "max": 149,
+    "currency": "USD"
+  },
+  "model": "Chatter 2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32",
+    "lora_radio": "LLCC68",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "CircuitMess",
+  "title": "Chatter 2",
+  "image": "/devices/circuitmess-chatter-2.webp",
+  "features": [
+    "Color Display",
+    "Keyboard",
+    "Bluetooth"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "An DIY style device with a tradition 1-9 keyboard.",
+  "commentary": "Austin Mesh does not have any direct experience with the Chatter. Support for firmwares and UI is generally unknown."
+}

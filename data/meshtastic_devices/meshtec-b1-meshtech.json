@@ -25,6 +25,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo"
@@ -39,8 +40,7 @@
   "image": "/devices/meshtech-b1.webp",
   "features": [
     "Bluetooth",
-    "SX1262",
-    "GPS support",
+    "GPS",
     "Color Display",
     "External Antenna"
   ],

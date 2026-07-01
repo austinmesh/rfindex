@@ -34,6 +34,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
     "power_consumption": "Low",
     "battery": {
       "type": "Li-ion"
@@ -48,9 +49,8 @@
   "image": "/devices/wismesh-repeater.webp",
   "features": [
     "Bluetooth",
-    "SX1262",
     "Solar",
-    "GPS support"
+    "GPS"
   ],
   "category": [
     "Complete",
