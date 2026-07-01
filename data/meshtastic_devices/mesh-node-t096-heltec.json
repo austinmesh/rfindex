@@ -46,7 +46,6 @@
   "features": [
     "GPS",
     "Bluetooth",
-    "LNA",
     "External Antenna"
   ],
   "category": [

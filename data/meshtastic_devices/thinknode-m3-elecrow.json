@@ -38,8 +38,6 @@
   "features": [
     "GPS",
     "Bluetooth",
-    "Environmental Sensors",
-    "IMU",
     "Weatherproof"
   ],
   "category": [

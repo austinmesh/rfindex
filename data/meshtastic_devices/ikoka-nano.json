@@ -38,9 +38,7 @@
   "features": [
     "Bluetooth",
     "Solar Input",
-    "External Antenna",
-    "Open Hardware",
-    "Expandable"
+    "External Antenna"
   ],
   "category": [
     "DIY"

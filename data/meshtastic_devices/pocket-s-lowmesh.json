@@ -39,7 +39,6 @@
   "features": [
     "Bluetooth",
     "Solar",
-    "Environmental Sensors",
     "GPS"
   ],
   "category": [

@@ -42,8 +42,7 @@
   "features": [
     "Bluetooth",
     "OLED Display",
-    "External Antenna",
-    "Open Hardware"
+    "External Antenna"
   ],
   "category": [
     "DIY"

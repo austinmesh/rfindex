@@ -38,8 +38,7 @@
   "features": [
     "E-Ink Display",
     "GPS",
-    "Bluetooth",
-    "Joystick"
+    "Bluetooth"
   ],
   "category": [
     "Complete"

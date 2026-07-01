@@ -38,8 +38,7 @@
   "features": [
     "OLED Display",
     "GPS",
-    "Bluetooth",
-    "Joystick"
+    "Bluetooth"
   ],
   "category": [
     "DIY"

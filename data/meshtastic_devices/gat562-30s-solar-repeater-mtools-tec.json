@@ -38,8 +38,7 @@
   "features": [
     "Bluetooth",
     "Solar Input",
-    "External Antenna",
-    "Expandable"
+    "External Antenna"
   ],
   "category": [
     "Complete"

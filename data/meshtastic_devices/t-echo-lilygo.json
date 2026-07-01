@@ -56,8 +56,7 @@
   "features": [
     "WiFi",
     "Bluetooth",
-    "GPS",
-    "Wearable"
+    "GPS"
   ],
   "category": [
     "Complete"
