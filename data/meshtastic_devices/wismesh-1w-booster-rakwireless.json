@@ -26,6 +26,7 @@
     ],
     "microcontroller": "nRF52",
     "lora_radio": "SX1262",
+    "max_tx_power_dbm": 30,
     "power_consumption": "Average",
     "battery": {
       "type": "External"

@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
-import { devices, featureDescriptions } from "@/lib/data"
+import { devices, featureDescriptions, formatTxPower } from "@/lib/data"
 
 // Generate static params for all device IDs
 export function generateStaticParams() {
@@ -167,6 +167,10 @@ export default async function DeviceDetailsPage({ params }: { params: { id: stri
                     <span>{device.specifications.lora_radio ?? "N/A"}</span>
                   </li>
                   <li className="flex flex-col">
+                    <span className="text-sm text-muted-foreground">Max TX Power</span>
+                    <span>{formatTxPower(device.specifications.max_tx_power_dbm)}</span>
+                  </li>
+                  <li className="flex flex-col">
                     <span className="text-sm text-muted-foreground">Estimated Runtime</span>
                     <span>{device.specifications.battery.estimated_runtime}</span>
                   </li>
@@ -188,6 +192,10 @@ export default async function DeviceDetailsPage({ params }: { params: { id: stri
                     <div>
                       <h4 className="font-medium text-muted-foreground">LoRa Radio</h4>
                       <p>{device.specifications.lora_radio ?? "N/A"}</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-muted-foreground">Max TX Power</h4>
+                      <p>{formatTxPower(device.specifications.max_tx_power_dbm)}</p>
                     </div>
                     <div>
                       <h4 className="font-medium text-muted-foreground">Microcontroller</h4>

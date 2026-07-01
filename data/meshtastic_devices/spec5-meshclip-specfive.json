@@ -20,6 +20,7 @@
       "915 MHz"
     ],
     "microcontroller": "ESP32",
+    "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
       "type": "External"

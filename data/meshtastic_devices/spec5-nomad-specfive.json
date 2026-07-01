@@ -20,6 +20,7 @@
       "915 MHz"
     ],
     "microcontroller": "Raspberry Pi 5",
+    "max_tx_power_dbm": 22,
     "power_consumption": "High",
     "battery": {
       "type": "LiPo"

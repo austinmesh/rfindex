@@ -258,6 +258,7 @@ collections:
             widget: "select"
             options: ["SX1262", "SX1268", "SX1272", "SX1276", "SX1280", "LLCC68", "LR1110", "LR1120", "LR1121"]
             required: false
+          - { name: "max_tx_power_dbm", label: "Max TX Power (dBm)", widget: "number", value_type: "int", min: 0, max: 40, required: false, hint: "Radio max transmit power in dBm. Convert watts: 0.5W=27, 1W=30, 2W=33." }
           - label: "Power Consumption"
             name: "power_consumption"
             widget: "select"

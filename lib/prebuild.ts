@@ -23,6 +23,7 @@ type RawDevice = {
     lora_frequencies: string[]
     microcontroller: string
     lora_radio?: string
+    max_tx_power_dbm?: number
     power_consumption: string
     battery: {
       type: string

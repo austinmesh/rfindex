@@ -19,7 +19,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares } from "@/lib/data"
+import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares, maxTxPowerDbm, formatTxPower } from "@/lib/data"
 
 export function DeviceFilters({ devices }: { devices: Device[] }) {
   const router = useRouter()
@@ -55,6 +55,9 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     const max = searchParams.get("priceMax") ? Number.parseInt(searchParams.get("priceMax") || "500") : 500
     return [min, max]
   })
+  const [minTxPower, setMinTxPower] = useState<number>(() =>
+    searchParams.get("txMin") ? Number.parseInt(searchParams.get("txMin") || "0") : 0,
+  )
   const [sortOption, setSortOption] = useState<"default" | "price-asc" | "price-desc">(
     (searchParams.get("sort") as any) || "default",
   )
@@ -113,6 +116,13 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
 
     const matchesPrice = deviceMaxPrice >= selectedMinPrice && deviceMinPrice <= selectedMaxPrice
 
+    // Max TX power filter (minimum threshold). At 0 the filter is inactive.
+    // Above 0, devices without a listed TX power are excluded.
+    const matchesTxPower =
+      minTxPower === 0 ||
+      (device.specifications.max_tx_power_dbm !== undefined &&
+        device.specifications.max_tx_power_dbm >= minTxPower)
+
     return (
       matchesSearch &&
       matchesCategory &&
@@ -121,7 +131,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
       matchesMicrocontroller &&
       matchesLoraRadio &&
       matchesFirmware &&
-      matchesPrice
+      matchesPrice &&
+      matchesTxPower
     )
   })
 
@@ -222,6 +233,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedLoraRadios([])
     setSelectedFirmwares([])
     setPriceRange([0, 500])
+    setMinTxPower(0)
     setSortOption("default")
   }
 
@@ -236,6 +248,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedFirmwares.length > 0 ||
     priceRange[0] > 0 ||
     priceRange[1] < 500 ||
+    minTxPower > 0 ||
     sortOption !== "default"
 
   // Update URL when filters change
@@ -270,6 +283,9 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     if (priceRange[1] < 500) params.set("priceMax", priceRange[1].toString())
     else params.delete("priceMax")
 
+    if (minTxPower > 0) params.set("txMin", minTxPower.toString())
+    else params.delete("txMin")
+
     if (sortOption !== "default") params.set("sort", sortOption)
     else params.delete("sort")
 
@@ -290,6 +306,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedLoraRadios,
     selectedFirmwares,
     priceRange,
+    minTxPower,
     sortOption,
     selectedForComparison,
     isCompareModalOpen,
@@ -314,6 +331,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
       const min = params.get("priceMin") ? Number.parseInt(params.get("priceMin") || "0") : 0
       const max = params.get("priceMax") ? Number.parseInt(params.get("priceMax") || "500") : 500
       setPriceRange([min, max])
+
+      setMinTxPower(params.get("txMin") ? Number.parseInt(params.get("txMin") || "0") : 0)
 
       setSortOption((params.get("sort") as any) || "default")
       setSelectedForComparison(params.get("compare")?.split(",").filter(Boolean) || [])
@@ -490,6 +509,24 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-2">Shows devices with any price overlap in this range</p>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="font-semibold mb-3">Min TX Power</h3>
+              <Slider
+                min={0}
+                max={maxTxPowerDbm}
+                step={1}
+                value={[minTxPower]}
+                onValueChange={(value) => setMinTxPower(value[0])}
+                className="my-6"
+              />
+              <p className="text-sm">{minTxPower === 0 ? "Any TX power" : `At least ${formatTxPower(minTxPower)}`}</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Devices without a listed TX power are hidden while this is above 0.
+              </p>
             </div>
 
             <Separator />
@@ -689,6 +726,26 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
                     Shows devices with any price overlap in this range
+                  </p>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-3">Min TX Power</h3>
+                  <Slider
+                    min={0}
+                    max={maxTxPowerDbm}
+                    step={1}
+                    value={[minTxPower]}
+                    onValueChange={(value) => setMinTxPower(value[0])}
+                    className="my-6"
+                  />
+                  <p className="text-sm">
+                    {minTxPower === 0 ? "Any TX power" : `At least ${formatTxPower(minTxPower)}`}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Devices without a listed TX power are hidden while this is above 0.
                   </p>
                 </div>
 
@@ -928,6 +985,14 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                   <TableCell className="font-medium">LoRa Radio</TableCell>
                   {devicesToCompare.map((device) => (
                     <TableCell key={`${device.id}-lora-radio`}>{device.specifications.lora_radio ?? "N/A"}</TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Max TX Power</TableCell>
+                  {devicesToCompare.map((device) => (
+                    <TableCell key={`${device.id}-tx-power`}>
+                      {formatTxPower(device.specifications.max_tx_power_dbm)}
+                    </TableCell>
                   ))}
                 </TableRow>
                 <TableRow>

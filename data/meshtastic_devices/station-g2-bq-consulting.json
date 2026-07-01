@@ -22,6 +22,7 @@
     ],
     "microcontroller": "ESP32-S3",
     "lora_radio": "SX1262",
+    "max_tx_power_dbm": 37,
     "power_consumption": "High",
     "battery": {
       "type": "External"

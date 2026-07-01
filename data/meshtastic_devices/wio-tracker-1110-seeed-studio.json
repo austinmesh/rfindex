@@ -22,7 +22,8 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
-    "lora_radio": "SX1262",
+    "lora_radio": "LR1110",
+    "max_tx_power_dbm": 20,
     "power_consumption": "Low",
     "battery": {
       "type": "External"

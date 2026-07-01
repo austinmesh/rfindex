@@ -22,6 +22,7 @@
     ],
     "microcontroller": "nRF52",
     "lora_radio": "LR1110",
+    "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo",
