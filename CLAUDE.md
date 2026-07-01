@@ -156,6 +156,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 - **Images are unoptimized** (`next.config.mjs` sets `images.unoptimized: true`)
 - **Filter state is URL-synced** — both filter components read/write URL search params via `useSearchParams`
 - **Contribution links go to GitHub issues** (not Google Forms). The header "Contribute" link points to the issue template chooser; footer links target specific templates in `.github/ISSUE_TEMPLATE/`. Never reintroduce the old `forms.gle` links.
+- **Device `features` is a deliberately short curated vocabulary** — reuse existing values; adding a new one must be intentional and reviewed. See [Device Features](#device-features-keep-the-list-short).
 
 ## Adding Data
 
@@ -164,6 +165,17 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 Add a JSON file to `data/meshtastic_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/meshtastic_devices/images/` as WebP.
 
 The device will automatically appear in listings, detail pages, and the sitemap after the next build.
+
+### Device Features (keep the list short)
+
+The device `features` array is a **deliberately short, curated controlled vocabulary** (currently around two dozen values). The JSON Schema does not enforce an enum on it, so nothing stops you from typing a new value, which is exactly why discipline matters. `lib/data.ts` derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering.
+
+Rules for the `features` field:
+
+- **Reuse an existing value whenever possible.** Match spelling and casing exactly; values are compared as exact strings.
+- **Adding a new feature value must be intentional and reviewed, not incidental.** Before introducing one, confirm it: applies to more than one device, is a meaningful buyer-facing distinction, and does not overlap or duplicate an existing value. When in doubt, reuse the closest existing value or leave it off rather than coining a new one. The goal is to keep the list short.
+- **Some data belongs in its own field, not in `features`.** LoRa radios go in `specifications.lora_radio` (and have their own filter), never in `features`. Output power will get a dedicated field later, so do not encode wattage or dBm as a feature.
+- **Preserve established distinctions.** `Solar` means an integrated solar panel is built in; `Solar Input` means you can connect one. Do not merge them.
 
 ### New Antenna
 

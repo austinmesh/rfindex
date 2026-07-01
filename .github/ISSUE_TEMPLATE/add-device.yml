@@ -42,7 +42,7 @@ body:
     id: specs
     attributes:
       label: Specifications
-      description: Supported frequencies, microcontroller, battery, dimensions, key features, gain, etc.
+      description: Supported frequencies, microcontroller, battery, dimensions, key features, gain, etc. For features, reuse terms already shown on the site where you can. We keep the feature list deliberately short, so new feature values are reviewed carefully before being added.
   - type: textarea
     id: notes
     attributes:

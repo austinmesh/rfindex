@@ -96,6 +96,16 @@ To add or edit data directly in JSON:
    `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`.
 2. Add the product image to `data/meshtastic_devices/images/` as WebP.
 
+When filling in the `features` array, reuse the values existing devices
+already use (match spelling and casing exactly). The feature list is kept
+deliberately short: it powers the filter checkboxes on the devices page, so
+every new value lengthens and fragments that list. Only introduce a new
+feature when it is genuinely needed, applies to more than one device, and does
+not duplicate an existing value. Adding one should be a careful, reviewed
+decision, not a quick addition. Put the LoRa radio in
+`specifications.lora_radio`, not in `features`, and note that `Solar` (a
+built-in panel) and `Solar Input` (you can connect one) are different.
+
 **Add an antenna**
 
 1. Add a JSON file to `data/meshtastic_antennas/` named after its `slug` field.
