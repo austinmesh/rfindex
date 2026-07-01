@@ -1,0 +1,49 @@
+{
+  "id": "mtools-tec-gat562-solar-relay",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "MTools Tec",
+      "url": "https://shop.mtoolstec.com/product/gat562-mesh-solar-relay-autonomous-off-grid-repeater-for-mesh-networks"
+    }
+  ],
+  "price": {
+    "min": 89.99,
+    "max": 99.99,
+    "currency": "USD"
+  },
+  "model": "GAT562 Mesh Solar Relay",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "Li-ion",
+      "capacity_mAh": 5200
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "MTools Tec",
+  "title": "GAT562 Mesh Solar Relay",
+  "image": "/devices/mtools-tec-gat562-solar-relay.webp",
+  "features": [
+    "Solar",
+    "Bluetooth",
+    "Weatherproof",
+    "External Antenna"
+  ],
+  "category": [
+    "Solar",
+    "Complete"
+  ]
+}

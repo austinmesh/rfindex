@@ -1,0 +1,50 @@
+{
+  "id": "ikoka-nano",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "GitHub",
+      "url": "https://github.com/ndoo/ikoka-nano-meshtastic-device"
+    }
+  ],
+  "price": {
+    "min": 25,
+    "max": 40,
+    "currency": "USD"
+  },
+  "model": "Ikoka Nano",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "LiPo"
+    },
+    "antenna": "External via IPEX connector",
+    "interfaces": [
+      "USB-C",
+      "Qwiic",
+      "I2C"
+    ]
+  },
+  "manufacturer": "Ikoka",
+  "title": "Ikoka Nano",
+  "image": "/devices/ikoka-nano.webp",
+  "features": [
+    "Bluetooth",
+    "Solar Input",
+    "External Antenna",
+    "Open Hardware",
+    "Expandable"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Open Source DIY design requiring soldering components or custom order from JLCPCB",
+  "commentary": "We use these devices extensively on the mesh here in Austin with various radios and components. They've performed so well that many of our infrastructure nodes(rooftops, towers) are based on this and the Nano variant."
+}

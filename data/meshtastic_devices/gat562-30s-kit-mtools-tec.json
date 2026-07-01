@@ -1,0 +1,51 @@
+{
+  "id": "mtools-tec-gat562-30s-kit",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "MTools Tec",
+      "url": "https://shop.mtoolstec.com/product/gat562-30s-kit-30dbm-mesh-device"
+    }
+  ],
+  "price": {
+    "min": 69.99,
+    "max": 75.99,
+    "currency": "USD"
+  },
+  "model": "GAT562 30s Kit",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "18650 Li-ion",
+      "capacity_mAh": 2500
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "MTools Tec",
+  "title": "GAT562 30s Kit",
+  "image": "/devices/mtools-tec-gat562-30s-kit.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Color Display",
+    "Environmental Sensors",
+    "Joystick",
+    "External Antenna"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "30dbm(1w) board with built in filter. Comes with screen and GPS. Case optional."
+}

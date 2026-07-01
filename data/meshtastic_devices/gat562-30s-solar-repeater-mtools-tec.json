@@ -1,0 +1,49 @@
+{
+  "id": "mtools-tec-gat562-30s-solar-repeater",
+  "supported_firmware": [
+    "Meshtastic",
+    "MeshCore"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "MTools Tec",
+      "url": "https://shop.mtoolstec.com/product/gat562-30s-mesh-solar-repeater"
+    }
+  ],
+  "price": {
+    "min": 39.99,
+    "max": 46.99,
+    "currency": "USD"
+  },
+  "model": "GAT562 30s Mesh Solar Repeater",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via IPEX connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "MTools Tec",
+  "title": "GAT562 30s Mesh Solar Repeater",
+  "image": "/devices/mtools-tec-gat562-30s-solar-repeater.webp",
+  "features": [
+    "Bluetooth",
+    "Solar Input",
+    "External Antenna",
+    "Expandable"
+  ],
+  "category": [
+    "Solar",
+    "Complete"
+  ],
+  "description": "30dbm(1w) open source design with ipex for both BLE and LoRa meant for solar installs."
+}

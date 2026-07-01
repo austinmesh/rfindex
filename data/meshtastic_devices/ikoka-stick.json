@@ -1,0 +1,53 @@
+{
+  "id": "ikoka-stick",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "ndoo.sg",
+      "url": "https://ndoo.sg/projects:amateur_radio:meshtastic:diy_devices:ikoka_stick"
+    },
+    {
+      "supplier": "GitHub",
+      "url": "https://github.com/ndoo/ikoka-stick-meshtastic-device"
+    }
+  ],
+  "price": {
+    "min": 35,
+    "max": 55,
+    "currency": "USD"
+  },
+  "model": "Ikoka Stick",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "Li-ion"
+    },
+    "antenna": "External via IPEX connector",
+    "interfaces": [
+      "USB-C",
+      "I2C",
+      "SPI"
+    ]
+  },
+  "manufacturer": "Ikoka",
+  "title": "Ikoka Stick",
+  "image": "/devices/ikoka-stick.webp",
+  "features": [
+    "Bluetooth",
+    "OLED Display",
+    "External Antenna",
+    "Open Hardware"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Open Source DIY design requiring soldering components or custom order from JLCPCB",
+  "commentary": "We use these devices extensively on the mesh here in Austin with various radios and components. They've performed so well that many of our infrastructure nodes(rooftops, towers) are based on this and the Nano variant."
+}

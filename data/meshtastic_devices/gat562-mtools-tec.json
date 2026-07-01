@@ -1,0 +1,48 @@
+{
+  "id": "mtools-tec-gat562",
+  "supported_firmware": [
+    "Meshtastic"
+  ],
+  "purchase_urls": [
+    {
+      "supplier": "MTools Tec",
+      "url": "https://shop.mtoolstec.com/product/gat562-mesh-tracker"
+    }
+  ],
+  "price": {
+    "min": 69.99,
+    "max": 99.99,
+    "currency": "USD"
+  },
+  "model": "GAT562 Mesh Tracker",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": {
+      "type": "Li-ion",
+      "capacity_mAh": 2500
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "MTools Tec",
+  "title": "GAT562 Mesh Tracker",
+  "image": "/devices/mtools-tec-gat562.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "Color Display",
+    "External Antenna"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "nRF52/SX1262 with screen. Open source design"
+}
