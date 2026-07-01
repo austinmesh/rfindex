@@ -42,7 +42,6 @@
     "Expandable"
   ],
   "category": [
-    "Solar",
     "Complete"
   ],
   "description": "30dbm(1w) open source design with ipex for both BLE and LoRa meant for solar installs."

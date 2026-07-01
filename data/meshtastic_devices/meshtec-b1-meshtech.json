@@ -46,7 +46,6 @@
   ],
   "category": [
     "Complete",
-    "DIY"
   ],
   "description": "Meshtastic node based on RAK WisMesh B1 with SX1262 LoRa module and 2000mAh LiPo battery in a custom enclosure."
 }

@@ -50,7 +50,6 @@
     "GPS"
   ],
   "category": [
-    "DIY",
     "Complete"
   ],
   "description": "Smart display and controller for IoT applications, supports WiFi, BLE, LoRa via WM1110 module."

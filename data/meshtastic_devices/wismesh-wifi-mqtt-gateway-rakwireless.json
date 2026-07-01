@@ -49,8 +49,7 @@
     "GPS"
   ],
   "category": [
-    "Complete",
-    "DIY"
+    "Complete"
   ],
   "description": "WiFi-connected MQTT gateway to bridge LoRa networks with the cloud.",
   "commentary": "This is generally a subset of the RAK Repeater Mini. We avoid any use of MQTT on Austin Mesh, so we don't see this deployed often. The hardware is solid though, so if your use case calls for it, we do recommend!"

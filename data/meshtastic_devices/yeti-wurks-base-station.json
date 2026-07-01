@@ -42,6 +42,6 @@
     "Solar",
     "Complete"
   ],
-  "description": "Repeater based around RAK19003 board supporting up to 4 18650 batteries.",
+  "description": "Repeater based around RAK19003 board supporting up to 4 18650 batteries. Optional solar panel.",
   "commentary": "We've seen a few of these around, although they lost popularity due to the glut of repeaters introduced in the same time period. It's a fine option, although there are many competitors available."
 }

@@ -48,8 +48,7 @@
     "GPS"
   ],
   "category": [
-    "Complete",
-    "DIY"
+    "Complete"
   ],
   "description": "LoRa to MQTT gateway with Ethernet connectivity for permanent Meshtastic installations.",
   "commentary": "We generally discourage use of MQTT on the Austin Mesh network, so we don't see these often. If your use case calls for MQTT, this is a good off the shelf option."

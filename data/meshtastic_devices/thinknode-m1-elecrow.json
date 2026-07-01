@@ -46,7 +46,6 @@
     "External Antenna"
   ],
   "category": [
-    "DIY",
     "Complete"
   ],
   "description": "Meshtastic LoRa transceiver featuring nRF52840 microcontroller, GPS support, and 1.54-inch display, designed for outdoor communications and tracking.",
