@@ -1,0 +1,30 @@
+# Code owners for RF Index.
+#
+# Owners are auto-requested for review on PRs that touch matching paths. This
+# also backs GitHub's "require review from Code Owners" branch-protection rule
+# when that is enabled. Note: a single maintainer cannot approve their own PR,
+# so "require Code Owner review" only takes effect once there is a second
+# maintainer; until then this file documents ownership and auto-requests review.
+#
+# Later-matching rules win, so the specific infra/data paths below override the
+# catch-all.
+
+# Default owner for everything in the repo.
+*                       @tekstrand
+
+# Data and schemas: the primary contribution surface. Changes here should always
+# be reviewed by a maintainer since they feed the generated site data.
+/data/                  @tekstrand
+/schemas/               @tekstrand
+/public/admin/          @tekstrand
+
+# Build, deploy, and CI: highest-blast-radius files. A change here can alter the
+# production deploy, the data pipeline, or the $0-cost posture.
+/.github/               @tekstrand
+/lib/prebuild.ts        @tekstrand
+/scripts/               @tekstrand
+/open-next.config.ts    @tekstrand
+/next.config.mjs        @tekstrand
+/wrangler.jsonc         @tekstrand
+/package.json           @tekstrand
+/pnpm-lock.yaml         @tekstrand
