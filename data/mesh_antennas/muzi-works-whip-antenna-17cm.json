@@ -24,7 +24,7 @@
       "configuration": {
         "ground_plane": "none"
       },
-      "notes": "890-950 MHz sweep captured with a RigExpert analyzer (AntScope2), no ground plane.",
+      "notes": "890-950 MHz sweep captured with a RigExpert Zero II and AntScope2, no ground plane.",
       "metadata": {
         "tester": "Andy Shinn",
         "date": "2026-07-01"
@@ -37,8 +37,7 @@
     "length": 170
   },
   "connector_type": "SMA Male",
-  "gain": "10 dBi (marketed)",
   "image": "muzi-works-whip-antenna-17cm.webp",
   "description": "915/868 MHz flexible LoRa whip sold by muzi works, SMA Male, 17 cm. muzi lists a measured SWR of ~1.3 (98% efficient) versus a stock stubby at SWR 3.5.",
-  "commentary": "muzi works' 17 cm flexible SMA whip — a community favorite for pocket and portable nodes. Marketed at 10 dBi, which is not physically plausible for a whip this size, but it tunes and performs well across the 915 MHz band."
+  "commentary": "muzi works' 17 cm flexible SMA whip — a community favorite for pocket and portable nodes. It tunes and performs well across the 915 MHz band."
 }
