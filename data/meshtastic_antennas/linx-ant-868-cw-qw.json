@@ -57,7 +57,7 @@
     "length": 84,
     "width": 14.5
   },
-  "connector_type": "RP-SMA Female",
+  "connector_type": "RP-SMA Male",
   "gain": "1.6 dBi",
   "image": "linx-ant-868-cw-qw.webp",
   "description": "868 MHz straight quarter-wave whip from TE Connectivity / Linx (ANT-868-CW-QW), RP-SMA male. It relies on a ground plane: without one it reads around 7:1 in the US 902-928 MHz band, but on a ground plane it tunes up into the band and matches near 1.76:1 at 915 MHz.",

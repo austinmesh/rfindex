@@ -37,7 +37,7 @@
   ],
   "suggested": true,
   "category": "Portable Antennas",
-  "connector_type": "SMA Female",
+  "connector_type": "SMA Male",
   "gain": "5 dBi",
   "image": "tenmory-5dbi-lora-omni.webp",
   "description": "915 MHz LoRa omni whip sold by Tenmory (UPC 762390343791), SMA male, marketed at 5 dBi in a 2-pack.",
