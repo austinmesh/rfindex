@@ -25,6 +25,19 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
+  // Upper bound for the price filter, derived from the data so a newly added
+  // higher-priced antenna is never silently hidden by a too-low default ceiling.
+  // Rounded up to the next $10, with a $50 floor to keep a sensible minimum range.
+  const maxAntennaPrice = Math.max(
+    50,
+    ...antennas
+      .flatMap((antenna) =>
+        antenna.suppliers.map((supplier) => Number.parseFloat(supplier.purchase_cost.replace(/[^0-9.]/g, ""))),
+      )
+      .filter((price) => !isNaN(price))
+      .map((price) => Math.ceil(price / 10) * 10),
+  )
+
   // Parse URL parameters for initial state
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "")
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
@@ -41,7 +54,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
   )
   const [priceRange, setPriceRange] = useState<number[]>(() => {
     const min = searchParams.get("priceMin") ? Number.parseInt(searchParams.get("priceMin") || "0") : 0
-    const max = searchParams.get("priceMax") ? Number.parseInt(searchParams.get("priceMax") || "50") : 50
+    const max = searchParams.get("priceMax") ? Number.parseInt(searchParams.get("priceMax") || "50") : maxAntennaPrice
     return [min, max]
   })
   const [sortOption, setSortOption] = useState<"default" | "price-asc" | "price-desc">(
@@ -90,7 +103,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     if (priceRange[0] > 0) params.set("priceMin", priceRange[0].toString())
     else params.delete("priceMin")
 
-    if (priceRange[1] < 50) params.set("priceMax", priceRange[1].toString())
+    if (priceRange[1] < maxAntennaPrice) params.set("priceMax", priceRange[1].toString())
     else params.delete("priceMax")
 
     if (sortOption !== "default") params.set("sort", sortOption)
@@ -123,7 +136,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
       setSelectedFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
 
       const min = params.get("priceMin") ? Number.parseInt(params.get("priceMin") || "0") : 0
-      const max = params.get("priceMax") ? Number.parseInt(params.get("priceMax") || "50") : 50
+      const max = params.get("priceMax") ? Number.parseInt(params.get("priceMax") || "50") : maxAntennaPrice
       setPriceRange([min, max])
 
       setSortOption((params.get("sort") as any) || "default")
@@ -393,7 +406,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
                     }}
                     className="w-12 p-1 text-center text-sm"
                     min={priceRange[0]}
-                    max="100"
+                    max={maxAntennaPrice}
                   />
                 </div>
               </div>
@@ -537,7 +550,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
                         }}
                         className="w-12 p-1 text-center text-sm"
                         min={priceRange[0]}
-                        max="100"
+                        max={maxAntennaPrice}
                       />
                     </div>
                   </div>

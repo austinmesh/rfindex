@@ -1,0 +1,48 @@
+{
+  "slug": "rak-8dbi-fiberglass",
+  "title": "RAKwireless 8dBi Fiberglass Antenna",
+  "manufacturer": {
+    "brand_name": "RAK",
+    "part_number": "916007",
+    "freq_spec": [
+      "900-930 MHz"
+    ],
+    "datasheet": "https://docs.rakwireless.com/product-categories/accessories/rakarg15/datasheet/"
+  },
+  "suppliers": [
+    {
+      "name": "RAKwireless",
+      "part_number": "916007",
+      "purchase_cost": "$60.00",
+      "url": "https://store.rakwireless.com/products/fiber-glass-antenna-1?index=315&variant=43034794885318"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Attached to PVC pipe via u-bolt in free space with nanoVNA direct to antenna, no feedline.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "RAKwireless"
+        }
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "dimensions": {
+    "length": 900,
+    "width": 25
+  },
+  "connector_type": "N-Type Male",
+  "gain": "8 dBi",
+  "image": "rak-8dbi-fiberglass.webp",
+  "description": "High gain fiberglass omni antenna for outdoor use with an male N-Type connector.",
+  "commentary": "Not the best but certainly better than many, or even most. Impedance gets off quickly if you aren't using it right in the sweet spot."
+}

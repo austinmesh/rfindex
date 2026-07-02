@@ -1,14 +1,11 @@
 {
   "slug": "rak-3dbi-fiberglass",
-  "title": "RAKwireless Fiberglass Antenna",
+  "title": "RAKwireless 3dbi Fiberglass Antenna",
   "manufacturer": {
     "brand_name": "RAK",
     "part_number": "UNKNOWN",
     "freq_spec": [
-      "470-510 MHz",
-      "433 MHz",
-      "862-876 MHz",
-      "902-928 MHz"
+      "900-930 MHz"
     ],
     "datasheet": "https://tinyurl.com/3v4ap6bf"
   },
