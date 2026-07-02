@@ -53,7 +53,7 @@
     },
     "specifications": {
       "type": "object",
-      "required": ["lora_frequencies", "power_consumption", "battery", "antenna"],
+      "required": ["lora_frequencies", "microcontroller", "power_consumption", "battery", "antenna", "interfaces"],
       "additionalProperties": false,
       "properties": {
         "lora_frequencies": {
@@ -125,7 +125,24 @@
     },
     "features": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string",
+        "$comment": "Deliberately short, curated vocabulary. This enum is the single source of truth; adding a value must be intentional and reviewed (see CLAUDE.md > Device Features). Every distinct value becomes a filter checkbox on the devices page.",
+        "enum": [
+          "Bluetooth",
+          "Color Display",
+          "E-Ink Display",
+          "External Antenna",
+          "GPS",
+          "Keyboard",
+          "OLED Display",
+          "Solar",
+          "Solar Input",
+          "Touchscreen",
+          "Weatherproof",
+          "WiFi"
+        ]
+      }
     },
     "commentary": { "type": "string" }
   }

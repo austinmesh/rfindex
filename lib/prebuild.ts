@@ -90,7 +90,12 @@ if (!fs.existsSync(devicesDir)) {
 
 const files = fs.readdirSync(devicesDir).filter((f) => f.endsWith(".json"))
 const devices = files.map((file) => {
-  const raw: RawDevice = JSON.parse(fs.readFileSync(path.join(devicesDir, file), "utf-8"))
+  let raw: RawDevice
+  try {
+    raw = JSON.parse(fs.readFileSync(path.join(devicesDir, file), "utf-8"))
+  } catch (err) {
+    throw new Error(`Failed to parse data/mesh_devices/${file}: ${(err as Error).message}`)
+  }
   return mapRawDevice(raw)
 })
 
@@ -245,7 +250,12 @@ if (!fs.existsSync(antennasDir)) {
 
 const antennaFiles = fs.readdirSync(antennasDir).filter((f) => f.endsWith(".json"))
 const antennaData = antennaFiles.map((file) => {
-  const raw = JSON.parse(fs.readFileSync(path.join(antennasDir, file), "utf-8"))
+  let raw
+  try {
+    raw = JSON.parse(fs.readFileSync(path.join(antennasDir, file), "utf-8"))
+  } catch (err) {
+    throw new Error(`Failed to parse data/mesh_antennas/${file}: ${(err as Error).message}`)
+  }
   // Map bare image filename to full path
   if (raw.image && !raw.image.startsWith("/")) {
     raw.image = `/mesh/antennas/${raw.image}`

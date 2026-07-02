@@ -62,9 +62,14 @@ function locateJsonError(raw, err) {
 }
 
 const failedFiles = [];
+// Retain every successfully-parsed file per collection so the cross-file checks
+// below (uniqueness, image existence, referential integrity) can run after the
+// per-file schema pass.
+const parsed = {};
 let total = 0;
 
 for (const [name, { schema, dir }] of Object.entries(collections)) {
+  parsed[name] = [];
   const schemaPath = path.join(ROOT, "schemas", schema);
 
   let schemaData;
@@ -97,6 +102,8 @@ for (const [name, { schema, dir }] of Object.entries(collections)) {
       continue;
     }
 
+    parsed[name].push({ file: rel, data });
+
     if (!validate(data)) {
       console.error(`FAIL: ${rel}`);
       for (const err of validate.errors) {
@@ -105,6 +112,77 @@ for (const [name, { schema, dir }] of Object.entries(collections)) {
       failedFiles.push(rel);
     }
   }
+}
+
+// --- Cross-file integrity checks (contributor guardrails) ---
+// These catch classes of error that per-file schema validation cannot see: two
+// files claiming the same id, an image reference with no file on disk, or a
+// manufacturer/supplier that no reference collection knows about.
+
+const refName = (x) => x.data.title ?? x.data.name ?? x.data.id ?? x.data.slug;
+
+// 1. id / slug uniqueness (FATAL). Detail routes resolve by first-match .find(),
+//    so a duplicate silently shadows another page at the same URL and doubles a
+//    sitemap entry. Filenames do not equal ids, so the filesystem is no guard.
+function checkUnique(items, keyField) {
+  const seen = new Map();
+  for (const { file, data } of items) {
+    const key = data[keyField];
+    if (key == null) continue; // presence is enforced by the per-file schema
+    if (seen.has(key)) {
+      console.error(`DUPLICATE ${keyField}: "${key}" in ${file} (already used by ${seen.get(key)})`);
+      failedFiles.push(file);
+    } else {
+      seen.set(key, file);
+    }
+  }
+}
+checkUnique(parsed.mesh_devices, "id");
+checkUnique(parsed.mesh_antennas, "slug");
+
+// 2. Image existence (FATAL). A referenced image must exist as source under
+//    data/<collection>/images/ (the prebuild copies these into public/). The
+//    image field is optional, so this only fires when one is present.
+function checkImages(items, imagesRel) {
+  for (const { file, data } of items) {
+    if (!data.image) continue;
+    const base = String(data.image).split("/").pop();
+    if (!fs.existsSync(path.join(ROOT, imagesRel, base))) {
+      console.error(`MISSING IMAGE: ${file} references "${data.image}" but ${imagesRel}/${base} is not on disk`);
+      failedFiles.push(file);
+    }
+  }
+}
+checkImages(parsed.mesh_devices, "data/mesh_devices/images");
+checkImages(parsed.mesh_antennas, "data/mesh_antennas/images");
+
+// 3. Referential integrity (WARNING, not yet fatal). Every device manufacturer
+//    and purchase-URL supplier should resolve to a reference collection. The
+//    live data currently has known drift (casing splits, a few missing brands),
+//    so this warns rather than failing. Once the reference collections are
+//    backfilled and normalized (architecture review, item 14), promote these to
+//    failedFiles.push(...) to turn drift into a red check.
+const manufacturerRef = new Set(
+  [...parsed.mesh_manufacturers, ...parsed.manufacturers].map(refName).filter(Boolean),
+);
+const supplierRef = new Set(parsed.suppliers.map(refName).filter(Boolean));
+let refWarnings = 0;
+for (const { file, data } of parsed.mesh_devices) {
+  if (data.manufacturer && !manufacturerRef.has(data.manufacturer)) {
+    console.warn(`  ~ ${file}: manufacturer "${data.manufacturer}" is not in mesh_manufacturers/manufacturers`);
+    refWarnings++;
+  }
+  for (const p of data.purchase_urls || []) {
+    if (p.supplier && !supplierRef.has(p.supplier)) {
+      console.warn(`  ~ ${file}: supplier "${p.supplier}" is not in suppliers`);
+      refWarnings++;
+    }
+  }
+}
+if (refWarnings > 0) {
+  console.warn(
+    `\n${refWarnings} referential-integrity warning(s). Not fatal yet; backfill the reference collections, then promote to errors.`,
+  );
 }
 
 console.log(`\nValidated ${total} files across ${Object.keys(collections).length} collections.`);
