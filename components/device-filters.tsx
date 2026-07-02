@@ -20,6 +20,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares, maxTxPowerDbm, formatTxPower } from "@/lib/data"
+import { AddMissingCard } from "@/components/add-missing-card"
 
 export function DeviceFilters({ devices }: { devices: Device[] }) {
   const router = useRouter()
@@ -846,9 +847,14 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
             </div>
           )}
 
+          {sortedDevices.length === 0 && (
+            <div className="text-center py-8 mb-4">
+              <h3 className="text-lg font-semibold">No devices found</h3>
+              <p className="text-muted-foreground">Try adjusting your filters or search query</p>
+            </div>
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sortedDevices.length > 0 ? (
-              sortedDevices.map((device) => (
+            {sortedDevices.map((device) => (
                 <Card key={device.id} className="overflow-hidden group">
                   <div className="aspect-square relative">
                     <Image
@@ -887,13 +893,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                     </Button>
                   </CardFooter>
                 </Card>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <h3 className="text-lg font-semibold">No devices found</h3>
-                <p className="text-muted-foreground">Try adjusting your filters or search query</p>
-              </div>
-            )}
+              ))}
+            <AddMissingCard type="device" />
           </div>
         </div>
       </div>

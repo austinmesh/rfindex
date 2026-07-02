@@ -69,6 +69,8 @@ one of the templates:
 - **Remove a device or antenna** - flag something that should come off
 - **Report an issue** - incorrect data, a broken link, or a website bug
 - **Request an update** - pricing, specs, or links that need refreshing
+- **Submit antenna test data** - share a VNA sweep (VSWR / return loss) for a
+  listed antenna
 
 ### 2. Edit data through the CMS
 
@@ -111,6 +113,10 @@ built-in panel) and `Solar Input` (you can connect one) are different.
 1. Add a JSON file to `data/meshtastic_antennas/` named after its `slug` field.
 2. Add the antenna image to `data/meshtastic_antennas/images/` as WebP, and
    reference it by bare filename in the `image` field.
+3. To include VSWR / return-loss test data, capture a Touchstone `.s1p` sweep
+   with a VNA and add it under `data/meshtastic_antennas/touchstone/`. See
+   [`data/meshtastic_antennas/touchstone/README.md`](data/meshtastic_antennas/touchstone/README.md)
+   for how to capture a sweep (microSD or NanoVNASaver) and name the file.
 
 **Before you open the PR**
 

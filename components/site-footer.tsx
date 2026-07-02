@@ -34,6 +34,9 @@ export function SiteFooter() {
               <Link href="https://github.com/austinmesh/rfindex/issues/new?template=request-update.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
                 Request an update
               </Link>
+              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=submit-antenna-test.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+                Submit antenna test data
+              </Link>
             </nav>
           </div>
         </div>

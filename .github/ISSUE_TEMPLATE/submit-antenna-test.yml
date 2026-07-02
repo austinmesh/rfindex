@@ -1,0 +1,73 @@
+name: Submit antenna test data
+description: Share a VNA sweep (VSWR / return loss) for an antenna already listed on RF Index.
+title: "[Test]: "
+labels: ["contribution", "antenna-test"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for measuring. This form is for VSWR / return-loss data captured with a VNA.
+
+        Capture a one-port Touchstone (`.s1p`) sweep and attach it below. For how to capture and calibrate a sweep (microSD or NanoVNASaver), see the [touchstone README](https://github.com/austinmesh/rfindex/blob/main/data/meshtastic_antennas/touchstone/README.md).
+
+        If the antenna is not on RF Index yet, use the [Add a device or antenna](https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml) form instead.
+  - type: input
+    id: antenna
+    attributes:
+      label: Antenna
+      description: Which listed antenna is this? Name or the RF Index URL / slug.
+      placeholder: e.g. Tenmory 5dBi Omni or rfindex.com/mesh/antennas/tenmory-5dbi-omni-tb-csa21
+    validations:
+      required: true
+  - type: dropdown
+    id: config
+    attributes:
+      label: Test configuration
+      description: How was the antenna positioned during the sweep? Matches the filename `config` field.
+      options:
+        - straight (vertical, no ground plane)
+        - 90deg (right-angle mount)
+        - gp-none (no ground plane)
+        - gp-roof (vehicle roof / large ground plane)
+        - gp-30cm (30 cm ground plane)
+        - other (describe in notes)
+    validations:
+      required: true
+  - type: textarea
+    id: s1p
+    attributes:
+      label: Touchstone (.s1p) file
+      description: Drag the `.s1p` file into this box to attach it. GitHub does not accept a bare `.s1p` extension, so zip it first or rename it to end in `.s1p.txt`; note which you did.
+    validations:
+      required: true
+  - type: input
+    id: tester
+    attributes:
+      label: Tester
+      description: Your name or handle, for attribution.
+      placeholder: e.g. Jane Doe
+    validations:
+      required: true
+  - type: input
+    id: callsign
+    attributes:
+      label: Callsign
+      description: Amateur radio callsign, if you have one. Used in the sweep filename.
+      placeholder: e.g. K1PDX
+  - type: input
+    id: equipment
+    attributes:
+      label: VNA and calibration
+      description: What instrument did you use, and where was the calibration reference plane (which adapter / pigtail)?
+      placeholder: e.g. NanoVNA-H4, SOL calibrated at the SMA pigtail end, 800-1000 MHz
+  - type: textarea
+    id: sample
+    attributes:
+      label: Sample provenance
+      description: Where and roughly when you got this specific unit, so batch-to-batch variation is attributable. Optional but helpful.
+      placeholder: e.g. AliExpress, purchased 2026-05, sample B
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Observed VSWR at the band edges, deviation from published specs, or other context.

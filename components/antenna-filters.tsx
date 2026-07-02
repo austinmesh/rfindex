@@ -18,6 +18,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import { allAntennaCategories as allCategories, statusOptions } from "@/lib/data"
+import { AddMissingCard } from "@/components/add-missing-card"
 
 export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
   const router = useRouter()
@@ -560,9 +561,14 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
               />
             </div>
           </div>
+          {sortedAntennas.length === 0 && (
+            <div className="text-center py-8 mb-4">
+              <h3 className="text-lg font-semibold">No antennas found</h3>
+              <p className="text-muted-foreground">Try adjusting your filters or search query</p>
+            </div>
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sortedAntennas.length > 0 ? (
-              sortedAntennas.map((antenna, index) => (
+            {sortedAntennas.map((antenna, index) => (
                 <Card key={index} className="overflow-hidden">
                   <div className="aspect-square relative">
                     <Image
@@ -603,13 +609,8 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
                     </Button>
                   </CardFooter>
                 </Card>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <h3 className="text-lg font-semibold">No antennas found</h3>
-                <p className="text-muted-foreground">Try adjusting your filters or search query</p>
-              </div>
-            )}
+              ))}
+            <AddMissingCard type="antenna" />
           </div>
         </div>
       </div>

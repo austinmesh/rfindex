@@ -37,6 +37,10 @@
   ],
   "suggested": true,
   "category": "Portable Antennas",
+  "dimensions": {
+    "length": 168,
+    "width": 9.6
+  },
   "connector_type": "SMA Male",
   "gain": "5 dBi",
   "image": "tenmory-5dbi-lora-omni.webp",
