@@ -67,7 +67,7 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 `data/` holds ten JSON collections. Only `mesh_devices` and `mesh_antennas` are rendered on the site (the prebuild turns just those two into generated TS). The other eight (`bands`, `radios`, `manufacturers`, `suppliers`, `modulations`, `antenna_connectors`, `mesh_features`, `mesh_manufacturers`) are reference and relation data managed through the CMS and validated, but not currently shown on the site.
 
 - `schemas/*.json` define the shape of every collection (one schema per collection).
-- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`.
+- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails: `id`/`slug` uniqueness (fatal), referenced-image existence (fatal), and manufacturer/supplier referential integrity against the reference collections (currently a non-fatal warning while known drift is backfilled).
 - CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR that touches `data/`, `schemas/`, or the validator. GitHub Actions is free for public repos and does not affect the $0 hosting budget.
 - When you change an allowed value (an enum), update BOTH `schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
 
@@ -110,7 +110,7 @@ Types are the single source of truth — data files import from `types/`.
 The site is built and deployed to Cloudflare Workers through the OpenNext adapter.
 
 - `pnpm build` runs `opennextjs-cloudflare build`, which builds the Next app in standalone mode and bundles it into `.open-next/` (gitignored). `wrangler.jsonc` points `main` at `.open-next/worker.js` and serves static assets from `.open-next/assets`.
-- **The Next build command lives in `open-next.config.ts` as `buildCommand`, not in `package.json`.** It is set to `npx tsx lib/prebuild.ts && next build` for two reasons:
+- **The Next build command lives in `open-next.config.ts` as `buildCommand`, not in `package.json`.** It is set to `node scripts/validate.js && npx tsx lib/prebuild.ts && next build` (data validation runs first so a bad contribution fails fast with a field-level diagnostic) for two reasons:
   1. It runs the data prebuild before every OpenNext build, so `deploy`, `preview`, and `upload` (which call `opennextjs-cloudflare build` directly) all regenerate data.
   2. **It prevents an infinite build loop.** Without an explicit `buildCommand`, OpenNext defaults to `pnpm build` on pnpm projects — which re-invokes `opennextjs-cloudflare build`, calling itself forever. Keep `buildCommand` pointed at `next build` (not `pnpm build`). If you ever need to skip the Next build, the real flag is `--skipNextBuild` (not `--skipBuildingNextApp`, which is silently ignored and re-triggers the loop).
 - **CI (Cloudflare Workers Builds):** build command `pnpm run build` produces `.open-next/`; deploy command `npx wrangler deploy` detects the OpenNext project and delegates to `opennextjs-cloudflare deploy`, which ships the already-built `.open-next/`. The build and deploy steps run in the same workspace, so the build output persists to deploy.
@@ -168,7 +168,7 @@ The device will automatically appear in listings, detail pages, and the sitemap 
 
 ### Device Features (keep the list short)
 
-The device `features` array is a **deliberately short, curated controlled vocabulary** (currently around two dozen values). The JSON Schema does not enforce an enum on it, so nothing stops you from typing a new value, which is exactly why discipline matters. `lib/data.ts` derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering.
+The device `features` array is a **deliberately short, curated controlled vocabulary** (currently a dozen values). `schemas/mesh_devices.json` now enforces this list as an `enum` on `features.items`, so `pnpm validate` rejects any off-list value and the schema is the single source of truth. `lib/data.ts` still derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering, which is why adding a value is a deliberate, reviewed change to the enum (not something you can do by accident).
 
 Rules for the `features` field:
 
