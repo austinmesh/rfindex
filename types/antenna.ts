@@ -55,6 +55,10 @@ export type AntennaTestResult = {
   // Authored override for the frequencies markers are derived at (e.g.
   // ["902MHz", "915MHz", "928MHz"]). Defaults applied by the prebuild.
   marker_frequencies?: string[]
+  // Authored override for this test's name in the sweep comparison chart legend.
+  // Use when the derived label (from configuration/tester) is ambiguous, e.g. two
+  // tests that share a ground-plane/position but differ by some other variable.
+  chart_label?: string
   // Computed by the prebuild from `touchstone`; not authored.
   sweep?: AntennaSweep
 }

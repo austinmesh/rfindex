@@ -1,0 +1,67 @@
+{
+  "slug": "hexa-boost-8dbi",
+  "title": "Hexa Boost 8dBi Fiberglass Antenna",
+  "manufacturer": {
+    "brand_name": "Hexa Boost",
+    "part_number": "B0953Z1QF3",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://amzn.to/4vPFG7q"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "B0953Z1QF3",
+      "purchase_cost": "$56.99",
+      "url": "https://amzn.to/4vPFG7q"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "chart_label": "No arrester",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Tested without the lightning arrester.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "Amazon",
+          "purchase_date": "2024-02-04"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-none-arrestor_kg5hzc.s1p",
+      "chart_label": "With arrester",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Tested with the lightning arrester in line ahead of the antenna. Does seem to impact performance based on this test.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "Amazon",
+          "purchase_date": "2024-02-04"
+        }
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "dimensions": {
+    "length": 1100,
+    "width": 22
+  },
+  "connector_type": "N-Type Female",
+  "gain": "8 dBi",
+  "image": "hexa-boost-8dbi.webp",
+  "description": "915 MHz fiberglass omni antenna, roughly 43.5\" (1.1m) tall, rated 8 dBi with an N-Type female connector.",
+  "commentary": "Solid antenna, though the price increase ($25->60) over the last 3 years is regrettable. A solid option for outdoor installs where high gain fits your needs. Remember though that 8dBi is a lot of gain, and you're likely better off sitting around 3-6. We generally steer people towards Rokland antennas in this price range."
+}

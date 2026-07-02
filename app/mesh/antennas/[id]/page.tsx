@@ -30,6 +30,8 @@ const NO_GROUND_PLANE = new Set(["", "none", "no", "false", "absent"])
 // tests can share a position but differ by ground plane (e.g. straight with and
 // without one), so fold a ground-plane note into the label to keep them apart.
 function sweepSeriesLabel(t: AntennaTestResult, i: number) {
+  // An explicit chart_label always wins, for cases the derived label can't tell apart.
+  if (t.chart_label?.trim()) return t.chart_label.trim()
   const cfg = t.configuration
   const gp = cfg?.ground_plane?.trim().toLowerCase()
   const hasGroundPlane = gp != null && !NO_GROUND_PLANE.has(gp)

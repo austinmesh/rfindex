@@ -375,6 +375,7 @@ collections:
             required: false
             hint: "Optional. Frequencies (MHz) to derive markers at from the .s1p. Default 902/915/928."
             field: { name: "frequency", label: "Frequency (MHz)", widget: "string" }
+          - { name: "chart_label", label: "Chart Label", widget: "string", required: false, hint: "Optional. Overrides this test's name in the sweep comparison chart legend. Use when the auto label (from configuration/tester) is ambiguous, e.g. two tests with the same ground plane but a different variable." }
           - label: "Configuration"
             name: "configuration"
             widget: "object"

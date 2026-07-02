@@ -55,6 +55,7 @@
             "minItems": 1
           },
           "touchstone": { "type": "string", "pattern": "^[^/\\\\]+\\.[sS]1[pP]$" },
+          "chart_label": { "type": "string", "minLength": 1 },
           "marker_frequencies": {
             "type": "array",
             "items": { "type": "string", "minLength": 1 }
