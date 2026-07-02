@@ -13,7 +13,7 @@
     {
       "name": "RF Index",
       "part_number": "UNKNOWN",
-      "purchase_cost": "$56.51",
+      "purchase_cost": "$0",
       "url": "/meshtastic/devices/lilygo-t-echo"
     }
   ],
@@ -40,6 +40,32 @@
         "handle": "pdxlocs",
         "date": "2023-06-20"
       }
+    },
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "chart_label": "No ground plane",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Swept 890-950 MHz with no ground plane, as the antenna ships on the handheld T-Echo. VSWR sits around 13-14:1 across the ISM band and never dips below ~11:1, confirming a severe mismatch.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02"
+      }
+    },
+    {
+      "touchstone": "gp-disc_kg5hzc.s1p",
+      "chart_label": "Held in hand",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Match improves when held in hand but still absolutely terrible.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02"
+      }
     }
   ],
   "suggested": false,
@@ -51,6 +77,7 @@
   },
   "connector_type": "SMA Male",
   "gain": "Unknown",
-  "description": "915MHz antenna bundled with LILYGO T-Echo. Performance is suboptimal in ISM band and may hinder radio range.",
-  "commentary": "Get a different antenna immediately if not sooner."
+  "image": "lilygo-t-echo-stock.webp",
+  "description": "Antenna bundled with LILYGO T-Echo. Performance is suboptimal in ISM band and may hinder radio range.",
+  "commentary": "Get a different antenna immediately if not sooner. This is the single biggest thing holding you back."
 }
