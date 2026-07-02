@@ -61,7 +61,7 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for each antenna page
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const antenna = antennas.find((a) => a.slug === id)
 
@@ -106,7 +106,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function AntennaDetailsPage({ params }: { params: { id: string } }) {
+export default async function AntennaDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const antenna = antennas.find((a) => a.slug === id)
 
@@ -164,7 +164,7 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
     if (suggested === undefined) return null
 
     return suggested ? (
-      <Badge className="bg-green-500 hover:bg-green-600">
+      <Badge>
         <ThumbsUp className="h-3 w-3 mr-1" /> Suggested
       </Badge>
     ) : (

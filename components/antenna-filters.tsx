@@ -21,6 +21,14 @@ import { allAntennaCategories as allCategories, statusOptions } from "@/lib/data
 import { bestVswrAt915 } from "@/lib/seo"
 import { AddMissingCard } from "@/components/add-missing-card"
 
+type SortOption = "default" | "price-asc" | "price-desc"
+
+// Sort values arrive as plain strings (URL params, Select onValueChange);
+// anything unrecognized falls back to the default order.
+function parseSortOption(value: string | null): SortOption {
+  return value === "price-asc" || value === "price-desc" ? value : "default"
+}
+
 export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -58,9 +66,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     const max = searchParams.get("priceMax") ? Number.parseInt(searchParams.get("priceMax") || "50") : maxAntennaPrice
     return [min, max]
   })
-  const [sortOption, setSortOption] = useState<"default" | "price-asc" | "price-desc">(
-    (searchParams.get("sort") as any) || "default",
-  )
+  const [sortOption, setSortOption] = useState<SortOption>(parseSortOption(searchParams.get("sort")))
 
   // Extract all unique connector types
   const allConnectorTypes = useMemo(() => {
@@ -140,7 +146,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
       const max = params.get("priceMax") ? Number.parseInt(params.get("priceMax") || "50") : maxAntennaPrice
       setPriceRange([min, max])
 
-      setSortOption((params.get("sort") as any) || "default")
+      setSortOption(parseSortOption(params.get("sort")))
     }
 
     window.addEventListener("popstate", handlePopState)
@@ -254,7 +260,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     if (suggested === undefined) return null
 
     return suggested ? (
-      <Badge className="bg-green-500 hover:bg-green-600">
+      <Badge>
         <ThumbsUp className="h-3 w-3 mr-1" /> Suggested
       </Badge>
     ) : (
@@ -285,7 +291,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
           <div className="sticky top-20 space-y-6 max-h-[80vh] overflow-y-auto pr-2">
             <div>
               <h3 className="font-semibold mb-3">Sort By</h3>
-              <Select value={sortOption} onValueChange={setSortOption}>
+              <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a sort option" />
                 </SelectTrigger>
@@ -429,7 +435,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
               <div className="space-y-6 py-4">
                 <div>
                   <h3 className="font-semibold mb-3">Sort By</h3>
-                  <Select value={sortOption} onValueChange={setSortOption}>
+                  <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select a sort option" />
                     </SelectTrigger>
