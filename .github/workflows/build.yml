@@ -1,0 +1,56 @@
+name: Build
+
+# A build + type gate on every PR to main. Merges to main auto-deploy to
+# Cloudflare, so this is the check that stops a broken import, a bad component
+# prop, or missing data from reaching production. GitHub Actions is free for
+# public repos, so this does not affect the $0 hosting budget.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Cancel superseded runs on the same ref to save Actions minutes.
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+
+      # Data guardrails (schema + cross-file checks). A bad data PR fails here
+      # with a field-level message before the heavier Next build.
+      - name: Validate data
+        run: pnpm validate
+
+      # Generate the device/antenna TS the app imports, then run the production
+      # build. `next build` prerenders every device/antenna page via
+      # generateStaticParams, so a broken import, bad prop, or missing field
+      # fails the PR instead of auto-deploying to production on merge. This is
+      # the blocking gate.
+      - name: Build
+        run: |
+          npx tsx lib/prebuild.ts
+          npx next build
+
+      # Standalone type check. Non-blocking for now: there are known pre-existing
+      # type errors (architecture review item 10: the Next 15 async-params
+      # contract on the two detail pages, plus two Radix Select setters).
+      # next.config.mjs sets typescript.ignoreBuildErrors, so the `next build`
+      # above does not fail on them. Once item 10 is fixed, delete the
+      # `continue-on-error` line below to make the type gate blocking.
+      - name: Type check (tsc --noEmit)
+        run: npx tsc --noEmit
+        continue-on-error: true
