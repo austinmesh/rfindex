@@ -50,7 +50,7 @@ export type AntennaTestResult = {
   metadata: AntennaTestMetadata
   configuration?: AntennaTestConfiguration
   // Authored: bare filename of a nanoVNA .s1p export placed in the antenna's own
-  // directory, data/meshtastic_antennas/touchstone/<slug>/. Parsed into `sweep`.
+  // directory, data/mesh_antennas/touchstone/<slug>/. Parsed into `sweep`.
   touchstone?: string
   // Authored override for the frequencies markers are derived at (e.g.
   // ["902MHz", "915MHz", "928MHz"]). Defaults applied by the prebuild.

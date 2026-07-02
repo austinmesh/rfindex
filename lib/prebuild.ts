@@ -58,7 +58,7 @@ function mapRawDevice(raw: RawDevice) {
   }
 }
 
-const devicesDir = path.join(process.cwd(), "data", "meshtastic_devices")
+const devicesDir = path.join(process.cwd(), "data", "mesh_devices")
 
 if (!fs.existsSync(devicesDir)) {
   console.error("device data not found at", devicesDir)
@@ -212,7 +212,7 @@ function downsamplePoints(points: SweepPoint[], cap: number): SweepPoint[] {
 
 // --- Antenna loading ---
 
-const antennasDir = path.join(process.cwd(), "data", "meshtastic_antennas")
+const antennasDir = path.join(process.cwd(), "data", "mesh_antennas")
 const touchstoneSource = path.join(antennasDir, "touchstone")
 
 if (!fs.existsSync(antennasDir)) {

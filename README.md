@@ -42,8 +42,8 @@ type-checks the full render tree.
 
 All content lives in the `data/` directory as JSON, plus images:
 
-- `data/meshtastic_devices/` - device JSON files and images
-- `data/meshtastic_antennas/` - antenna JSON files and images
+- `data/mesh_devices/` - device JSON files and images
+- `data/mesh_antennas/` - antenna JSON files and images
 
 At build time, `lib/prebuild.ts` reads this JSON, generates the typed arrays the
 app imports, and copies images into `public/`. The generated files are not
@@ -93,10 +93,10 @@ To add or edit data directly in JSON:
 
 **Add a device**
 
-1. Add a JSON file to `data/meshtastic_devices/` with an `id` field that matches
+1. Add a JSON file to `data/mesh_devices/` with an `id` field that matches
    the URL slug and a `supported_firmware` array, for example
    `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`.
-2. Add the product image to `data/meshtastic_devices/images/` as WebP.
+2. Add the product image to `data/mesh_devices/images/` as WebP.
 
 When filling in the `features` array, reuse the values existing devices
 already use (match spelling and casing exactly). The feature list is kept
@@ -110,12 +110,12 @@ built-in panel) and `Solar Input` (you can connect one) are different.
 
 **Add an antenna**
 
-1. Add a JSON file to `data/meshtastic_antennas/` named after its `slug` field.
-2. Add the antenna image to `data/meshtastic_antennas/images/` as WebP, and
+1. Add a JSON file to `data/mesh_antennas/` named after its `slug` field.
+2. Add the antenna image to `data/mesh_antennas/images/` as WebP, and
    reference it by bare filename in the `image` field.
 3. To include VSWR / return-loss test data, capture a Touchstone `.s1p` sweep
-   with a VNA and add it under `data/meshtastic_antennas/touchstone/`. See
-   [`data/meshtastic_antennas/touchstone/README.md`](data/meshtastic_antennas/touchstone/README.md)
+   with a VNA and add it under `data/mesh_antennas/touchstone/`. See
+   [`data/mesh_antennas/touchstone/README.md`](data/mesh_antennas/touchstone/README.md)
    for how to capture a sweep (microSD or NanoVNASaver) and name the file.
 
 **Before you open the PR**

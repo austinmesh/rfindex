@@ -52,8 +52,8 @@ app/
 
 All data lives in the `data/` directory (device/antenna JSON files and images).
 
-- `data/meshtastic_devices/` — device JSON files and images
-- `data/meshtastic_antennas/` — antenna JSON files and images
+- `data/mesh_devices/` — device JSON files and images
+- `data/mesh_antennas/` — antenna JSON files and images
 - `lib/prebuild.ts` — **prebuild script** that reads JSON from `data/`, generates `data/devices-generated.ts` and `data/antennas-generated.ts`, and copies images to `public/devices/` and `public/mesh/antennas/`
 - `data/devices-generated.ts` — auto-generated Device[] array (gitignored, regenerated every build)
 - `data/antennas-generated.ts` — auto-generated Antenna[] array (gitignored, regenerated every build)
@@ -64,7 +64,7 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 ### Data Collections and Validation
 
-`data/` holds ten JSON collections. Only `meshtastic_devices` and `meshtastic_antennas` are rendered on the site (the prebuild turns just those two into generated TS). The other eight (`bands`, `radios`, `manufacturers`, `suppliers`, `modulations`, `antenna_connectors`, `meshtastic_features`, `meshtastic_manufacturers`) are reference and relation data managed through the CMS and validated, but not currently shown on the site.
+`data/` holds ten JSON collections. Only `mesh_devices` and `mesh_antennas` are rendered on the site (the prebuild turns just those two into generated TS). The other eight (`bands`, `radios`, `manufacturers`, `suppliers`, `modulations`, `antenna_connectors`, `mesh_features`, `mesh_manufacturers`) are reference and relation data managed through the CMS and validated, but not currently shown on the site.
 
 - `schemas/*.json` define the shape of every collection (one schema per collection).
 - `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`.
@@ -162,7 +162,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 
 ### New Device
 
-Add a JSON file to `data/meshtastic_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/meshtastic_devices/images/` as WebP.
+Add a JSON file to `data/mesh_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/mesh_devices/images/` as WebP.
 
 The device will automatically appear in listings, detail pages, and the sitemap after the next build.
 
@@ -179,6 +179,6 @@ Rules for the `features` field:
 
 ### New Antenna
 
-Add a JSON file to `data/meshtastic_antennas/` using the `slug` field as the filename. Place the antenna image in `data/meshtastic_antennas/images/` as WebP (bare filename in the `image` field, not a path).
+Add a JSON file to `data/mesh_antennas/` using the `slug` field as the filename. Place the antenna image in `data/mesh_antennas/images/` as WebP (bare filename in the `image` field, not a path).
 
 The antenna will automatically appear in listings, detail pages, and the sitemap after the next build.

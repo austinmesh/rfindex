@@ -3,7 +3,7 @@
 Copyright 2026 RF Index / Austin Mesh (https://rfindex.com)
 
 The device and antenna **data** in this repository, including all JSON files
-under `data/meshtastic_devices/` and `data/meshtastic_antennas/`, the curated
+under `data/mesh_devices/` and `data/mesh_antennas/`, the curated
 specifications, pricing, test results, and the accompanying product images, is
 licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0
 International License (CC BY-NC-SA 4.0)**.

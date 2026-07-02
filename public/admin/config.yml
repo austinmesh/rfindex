@@ -5,7 +5,7 @@ backend:
   repo: austinmesh/rfindex
   branch: main
 
-media_folder: "data/meshtastic_devices/images"
+media_folder: "data/mesh_devices/images"
 public_folder: "/devices"
 
 collections:
@@ -37,10 +37,10 @@ collections:
     fields:
       - { name: "title", label: "Title", widget: "string" }
 
-  - name: "meshtastic_manufacturers"
+  - name: "mesh_manufacturers"
     label: "Meshtastic Manufacturers"
     label_singular: "Meshtastic Manufacturer"
-    folder: "data/meshtastic_manufacturers"
+    folder: "data/mesh_manufacturers"
     editor:
       preview: false
     create: true
@@ -156,10 +156,10 @@ collections:
       - { name: "manufactured_end_year", label: "Manufactured End Year", widget: "number", required: false }
       - { name: "manufactured_country", label: "Manufactured Country", widget: "string", required: false }
 
-  - name: "meshtastic_features"
+  - name: "mesh_features"
     label: "Meshtastic Features"
     label_singular: "Meshtastic Feature"
-    folder: "data/meshtastic_features"
+    folder: "data/mesh_features"
     editor:
       preview: false
     create: true
@@ -172,10 +172,10 @@ collections:
         label: "Description"
         widget: "text"
 
-  - name: "meshtastic_devices"
+  - name: "mesh_devices"
     create: true
     extension: "json"
-    folder: "data/meshtastic_devices"
+    folder: "data/mesh_devices"
     editor:
       preview: false
     label: "Meshtastic Devices"
@@ -198,7 +198,7 @@ collections:
       - label: "Manufacturer"
         name: "manufacturer"
         widget: "relation"
-        collection: "meshtastic_manufacturers"
+        collection: "mesh_manufacturers"
         searchFields: ["title"]
         valueField: "title"
         displayFields: ["title"]
@@ -305,17 +305,17 @@ collections:
       - label: "Features"
         name: "features"
         widget: "relation"
-        collection: "meshtastic_features"
+        collection: "mesh_features"
         searchFields: ["title"]
         valueField: "title"
         displayFields: ["title"]
         multiple: true
         required: false
 
-  - name: "meshtastic_antennas"
+  - name: "mesh_antennas"
     label: "Meshtastic Antennas"
     label_singular: "Meshtastic Antenna"
-    folder: "data/meshtastic_antennas"
+    folder: "data/mesh_antennas"
     editor:
       preview: false
     create: true

@@ -9,14 +9,14 @@ const ROOT = path.resolve(__dirname, "..");
 const collections = {
   bands:                    { schema: "bands.json",                    dir: "bands" },
   manufacturers:            { schema: "manufacturers.json",            dir: "manufacturers" },
-  meshtastic_manufacturers: { schema: "meshtastic_manufacturers.json", dir: "meshtastic_manufacturers" },
+  mesh_manufacturers:       { schema: "mesh_manufacturers.json",       dir: "mesh_manufacturers" },
   suppliers:                { schema: "suppliers.json",                dir: "suppliers" },
   modulations:              { schema: "modulations.json",              dir: "modulations" },
   antenna_connectors:       { schema: "antenna_connectors.json",       dir: "antenna_connectors" },
   radios:                   { schema: "radios.json",                   dir: "radios" },
-  meshtastic_features:      { schema: "meshtastic_features.json",      dir: "meshtastic_features" },
-  meshtastic_antennas:      { schema: "meshtastic_antennas.json",      dir: "meshtastic_antennas" },
-  meshtastic_devices:       { schema: "meshtastic_devices.json",       dir: "meshtastic_devices" },
+  mesh_features:            { schema: "mesh_features.json",            dir: "mesh_features" },
+  mesh_antennas:            { schema: "mesh_antennas.json",            dir: "mesh_antennas" },
+  mesh_devices:             { schema: "mesh_devices.json",             dir: "mesh_devices" },
 };
 
 // Convert a character offset in `raw` into a 1-based line/column.

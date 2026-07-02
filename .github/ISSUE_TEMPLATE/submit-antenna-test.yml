@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for measuring. This form is for VSWR / return-loss data captured with a VNA.
 
-        Capture a one-port Touchstone (`.s1p`) sweep and attach it below. For how to capture and calibrate a sweep (microSD or NanoVNASaver), see the [touchstone README](https://github.com/austinmesh/rfindex/blob/main/data/meshtastic_antennas/touchstone/README.md).
+        Capture a one-port Touchstone (`.s1p`) sweep and attach it below. For how to capture and calibrate a sweep (microSD or NanoVNASaver), see the [touchstone README](https://github.com/austinmesh/rfindex/blob/main/data/mesh_antennas/touchstone/README.md).
 
         If the antenna is not on RF Index yet, use the [Add a device or antenna](https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml) form instead.
   - type: input
