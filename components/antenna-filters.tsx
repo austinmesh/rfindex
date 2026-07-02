@@ -162,7 +162,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     // Search filter
     const matchesSearch =
       searchQuery === "" ||
-      antenna.manufacturer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      antenna.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       antenna.manufacturer.part_number.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (antenna.test_results[0]?.notes &&
         antenna.test_results[0].notes.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -570,7 +570,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
                         antenna.image ||
                         `/placeholder.svg?height=300&width=300&text=${antenna.manufacturer.part_number || "/placeholder.svg"}`
                       }
-                      alt={antenna.manufacturer.description}
+                      alt={antenna.title}
                       fill
                       className="object-contain p-4"
                     />

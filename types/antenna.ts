@@ -3,22 +3,66 @@ export type AntennaMarker = {
   vswr: string
 }
 
+// Structured test configuration. All fields optional and free-text; use `notes`
+// on the test result as the escape hatch for anything not captured here.
+export type AntennaTestConfiguration = {
+  ground_plane?: string
+  position?: string
+}
+
+// Provenance for the physical unit under test, so batch-to-batch variation is
+// attributable across different testers.
+export type AntennaTestSample = {
+  supplier?: string
+  purchase_date?: string
+  sample_id?: string
+  batch?: string
+}
+
 export type AntennaTestMetadata = {
   tester: string
   date: string
+  callsign?: string
+  handle?: string
+  sample?: AntennaTestSample
+}
+
+// A single point of a parsed sweep. Computed by the prebuild from an attached
+// Touchstone (.s1p) file; never authored by hand.
+export type AntennaSweepPoint = {
+  frequency_hz: number
+  vswr: number
+  return_loss_db: number
+}
+
+// Full sweep derived from a Touchstone file. Present only in generated output.
+export type AntennaSweep = {
+  source_file: string
+  reference_impedance: number
+  point_count: number
+  min_vswr: { frequency_hz: number; vswr: number }
+  points: AntennaSweepPoint[]
 }
 
 export type AntennaTestResult = {
   markers: AntennaMarker[]
   notes: string
   metadata: AntennaTestMetadata
+  configuration?: AntennaTestConfiguration
+  // Authored: bare filename of a nanoVNA .s1p export placed in the antenna's own
+  // directory, data/meshtastic_antennas/touchstone/<slug>/. Parsed into `sweep`.
+  touchstone?: string
+  // Authored override for the frequencies markers are derived at (e.g.
+  // ["902MHz", "915MHz", "928MHz"]). Defaults applied by the prebuild.
+  marker_frequencies?: string[]
+  // Computed by the prebuild from `touchstone`; not authored.
+  sweep?: AntennaSweep
 }
 
 export type AntennaManufacturer = {
   brand_name: string
   url?: string
   part_number: string
-  description: string
   freq_spec: string[]
   datasheet: string
 }

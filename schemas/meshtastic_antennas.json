@@ -8,13 +8,12 @@
     "title": { "type": "string", "minLength": 1 },
     "manufacturer": {
       "type": "object",
-      "required": ["brand_name", "part_number", "description", "freq_spec", "datasheet"],
+      "required": ["brand_name", "part_number", "freq_spec", "datasheet"],
       "additionalProperties": false,
       "properties": {
         "brand_name": { "type": "string", "minLength": 1 },
         "url": { "type": "string" },
         "part_number": { "type": "string", "minLength": 1 },
-        "description": { "type": "string", "minLength": 1 },
         "freq_spec": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
         "datasheet": { "type": "string", "minLength": 1 }
       }
@@ -38,7 +37,8 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["markers", "notes", "metadata"],
+        "required": ["notes", "metadata"],
+        "anyOf": [{ "required": ["markers"] }, { "required": ["touchstone"] }],
         "additionalProperties": false,
         "properties": {
           "markers": {
@@ -54,6 +54,19 @@
             },
             "minItems": 1
           },
+          "touchstone": { "type": "string", "pattern": "^[^/\\\\]+\\.[sS]1[pP]$" },
+          "marker_frequencies": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "configuration": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "ground_plane": { "type": "string" },
+              "position": { "type": "string" }
+            }
+          },
           "notes": { "type": "string" },
           "metadata": {
             "type": "object",
@@ -61,7 +74,19 @@
             "additionalProperties": false,
             "properties": {
               "tester": { "type": "string", "minLength": 1 },
-              "date": { "type": "string", "minLength": 1 }
+              "date": { "type": "string", "minLength": 1 },
+              "callsign": { "type": "string" },
+              "handle": { "type": "string" },
+              "sample": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "supplier": { "type": "string" },
+                  "purchase_date": { "type": "string" },
+                  "sample_id": { "type": "string" },
+                  "batch": { "type": "string" }
+                }
+              }
             }
           }
         }

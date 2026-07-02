@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "TE Connectivity Linx",
     "part_number": "ANT-916-CW-RCS",
-    "description": "RP-SMA male right-angle whip. 3.3dBi. 1.9SWR",
     "freq_spec": [
       "862-876 MHz",
       "902-928 MHz"
@@ -43,7 +42,8 @@
       ],
       "notes": "Antenna performs well but requires a ground plane. Depending on the device construction, this antenna may not perform well, especially if the amount of material available for a ground plane is low. Ensure your device gives ample clearance above the SMA connector to prevent reflections. SWR is within manufacturer specification of designed frequency range, and has remarkably good performance in the 915Mhz frequency band.",
       "metadata": {
-        "tester": "Bradyn Claycomb (KC3IJL)",
+        "tester": "Bradyn Claycomb",
+        "callsign": "KC3IJL",
         "date": "2024-05-15"
       }
     }

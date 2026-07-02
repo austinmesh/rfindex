@@ -5,7 +5,6 @@
   "manufacturer": {
     "brand_name": "Alfa",
     "part_number": "AOA-915-5ACM",
-    "description": "5dBi Omni Outdoor",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -49,8 +48,22 @@
       ],
       "notes": "",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "12 August 2023"
+      }
+    },
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01"
       }
     }
   ],

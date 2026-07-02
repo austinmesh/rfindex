@@ -5,7 +5,6 @@
     "brand_name": "Maxtena",
     "url": "https://www.maxtena.com/Products/Antennas-Solutions/SigFox-LoRa-and-ISM-Antennas/ISM/External-ISM/MEA-915-SW-SMA",
     "part_number": "MEA-915-SW-SMA",
-    "description": "915MHz 4dBi ISM Screw Mount",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -43,7 +42,8 @@
       ],
       "notes": "Antenna tested did not conform to the manufacturer's specification of < 1.4:1 VSWR due to ground plane size during testing. Still acceptable without ground plane.",
       "metadata": {
-        "tester": "Ric Letson, NB2E",
+        "tester": "Ric Letson",
+        "callsign": "NB2E",
         "date": "02 March 2022"
       }
     }

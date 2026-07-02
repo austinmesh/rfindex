@@ -1,0 +1,45 @@
+{
+  "slug": "tenmory-5dbi-lora-omni",
+  "title": "Tenmory 5dBi LoRa Omni",
+  "manufacturer": {
+    "brand_name": "Tenmory",
+    "part_number": "762390343791",
+    "freq_spec": [
+      "910-920 MHz"
+    ],
+    "datasheet": "https://www.amazon.com/dp/B091PRHPTJ"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "B091PRHPTJ",
+      "purchase_cost": "$13.99 / 2",
+      "url": "https://www.amazon.com/dp/B091PRHPTJ"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "Amazon",
+          "purchase_date": "2024-02-03"
+        }
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "connector_type": "SMA Female",
+  "gain": "5 dBi",
+  "image": "tenmory-5dbi-lora-omni.webp",
+  "description": "915 MHz LoRa omni whip sold by Tenmory (UPC 762390343791), SMA male, marketed at 5 dBi in a 2-pack.",
+  "commentary": "Quite a bit of variance from batch to batch and even antenna to antenna. These are relatively easy to tune by removing the case and either cutting or soldering on additional conductor."
+}

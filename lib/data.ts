@@ -74,7 +74,7 @@ export const allFirmwares = Array.from(
 
 export const antennaSitemapData: AntennaSitemapItem[] = antennas.map((antenna) => ({
   id: antenna.slug,
-  name: antenna.manufacturer.description,
+  name: antenna.title,
   lastModified: new Date(),
 }))
 

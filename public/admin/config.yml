@@ -334,7 +334,6 @@ collections:
           - { name: "brand_name", label: "Brand Name", widget: "string" }
           - { name: "url", label: "URL", widget: "string", required: false }
           - { name: "part_number", label: "Part Number", widget: "string" }
-          - { name: "description", label: "Description", widget: "string" }
           - label: "Frequency Spec"
             name: "freq_spec"
             widget: "list"
@@ -354,13 +353,35 @@ collections:
         name: "test_results"
         widget: "list"
         fields:
+          - label: "Touchstone (.s1p) File"
+            name: "touchstone"
+            widget: "file"
+            required: false
+            media_folder: "touchstone/{{fields.slug}}"
+            hint: "nanoVNA S11 export (.s1p), stored under touchstone/<antenna-slug>/. The full VSWR curve is plotted automatically; markers are derived from it when left blank."
           - label: "Markers"
             label_singular: "Marker"
             name: "markers"
             widget: "list"
+            required: false
+            hint: "Optional if a .s1p file is attached (markers are derived from it)."
             fields:
               - { name: "frequency", label: "Frequency", widget: "string" }
               - { name: "vswr", label: "VSWR", widget: "string" }
+          - label: "Marker Frequencies"
+            label_singular: "Frequency"
+            name: "marker_frequencies"
+            widget: "list"
+            required: false
+            hint: "Optional. Frequencies (MHz) to derive markers at from the .s1p. Default 902/915/928."
+            field: { name: "frequency", label: "Frequency (MHz)", widget: "string" }
+          - label: "Configuration"
+            name: "configuration"
+            widget: "object"
+            required: false
+            fields:
+              - { name: "ground_plane", label: "Ground Plane", widget: "string", required: false, hint: "e.g. None, Vehicle roof, 30 cm disc" }
+              - { name: "position", label: "Position", widget: "string", required: false, hint: "e.g. Straight, 90 degree elbow, Base-mounted" }
           - { name: "notes", label: "Notes", widget: "text" }
           - label: "Metadata"
             name: "metadata"
@@ -368,6 +389,17 @@ collections:
             fields:
               - { name: "tester", label: "Tester", widget: "string" }
               - { name: "date", label: "Date", widget: "string" }
+              - { name: "callsign", label: "Callsign", widget: "string", required: false }
+              - { name: "handle", label: "Handle", widget: "string", required: false }
+              - label: "Sample / Batch"
+                name: "sample"
+                widget: "object"
+                required: false
+                fields:
+                  - { name: "supplier", label: "Supplier", widget: "string", required: false }
+                  - { name: "purchase_date", label: "Purchase Date", widget: "string", required: false }
+                  - { name: "sample_id", label: "Sample ID", widget: "string", required: false }
+                  - { name: "batch", label: "Batch / Lot", widget: "string", required: false }
       - { name: "suggested", label: "Suggested", widget: "boolean", required: false }
       - label: "Category"
         name: "category"

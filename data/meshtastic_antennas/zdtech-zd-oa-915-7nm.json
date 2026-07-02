@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "ZDTECH",
     "part_number": "ZD-OA-915_7NM",
-    "description": "LoRa Fiberglass 7dBi N Type",
     "freq_spec": [
       "902-928 MHz"
     ],

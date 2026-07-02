@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "Pulse Larsen",
     "part_number": "W1063M",
-    "description": "868-928MHz 1dBi SMA Male",
     "freq_spec": [
       "862-876 MHz",
       "902-928 MHz"
@@ -43,7 +42,9 @@
       ],
       "notes": "Antenna far exceeds the manufacturer’s published specification of <2:1 VSWR. Seems like a great low-cost option.",
       "metadata": {
-        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "tester": "Ric Letson",
+        "callsign": "NB2E",
+        "handle": "RicInNewMexico",
         "date": "2022-03-02"
       }
     }

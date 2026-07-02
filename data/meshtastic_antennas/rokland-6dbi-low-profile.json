@@ -5,7 +5,6 @@
   "manufacturer": {
     "brand_name": "Rokland",
     "part_number": "UNKNOWN",
-    "description": "6 dBi Low Profile N-Female",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -37,7 +36,9 @@
       ],
       "notes": "",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "2023-08-12"
       }
     }

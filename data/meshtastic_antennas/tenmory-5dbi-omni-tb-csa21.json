@@ -4,11 +4,10 @@
   "manufacturer": {
     "brand_name": "Tenmory",
     "part_number": "TB-CSA21",
-    "description": "915MHz LoRa Omni 5dBi",
     "freq_spec": [
       "902-928 MHz"
     ],
-    "datasheet": "NO DATASHEET AVAIL https://amzn.to/4i3lSW6"
+    "datasheet": "https://amzn.to/4i3lSW6"
   },
   "suppliers": [
     {
@@ -19,6 +18,40 @@
     }
   ],
   "test_results": [
+    {
+      "touchstone": "straight_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "Straight"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "Amazon",
+          "purchase_date": "2024-02-01"
+        }
+      }
+    },
+    {
+      "touchstone": "90deg_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "90 degree bent"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "Amazon",
+          "purchase_date": "2024-02-01"
+        }
+      }
+    },
     {
       "markers": [
         {
@@ -34,7 +67,11 @@
           "vswr": "1.434:1"
         }
       ],
-      "notes": "Measured in straight position.",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "straight"
+      },
+      "notes": "",
       "metadata": {
         "tester": "Ben Lipsey, K1PDX (pdxlocs)",
         "date": "2023-06-20"
@@ -55,9 +92,15 @@
           "vswr": "2.521:1"
         }
       ],
-      "notes": "Measured in 90 degree position.",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "90 degree bent"
+      },
+      "notes": "",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "2023-06-20"
       }
     }
@@ -72,6 +115,6 @@
   "connector_type": "SMA Male",
   "gain": "3 dBi",
   "image": "tenmory-5dbi-omni-tb-csa21.webp",
-  "description": "915MHz 5dBi LoRa Omni antenna. Hinged elbow design allows flexible orientation; performance varies significantly between straight and bent positions.",
-  "commentary": "Average antenna. We generally steer people toward the Gizont these days though."
+  "description": "7.5\" 915MHz \"3dBi\" omni antenna. Hinged elbow design supposed to allow flexible orientation but severely impacts SWR.",
+  "commentary": "Cheap. Easy to get. Only useful in the straight position. We generally steer people toward the Gizont these days."
 }

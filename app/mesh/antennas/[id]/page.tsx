@@ -1,16 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, ExternalLink, ShoppingCart, ThumbsUp, ThumbsDown, AlertTriangle } from "lucide-react"
+import { ArrowLeft, ExternalLink, ShoppingCart, ThumbsUp, ThumbsDown, Download } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
 import { antennas } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
+import { AntennaSweepChart, type AntennaSweepSeries } from "@/components/antenna-sweep-chart-lazy"
+import type { AntennaTestResult, AntennaTestSample } from "@/types/antenna"
 
 // Add this helper function near the top of the file, before the component
 function displayFrequency(freqSpec: string | string[]) {
@@ -18,6 +19,34 @@ function displayFrequency(freqSpec: string | string[]) {
     return freqSpec.join(", ")
   }
   return freqSpec
+}
+
+// Values of `ground_plane` that mean "no ground plane was used"; anything else
+// (e.g. "present", or a size like "100mm") is treated as a ground plane.
+const NO_GROUND_PLANE = new Set(["", "none", "no", "false", "absent"])
+
+// Short label for a sweep series in the comparison chart: the position/config
+// distinguishes configurations, the callsign/handle distinguishes testers. Two
+// tests can share a position but differ by ground plane (e.g. straight with and
+// without one), so fold a ground-plane note into the label to keep them apart.
+function sweepSeriesLabel(t: AntennaTestResult, i: number) {
+  const cfg = t.configuration
+  const gp = cfg?.ground_plane?.trim().toLowerCase()
+  const hasGroundPlane = gp != null && !NO_GROUND_PLANE.has(gp)
+  const base = cfg?.position || cfg?.ground_plane || `Test ${i + 1}`
+  const withConfig = hasGroundPlane ? `${base} + ground plane` : base
+  const who = t.metadata.callsign || t.metadata.handle || null
+  return who ? `${withConfig} (${who})` : withConfig
+}
+
+// One-line provenance for the physical unit tested, omitting absent fields.
+function sampleSummary(s: AntennaTestSample) {
+  const parts: string[] = []
+  if (s.sample_id) parts.push(`Sample ${s.sample_id}`)
+  if (s.batch) parts.push(`Batch ${s.batch}`)
+  if (s.supplier) parts.push(`from ${s.supplier}`)
+  if (s.purchase_date) parts.push(`purchased ${s.purchase_date}`)
+  return parts.join(", ")
 }
 
 // Generate static params for all antenna IDs
@@ -46,7 +75,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     title: `${antenna.title} | Mesh Antennas | RF Index`,
     description:
       antenna.description ||
-      `${antenna.manufacturer.description} for mesh networking devices.`,
+      `${antenna.title} for mesh networking devices.`,
     alternates: {
       canonical: `https://www.rfindex.com/mesh/antennas/${id}`,
     },
@@ -119,29 +148,6 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
     )
   }
 
-  // Helper function to render status alert
-  const renderStatusAlert = (suggested?: boolean, notes?: string) => {
-    if (suggested === undefined) return null
-
-    return suggested ? (
-      <Alert className="bg-green-50 border-green-200">
-        <ThumbsUp className="h-4 w-4 text-green-600" />
-        <AlertTitle className="text-green-800">Suggested Antenna</AlertTitle>
-        <AlertDescription className="text-green-700">
-          {notes || "This antenna was tested by the community and is recommended for use with mesh networking devices."}
-        </AlertDescription>
-      </Alert>
-    ) : (
-      <Alert variant="destructive">
-        <AlertTriangle className="h-4 w-4" />
-        <AlertTitle>Not Suggested</AlertTitle>
-        <AlertDescription>
-          {notes || "This antenna was tested by the community and is not recommended for use with mesh networking devices."}
-        </AlertDescription>
-      </Alert>
-    )
-  }
-
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
@@ -163,7 +169,7 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
                   src={
                     antenna.image || `/placeholder.svg?height=400&width=400&text=${antenna.manufacturer.part_number}`
                   }
-                  alt={antenna.manufacturer.description}
+                  alt={antenna.title}
                   fill
                   className="object-contain p-4"
                 />
@@ -182,10 +188,7 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
                   <span className="text-2xl font-bold">{formatPriceDisplay()}</span>
                   <span className="ml-2 text-muted-foreground">USD</span>
                 </div>
-                <p className="mb-4">{antenna.description || antenna.manufacturer.description || "No description available"}</p>
-
-                {/* Status Alert */}
-                <div className="mb-6">{renderStatusAlert(antenna.suggested)}</div>
+                <p className="mb-4">{antenna.description || "No description available"}</p>
               </div>
 
               {/* Austin Mesh community commentary */}
@@ -210,7 +213,7 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
 
               {/* Purchase CTAs - Primary focus */}
               <Card className="p-6 mb-6 bg-muted/30">
-                <h2 className="text-xl font-semibold mb-4">Purchase Options</h2>
+                <h2 className="text-xl font-semibold mb-4">Links & Resources</h2>
                 <div className="space-y-3">
                   {antenna.suppliers.map((supplier, index) => (
                     <Button key={index} className="w-full justify-between" size="lg" asChild>
@@ -232,64 +235,123 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">
-                  Some of these links are affiliate links. Any commission we earn helps support RF Index at no extra cost to you.
+                  Some links may be affiliate links. Any commissions support Austin Mesh at no extra cost to you.
                 </p>
               </Card>
 
-              {/* Key Specifications */}
+              {/* Specs */}
               <div>
-                <h2 className="text-lg font-semibold mb-2">Key Specifications</h2>
-                <ul className="grid grid-cols-2 gap-2">
-                  <li className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Frequency</span>
-                    <span>{displayFrequency(antenna.manufacturer.freq_spec)}</span>
-                  </li>
-                  <li className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Connector Type</span>
-                    <span>{antenna.connector_type}</span>
-                  </li>
-                  <li className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">VSWR (915MHz)</span>
-                    <span>
-                      {antenna.test_results[0]?.markers.find((m) => m.frequency.includes("915"))?.vswr || "N/A"}
-                    </span>
-                  </li>
-                  <li className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Category</span>
-                    <span>{antenna.category || "N/A"}</span>
-                  </li>
-                  <li className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Gain</span>
-                    <span>{antenna.gain || "N/A"}</span>
-                  </li>
-                  {antenna.dimensions && (
-                    <>
-                      <li className="flex flex-col">
-                        <span className="text-sm text-muted-foreground">Length</span>
-                        <span>{antenna.dimensions.length} mm</span>
-                      </li>
-                      {antenna.dimensions.width && (
-                        <li className="flex flex-col">
-                          <span className="text-sm text-muted-foreground">Width</span>
-                          <span>{antenna.dimensions.width} mm</span>
-                        </li>
-                      )}
-                    </>
-                  )}
-                </ul>
+                <h2 className="text-xl font-semibold mb-4">Specs</h2>
+                <Card className="p-6">
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">Brand</h3>
+                      <p>{antenna.manufacturer.brand_name}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">Part Number</h3>
+                      <p>{antenna.manufacturer.part_number}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">Frequency</h3>
+                      <p>{displayFrequency(antenna.manufacturer.freq_spec)}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">Connector Type</h3>
+                      <p>{antenna.connector_type}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">VSWR (915MHz)</h3>
+                      <p>{antenna.test_results[0]?.markers.find((m) => m.frequency.includes("915"))?.vswr || "N/A"}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">Category</h3>
+                      <p>{antenna.category || "N/A"}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-muted-foreground">Gain</h3>
+                      <p>{antenna.gain || "N/A"}</p>
+                    </div>
+                    {antenna.dimensions && (
+                      <>
+                        <div>
+                          <h3 className="font-medium text-muted-foreground">Length</h3>
+                          <p>{antenna.dimensions.length} mm</p>
+                        </div>
+                        {antenna.dimensions.width && (
+                          <div>
+                            <h3 className="font-medium text-muted-foreground">Width</h3>
+                            <p>{antenna.dimensions.width} mm</p>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {antenna.manufacturer.url && (
+                      <div className="col-span-2 lg:col-span-3">
+                        <h3 className="font-medium text-muted-foreground">Manufacturer Website</h3>
+                        <p>
+                          <a
+                            href={antenna.manufacturer.url}
+                            target="_blank"
+                            rel="noopener"
+                            className="text-primary hover:underline flex items-center"
+                          >
+                            Visit manufacturer website <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </Card>
               </div>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              {/* Test Results */}
-              <h2 className="text-xl font-semibold mb-4">Test Results</h2>
-              <div>
-                {antenna.test_results.map((testResult, index) => (
-                  <div key={index} className="border rounded-lg p-4 mb-2">
-                    <h3 className="text-lg font-semibold mb-2">Test #{index + 1}</h3>
-                    <div className="grid gap-4">
+          {/* Test Results */}
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold mb-4">Test Results</h2>
+
+            {/* Overlaid VSWR / return-loss curves from any attached .s1p sweeps (full width) */}
+            {(() => {
+              const sweepSeries = antenna.test_results
+                .map((t, i) =>
+                  t.sweep ? { id: `test-${i}`, label: sweepSeriesLabel(t, i), points: t.sweep.points } : null,
+                )
+                .filter((s): s is AntennaSweepSeries => s !== null)
+              return sweepSeries.length ? (
+                <div className="mb-6">
+                  <AntennaSweepChart series={sweepSeries} />
+                </div>
+              ) : null
+            })()}
+
+            {/* Individual tests: two columns on desktop, one on mobile */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {antenna.test_results.map((testResult, index) => (
+                <div key={index} className="border rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-2">Test #{index + 1}</h3>
+                  <div className="grid gap-4">
+                    {testResult.configuration && (
+                      <div>
+                        <h4 className="font-medium text-muted-foreground mb-1">Configuration</h4>
+                        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+                          {testResult.configuration.ground_plane && (
+                            <span>
+                              <span className="text-muted-foreground">Ground plane:</span>{" "}
+                              {testResult.configuration.ground_plane}
+                            </span>
+                          )}
+                          {testResult.configuration.position && (
+                            <span>
+                              <span className="text-muted-foreground">Position:</span>{" "}
+                              {testResult.configuration.position}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {testResult.markers.length > 0 && (
                       <div>
                         <h4 className="font-medium text-muted-foreground mb-2">VSWR Measurements</h4>
                         <div className="grid grid-cols-3 gap-2">
@@ -301,68 +363,53 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
                           ))}
                         </div>
                       </div>
+                    )}
 
-                      <Separator className="my-2" />
-
-                      <div>
-                        <h4 className="font-medium text-muted-foreground">Notes from test</h4>
-                        <p>{testResult.notes || "No notes available"}</p>
-                      </div>
-
-                      <div>
-                        <h4 className="font-medium text-muted-foreground">Tested By</h4>
-                        <p>
-                          {testResult.metadata.tester} on {testResult.metadata.date}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Manufacturer Information */}
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Manufacturer Information</h2>
-              <Card className="p-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h3 className="font-medium text-muted-foreground">Brand</h3>
-                    <p>{antenna.manufacturer.brand_name}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-muted-foreground">Part Number</h3>
-                    <p>{antenna.manufacturer.part_number}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-muted-foreground">Frequency Specification</h3>
-                    <p>{displayFrequency(antenna.manufacturer.freq_spec)}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-muted-foreground">Connector Type</h3>
-                    <p>{antenna.connector_type}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-muted-foreground">Description</h3>
-                    <p>{antenna.manufacturer.description}</p>
-                  </div>
-                  {antenna.manufacturer.url && (
-                    <div className="md:col-span-2">
-                      <h3 className="font-medium text-muted-foreground">Manufacturer Website</h3>
-                      <p>
-                        <a
-                          href={antenna.manufacturer.url}
-                          target="_blank"
-                          rel="noopener"
-                          className="text-primary hover:underline flex items-center"
-                        >
-                          Visit manufacturer website <ExternalLink className="ml-1 h-3 w-3" />
-                        </a>
+                    {testResult.sweep && (
+                      <p className="text-sm text-muted-foreground">
+                        Resonant point: VSWR {testResult.sweep.min_vswr.vswr.toFixed(3)}:1 at{" "}
+                        {Math.round(testResult.sweep.min_vswr.frequency_hz / 1e6)} MHz (
+                        {testResult.sweep.point_count} points measured).
                       </p>
+                    )}
+
+                    <Separator className="my-2" />
+
+                    <div>
+                      <h4 className="font-medium text-muted-foreground">Notes from test</h4>
+                      <p>{testResult.notes || "No notes available"}</p>
                     </div>
-                  )}
+
+                    <div>
+                      <h4 className="font-medium text-muted-foreground">Tested By</h4>
+                      <p>
+                        {testResult.metadata.tester}
+                        {testResult.metadata.callsign ? `, ${testResult.metadata.callsign}` : ""}
+                        {testResult.metadata.handle ? ` (${testResult.metadata.handle})` : ""} on{" "}
+                        {testResult.metadata.date}
+                      </p>
+                      {testResult.metadata.sample && sampleSummary(testResult.metadata.sample) && (
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {sampleSummary(testResult.metadata.sample)}
+                        </p>
+                      )}
+                    </div>
+
+                    {testResult.sweep && (
+                      <div>
+                        <a
+                          href={testResult.sweep.source_file}
+                          download
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-2"
+                        >
+                          <Download className="h-4 w-4" />
+                          Download .s1p (Touchstone)
+                        </a>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </Card>
+              ))}
             </div>
           </div>
         </div>

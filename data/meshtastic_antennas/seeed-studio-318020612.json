@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "Seeed Studio",
     "part_number": "318020612",
-    "description": "Lora Fiberglass Antenna 5dBi",
     "freq_spec": [
       "862-876 MHz",
       "902-928 MHz"
@@ -43,7 +42,9 @@
       ],
       "notes": "Since there's no published datasheet for this antenna I can't say whether the abysmal SWR plot is within manufacturer specification or not. This antenna is offered by Seeed Studio as a higher gain antenna for the helium network, but at a 3.394:1 SWR would exhibit 5.275dB of return loss and 1.529 dB of mismatch loss (making their claimed 5dBi gain impossible.) If used in the 860-870MHz range where the VSWR is > 8:1 it would surely cause equipment damage.",
       "metadata": {
-        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "tester": "Ric Letson",
+        "callsign": "NB2E",
+        "handle": "RicInNewMexico",
         "date": "14 February 2022"
       }
     }

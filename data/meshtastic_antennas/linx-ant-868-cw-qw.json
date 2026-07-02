@@ -1,0 +1,65 @@
+{
+  "slug": "linx-ant-868-cw-qw",
+  "title": "Linx ANT-868-CW-QW Whip",
+  "manufacturer": {
+    "brand_name": "TE Connectivity / Linx Technologies",
+    "part_number": "ANT-868-CW-QW",
+    "freq_spec": [
+      "750-950 MHz"
+    ],
+    "datasheet": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-868-CW-QW/340113"
+  },
+  "suppliers": [
+    {
+      "name": "Digikey",
+      "part_number": "ANT-868-CW-QW-ND",
+      "purchase_cost": "$10.00",
+      "url": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-868-CW-QW/340113"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Tested without a ground plane. This whip needs one, so it reads poorly across the US 902-928 MHz band, resonating down near 892 MHz instead.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "DigiKey",
+          "purchase_date": "2025-05-26"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-present_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "present"
+      },
+      "notes": "Tested on a ground plane. With one, the match improves dramatically, dropping to about 1.76:1 at 915 MHz and resonating up in the 928 MHz range.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "DigiKey",
+          "purchase_date": "2025-05-26"
+        }
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "dimensions": {
+    "length": 84,
+    "width": 14.5
+  },
+  "connector_type": "RP-SMA Female",
+  "gain": "1.6 dBi",
+  "image": "linx-ant-868-cw-qw.webp",
+  "description": "868 MHz straight quarter-wave whip from TE Connectivity / Linx (ANT-868-CW-QW), RP-SMA male. It relies on a ground plane: without one it reads around 7:1 in the US 902-928 MHz band, but on a ground plane it tunes up into the band and matches near 1.76:1 at 915 MHz.",
+  "commentary": "Just not a good antenna for 915. You could maybe get away with it up at ~925 but there are better options out there."
+}

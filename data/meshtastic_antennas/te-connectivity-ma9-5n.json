@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "TE Connectivity / Laird",
     "part_number": "MA9-5N",
-    "description": "RF ANT 900MHz Whip 16\"",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -32,6 +31,18 @@
   ],
   "test_results": [
     {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Tested without a ground plane; this antenna expects one such as a vehicle roof.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01"
+      }
+    },
+    {
       "markers": [
         {
           "frequency": "902MHz",
@@ -48,7 +59,9 @@
       ],
       "notes": "This antenna may expect a ground plane such as a vehicle",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "12 Aug 2023"
       }
     }
@@ -57,7 +70,7 @@
   "category": "Vehicle Antennas",
   "pdf": "PDFs/MA9-5N.pdf",
   "dimensions": {
-    "length": 6,
+    "length": 406,
     "width": 20
   },
   "connector_type": "N-Type Male",

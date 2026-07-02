@@ -104,9 +104,116 @@ if (fs.existsSync(imagesSource)) {
   console.log(`Copied ${images.length} device images to public/devices/`)
 }
 
+// --- Touchstone (.s1p) sweep parsing ---
+
+type SweepPoint = { frequency_hz: number; vswr: number; return_loss_db: number }
+type ParsedSweep = { reference_impedance: number; points: SweepPoint[] }
+type Marker = { frequency: string; vswr: string }
+
+const FREQ_MULTIPLIER: Record<string, number> = { hz: 1, khz: 1e3, mhz: 1e6, ghz: 1e9 }
+
+// Default frequencies (MHz) markers are derived at when a test does not specify
+// its own. Matches the US 915 ISM band edges + center used by existing data.
+const DEFAULT_MARKER_FREQS_MHZ = [902, 915, 928]
+
+// Parse a Touchstone 1-port (.s1p) file into VSWR / return-loss points. The `#`
+// option line is parsed rather than assumed, since nanoVNA tools vary in
+// frequency unit (Hz vs MHz) and data format (RI / MA / DB).
+function parseTouchstoneS1P(text: string): ParsedSweep {
+  let freqUnit = "mhz" // Touchstone default when the option line is absent
+  let format = "ma"
+  let reference_impedance = 50
+  const points: SweepPoint[] = []
+
+  for (const rawLine of text.split(/\r?\n/)) {
+    const line = rawLine.split("!")[0].trim() // strip inline comments
+    if (!line) continue
+
+    if (line.startsWith("#")) {
+      const tokens = line.slice(1).trim().split(/\s+/)
+      for (let i = 0; i < tokens.length; i++) {
+        const t = tokens[i].toLowerCase()
+        if (t in FREQ_MULTIPLIER) freqUnit = t
+        else if (t === "ri" || t === "ma" || t === "db") format = t
+        else if (t === "r" && tokens[i + 1] !== undefined) {
+          const r = parseFloat(tokens[i + 1])
+          if (!Number.isNaN(r)) reference_impedance = r
+        }
+      }
+      continue
+    }
+
+    const parts = line.split(/\s+/).map(Number)
+    if (parts.length < 3 || parts.slice(0, 3).some(Number.isNaN)) continue
+
+    const [freq, a, b] = parts
+    const frequency_hz = freq * (FREQ_MULTIPLIER[freqUnit] ?? 1e6)
+
+    // Linear magnitude of S11 from whichever format the file uses.
+    let mag: number
+    if (format === "ri") mag = Math.hypot(a, b)
+    else if (format === "db") mag = Math.pow(10, a / 20)
+    else mag = a // ma: already a linear magnitude
+
+    // Clamp just under 1 so a noisy |S11| >= 1 does not blow up VSWR.
+    const clamped = Math.min(Math.max(mag, 0), 0.999999)
+    const vswr = (1 + clamped) / (1 - clamped)
+    const return_loss_db = -20 * Math.log10(Math.max(clamped, 1e-6))
+
+    points.push({
+      frequency_hz: Math.round(frequency_hz),
+      vswr: Math.round(vswr * 10000) / 10000,
+      return_loss_db: Math.round(return_loss_db * 100) / 100,
+    })
+  }
+
+  return { reference_impedance, points }
+}
+
+// Sample VSWR at target frequencies within the sweep. Output matches the
+// hand-authored marker format exactly: frequency "915MHz", vswr "1.178:1".
+function deriveMarkers(points: SweepPoint[], freqStrings?: string[]): Marker[] {
+  if (!points.length) return []
+  const min = points[0].frequency_hz
+  const max = points[points.length - 1].frequency_hz
+
+  const targets = (
+    freqStrings && freqStrings.length
+      ? freqStrings.map((s) => parseFloat(s)).filter((n) => !Number.isNaN(n))
+      : DEFAULT_MARKER_FREQS_MHZ
+  ).filter((mhz) => mhz * 1e6 >= min && mhz * 1e6 <= max)
+
+  return targets.map((mhz) => {
+    const targetHz = mhz * 1e6
+    let nearest = points[0]
+    for (const p of points) {
+      if (Math.abs(p.frequency_hz - targetHz) < Math.abs(nearest.frequency_hz - targetHz)) nearest = p
+    }
+    return { frequency: `${mhz}MHz`, vswr: `${nearest.vswr.toFixed(3)}:1` }
+  })
+}
+
+// Resonant point: lowest VSWR across the full-resolution sweep.
+function minVswrPoint(points: SweepPoint[]): { frequency_hz: number; vswr: number } {
+  let best = points[0]
+  for (const p of points) if (p.vswr < best.vswr) best = p
+  return { frequency_hz: best.frequency_hz, vswr: best.vswr }
+}
+
+// Evenly resample down to `cap` points (keeping first and last) so a very dense
+// sweep does not bloat the generated file. The raw file stays fully downloadable.
+function downsamplePoints(points: SweepPoint[], cap: number): SweepPoint[] {
+  if (points.length <= cap) return points
+  const step = (points.length - 1) / (cap - 1)
+  const out: SweepPoint[] = []
+  for (let i = 0; i < cap; i++) out.push(points[Math.round(i * step)])
+  return out
+}
+
 // --- Antenna loading ---
 
 const antennasDir = path.join(process.cwd(), "data", "meshtastic_antennas")
+const touchstoneSource = path.join(antennasDir, "touchstone")
 
 if (!fs.existsSync(antennasDir)) {
   console.error("antenna data not found at", antennasDir)
@@ -120,6 +227,48 @@ const antennaData = antennaFiles.map((file) => {
   if (raw.image && !raw.image.startsWith("/")) {
     raw.image = `/mesh/antennas/${raw.image}`
   }
+
+  // Parse any attached Touchstone (.s1p) files into full sweeps. Each file lives
+  // in the antenna's own directory (touchstone/<slug>/), so the `touchstone`
+  // field is just a bare filename. A missing file warns but does not fail the
+  // build. When a test has no hand-authored markers, derive them here.
+  if (Array.isArray(raw.test_results)) {
+    for (const test of raw.test_results) {
+      if (!test.touchstone) continue
+      if (test.touchstone.includes("/") || test.touchstone.includes("\\")) {
+        console.warn(`  ! touchstone must be a bare filename for ${raw.slug}: ${test.touchstone} (skipping sweep)`)
+        continue
+      }
+      const relPath = `${raw.slug}/${test.touchstone}`
+      const s1pPath = path.join(touchstoneSource, raw.slug, test.touchstone)
+      if (!fs.existsSync(s1pPath)) {
+        console.warn(`  ! touchstone not found for ${raw.slug}: touchstone/${relPath} (skipping sweep)`)
+        continue
+      }
+      const parsed = parseTouchstoneS1P(fs.readFileSync(s1pPath, "utf-8"))
+      if (!parsed.points.length) {
+        console.warn(`  ! touchstone had no data points for ${raw.slug}: touchstone/${relPath}`)
+        continue
+      }
+      const min_vswr = minVswrPoint(parsed.points)
+      test.sweep = {
+        source_file: `/mesh/antennas/touchstone/${relPath}`,
+        reference_impedance: parsed.reference_impedance,
+        point_count: parsed.points.length,
+        min_vswr,
+        points: downsamplePoints(parsed.points, 500),
+      }
+      if (!test.markers || !test.markers.length) {
+        let markers = deriveMarkers(parsed.points, test.marker_frequencies)
+        // Fall back to the resonant point if no target frequency lands in range.
+        if (!markers.length) {
+          markers = [{ frequency: `${Math.round(min_vswr.frequency_hz / 1e6)}MHz`, vswr: `${min_vswr.vswr.toFixed(3)}:1` }]
+        }
+        test.markers = markers
+      }
+    }
+  }
+
   return raw
 })
 
@@ -153,4 +302,26 @@ if (fs.existsSync(antennaImagesSource)) {
     fs.copyFileSync(path.join(antennaImagesSource, img), path.join(antennaImagesDest, img))
   }
   console.log(`Copied ${antennaImages.length} antenna images to public/mesh/antennas/`)
+}
+
+// Copy raw Touchstone (.s1p) files to public/ so they are downloadable, keeping
+// the per-antenna subdirectory layout. Matches both .s1p and .S1P (nanoVNA often
+// exports uppercase).
+const touchstoneDest = path.join(process.cwd(), "public", "mesh", "antennas", "touchstone")
+
+if (fs.existsSync(touchstoneSource)) {
+  let touchstoneCopied = 0
+  const slugDirs = fs.readdirSync(touchstoneSource, { withFileTypes: true }).filter((d) => d.isDirectory())
+  for (const dir of slugDirs) {
+    const srcDir = path.join(touchstoneSource, dir.name)
+    const s1pFiles = fs.readdirSync(srcDir).filter((f) => /\.s1p$/i.test(f))
+    if (!s1pFiles.length) continue
+    const destDir = path.join(touchstoneDest, dir.name)
+    fs.mkdirSync(destDir, { recursive: true })
+    for (const f of s1pFiles) {
+      fs.copyFileSync(path.join(srcDir, f), path.join(destDir, f))
+      touchstoneCopied++
+    }
+  }
+  console.log(`Copied ${touchstoneCopied} touchstone files to public/mesh/antennas/touchstone/`)
 }

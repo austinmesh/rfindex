@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "Eifagur",
     "part_number": "ALF1880",
-    "description": "Waterproof Replacement 5.8dBi Magnetic Base 915Mhz",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -36,7 +35,8 @@
       ],
       "notes": "Antenna performs well but requires a ground plane. Which shouldn't be an issue considering this is a magnetic base antenna.",
       "metadata": {
-        "tester": "Bradyn Claycomb (KC3IJL)",
+        "tester": "Bradyn Claycomb",
+        "callsign": "KC3IJL",
         "date": "05/15/2024"
       }
     }

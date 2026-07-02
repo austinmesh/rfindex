@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "TE Connectivity / Linx Technologies",
     "part_number": "ANT-8/9-FPC-UFL-100",
-    "description": "Antenna FPC 868/915MHz 1.13",
     "freq_spec": [
       "862-876 MHz",
       "902-928 MHz"
@@ -49,7 +48,9 @@
       ],
       "notes": "Antenna flex PCB measures 39x15mm and has a 100mm micro coaxial cable terminated in a u.FL connector. Lowest VSWR during testing was achieved by placing a 5mm x 1.5mm strip of foil tape approximately 3.5cm below, and parallel to, the antenna PCB element. Similar effect could also be produced by using the antenna's adhesive strip to mount the antenna approximately 3.5cm above and parallel to the device PCB to which the antenna connector will be attached.",
       "metadata": {
-        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "tester": "Ric Letson",
+        "callsign": "NB2E",
+        "handle": "RicInNewMexico",
         "date": "15 September 2023"
       }
     }

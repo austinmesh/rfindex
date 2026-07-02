@@ -5,7 +5,6 @@
   "manufacturer": {
     "brand_name": "Gizont",
     "part_number": "nb-iot",
-    "description": "Nb-iot Soft Antenna 915 MHz",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -43,7 +42,9 @@
       ],
       "notes": "",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "20-Jun-2023"
       }
     }

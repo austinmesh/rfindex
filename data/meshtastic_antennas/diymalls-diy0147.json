@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "DIYMalls",
     "part_number": "DIY0147",
-    "description": "5DBi Omni-directional",
     "freq_spec": [
       "862-876 MHz",
       "902-928 MHz"
@@ -35,7 +34,10 @@
           "vswr": "2.33:1"
         }
       ],
-      "notes": "Best result at 90° bend. Tested across 4 antennas on nanoVNA V2. All antennas were consistent with minor differences. Averaged sweep: 9/4 @ 501 points.",
+      "configuration": {
+        "position": "90 degree bent"
+      },
+      "notes": "Tested across 4 antennas on nanoVNA V2. All antennas were consistent with minor differences. Averaged sweep: 9/4 @ 501 points.",
       "metadata": {
         "tester": "Kirosbr",
         "date": "2024-06-20"

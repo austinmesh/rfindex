@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "LILYGO",
     "part_number": "UNKNOWN",
-    "description": "Stock LoRa antenna included with LILYGO T-Echo device.",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -36,7 +35,9 @@
       ],
       "notes": "Included with LILYGO T-Echo board. Exhibits high VSWR across the ISM band, indicating poor performance. Antenna replacement is recommended for improved range and efficiency.",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "2023-06-20"
       }
     }

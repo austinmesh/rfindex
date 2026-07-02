@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "CDEBYTE",
     "part_number": "TX915-JKD-20",
-    "description": "LoRa Antenna 3.5dBi",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -46,9 +45,14 @@
           "vswr": "2.167:1"
         }
       ],
-      "notes": "Measured in straight position.",
+      "configuration": {
+        "position": "straight"
+      },
+      "notes": "",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "2023-06-20"
       }
     },
@@ -67,10 +71,39 @@
           "vswr": "2.243:1"
         }
       ],
-      "notes": "Measured in 90 degree position.",
+      "configuration": {
+        "position": "90 degree bent"
+      },
+      "notes": "",
       "metadata": {
-        "tester": "Ben Lipsey, K1PDX (pdxlocs)",
+        "tester": "Ben Lipsey",
+        "callsign": "K1PDX",
+        "handle": "pdxlocs",
         "date": "2023-06-20"
+      }
+    },
+    {
+      "touchstone": "straight_kg5hzc.s1p",
+      "configuration": {
+        "position": "straight"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01"
+      }
+    },
+    {
+      "touchstone": "90deg_kg5hzc.s1p",
+      "configuration": {
+        "position": "90 degree bent"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01"
       }
     }
   ],

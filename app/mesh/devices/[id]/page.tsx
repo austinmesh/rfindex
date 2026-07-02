@@ -150,7 +150,7 @@ export default async function DeviceDetailsPage({ params }: { params: { id: stri
                   Prices may vary by supplier. Click to check current pricing.
                 </p>
                 <p className="text-xs text-muted-foreground mt-2">
-                  Some of these links are affiliate links. Any commission we earn helps support RF Index at no extra cost to you.
+                  Some links may be affiliate links. Any commissions support Austin Mesh at no extra cost to you.
                 </p>
               </Card>
 

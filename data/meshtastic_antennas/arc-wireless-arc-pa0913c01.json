@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "ARC Wireless",
     "part_number": "ARC-PA0913C01",
-    "description": "902-928MHz 13.2dBi Flat Panel",
     "freq_spec": [
       "902-928 MHz"
     ],
@@ -42,7 +41,9 @@
       ],
       "notes": "Sample is within the manufacturer's published specifications of ≤ 1.5 : 1 VSWR typical, 1.7 : 1 max. (915MHz).",
       "metadata": {
-        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "tester": "Ric Letson",
+        "callsign": "NB2E",
+        "handle": "RicInNewMexico",
         "date": "28 February 2022"
       }
     }

@@ -1,0 +1,84 @@
+{
+  "slug": "jc-antenna-jcg402lr-2",
+  "title": "JC Antenna JCG402LR-2",
+  "manufacturer": {
+    "brand_name": "JC Antenna",
+    "part_number": "JCG402LR-2",
+    "freq_spec": [
+      "905-920 MHz"
+    ],
+    "datasheet": "https://jqrorwxhqioplk5p.ldycdn.com/JCG402LR-2-aidqnBpmKjiRljSkrqmknljj.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "DigiKey",
+      "part_number": "JCG402LR-2",
+      "purchase_cost": "$4.63",
+      "url": "https://www.digikey.com/en/products/detail/jc-antenna/JCG402LR-2/15814458"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "straight_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "straight"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "DigiKey",
+          "purchase_date": "2025-05-26"
+        }
+      }
+    },
+    {
+      "touchstone": "90deg_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "90 degree bent"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "DigiKey",
+          "purchase_date": "2025-05-26"
+        }
+      }
+    },
+    {
+      "touchstone": "straight-ground_kg5hzc.s1p",
+      "configuration": {
+        "ground_plane": "present",
+        "position": "straight"
+      },
+      "notes": "Tested straight on a ground plane.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-01",
+        "sample": {
+          "supplier": "DigiKey",
+          "purchase_date": "2025-05-26"
+        }
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "connector_type": "SMA Male",
+  "dimensions": {
+    "length": 110,
+    "width": 10
+  },
+  "gain": "2 dBi",
+  "image": "jc-antenna-jcg402lr-2.webp",
+  "description": "905-920 MHz LoRa whip from JC Antenna (part JCG402LR-2), a hinged whip that can be run straight or bent.",
+  "commentary": "Really nice size, unfortunately it doesn't perform. Avoid."
+}

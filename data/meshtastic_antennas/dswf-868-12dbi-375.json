@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "DSWF",
     "part_number": "DSWF-868-12dbi-37.5",
-    "description": "LoRa LoRaWAN Helium 12dBi",
     "freq_spec": [
       "862-876 MHz"
     ],
@@ -34,7 +33,10 @@
           "vswr": "1.63:1"
         }
       ],
-      "notes": "Best result straight. Tested on 1 antenna using nanoVNA V2. Only 170mm of the antenna is active; the remaining 200mm is empty plastic housing.",
+      "configuration": {
+        "position": "straight"
+      },
+      "notes": "Tested on 1 antenna using nanoVNA V2. Only 170mm of the antenna is active; the remaining 200mm is empty plastic housing.",
       "metadata": {
         "tester": "Kirosbr",
         "date": "2024-06-20"
@@ -55,7 +57,10 @@
           "vswr": "4.368:1"
         }
       ],
-      "notes": "Best result at 90° bend. Tested on 1 antenna using nanoVNA V2. Only 170mm of the antenna is active; the remaining 200mm is empty plastic housing.",
+      "configuration": {
+        "position": "90 degree bent"
+      },
+      "notes": "Tested on 1 antenna using nanoVNA V2. Only 170mm of the antenna is active; the remaining 200mm is empty plastic housing.",
       "metadata": {
         "tester": "Kirosbr",
         "date": "2024-06-20"

@@ -4,7 +4,6 @@
   "manufacturer": {
     "brand_name": "Molex",
     "part_number": "206764-0050",
-    "description": "ISM Dipole Flex Ant 868/915 MHz 50MM",
     "freq_spec": [
       "862-876 MHz",
       "902-928 MHz"
@@ -43,7 +42,9 @@
       ],
       "notes": "Antenna Flex PCB measures 100mm x 16mm and has a 50mm long micro coaxial cable terminated in a u.FL connector. Being a dipole the antenna exhibits a low VSWR and performs well regardless of orientation and without need for a ground plane. Three other part_numbers (206764-0100, 206764-0150 and 206764-0200) are available with longer attached coaxial cables (100mm, 150mm and 200mm).",
       "metadata": {
-        "tester": "Ric Letson, NB2E (RicInNewMexico)",
+        "tester": "Ric Letson",
+        "callsign": "NB2E",
+        "handle": "RicInNewMexico",
         "date": "15 September 2023"
       }
     }
