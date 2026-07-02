@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://rfindex.com/sitemap.xml", // Replace with your actual domain
+    sitemap: "https://www.rfindex.com/sitemap.xml",
   }
 }
 

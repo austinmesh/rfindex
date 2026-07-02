@@ -6,13 +6,26 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
+const homeDescription =
+  "Compare Meshtastic and MeshCore hardware side by side, with firsthand VSWR test results, SWR sweep charts, specs, pricing, and buy links for devices and antennas."
+
 export const metadata = {
   title: "Compare Mesh Networking and Radio Hardware - RF Index",
-  description:
-    "The easiest way to compare mesh networking hardware including Meshtastic, MeshCore, antennas, and more",
+  description: homeDescription,
   alternates: {
     canonical: "https://www.rfindex.com",
-  }
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.rfindex.com",
+    title: "Compare Mesh Networking and Radio Hardware - RF Index",
+    description: homeDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Compare Mesh Networking and Radio Hardware - RF Index",
+    description: homeDescription,
+  },
 }
 
 export default function HomePage() {
@@ -25,14 +38,16 @@ export default function HomePage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">RF Index</h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Your comprehensive resource for radio frequency technologies, devices, and accessories.
+                Independent, side by side comparisons of mesh networking hardware. We publish firsthand VSWR test
+                results and SWR sweep charts for antennas, plus specs, pricing, and buy links for Meshtastic and
+                MeshCore devices.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                 <Button asChild size="lg">
                   <Link href="/mesh/devices">Compare Mesh Devices</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/about">About RF Index</Link>
+                  <Link href="/mesh/antennas">Browse Tested Antennas</Link>
                 </Button>
               </div>
             </div>
@@ -66,13 +81,21 @@ export default function HomePage() {
                     />
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Compare devices that run Meshtastic or MeshCore firmware, from ad-hoc off-grid messaging to repeater-based regional networks.
+                    Compare devices that run Meshtastic or MeshCore firmware, from ad-hoc off-grid messaging to
+                    repeater-based regional networks, alongside antennas we test firsthand with a nanoVNA and publish as
+                    downloadable SWR sweeps.
                   </p>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex flex-col gap-2">
                   <Button asChild className="w-full">
                     <Link href="/mesh/devices">
                       Explore Mesh Devices
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/mesh/antennas">
+                      Compare Tested Antennas
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

@@ -2,8 +2,9 @@ import type { MetadataRoute } from "next"
 import { deviceSitemapData, antennaSitemapData } from "@/lib/data"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Base URL of your website
-  const baseUrl = "https://rfindex.com" // Replace with your actual domain
+  // Canonical base URL. www is canonical; Cloudflare redirects the apex to it,
+  // so emit www here to keep sitemap URLs identical to page canonicals.
+  const baseUrl = "https://www.rfindex.com"
 
   // Create sitemap entries
   const sitemapEntries: MetadataRoute.Sitemap = [

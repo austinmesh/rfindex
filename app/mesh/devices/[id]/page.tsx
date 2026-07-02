@@ -8,6 +8,8 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
 import { devices, featureDescriptions, formatTxPower } from "@/lib/data"
+import { JsonLd } from "@/components/json-ld"
+import { deviceJsonLd } from "@/lib/seo"
 
 // Generate static params for all device IDs
 export function generateStaticParams() {
@@ -31,12 +33,31 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     }
   }
 
+  const url = `https://www.rfindex.com/mesh/devices/${id}`
+  const title = `${device.name} by ${device.manufacturer} | Mesh Devices | RF Index`
+  const images = device.image_url?.[0]
+    ? [{ url: device.image_url[0], alt: device.name }]
+    : undefined
+
   return {
-    title: `${device.name} by ${device.manufacturer} | Mesh Devices | RF Index`,
+    title,
     description: device.description,
     alternates: {
-      canonical: `https://www.rfindex.com/mesh/devices/${id}`,
-    }
+      canonical: url,
+    },
+    openGraph: {
+      type: "website",
+      url,
+      title: `${device.name} by ${device.manufacturer}`,
+      description: device.description,
+      ...(images ? { images } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${device.name} by ${device.manufacturer}`,
+      description: device.description,
+      ...(images ? { images: images.map((i) => i.url) } : {}),
+    },
   }
 }
 
@@ -68,6 +89,7 @@ export default async function DeviceDetailsPage({ params }: { params: { id: stri
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={deviceJsonLd(device)} />
       <SiteHeader />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8">

@@ -12,6 +12,8 @@ import { antennas } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
 import { AntennaSweepChart, type AntennaSweepSeries } from "@/components/antenna-sweep-chart-lazy"
 import type { AntennaTestResult, AntennaTestSample } from "@/types/antenna"
+import { JsonLd } from "@/components/json-ld"
+import { antennaJsonLd, antennaMetaDescription, antennaTestingSummary, brandedTitle } from "@/lib/seo"
 
 // Add this helper function near the top of the file, before the component
 function displayFrequency(freqSpec: string | string[]) {
@@ -73,13 +75,33 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     }
   }
 
+  const url = `https://www.rfindex.com/mesh/antennas/${id}`
+  const description = antenna.description || antennaMetaDescription(antenna)
+  const ogTitle = antenna.test_results.length
+    ? `${antenna.title} VSWR Test Results`
+    : `${antenna.title} | Mesh Antenna`
+  const images = antenna.image
+    ? [{ url: antenna.image, alt: brandedTitle(antenna) }]
+    : undefined
+
   return {
     title: `${antenna.title} | Mesh Antennas | RF Index`,
-    description:
-      antenna.description ||
-      `${antenna.title} for mesh networking devices.`,
+    description,
     alternates: {
-      canonical: `https://www.rfindex.com/mesh/antennas/${id}`,
+      canonical: url,
+    },
+    openGraph: {
+      type: "website",
+      url,
+      title: ogTitle,
+      description,
+      ...(images ? { images } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description,
+      ...(images ? { images: images.map((i) => i.url) } : {}),
     },
   }
 }
@@ -109,6 +131,8 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
       </div>
     )
   }
+
+  const testingSummary = antennaTestingSummary(antenna)
 
   // Helper function to get the price range for an antenna
   const getAntennaPrice = () => {
@@ -152,6 +176,7 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={antennaJsonLd(antenna)} />
       <SiteHeader />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8">
@@ -312,6 +337,8 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
           {/* Test Results */}
           <div className="mb-8">
             <h2 className="text-xl font-semibold mb-4">Test Results</h2>
+
+            {testingSummary && <p className="mb-4 max-w-3xl text-muted-foreground">{testingSummary}</p>}
 
             {/* Overlaid VSWR / return-loss curves from any attached .s1p sweeps (full width) */}
             {(() => {
