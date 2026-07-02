@@ -243,7 +243,7 @@ export default async function AntennaDetailsPage({ params }: { params: Promise<{
                 <h2 className="text-xl font-semibold mb-4">Links & Resources</h2>
                 <div className="space-y-3">
                   {antenna.suppliers.map((supplier, index) => (
-                    <Button key={index} className="w-full justify-between" size="lg" asChild>
+                    <Button key={index} variant="outline" className="w-full justify-between border-primary" size="lg" asChild>
                       <a href={supplier.url} target="_blank" rel="noopener">
                         <div className="flex items-center">
                           <ShoppingCart className="mr-2 h-5 w-5" />
