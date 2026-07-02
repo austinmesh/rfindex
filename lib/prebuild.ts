@@ -267,6 +267,15 @@ const antennaData = antennaFiles.map((file) => {
         test.markers = markers
       }
     }
+
+    // Guarantee every test result carries a markers array. Touchstone-only tests
+    // normally get markers derived above, but if the .s1p is missing or empty that
+    // derivation is skipped (warn-not-fail), leaving markers undefined. The Antenna
+    // type declares markers as required, so default to [] here and let consumers
+    // (bestVswrAt915, bestMeasuredVswr) iterate unconditionally.
+    for (const test of raw.test_results) {
+      if (!Array.isArray(test.markers)) test.markers = []
+    }
   }
 
   return raw
