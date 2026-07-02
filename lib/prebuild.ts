@@ -8,6 +8,29 @@
 
 import fs from "fs"
 import path from "path"
+import sanitizeHtml from "sanitize-html"
+
+// Device/antenna `commentary` is authored HTML rendered with
+// dangerouslySetInnerHTML on the detail pages. Sanitize it here, at build time,
+// against a small allowlist so the runtime stays dependency-free and no
+// contributor-authored markup can become a stored-XSS payload. Also forces
+// rel="noopener noreferrer" on every link (some authored links set target
+// without it). Unknown tags/attributes and javascript: URLs are dropped.
+const COMMENTARY_SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "a", "b", "i", "em", "strong", "p", "br",
+    "ul", "ol", "li", "code", "blockquote", "h3", "h4", "span",
+  ],
+  allowedAttributes: { a: ["href", "target", "rel"] },
+  allowedSchemes: ["http", "https", "mailto"],
+  transformTags: {
+    a: sanitizeHtml.simpleTransform("a", { rel: "noopener noreferrer" }),
+  },
+}
+
+function sanitizeCommentary(html: string): string {
+  return sanitizeHtml(html, COMMENTARY_SANITIZE_OPTIONS)
+}
 
 type RawDevice = {
   id: string
@@ -53,7 +76,7 @@ function mapRawDevice(raw: RawDevice) {
     specifications: raw.specifications,
     features: raw.features ?? [],
     supported_firmware: raw.supported_firmware,
-    ...(raw.commentary ? { commentary: raw.commentary } : {}),
+    ...(raw.commentary ? { commentary: sanitizeCommentary(raw.commentary) } : {}),
     ...(raw.sort_order != null ? { sort_order: raw.sort_order } : {}),
   }
 }
@@ -226,6 +249,11 @@ const antennaData = antennaFiles.map((file) => {
   // Map bare image filename to full path
   if (raw.image && !raw.image.startsWith("/")) {
     raw.image = `/mesh/antennas/${raw.image}`
+  }
+
+  // Sanitize authored commentary HTML (see COMMENTARY_SANITIZE_OPTIONS above).
+  if (raw.commentary) {
+    raw.commentary = sanitizeCommentary(raw.commentary)
   }
 
   // Parse any attached Touchstone (.s1p) files into full sweeps. Each file lives
