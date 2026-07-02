@@ -8,9 +8,9 @@ import Link from "next/link"
 export const metadata = {
   title: "Compare Mesh Antennas | RF Index",
   description:
-    "Browse and compare antennas for mesh networking devices based on real world tests. Find the right antenna for your mesh network.",
+    "Browse and compare antennas for mesh networking devices based on lab tests and real world use from the broader Mesh community.",
   alternates: {
-    canonical: "https://rfindex.com/mesh/antennas",
+    canonical: "https://www.rfindex.com/mesh/antennas",
   },
 }
 

@@ -9,7 +9,7 @@ export const metadata = {
   description:
     "Compare Meshtastic and MeshCore devices side by side. Specs, features, pricing, and purchase links to help you choose the right LoRa mesh hardware.",
   alternates: {
-    canonical: "https://rfindex.com/mesh/devices",
+    canonical: "https://www.rfindex.com/mesh/devices",
   }
 }
 

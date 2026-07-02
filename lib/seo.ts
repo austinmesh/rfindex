@@ -61,6 +61,23 @@ export function bestMeasuredVswr(a: Antenna): { vswr: number; freqMhz?: number }
   return best
 }
 
+// Best (lowest) VSWR measured at 915 MHz across all test results, returned as
+// the original display string (e.g. "1.210:1"). Antennas are often tested in
+// multiple configurations (e.g. with and without a ground plane); picking the
+// best marker avoids surfacing an arbitrary first test — which for a whip like
+// the TI.16 is the no-ground-plane case and reads much worse than reality.
+export function bestVswrAt915(a: Antenna): string | null {
+  let best: { vswr: number; display: string } | null = null
+  for (const t of a.test_results) {
+    for (const m of t.markers) {
+      if (!m.frequency.includes("915")) continue
+      const v = parseVswr(m.vswr)
+      if (v != null && (!best || v < best.vswr)) best = { vswr: v, display: m.vswr }
+    }
+  }
+  return best ? best.display : null
+}
+
 // Unique callsigns across all test results, in first-seen order.
 export function testerCallsigns(a: Antenna): string[] {
   const set = new Set<string>()

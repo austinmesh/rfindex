@@ -13,7 +13,7 @@ import { Separator } from "@/components/ui/separator"
 import { AntennaSweepChart, type AntennaSweepSeries } from "@/components/antenna-sweep-chart-lazy"
 import type { AntennaTestResult, AntennaTestSample } from "@/types/antenna"
 import { JsonLd } from "@/components/json-ld"
-import { antennaJsonLd, antennaMetaDescription, antennaTestingSummary, brandedTitle } from "@/lib/seo"
+import { antennaJsonLd, antennaMetaDescription, antennaTestingSummary, bestVswrAt915, brandedTitle } from "@/lib/seo"
 
 // Add this helper function near the top of the file, before the component
 function displayFrequency(freqSpec: string | string[]) {
@@ -289,7 +289,7 @@ export default async function AntennaDetailsPage({ params }: { params: { id: str
                     </div>
                     <div>
                       <h3 className="font-medium text-muted-foreground">VSWR (915MHz)</h3>
-                      <p>{antenna.test_results[0]?.markers.find((m) => m.frequency.includes("915"))?.vswr || "N/A"}</p>
+                      <p>{bestVswrAt915(antenna) || "N/A"}</p>
                     </div>
                     <div>
                       <h3 className="font-medium text-muted-foreground">Category</h3>

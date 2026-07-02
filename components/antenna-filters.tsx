@@ -18,6 +18,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import { allAntennaCategories as allCategories, statusOptions } from "@/lib/data"
+import { bestVswrAt915 } from "@/lib/seo"
 import { AddMissingCard } from "@/components/add-missing-card"
 
 export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
@@ -263,13 +264,10 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     )
   }
 
-  // Helper function to get VSWR at 915MHz
-  const getVSWR = (antenna: Antenna) => {
-    if (!antenna.test_results || antenna.test_results.length === 0) return "N/A"
-
-    const marker915 = antenna.test_results[0].markers.find((m) => m.frequency.includes("915"))
-    return marker915 ? marker915.vswr : "N/A"
-  }
+  // Helper function to get the best measured VSWR at 915MHz across all tests.
+  // Antennas are often tested in multiple configurations (e.g. with and without
+  // a ground plane); showing the best avoids surfacing an arbitrary first test.
+  const getVSWR = (antenna: Antenna) => bestVswrAt915(antenna) ?? "N/A"
 
   // Helper function to display frequency
   const displayFrequency = (freqSpec: string | string[]) => {
