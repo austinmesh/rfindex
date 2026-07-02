@@ -45,12 +45,8 @@ jobs:
           npx tsx lib/prebuild.ts
           npx next build
 
-      # Standalone type check. Non-blocking for now: there are known pre-existing
-      # type errors (architecture review item 10: the Next 15 async-params
-      # contract on the two detail pages, plus two Radix Select setters).
-      # next.config.mjs sets typescript.ignoreBuildErrors, so the `next build`
-      # above does not fail on them. Once item 10 is fixed, delete the
-      # `continue-on-error` line below to make the type gate blocking.
+      # Standalone type check, blocking. next.config.mjs also sets
+      # typescript.ignoreBuildErrors to false, so the `next build` above fails
+      # on type errors too; this step keeps a clear, separate signal for them.
       - name: Type check (tsc --noEmit)
         run: npx tsc --noEmit
-        continue-on-error: true

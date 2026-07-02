@@ -22,6 +22,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares, maxTxPowerDbm, formatTxPower } from "@/lib/data"
 import { AddMissingCard } from "@/components/add-missing-card"
 
+type SortOption = "default" | "price-asc" | "price-desc"
+
+// Sort values arrive as plain strings (URL params, Select onValueChange);
+// anything unrecognized falls back to the default order.
+function parseSortOption(value: string | null): SortOption {
+  return value === "price-asc" || value === "price-desc" ? value : "default"
+}
+
 export function DeviceFilters({ devices }: { devices: Device[] }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -59,9 +67,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   const [minTxPower, setMinTxPower] = useState<number>(() =>
     searchParams.get("txMin") ? Number.parseInt(searchParams.get("txMin") || "0") : 0,
   )
-  const [sortOption, setSortOption] = useState<"default" | "price-asc" | "price-desc">(
-    (searchParams.get("sort") as any) || "default",
-  )
+  const [sortOption, setSortOption] = useState<SortOption>(parseSortOption(searchParams.get("sort")))
 
   // Comparison state
   const [selectedForComparison, setSelectedForComparison] = useState<string[]>(
@@ -335,7 +341,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
 
       setMinTxPower(params.get("txMin") ? Number.parseInt(params.get("txMin") || "0") : 0)
 
-      setSortOption((params.get("sort") as any) || "default")
+      setSortOption(parseSortOption(params.get("sort")))
       setSelectedForComparison(params.get("compare")?.split(",").filter(Boolean) || [])
       setIsCompareModalOpen(params.get("compareOpen") === "true")
     }
@@ -359,7 +365,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
 
             <div>
               <h3 className="font-semibold mb-3">Sort By</h3>
-              <Select value={sortOption} onValueChange={(value: any) => setSortOption(value)}>
+              <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a sort option" />
                 </SelectTrigger>
@@ -575,7 +581,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
               <div className="space-y-6 py-4">
                 <div>
                   <h3 className="font-semibold mb-3">Sort By</h3>
-                  <Select value={sortOption} onValueChange={(value: any) => setSortOption(value)}>
+                  <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select a sort option" />
                     </SelectTrigger>
