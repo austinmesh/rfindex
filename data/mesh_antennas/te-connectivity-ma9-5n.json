@@ -35,11 +35,24 @@
       "configuration": {
         "ground_plane": "none"
       },
-      "notes": "Tested without a ground plane; this antenna expects one such as a vehicle roof.",
+      "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
         "callsign": "KG5HZC",
         "date": "2026-07-01"
+      }
+    },
+    {
+      "touchstone": "gp-disc-20cm_kg5hzc.s1p",
+      "chart_label": "20cm disc ground plane",
+      "configuration": {
+        "ground_plane": "20cm disc"
+      },
+      "notes": "Tested on a 20cm disc ground plane. The match improves over the no-ground-plane sweep but still sits around 2:1 VSWR across the band, so a ground plane helps but does not fully resolve the mismatch.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02"
       }
     },
     {
