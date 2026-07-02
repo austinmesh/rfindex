@@ -19,8 +19,8 @@ export function SiteHeader() {
       children: [
         { href: "/mesh/devices", label: "All Devices" },
         { href: "/mesh/antennas", label: "Antennas" },
-        { href: "/mesh/devices?firmware=Meshtastic", label: "Meshtastic" },
-        { href: "/mesh/devices?firmware=MeshCore", label: "MeshCore" },
+        { href: "/mesh/devices", label: "Meshtastic" },
+        { href: "/mesh/devices", label: "MeshCore" },
       ],
     },
     { href: "https://www.austinmesh.org", label: "Austin Mesh", target: "_blank" },
