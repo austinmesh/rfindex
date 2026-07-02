@@ -1,0 +1,136 @@
+{
+  "slug": "taoglas-ti.16.5f11",
+  "title": "Taoglas TI.16 Whip",
+  "manufacturer": {
+    "brand_name": "Taoglas",
+    "part_number": "TI.16.5F11",
+    "url": "https://www.taoglas.com/product/ti-16-915mhz-dipole-omni-directional-terminal-antenna-n-type-male/",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "https://cdn.taoglas.com/datasheets/TI.16.5F11.pdf"
+  },
+  "suppliers": [
+    {
+      "name": "OnlineComponents",
+      "url": "https://www.onlinecomponents.com/en/productdetail/taoglas/ti165f11-54317170.html",
+      "part_number": "TI.16.5F11",
+      "purchase_cost": "$16.73"
+    },
+    {
+      "name": "Mouser",
+      "url": "https://www.mouser.com/ProductDetail/Taoglas/TI.16.5F11?qs=L8NdhHdZHXx5ruumIU6KLQ%3D%3D",
+      "part_number": "960-TI.16.5F11",
+      "purchase_cost": "18.86"
+    },
+    {
+      "name": "DigiKey",
+      "url": "https://www.digikey.com/en/products/detail/taoglas-limited/ti-16-5f11/3724558",
+      "part_number": "931-1215-ND",
+      "purchase_cost": "23.56"
+    },
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc_sample1.s1p",
+      "chart_label": "Sample 1, no ground plane",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Sample 1/3 without ground",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "OnlineComponents",
+          "purchase_date": "2026-05-10",
+          "sample_id": "1"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-disc-20cm_kg5hzc_sample1.s1p",
+      "chart_label": "Sample 1, 20cm disc",
+      "configuration": {
+        "ground_plane": "20cm disc"
+      },
+      "notes": "Sample 1/3 with ground.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "OnlineComponents",
+          "purchase_date": "2026-05-10",
+          "sample_id": "1"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-none_kg5hzc_sample2.s1p",
+      "chart_label": "Sample 2, no ground plane",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Sample 2/3 without ground",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "OnlineComponents",
+          "purchase_date": "2026-05-10",
+          "sample_id": "2"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-disc-20cm_kg5hzc_sample2.s1p",
+      "chart_label": "Sample 2, 20cm disc",
+      "configuration": {
+        "ground_plane": "20cm disc"
+      },
+      "notes": "Sample 2/3 with ground",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "OnlineComponents",
+          "purchase_date": "2026-05-10",
+          "sample_id": "2"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-disc-20cm_kg5hzc_sample3.s1p",
+      "chart_label": "Sample 3, 20cm disc",
+      "configuration": {
+        "ground_plane": "20cm disc"
+      },
+      "notes": "Sample 3/3 with ground",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-02",
+        "sample": {
+          "supplier": "OnlineComponents",
+          "purchase_date": "2026-05-10",
+          "sample_id": "3"
+        }
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Fixed (Base) Antennas",
+  "dimensions": {
+    "length": 565,
+    "width": 25
+  },
+  "connector_type": "N-Type Male",
+  "gain": "5 dBi (with ground plane)",
+  "image": "taoglas-ti.16.5f11.webp",
+  "description": "Flexible outdoor monopole whip with an N-Male connector to be used with ground plane.",
+  "commentary": "These are fantastic antennas for installs where low wind drag is required or you need to keep weight down. It is dependent on a ground plane because it is a monopole. Across three samples it matched at roughly 5:1 VSWR with no ground plane and dropped to about 1.2:1 at band center once placed on a 20cm metal disc. Taoglas only reaches the headline ~5 dBi on a 50x50cm plane (gain is negative in free space), so plan on mounting it to at LEAST a 20cm disc. We're currently using these on a number of tower/building installs where magnets are the only mounting option because it keeps weight and wind drag down while offering great performance."
+}
