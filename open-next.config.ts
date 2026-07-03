@@ -16,5 +16,9 @@ export default {
   // `next build` here means every build path (build, deploy, preview, upload)
   // validates and regenerates data and lets OpenNext set standalone mode + the
   // workspace output-tracing root itself before bundling to `.open-next/`.
-  buildCommand: "node scripts/validate.js && npx tsx lib/prebuild.ts && next build",
+  // After `next build`, check-prerendered-links.ts asserts the listing pages
+  // still ship crawlable detail links in their prerendered HTML (P1 item 9);
+  // it fails the build if a client hook ever deopts them out of the static HTML.
+  buildCommand:
+    "node scripts/validate.js && npx tsx lib/prebuild.ts && next build && npx tsx scripts/check-prerendered-links.ts",
 };

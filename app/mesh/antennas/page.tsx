@@ -26,7 +26,13 @@ export default function AntennaListingPage() {
             <p className="text-muted-foreground">Browse and compare antennas for mesh networking devices.<br /><small>Some of the test results on this page were sourced from <Link href="https://github.com/meshtastic/antenna-reports/tree/main" target="_blank">RicInNewMexico's testing</Link> and the broader Meshtastic community.</small></p>
           </div>
 
-          {/* Client-side filtering component */}
+          {/* The card grid must stay in the static prerender (crawlable links),
+              so this tree is deliberately NOT wrapped in <Suspense>. AntennaFilters
+              syncs with the URL through a Suspense-isolated listener inside
+              useUrlFilterSync; if a bare useSearchParams() is ever reintroduced
+              in this tree, the missing-suspense build error fires loudly instead
+              of the grid silently vanishing from the HTML.
+              scripts/check-prerendered-links.ts backstops this after every build. */}
           <AntennaFilters antennas={antennas} />
         </div>
       </main>

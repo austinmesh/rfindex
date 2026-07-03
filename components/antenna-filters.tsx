@@ -1,11 +1,10 @@
 "use client"
 import type { Antenna } from "@/types/antenna"
 
-import { useState, useMemo, useEffect } from "react"
+import { useCallback, useState, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Search, Sliders, ThumbsUp, ThumbsDown } from "lucide-react"
-import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
@@ -20,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { allAntennaCategories as allCategories, statusOptions } from "@/lib/data"
 import { bestVswrAt915 } from "@/lib/seo"
 import { AddMissingCard } from "@/components/add-missing-card"
+import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
 
 type SortOption = "default" | "price-asc" | "price-desc"
 
@@ -30,10 +30,6 @@ function parseSortOption(value: string | null): SortOption {
 }
 
 export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
   // Upper bound for the price filter, derived from the data so a newly added
   // higher-priced antenna is never silently hidden by a too-low default ceiling.
   // Rounded up to the next $10, with a $50 floor to keep a sensible minimum range.
@@ -47,26 +43,21 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
       .map((price) => Math.ceil(price / 10) * 10),
   )
 
-  // Parse URL parameters for initial state
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "")
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(
-    searchParams.get("categories")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(
-    searchParams.get("statuses")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedConnectorTypes, setSelectedConnectorTypes] = useState<string[]>(
-    searchParams.get("connectors")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedFrequencies, setSelectedFrequencies] = useState<string[]>(
-    searchParams.get("frequencies")?.split(",").filter(Boolean) || [],
-  )
-  const [priceRange, setPriceRange] = useState<number[]>(() => {
-    const min = searchParams.get("priceMin") ? Number.parseInt(searchParams.get("priceMin") || "0") : 0
-    const max = searchParams.get("priceMax") ? Number.parseInt(searchParams.get("priceMax") || "50") : maxAntennaPrice
-    return [min, max]
-  })
-  const [sortOption, setSortOption] = useState<SortOption>(parseSortOption(searchParams.get("sort")))
+  // State starts at defaults so the server render (and the static prerender)
+  // emits every antenna card as a crawlable link. Real URL params are applied
+  // after hydration by useUrlFilterSync (see below). Known tradeoff: a deep
+  // link with filter params paints the full unfiltered grid first, then snaps
+  // to the filtered subset once the mount sync runs. That is the price of
+  // keeping every card in the crawlable HTML; do not "fix" it by reading
+  // useSearchParams() during render here, which would deopt the route back
+  // into client-side rendering and empty the static HTML (the PR-B bug).
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
+  const [selectedConnectorTypes, setSelectedConnectorTypes] = useState<string[]>([])
+  const [selectedFrequencies, setSelectedFrequencies] = useState<string[]>([])
+  const [priceRange, setPriceRange] = useState<number[]>([0, maxAntennaPrice])
+  const [sortOption, setSortOption] = useState<SortOption>("default")
 
   // Extract all unique connector types
   const allConnectorTypes = useMemo(() => {
@@ -87,11 +78,21 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     return Array.from(freqSet).sort()
   }, [antennas])
 
-  // Update URL when filters change
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString())
+  // Set all filter state from the given URL params. Identity-stable (its only
+  // dep is the data-derived price ceiling), as useUrlFilterSync requires.
+  const applyParams = useCallback((params: URLSearchParams) => {
+    setSearchQuery(params.get("q") || "")
+    setSelectedCategories(params.get("categories")?.split(",").filter(Boolean) || [])
+    setSelectedStatuses(params.get("statuses")?.split(",").filter(Boolean) || [])
+    setSelectedConnectorTypes(params.get("connectors")?.split(",").filter(Boolean) || [])
+    setSelectedFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
+    setPriceRange([parseIntParam(params.get("priceMin"), 0), parseIntParam(params.get("priceMax"), maxAntennaPrice)])
+    setSortOption(parseSortOption(params.get("sort")))
+  }, [maxAntennaPrice])
 
-    // Update search parameters
+  // Write filter state into URL params. Recreated when filter state changes;
+  // the identity change triggers the hook's URL-write effect.
+  const serializeParams = useCallback((params: URLSearchParams) => {
     if (searchQuery) params.set("q", searchQuery)
     else params.delete("q")
 
@@ -115,9 +116,6 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
 
     if (sortOption !== "default") params.set("sort", sortOption)
     else params.delete("sort")
-
-    // Update URL without refreshing the page
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }, [
     searchQuery,
     selectedCategories,
@@ -126,32 +124,14 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
     selectedFrequencies,
     priceRange,
     sortOption,
-    pathname,
-    router,
-    searchParams,
+    maxAntennaPrice,
   ])
 
-  // Listen for popstate events (browser back/forward)
-  useEffect(() => {
-    const handlePopState = () => {
-      const params = new URLSearchParams(window.location.search)
-
-      setSearchQuery(params.get("q") || "")
-      setSelectedCategories(params.get("categories")?.split(",").filter(Boolean) || [])
-      setSelectedStatuses(params.get("statuses")?.split(",").filter(Boolean) || [])
-      setSelectedConnectorTypes(params.get("connectors")?.split(",").filter(Boolean) || [])
-      setSelectedFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
-
-      const min = params.get("priceMin") ? Number.parseInt(params.get("priceMin") || "0") : 0
-      const max = params.get("priceMax") ? Number.parseInt(params.get("priceMax") || "50") : maxAntennaPrice
-      setPriceRange([min, max])
-
-      setSortOption(parseSortOption(params.get("sort")))
-    }
-
-    window.addEventListener("popstate", handlePopState)
-    return () => window.removeEventListener("popstate", handlePopState)
-  }, [])
+  // Two-way URL <-> state sync: hydrates from deep links after mount, reacts
+  // to back/forward and same-route <Link> navigations, and writes filter
+  // changes back to the URL. `listener` must be rendered (it is Suspense-
+  // isolated so its useSearchParams() cannot deopt the static prerender).
+  const { listener } = useUrlFilterSync({ applyParams, serializeParams })
 
   // Helper function to get the price range for an antenna
   const getAntennaPrice = (antenna: Antenna) => {
@@ -285,6 +265,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
 
   return (
     <>
+      {listener}
       <div className="flex flex-col md:flex-row gap-8">
         {/* Filters - Desktop */}
         <div className="hidden md:block w-64 shrink-0">
