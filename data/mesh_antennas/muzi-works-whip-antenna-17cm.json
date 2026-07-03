@@ -8,7 +8,7 @@
     "freq_spec": [
       "915 MHz"
     ],
-    "datasheet": "https://muzi.works/products/whip-antenna-17cm"
+    "datasheet": "Unavailable"
   },
   "suppliers": [
     {
@@ -39,6 +39,6 @@
   },
   "connector_type": "SMA Male",
   "image": "muzi-works-whip-antenna-17cm.webp",
-  "description": "915/868 MHz flexible LoRa whip sold by muzi works, SMA Male, 17 cm. muzi lists a measured SWR of ~1.3 (98% efficient) versus a stock stubby at SWR 3.5.",
-  "commentary": "muzi works' 17 cm flexible SMA whip — a community favorite for pocket and portable nodes. It tunes and performs well across the 915 MHz band."
+  "description": "Flexible 915 MHz LoRa whip sold by muzi works. SMA Male, 17 cm.",
+  "commentary": "muzi works' 17 cm flexible SMA whip, a common pick for pocket and portable nodes. See the measured sweep for its 915 MHz match."
 }
