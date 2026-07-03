@@ -23,7 +23,7 @@ export default function AntennaListingPage() {
           {/* Page title */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">Mesh Antennas</h1>
-            <p className="text-muted-foreground">Browse and compare antennas for mesh networking devices.<br /><small>Some of the test results on this page were sourced from <Link href="https://github.com/meshtastic/antenna-reports/tree/main" target="_blank">RicInNewMexico's testing</Link> and the broader Meshtastic community.</small></p>
+            <p className="text-muted-foreground">Browse and compare antennas for mesh networking devices.<br /><small>These tests results and suggestions are primarily from the Austin Mesh community by way of both VNA testing and real world use on the mesh. <a href="https://github.com/austinmesh/rfindex/issues/new?template=submit-antenna-test.yml">Add your test results here.</a></small></p>
           </div>
 
           {/* The card grid must stay in the static prerender (crawlable links),
