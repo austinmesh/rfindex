@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // List (or check) the soft-relation values a device can reference:
-//   - manufacturers  -> data/meshtastic_manufacturers/*.json (title)
+//   - manufacturers  -> data/mesh_manufacturers/*.json (title)
 //   - suppliers      -> data/suppliers/*.json (title)
 //   - features       -> the distinct strings used ACROSS existing devices,
 //                       which lib/data.ts turns into filter facets. This is the
-//                       authoritative vocabulary, NOT the meshtastic_features
+//                       authoritative vocabulary, NOT the mesh_features
 //                       collection (they diverge).
 //
 // These are enforced by the CMS, not the JSON Schema, so `pnpm validate` will
@@ -20,13 +20,13 @@ import { dirname, join } from "node:path";
 function findRoot(start) {
   let dir = start;
   for (let i = 0; i < 8; i++) {
-    if (existsSync(join(dir, "data", "meshtastic_devices"))) return dir;
+    if (existsSync(join(dir, "data", "mesh_devices"))) return dir;
     const parent = dirname(dir);
     if (parent === dir) break;
     dir = parent;
   }
-  if (existsSync(join(process.cwd(), "data", "meshtastic_devices"))) return process.cwd();
-  throw new Error("could not locate repo root (no data/meshtastic_devices found)");
+  if (existsSync(join(process.cwd(), "data", "mesh_devices"))) return process.cwd();
+  throw new Error("could not locate repo root (no data/mesh_devices found)");
 }
 
 const ROOT = findRoot(dirname(fileURLToPath(import.meta.url)));
@@ -43,7 +43,7 @@ function titles(dir) {
 }
 
 function deviceFeatures() {
-  const d = join(ROOT, "data", "meshtastic_devices");
+  const d = join(ROOT, "data", "mesh_devices");
   const set = new Set();
   for (const f of readdirSync(d).filter((x) => x.endsWith(".json"))) {
     (JSON.parse(readFileSync(join(d, f), "utf8")).features || []).forEach((x) => set.add(x));
@@ -52,7 +52,7 @@ function deviceFeatures() {
 }
 
 const groups = [
-  ["manufacturer", titles("meshtastic_manufacturers")],
+  ["manufacturer", titles("mesh_manufacturers")],
   ["supplier", titles("suppliers")],
   ["feature", deviceFeatures()],
 ];

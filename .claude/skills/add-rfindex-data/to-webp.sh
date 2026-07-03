@@ -2,8 +2,8 @@
 # Convert a source image to an RF Index WebP (target <= ~200 KB, the CMS cap).
 #
 # Destinations:
-#   device  -> data/meshtastic_devices/images/<name>.webp   (field: /devices/<name>.webp)
-#   antenna -> data/meshtastic_antennas/images/<name>.webp  (field: <name>.webp)
+#   device  -> data/mesh_devices/images/<name>.webp   (field: /devices/<name>.webp)
+#   antenna -> data/mesh_antennas/images/<name>.webp  (field: <name>.webp)
 #
 # Usage: to-webp.sh <source-image> <dest.webp>
 set -euo pipefail

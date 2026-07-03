@@ -18,9 +18,9 @@ match it exactly, validate, fix, repeat. Never invent fields
 
 ## When to use
 
-- Adding a new device to `data/meshtastic_devices/`.
-- Adding a new antenna to `data/meshtastic_antennas/` (incl. VNA test data).
-- Adding a `meshtastic_manufacturers` / `suppliers` / `meshtastic_features`
+- Adding a new device to `data/mesh_devices/`.
+- Adding a new antenna to `data/mesh_antennas/` (incl. VNA test data).
+- Adding a `mesh_manufacturers` / `suppliers` / `mesh_features`
   value that a new device needs.
 
 Not for: editing existing records (do that by hand), or the
@@ -58,12 +58,12 @@ With no argument, ask for the URL.
 
 Read the schema for the full field list; these are the traps.
 
-### Device (`data/meshtastic_devices/<title-slug>-<manufacturer-slug>.json`)
+### Device (`data/mesh_devices/<title-slug>-<manufacturer-slug>.json`)
 
 - **Filename ≠ `id`.** Filename mirrors the CMS slug
   `<title-slug>-<manufacturer-slug>` (e.g. `heltec-lora-32-v3-heltec.json`).
   `id` is a *separate* short URL routing slug (e.g. `heltec-lora-32-v3`),
-  unique across devices. Check: `ls data/meshtastic_devices/ | grep <slug>`.
+  unique across devices. Check: `ls data/mesh_devices/ | grep <slug>`.
 - Required: `id, title, manufacturer, model, category, purchase_urls, price,
   specifications, supported_firmware`.
 - `image` is a **public path**: `/devices/<name>.webp`.
@@ -74,7 +74,7 @@ Read the schema for the full field list; these are the traps.
   2 W=33); `lora_radio` goes in `specifications.lora_radio`, **never** in
   `features`.
 
-### Antenna (`data/meshtastic_antennas/<slug>.json`)
+### Antenna (`data/mesh_antennas/<slug>.json`)
 
 - Filename **is** `<slug>.json`; `slug` is the routing param.
 - Antennas are self-contained: `manufacturer` and `suppliers` are embedded
@@ -98,8 +98,8 @@ Read the schema for the full field list; these are the traps.
 
 ### Reference value (device relations)
 
-`meshtastic_manufacturers` / `suppliers` are `{"title": "..."}`;
-`meshtastic_features` is `{"title": "...", "description": "..."}`.
+`mesh_manufacturers` / `suppliers` are `{"title": "..."}`;
+`mesh_features` is `{"title": "...", "description": "..."}`.
 Filename is a slug of the title. Create these only as an explicit step (see
 Relations).
 
@@ -118,12 +118,12 @@ node .claude/skills/add-rfindex-data/list-relations.mjs "Heltec"
 ```
 
 (The feature list is the distinct strings across existing devices — what
-`lib/data.ts` turns into filter facets — NOT the `meshtastic_features`
+`lib/data.ts` turns into filter facets — NOT the `mesh_features`
 collection, which diverges.)
 
 - Match exists → reuse the exact string.
 - Manufacturer/supplier missing → **warn and stop**. Offer to create the
-  reference JSON (`data/meshtastic_manufacturers/<slug>.json` etc.), then continue.
+  reference JSON (`data/mesh_manufacturers/<slug>.json` etc.), then continue.
 - Feature missing → **stop and confirm explicitly.** `features` is a
   deliberately short curated list; every new value becomes a site-wide filter
   facet. Reuse the closest existing value or omit it unless the user confirms
@@ -146,9 +146,9 @@ Download the source image, then convert it with the helper script (WebP,
 
 ```bash
 # device image:
-.claude/skills/add-rfindex-data/to-webp.sh /path/to/source.jpg data/meshtastic_devices/images/<name>.webp
+.claude/skills/add-rfindex-data/to-webp.sh /path/to/source.jpg data/mesh_devices/images/<name>.webp
 # antenna image:
-.claude/skills/add-rfindex-data/to-webp.sh /path/to/source.jpg data/meshtastic_antennas/images/<name>.webp
+.claude/skills/add-rfindex-data/to-webp.sh /path/to/source.jpg data/mesh_antennas/images/<name>.webp
 ```
 
 Then set the field: device → `"image": "/devices/<name>.webp"`;
@@ -168,7 +168,7 @@ reference above), so its `.s1p` goes under the **new** slug's
 
 - **Yes (preferred)** → ask for the file path, the test config (`straight`,
   `90deg`, `gp-none`, `gp-roof`, …), and their callsign/handle. Copy the file
-  to `data/meshtastic_antennas/touchstone/<slug>/<config>_<callsign>.s1p` and
+  to `data/mesh_antennas/touchstone/<slug>/<config>_<callsign>.s1p` and
   reference it by **bare filename** in `test_results[].touchstone` (schema
   requires it end in `.s1p`, no path). The full VSWR curve is plotted and
   markers are derived automatically.
@@ -176,7 +176,7 @@ reference above), so its `.s1p` goes under the **new** slug's
   902 / 915 / 928 MHz) from the datasheet or their notes.
 
 Either way `metadata` requires `tester` + `date`. See
-`data/meshtastic_antennas/touchstone/README.md` for capture guidance.
+`data/mesh_antennas/touchstone/README.md` for capture guidance.
 
 ## Validate (the gate)
 
