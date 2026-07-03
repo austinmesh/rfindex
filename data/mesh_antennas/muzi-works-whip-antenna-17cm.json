@@ -34,7 +34,8 @@
   "suggested": true,
   "category": "Portable Antennas",
   "dimensions": {
-    "length": 170
+    "length": 170,
+    "width": 10
   },
   "connector_type": "SMA Male",
   "image": "muzi-works-whip-antenna-17cm.webp",
