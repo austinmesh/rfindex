@@ -25,7 +25,13 @@ export default function DeviceListingPage() {
             <p className="text-muted-foreground">Browse and compare devices for use on popular LoRa mesh networking technologies. Data set includes microcontroller, frequency support, power consumption estimates, interfaces, and other data as applicable(like battery chemistry).</p>
           </div>
 
-          {/* Client-side filtering component */}
+          {/* The card grid must stay in the static prerender (crawlable links),
+              so this tree is deliberately NOT wrapped in <Suspense>. DeviceFilters
+              syncs with the URL through a Suspense-isolated listener inside
+              useUrlFilterSync; if a bare useSearchParams() is ever reintroduced
+              in this tree, the missing-suspense build error fires loudly instead
+              of the grid silently vanishing from the HTML.
+              scripts/check-prerendered-links.ts backstops this after every build. */}
           <DeviceFilters devices={devices} />
         </div>
       </main>

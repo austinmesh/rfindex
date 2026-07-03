@@ -1,11 +1,10 @@
 "use client"
 import type { Device } from "@/types/device"
 
-import { useEffect, useState, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Search, Sliders, X, ExternalLink, Scale } from "lucide-react"
-import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
@@ -21,6 +20,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares, maxTxPowerDbm, formatTxPower } from "@/lib/data"
 import { AddMissingCard } from "@/components/add-missing-card"
+import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
 
 type SortOption = "default" | "price-asc" | "price-desc"
 
@@ -31,49 +31,32 @@ function parseSortOption(value: string | null): SortOption {
 }
 
 export function DeviceFilters({ devices }: { devices: Device[] }) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
   // Add these refs and state for scroll behavior
   const lastScrollY = useRef(0)
   const [showMobileSearch, setShowMobileSearch] = useState(true)
 
-  // Parse URL parameters for initial state
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "")
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(
-    searchParams.get("categories")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(
-    searchParams.get("features")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedLoraFrequencies, setSelectedLoraFrequencies] = useState<string[]>(
-    searchParams.get("frequencies")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedMicrocontrollers, setSelectedMicrocontrollers] = useState<string[]>(
-    searchParams.get("microcontrollers")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedLoraRadios, setSelectedLoraRadios] = useState<string[]>(
-    searchParams.get("radios")?.split(",").filter(Boolean) || [],
-  )
-  const [selectedFirmwares, setSelectedFirmwares] = useState<string[]>(
-    searchParams.get("firmware")?.split(",").filter(Boolean) || [],
-  )
-  const [priceRange, setPriceRange] = useState<number[]>(() => {
-    const min = searchParams.get("priceMin") ? Number.parseInt(searchParams.get("priceMin") || "0") : 0
-    const max = searchParams.get("priceMax") ? Number.parseInt(searchParams.get("priceMax") || "500") : 500
-    return [min, max]
-  })
-  const [minTxPower, setMinTxPower] = useState<number>(() =>
-    searchParams.get("txMin") ? Number.parseInt(searchParams.get("txMin") || "0") : 0,
-  )
-  const [sortOption, setSortOption] = useState<SortOption>(parseSortOption(searchParams.get("sort")))
+  // State starts at defaults so the server render (and the static prerender)
+  // emits every device card as a crawlable link. Real URL params are applied
+  // after hydration by useUrlFilterSync (see below). Known tradeoff: a deep
+  // link like ?firmware=MeshCore paints the full unfiltered grid first, then
+  // snaps to the filtered subset once the mount sync runs. That is the price
+  // of keeping every card in the crawlable HTML; do not "fix" it by reading
+  // useSearchParams() during render here, which would deopt the route back
+  // into client-side rendering and empty the static HTML (the PR-B bug).
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([])
+  const [selectedLoraFrequencies, setSelectedLoraFrequencies] = useState<string[]>([])
+  const [selectedMicrocontrollers, setSelectedMicrocontrollers] = useState<string[]>([])
+  const [selectedLoraRadios, setSelectedLoraRadios] = useState<string[]>([])
+  const [selectedFirmwares, setSelectedFirmwares] = useState<string[]>([])
+  const [priceRange, setPriceRange] = useState<number[]>([0, 500])
+  const [minTxPower, setMinTxPower] = useState<number>(0)
+  const [sortOption, setSortOption] = useState<SortOption>("default")
 
   // Comparison state
-  const [selectedForComparison, setSelectedForComparison] = useState<string[]>(
-    searchParams.get("compare")?.split(",").filter(Boolean) || [],
-  )
-  const [isCompareModalOpen, setIsCompareModalOpen] = useState(searchParams.get("compareOpen") === "true")
+  const [selectedForComparison, setSelectedForComparison] = useState<string[]>([])
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false)
 
   // Filter devices based on search query, categories, features, and price range
   const filteredDevices = devices.filter((device) => {
@@ -258,11 +241,26 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     minTxPower > 0 ||
     sortOption !== "default"
 
-  // Update URL when filters change
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString())
+  // Set all filter state from the given URL params. Identity-stable, as
+  // useUrlFilterSync requires.
+  const applyParams = useCallback((params: URLSearchParams) => {
+    setSearchQuery(params.get("q") || "")
+    setSelectedCategories(params.get("categories")?.split(",").filter(Boolean) || [])
+    setSelectedFeatures(params.get("features")?.split(",").filter(Boolean) || [])
+    setSelectedLoraFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
+    setSelectedMicrocontrollers(params.get("microcontrollers")?.split(",").filter(Boolean) || [])
+    setSelectedLoraRadios(params.get("radios")?.split(",").filter(Boolean) || [])
+    setSelectedFirmwares(params.get("firmware")?.split(",").filter(Boolean) || [])
+    setPriceRange([parseIntParam(params.get("priceMin"), 0), parseIntParam(params.get("priceMax"), 500)])
+    setMinTxPower(parseIntParam(params.get("txMin"), 0))
+    setSortOption(parseSortOption(params.get("sort")))
+    setSelectedForComparison(params.get("compare")?.split(",").filter(Boolean) || [])
+    setIsCompareModalOpen(params.get("compareOpen") === "true")
+  }, [])
 
-    // Update search parameters
+  // Write filter state into URL params. Recreated when filter state changes;
+  // the identity change triggers the hook's URL-write effect.
+  const serializeParams = useCallback((params: URLSearchParams) => {
     if (searchQuery) params.set("q", searchQuery)
     else params.delete("q")
 
@@ -301,9 +299,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
 
     if (isCompareModalOpen) params.set("compareOpen", "true")
     else params.delete("compareOpen")
-
-    // Update URL without refreshing the page
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }, [
     searchQuery,
     selectedCategories,
@@ -317,41 +312,17 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     sortOption,
     selectedForComparison,
     isCompareModalOpen,
-    pathname,
-    router,
-    searchParams,
   ])
 
-  // Listen for popstate events (browser back/forward)
-  useEffect(() => {
-    const handlePopState = () => {
-      const params = new URLSearchParams(window.location.search)
-
-      setSearchQuery(params.get("q") || "")
-      setSelectedCategories(params.get("categories")?.split(",").filter(Boolean) || [])
-      setSelectedFeatures(params.get("features")?.split(",").filter(Boolean) || [])
-      setSelectedLoraFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
-      setSelectedMicrocontrollers(params.get("microcontrollers")?.split(",").filter(Boolean) || [])
-      setSelectedLoraRadios(params.get("radios")?.split(",").filter(Boolean) || [])
-      setSelectedFirmwares(params.get("firmware")?.split(",").filter(Boolean) || [])
-
-      const min = params.get("priceMin") ? Number.parseInt(params.get("priceMin") || "0") : 0
-      const max = params.get("priceMax") ? Number.parseInt(params.get("priceMax") || "500") : 500
-      setPriceRange([min, max])
-
-      setMinTxPower(params.get("txMin") ? Number.parseInt(params.get("txMin") || "0") : 0)
-
-      setSortOption(parseSortOption(params.get("sort")))
-      setSelectedForComparison(params.get("compare")?.split(",").filter(Boolean) || [])
-      setIsCompareModalOpen(params.get("compareOpen") === "true")
-    }
-
-    window.addEventListener("popstate", handlePopState)
-    return () => window.removeEventListener("popstate", handlePopState)
-  }, [])
+  // Two-way URL <-> state sync: hydrates from deep links after mount, reacts
+  // to back/forward and same-route <Link> navigations, and writes filter
+  // changes back to the URL. `listener` must be rendered (it is Suspense-
+  // isolated so its useSearchParams() cannot deopt the static prerender).
+  const { listener } = useUrlFilterSync({ applyParams, serializeParams })
 
   return (
     <>
+      {listener}
       <div className="flex flex-col md:flex-row gap-8">
         {/* Filters - Desktop */}
         <div className="hidden md:block w-64 shrink-0">
