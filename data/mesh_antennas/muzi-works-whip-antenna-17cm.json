@@ -1,0 +1,44 @@
+{
+  "slug": "muzi-works-whip-antenna-17cm",
+  "title": "muzi works Whip Antenna 17cm",
+  "manufacturer": {
+    "brand_name": "muzi works",
+    "url": "https://muzi.works/products/whip-antenna-17cm",
+    "part_number": "whip-antenna-17cm",
+    "freq_spec": [
+      "915 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "muzi works",
+      "part_number": "whip-antenna-17cm",
+      "purchase_cost": "$11.90",
+      "url": "https://muzi.works/products/whip-antenna-17cm"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_muzi.s1p",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "890-950 MHz sweep captured with a RigExpert Zero II and AntScope2, no ground plane.",
+      "metadata": {
+        "tester": "Andy Shinn",
+        "date": "2026-07-01"
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "dimensions": {
+    "length": 170,
+    "width": 10
+  },
+  "connector_type": "SMA Male",
+  "image": "muzi-works-whip-antenna-17cm.webp",
+  "description": "Flexible 915 MHz LoRa whip sold by muzi works. SMA Male, 17 cm.",
+  "commentary": "muzi works' 17 cm flexible SMA whip, a common pick for pocket and portable nodes. See the measured sweep for its 915 MHz match."
+}
