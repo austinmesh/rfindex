@@ -6,15 +6,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/collections/lilygo-t-beam-series/products/lilygo-t-deck-pro-a7682e-4g-us-915-mhz?ref=rfindex"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_omv1Z2H"
     },
     {
-      "supplier": "LilyGo",
+      "supplier": "lilygo",
       "url": "https://lilygo.cc/products/t-deck-pro?bg_ref=NMDtT4rHQo"
     }
   ],
@@ -45,7 +45,7 @@
       "MicroSD"
     ]
   },
-  "manufacturer": "LILYGO",
+  "manufacturer": "lilygo",
   "title": "T-Deck Pro",
   "image": "/devices/lilygo-t-deck-pro.webp",
   "features": [

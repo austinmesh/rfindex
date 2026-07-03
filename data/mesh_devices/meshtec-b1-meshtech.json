@@ -5,11 +5,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Meshtech",
+      "supplier": "meshtech",
       "url": "https://w0aez.com/products/meshtech-b1"
     },
     {
-      "supplier": "Printables",
+      "supplier": "printables",
       "url": "https://www.printables.com/model/1193230-meshtech-b1"
     }
   ],
@@ -36,7 +36,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Meshtech",
+  "manufacturer": "meshtech",
   "title": "Meshtec B1",
   "image": "/devices/meshtech-b1.webp",
   "features": [

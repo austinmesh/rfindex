@@ -6,19 +6,19 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/rakwireless-wismesh-repeater-reliable-meshtastic-repeater-for-challenging-environmentsrak?ref=rfindex"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_omUpovX"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_oE4pcWh"
     },
     {
-      "supplier": "RAKwireless",
+      "supplier": "rakwireless",
       "url": "https://rakwireless.kckb.st/rfindex-2kg"
     }
   ],
@@ -45,7 +45,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "RAKwireless",
+  "manufacturer": "rakwireless",
   "title": "WisMesh Repeater",
   "image": "/devices/wismesh-repeater.webp",
   "features": [

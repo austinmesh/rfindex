@@ -119,11 +119,12 @@ for (const [name, { schema, dir }] of Object.entries(collections)) {
 // files claiming the same id, an image reference with no file on disk, or a
 // manufacturer/supplier that no reference collection knows about.
 
-const refName = (x) => x.data.title ?? x.data.name ?? x.data.id ?? x.data.slug;
-
 // 1. id / slug uniqueness (FATAL). Detail routes resolve by first-match .find(),
 //    so a duplicate silently shadows another page at the same URL and doubles a
 //    sitemap entry. Filenames do not equal ids, so the filesystem is no guard.
+//    Reference-collection slugs are relation targets (device files store them),
+//    so a duplicate there makes a relation ambiguous. Manufacturers span two
+//    collections and are checked as one namespace.
 function checkUnique(items, keyField) {
   const seen = new Map();
   for (const { file, data } of items) {
@@ -139,6 +140,8 @@ function checkUnique(items, keyField) {
 }
 checkUnique(parsed.mesh_devices, "id");
 checkUnique(parsed.mesh_antennas, "slug");
+checkUnique([...parsed.mesh_manufacturers, ...parsed.manufacturers], "slug");
+checkUnique(parsed.suppliers, "slug");
 
 // 2. Image existence (FATAL). A referenced image must exist as source under
 //    data/<collection>/images/ (the prebuild copies these into public/). The
@@ -156,33 +159,42 @@ function checkImages(items, imagesRel) {
 checkImages(parsed.mesh_devices, "data/mesh_devices/images");
 checkImages(parsed.mesh_antennas, "data/mesh_antennas/images");
 
-// 3. Referential integrity (WARNING, not yet fatal). Every device manufacturer
-//    and purchase-URL supplier should resolve to a reference collection. The
-//    live data currently has known drift (casing splits, a few missing brands),
-//    so this warns rather than failing. Once the reference collections are
-//    backfilled and normalized (architecture review, item 14), promote these to
-//    failedFiles.push(...) to turn drift into a red check.
-const manufacturerRef = new Set(
-  [...parsed.mesh_manufacturers, ...parsed.manufacturers].map(refName).filter(Boolean),
-);
-const supplierRef = new Set(parsed.suppliers.map(refName).filter(Boolean));
-let refWarnings = 0;
+// 3. Referential integrity (FATAL). Device manufacturer and purchase-URL
+//    supplier values are reference-collection SLUGS (the prebuild resolves them
+//    to display titles), so every value must match a slug in
+//    data/mesh_manufacturers|manufacturers (manufacturer) or data/suppliers
+//    (supplier). A common mistake is writing the display title instead of the
+//    slug, so suggest the slug when the value matches a known title.
+function buildRefLookup(items) {
+  const slugs = new Set();
+  const slugByTitle = new Map();
+  for (const { data } of items) {
+    if (data.slug) slugs.add(data.slug);
+    if (data.title && data.slug) slugByTitle.set(data.title.toLowerCase(), data.slug);
+  }
+  return { slugs, slugByTitle };
+}
+
+function refError(file, kind, value, lookup, collections) {
+  const suggestion = lookup.slugByTitle.get(String(value).toLowerCase());
+  const hint = suggestion
+    ? ` (did you mean the slug "${suggestion}"? This field stores slugs, not display titles)`
+    : ` (add a file with that slug to ${collections}, or fix the value)`;
+  console.error(`UNKNOWN ${kind.toUpperCase()}: ${file}: "${value}" is not a known ${kind} slug${hint}`);
+  failedFiles.push(file);
+}
+
+const manufacturerRef = buildRefLookup([...parsed.mesh_manufacturers, ...parsed.manufacturers]);
+const supplierRef = buildRefLookup(parsed.suppliers);
 for (const { file, data } of parsed.mesh_devices) {
-  if (data.manufacturer && !manufacturerRef.has(data.manufacturer)) {
-    console.warn(`  ~ ${file}: manufacturer "${data.manufacturer}" is not in mesh_manufacturers/manufacturers`);
-    refWarnings++;
+  if (data.manufacturer && !manufacturerRef.slugs.has(data.manufacturer)) {
+    refError(file, "manufacturer", data.manufacturer, manufacturerRef, "data/mesh_manufacturers/");
   }
   for (const p of data.purchase_urls || []) {
-    if (p.supplier && !supplierRef.has(p.supplier)) {
-      console.warn(`  ~ ${file}: supplier "${p.supplier}" is not in suppliers`);
-      refWarnings++;
+    if (p.supplier && !supplierRef.slugs.has(p.supplier)) {
+      refError(file, "supplier", p.supplier, supplierRef, "data/suppliers/");
     }
   }
-}
-if (refWarnings > 0) {
-  console.warn(
-    `\n${refWarnings} referential-integrity warning(s). Not fatal yet; backfill the reference collections, then promote to errors.`,
-  );
 }
 
 console.log(`\nValidated ${total} files across ${Object.keys(collections).length} collections.`);

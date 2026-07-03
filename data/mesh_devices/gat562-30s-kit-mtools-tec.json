@@ -6,7 +6,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "MTools Tec",
+      "supplier": "mtools-tec",
       "url": "https://shop.mtoolstec.com/product/gat562-30s-kit-30dbm-mesh-device"
     }
   ],
@@ -34,7 +34,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "MTools Tec",
+  "manufacturer": "mtools-tec",
   "title": "GAT562 30s Kit",
   "image": "/devices/mtools-tec-gat562-30s-kit.webp",
   "features": [

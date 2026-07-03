@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "B&Q Consulting",
+      "supplier": "bq-consulting",
       "url": "https://shop.uniteng.com/product/meshtastic-mesh-device-station-g2/"
     }
   ],
@@ -34,7 +34,7 @@
       "Qwiic"
     ]
   },
-  "manufacturer": "B&Q Consulting",
+  "manufacturer": "bq-consulting",
   "title": "Station G2",
   "image": "/devices/station-g2.webp",
   "features": [

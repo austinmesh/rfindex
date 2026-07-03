@@ -6,15 +6,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/heltec-wireless-stick-litev3-902-928-mhz?ref=rfindex"
     },
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/44bGjgl"
     },
     {
-      "supplier": "Heltec",
+      "supplier": "heltec",
       "url": "https://heltec.org/project/wireless-stick-lite-v2/"
     }
   ],
@@ -45,7 +45,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Heltec",
+  "manufacturer": "heltec",
   "title": "Wireless Stick Lite V3",
   "image": "/devices/heltec-stick-v3.webp",
   "features": [

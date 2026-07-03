@@ -62,16 +62,49 @@ type RawDevice = {
   sort_order?: number
 }
 
-function mapRawDevice(raw: RawDevice) {
+// Device JSON stores manufacturer/supplier as reference-collection slugs (the
+// CMS relation valueField), so a brand rename touches one reference file
+// instead of every device. Resolve slugs to display titles here so the
+// generated Device[] and all app code keep working with display names.
+function loadRefTitles(...dirs: string[]): Map<string, string> {
+  const map = new Map<string, string>()
+  for (const dir of dirs) {
+    const abs = path.join(process.cwd(), "data", dir)
+    if (!fs.existsSync(abs)) continue
+    for (const f of fs.readdirSync(abs).filter((f) => f.endsWith(".json"))) {
+      const { slug, title } = JSON.parse(fs.readFileSync(path.join(abs, f), "utf-8"))
+      if (slug && title) map.set(slug, title)
+    }
+  }
+  return map
+}
+
+const manufacturerTitles = loadRefTitles("mesh_manufacturers", "manufacturers")
+const supplierTitles = loadRefTitles("suppliers")
+
+function resolveRefTitle(map: Map<string, string>, slug: string, kind: string, file: string): string {
+  const title = map.get(slug)
+  if (!title) {
+    throw new Error(
+      `data/mesh_devices/${file}: ${kind} "${slug}" does not match any reference-collection slug (run \`pnpm validate\` for details)`,
+    )
+  }
+  return title
+}
+
+function mapRawDevice(raw: RawDevice, file: string) {
   return {
     id: raw.id,
     name: raw.title,
-    manufacturer: raw.manufacturer,
+    manufacturer: resolveRefTitle(manufacturerTitles, raw.manufacturer, "manufacturer", file),
     model: raw.model,
     description: raw.description ?? "",
     category: raw.category ?? [],
     image_url: raw.image ? [raw.image] : [],
-    purchase_urls: raw.purchase_urls ?? [],
+    purchase_urls: (raw.purchase_urls ?? []).map((p) => ({
+      ...p,
+      supplier: resolveRefTitle(supplierTitles, p.supplier, "supplier", file),
+    })),
     price: raw.price,
     specifications: raw.specifications,
     features: raw.features ?? [],
@@ -96,7 +129,7 @@ const devices = files.map((file) => {
   } catch (err) {
     throw new Error(`Failed to parse data/mesh_devices/${file}: ${(err as Error).message}`)
   }
-  return mapRawDevice(raw)
+  return mapRawDevice(raw, file)
 })
 
 // Default display order: pinned devices first (lowest sort_order wins), then alphabetical

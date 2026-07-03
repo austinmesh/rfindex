@@ -6,15 +6,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/rakwireless-wismesh-pocket-mini-all-in-one-meshtastic-handheld-915-mhz-radio-with-lora-antenna?ref=rfindex"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_oFyUGIZ"
     },
     {
-      "supplier": "RAKwireless",
+      "supplier": "rakwireless",
       "url": "https://rakwireless.kckb.st/rfindex-xjj"
     }
   ],
@@ -41,7 +41,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "RAKwireless",
+  "manufacturer": "rakwireless",
   "title": "WisMesh Pocket Mini",
   "image": "/devices/wismesh-mini-pocket-2.webp",
   "features": [

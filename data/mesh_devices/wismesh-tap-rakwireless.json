@@ -6,15 +6,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/rakwireless-wismesh-tap-touchscreen-915-mhz-handheld-or-mountable-unit-lora-gps?ref=rfindex"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_om8nSdX"
     },
     {
-      "supplier": "RAKwireless",
+      "supplier": "rakwireless",
       "url": "https://rakwireless.kckb.st/rfindex-3dl"
     }
   ],
@@ -41,7 +41,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "RAKwireless",
+  "manufacturer": "rakwireless",
   "title": "WisMesh Tap",
   "image": "/devices/wismesh-tap.webp",
   "features": [

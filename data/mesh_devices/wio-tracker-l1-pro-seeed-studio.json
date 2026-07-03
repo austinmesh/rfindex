@@ -6,7 +6,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/Wio-Tracker-L1-Pro-p-6454.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     }
   ],
@@ -35,7 +35,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "Wio Tracker L1 Pro",
   "image": "/devices/wio-tracker-l1-pro.webp",
   "features": [

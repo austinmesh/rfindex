@@ -7,11 +7,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/SenseCAP-Solar-Node-P1-Pro-for-Meshtastic-LoRa-p-6412.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     },
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/4edWGxx"
     }
   ],
@@ -39,7 +39,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "SenseCAP Solar Node P1 Pro",
   "image": "/devices/sensecap-solar-node-p1-pro.webp",
   "features": [

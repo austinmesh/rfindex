@@ -34,8 +34,10 @@ collections:
       preview: false
     create: true
     extension: "json"
+    slug: "{{fields.slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "lowercase letters, digits, and hyphens only"], hint: "Stable ID stored by device relations. Never change it after devices reference it." }
 
   - name: "mesh_manufacturers"
     label: "Meshtastic Manufacturers"
@@ -45,8 +47,10 @@ collections:
       preview: false
     create: true
     extension: "json"
+    slug: "{{fields.slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "lowercase letters, digits, and hyphens only"], hint: "Stable ID stored by device relations. Never change it after devices reference it." }
 
   - name: "suppliers"
     label: "Suppliers"
@@ -56,8 +60,10 @@ collections:
       preview: false
     create: true
     extension: "json"
+    slug: "{{fields.slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "lowercase letters, digits, and hyphens only"], hint: "Stable ID stored by device relations. Never change it after devices reference it." }
 
   - name: "modulations"
     label: "Modulations"
@@ -199,8 +205,8 @@ collections:
         name: "manufacturer"
         widget: "relation"
         collection: "mesh_manufacturers"
-        searchFields: ["title"]
-        valueField: "title"
+        searchFields: ["title", "slug"]
+        valueField: "slug"
         displayFields: ["title"]
       - { name: "model", label: "Model", widget: "string" }
       - { name: "description", label: "Description", widget: "text", required: false }
@@ -228,8 +234,8 @@ collections:
             label: "Supplier"
             widget: "relation"
             collection: "suppliers"
-            searchFields: ["title"]
-            valueField: "title"
+            searchFields: ["title", "slug"]
+            valueField: "slug"
             displayFields: ["title"]
           - { name: "url", label: "URL", widget: "string" }
       - label: "Price"

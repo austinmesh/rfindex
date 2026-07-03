@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_okzZKY9"
     },
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/Wio-WM1110-Dev-Kit-p-5677.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     }
   ],
@@ -41,7 +41,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "Wio-WM1110 Dev Kit",
   "image": "/devices/wio-wm1110-dev-kit.webp",
   "features": [

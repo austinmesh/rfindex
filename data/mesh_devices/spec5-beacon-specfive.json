@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "SpecFive LLC",
+      "supplier": "specfive",
       "url": "https://specfive.com/products/spec5-beacon"
     }
   ],
@@ -31,7 +31,7 @@
       "Bluetooth Low Energy (BLE)"
     ]
   },
-  "manufacturer": "SpecFive",
+  "manufacturer": "specfive",
   "title": "Spec5 Beacon",
   "image": "/devices/spec5-beacon.webp",
   "features": [

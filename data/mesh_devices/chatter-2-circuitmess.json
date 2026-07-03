@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "CircuitMess",
+      "supplier": "circuitmess",
       "url": "https://circuitmess.com/products/chatter-2-0"
     }
   ],
@@ -32,7 +32,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "CircuitMess",
+  "manufacturer": "circuitmess",
   "title": "Chatter 2",
   "image": "/devices/circuitmess-chatter-2.webp",
   "features": [

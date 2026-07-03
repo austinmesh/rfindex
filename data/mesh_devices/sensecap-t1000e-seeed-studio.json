@@ -7,15 +7,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/SenseCAP-Card-Tracker-T1000-E-for-LoRaWAN-p-6408.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     },
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/4j11UNa"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_oB95mkd"
     }
   ],
@@ -42,7 +42,7 @@
       "Proprietary USB magnetic charging cable"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "SenseCAP T1000e",
   "image": "/devices/sensecap-t1000e.webp",
   "features": [

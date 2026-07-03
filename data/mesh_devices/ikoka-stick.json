@@ -5,11 +5,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "ndoo.sg",
+      "supplier": "ndoo-sg",
       "url": "https://ndoo.sg/projects:amateur_radio:meshtastic:diy_devices:ikoka_stick"
     },
     {
-      "supplier": "GitHub",
+      "supplier": "github",
       "url": "https://github.com/ndoo/ikoka-stick-meshtastic-device"
     }
   ],
@@ -37,7 +37,7 @@
       "SPI"
     ]
   },
-  "manufacturer": "Ikoka",
+  "manufacturer": "ikoka",
   "title": "Ikoka Stick",
   "image": "/devices/ikoka-stick.webp",
   "features": [

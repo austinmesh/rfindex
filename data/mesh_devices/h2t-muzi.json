@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "supplier": "muzi-works",
       "url": "https://muzi.works/products/h2t-complete-device-heltec-t114-with-gps-running-meshtastic"
     }
   ],
@@ -31,7 +31,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "manufacturer": "muzi-works",
   "title": "H2T",
   "image": "/devices/muzi-works-h2t.webp",
   "features": [

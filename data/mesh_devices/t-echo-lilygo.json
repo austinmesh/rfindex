@@ -7,19 +7,19 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/lilygo-ttgo-meshtastic-t-echo-white-lora-sx1262-wireless-module-915mhz-nrf52840-gps-for-arduino?ref=rfindex"
     },
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/3XS0tZ1"
     },
     {
-      "supplier": "LilyGo",
+      "supplier": "lilygo",
       "url": "https://lilygo.cc/products/t-echo-lilygo?bg_ref=NMDtT4rHQo"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_oBu0sol"
     }
   ],
@@ -51,7 +51,7 @@
       "UART"
     ]
   },
-  "manufacturer": "LILYGO",
+  "manufacturer": "lilygo",
   "title": "T-Echo",
   "image": "/devices/lilygo-t-echo.webp",
   "features": [

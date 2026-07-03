@@ -6,7 +6,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "LilyGo",
+      "supplier": "lilygo",
       "url": "https://lilygo.cc/products/t-lora-c6?bg_ref=NMDtT4rHQo"
     }
   ],
@@ -37,7 +37,7 @@
       "UART"
     ]
   },
-  "manufacturer": "LILYGO",
+  "manufacturer": "lilygo",
   "title": "T-Lora C6",
   "image": "/devices/lilygo-t-lora-c6.webp",
   "features": [

@@ -6,7 +6,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/Wio-Tracker-1110-Dev-Board-p-5799.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     }
   ],
@@ -37,7 +37,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "Wio Tracker 1110",
   "image": "/devices/wio-tracker-1110-dev-board.webp",
   "features": [

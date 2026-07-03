@@ -5,15 +5,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/rakwireless-rak11200-wifi-and-ble-espressif-esp32-wrover-pid-110023?ref=rfindex"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_oCPUcap"
     },
     {
-      "supplier": "RAKwireless",
+      "supplier": "rakwireless",
       "url": "https://rakwireless.kckb.st/rfindex-u3r"
     }
   ],
@@ -41,7 +41,7 @@
       "M8 5-pin connector"
     ]
   },
-  "manufacturer": "RAKwireless",
+  "manufacturer": "rakwireless",
   "title": "WisMesh WiFi MQTT Gateway",
   "image": "/devices/wismesh-wifi-gateway.webp",
   "features": [

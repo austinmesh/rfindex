@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Muzi Works",
+      "supplier": "muzi-works",
       "url": "https://muzi.works/products/elecrow-thinknode-m4-power-bank"
     }
   ],
@@ -32,7 +32,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Elecrow",
+  "manufacturer": "elecrow",
   "title": "Thinknode M4",
   "image": "/devices/thinknode-m4.webp",
   "features": [
