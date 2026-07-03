@@ -5,19 +5,19 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/lilygo-t-watch-s3-open-source-smartwatch-with-lora-and-esp32?ref=rfindex"
     },
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/4jpcDkj"
     },
     {
-      "supplier": "LilyGo",
+      "supplier": "lilygo",
       "url": "https://lilygo.cc/products/t-watch-s3?bg_ref=NMDtT4rHQo"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_ooeDsQp"
     }
   ],
@@ -42,7 +42,7 @@
       "I2C"
     ]
   },
-  "manufacturer": "LILYGO",
+  "manufacturer": "lilygo",
   "title": "T-Watch",
   "image": "/devices/lilygo-t-watch.webp",
   "features": [

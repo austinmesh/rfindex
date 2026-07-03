@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "GitHub",
+      "supplier": "github",
       "url": "https://github.com/ndoo/ikoka-nano-meshtastic-device"
     }
   ],
@@ -33,7 +33,7 @@
       "I2C"
     ]
   },
-  "manufacturer": "Ikoka",
+  "manufacturer": "ikoka",
   "title": "Ikoka Nano",
   "image": "/devices/ikoka-nano.webp",
   "features": [

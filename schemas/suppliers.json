@@ -1,8 +1,9 @@
 {
 "type": "object",
-  "required": ["title"],
+  "required": ["title", "slug"],
   "additionalProperties": false,
   "properties": {
-    "title": { "type": "string", "minLength": 1 }
+    "title": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" }
   }
 }

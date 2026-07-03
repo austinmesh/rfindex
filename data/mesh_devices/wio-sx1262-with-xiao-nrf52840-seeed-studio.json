@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_olqxYhX"
     },
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     }
   ],
@@ -41,7 +41,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "Wio SX1262 with XIAO nRF52840",
   "image": "/devices/seeedstudio-wio-sx1262-xiao-nrf52840.webp",
   "features": [

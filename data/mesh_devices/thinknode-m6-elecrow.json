@@ -5,11 +5,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/4euZ0k3"
     },
     {
-      "supplier": "Elecrow",
+      "supplier": "elecrow",
       "url": "https://www.elecrow.com/thinknode-m6-outdoor-solar-power-for-meshtastic-powered-by-nrf52840-supports-gps.html?ref=rfindex"
     }
   ],
@@ -37,7 +37,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Elecrow",
+  "manufacturer": "elecrow",
   "title": "Thinknode M6",
   "image": "/devices/thinknode-m6.webp",
   "features": [

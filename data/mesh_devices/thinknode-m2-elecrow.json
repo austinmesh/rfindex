@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/3SrSPVj"
     },
     {
-      "supplier": "Elecrow",
+      "supplier": "elecrow",
       "url": "https://www.elecrow.com/thinknode-m2-meshtastic-lora-signal-transceiver-powered-by-esp32-s3-with-1-3-oled-display.html?ref=rfindex"
     }
   ],
@@ -38,7 +38,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Elecrow",
+  "manufacturer": "elecrow",
   "title": "Thinknode M2",
   "image": "/devices/thinknode-m2.webp",
   "features": [

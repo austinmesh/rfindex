@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/wismesh-tag-from-rakwireless-mokosmart-meshtastic-compatible-card-sized-node-us915-mhz?ref=rfindex"
     },
     {
-      "supplier": "RAKwireless",
+      "supplier": "rakwireless",
       "url": "https://store.rakwireless.com/products/wismesh-tag-meshtastic-gps-lora-tracker-ip66"
     }
   ],
@@ -37,7 +37,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "RAKwireless",
+  "manufacturer": "rakwireless",
   "title": "WisMesh Tag",
   "image": "/devices/wismesh-tag.webp",
   "features": [

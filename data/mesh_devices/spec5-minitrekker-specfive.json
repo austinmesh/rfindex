@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "SpecFive LLC",
+      "supplier": "specfive",
       "url": "https://specfive.com/products/spec5-minitrekker"
     }
   ],
@@ -31,7 +31,7 @@
       "Bluetooth Low Energy (BLE)"
     ]
   },
-  "manufacturer": "SpecFive",
+  "manufacturer": "specfive",
   "title": "Spec5 MiniTrekker",
   "image": "/devices/spec5-minitrekker.webp",
   "features": [

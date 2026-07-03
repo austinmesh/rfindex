@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_omqOTnf"
     },
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/SenseCAP-Indicator-D1-p-5643.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     }
   ],
@@ -41,7 +41,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "SenseCAP Indicator",
   "image": "/devices/sensecap-indicator.webp",
   "features": [

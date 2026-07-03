@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Heltec",
+      "supplier": "heltec",
       "url": "https://heltec.org/products/meshpocket"
     }
   ],
@@ -32,7 +32,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Heltec",
+  "manufacturer": "heltec",
   "title": "MeshPocket Qi2",
   "image": "/devices/heltec-meshpocket-qi2.webp",
   "features": [

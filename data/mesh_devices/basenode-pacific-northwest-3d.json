@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Pacific Northwest 3D",
+      "supplier": "pacific-northwest-3d",
       "url": "https://pacificnorthwest3d.com/products/basenode"
     }
   ],
@@ -32,7 +32,7 @@
       "Bluetooth Low Energy (BLE)"
     ]
   },
-  "manufacturer": "Pacific Northwest 3D",
+  "manufacturer": "pacific-northwest-3d",
   "title": "BASENODE",
   "image": "/devices/pacificnorthwest3d-basenode.webp",
   "features": [

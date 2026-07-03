@@ -6,7 +6,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "AtlaVox",
+      "supplier": "atlavox",
       "url": "https://atlavox.com/products/atlavox-m1?bg_ref=Xc9U3S3ona"
     }
   ],
@@ -33,7 +33,7 @@
       "GPIO"
     ]
   },
-  "manufacturer": "AtlaVox",
+  "manufacturer": "atlavox",
   "title": "AtlaVox M1",
   "image": "/devices/atlavox-m1.webp",
   "features": [

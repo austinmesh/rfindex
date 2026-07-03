@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Canary Radio Co.",
+      "supplier": "canary-radio-co",
       "url": "https://canaryradio.io/products/canaryone"
     }
   ],
@@ -32,7 +32,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Canary Radio Co.",
+  "manufacturer": "canary-radio-co",
   "title": "Canary One",
   "image": "/devices/canary-one.webp",
   "features": [

@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "supplier": "muzi-works",
       "url": "https://muzi.works/products/base-uno"
     }
   ],
@@ -37,7 +37,7 @@
       "Qwiic"
     ]
   },
-  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "manufacturer": "muzi-works",
   "title": "Base Uno",
   "image": "/devices/muzi-works-base-uno.webp",
   "features": [

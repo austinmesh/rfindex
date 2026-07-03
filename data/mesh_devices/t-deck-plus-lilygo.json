@@ -6,7 +6,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "LilyGo",
+      "supplier": "lilygo",
       "url": "https://lilygo.cc/products/t-deck-plus?bg_ref=NMDtT4rHQo"
     }
   ],
@@ -37,7 +37,7 @@
       "GPIO"
     ]
   },
-  "manufacturer": "LILYGO",
+  "manufacturer": "lilygo",
   "title": "T-Deck Plus",
   "image": "/devices/lilygo-t-deck-plus.webp",
   "features": [

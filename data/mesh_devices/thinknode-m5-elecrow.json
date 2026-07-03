@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/4vPCtVr"
     },
     {
-      "supplier": "Elecrow",
+      "supplier": "elecrow",
       "url": "https://www.elecrow.com/thinknode-m5-meshtastic-lora-signal-transceiver-esp32-s3-1-54-screen-gps-function.html?ref=rfindex"
     }
   ],
@@ -38,7 +38,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Elecrow",
+  "manufacturer": "elecrow",
   "title": "Thinknode M5",
   "image": "/devices/thinknode-m5.webp",
   "features": [

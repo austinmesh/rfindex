@@ -6,15 +6,15 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Amazon",
+      "supplier": "amazon",
       "url": "https://amzn.to/4ez0AQv"
     },
     {
-      "supplier": "Seeed Studio",
+      "supplier": "seeed-studio",
       "url": "https://www.seeedstudio.com/Wio-SX1262-with-XIAO-ESP32S3-p-5982.html?sensecap_affiliate=WMeIXYu&referring_service=link"
     },
     {
-      "supplier": "AliExpress",
+      "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_c3Ysagx7"
     }
   ],
@@ -45,7 +45,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Seeed Studio",
+  "manufacturer": "seeed-studio",
   "title": "Wio SX1262 with XIAO ESP32S3",
   "image": "/devices/seeedstudio-wio-sx1262-xiao-esp32s3.webp",
   "features": [

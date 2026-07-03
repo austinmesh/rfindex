@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "VoltaicEnclosures",
+      "supplier": "voltaicenclosures",
       "url": "https://www.etsy.com/listing/1312727008/3w-meshtastic-solar-base-station-with"
     }
   ],
@@ -31,7 +31,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "VoltaicEnclosures",
+  "manufacturer": "voltaicenclosures",
   "title": "3W Solar LTO Basestation",
   "image": "/devices/voltaic-enclosures-3w-solar-lto-basestation.webp",
   "features": [

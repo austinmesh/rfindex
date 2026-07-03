@@ -7,11 +7,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Elecrow",
+      "supplier": "elecrow",
       "url": "https://www.elecrow.com/thinknode-m1-meshtastic-lora-signal-transceiver-powered-by-nrf52840-with-154-screen-support-gps.html?ref=rfindex"
     },
     {
-      "supplier": "RobotShop",
+      "supplier": "robotshop",
       "url": "https://www.robotshop.com/products/elecrow-thinknode-m1-lora-meshtastic-transceiver-154-epd-screen-gps-function-nrf52840-wo-case-868-mhz"
     }
   ],
@@ -37,7 +37,7 @@
       "USB-C"
     ]
   },
-  "manufacturer": "Elecrow",
+  "manufacturer": "elecrow",
   "title": "Thinknode M1",
   "image": "/devices/thinknode-m1.webp",
   "features": [

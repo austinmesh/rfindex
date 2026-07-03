@@ -6,11 +6,11 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "Rokland",
+      "supplier": "rokland",
       "url": "https://store.rokland.com/products/heltec-wireless-tracker-v1-1-wi-fi-lora-bt-gnss?ref=rfindex"
     },
     {
-      "supplier": "Heltec",
+      "supplier": "heltec",
       "url": "https://heltec.org/project/wireless-tracker/"
     }
   ],
@@ -41,7 +41,7 @@
       "UART"
     ]
   },
-  "manufacturer": "Heltec",
+  "manufacturer": "heltec",
   "title": "Wireless Tracker V1.1",
   "image": "/devices/heltec-tracker.webp",
   "features": [

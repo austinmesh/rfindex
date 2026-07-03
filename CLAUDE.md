@@ -64,10 +64,10 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 ### Data Collections and Validation
 
-`data/` holds ten JSON collections. Only `mesh_devices` and `mesh_antennas` are rendered on the site (the prebuild turns just those two into generated TS). The other eight (`bands`, `radios`, `manufacturers`, `suppliers`, `modulations`, `antenna_connectors`, `mesh_features`, `mesh_manufacturers`) are reference and relation data managed through the CMS and validated, but not currently shown on the site.
+`data/` holds ten JSON collections. Only `mesh_devices` and `mesh_antennas` are rendered as pages (the prebuild turns just those two into generated TS). Of the other eight, `mesh_manufacturers`, `manufacturers`, and `suppliers` are load-bearing relation targets: device JSON stores their `slug` values in `manufacturer` and `purchase_urls[].supplier`, and the prebuild resolves each slug to its display `title` when generating `devices-generated.ts`. Renaming a brand means editing one reference file's `title`; the `slug` must never change once devices reference it. The remaining five (`bands`, `radios`, `modulations`, `antenna_connectors`, `mesh_features`) are reference data managed through the CMS and validated, but not currently used by the site.
 
 - `schemas/*.json` define the shape of every collection (one schema per collection).
-- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails: `id`/`slug` uniqueness (fatal), referenced-image existence (fatal), and manufacturer/supplier referential integrity against the reference collections (currently a non-fatal warning while known drift is backfilled).
+- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails, all fatal: `id`/`slug` uniqueness (including reference-collection slugs), referenced-image existence, and manufacturer/supplier referential integrity (every device `manufacturer` and `purchase_urls[].supplier` must be a known reference-collection slug; writing a display title instead of a slug gets a did-you-mean suggestion).
 - CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR that touches `data/`, `schemas/`, or the validator. GitHub Actions is free for public repos and does not affect the $0 hosting budget.
 - When you change an allowed value (an enum), update BOTH `schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
 
@@ -163,6 +163,8 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 ### New Device
 
 Add a JSON file to `data/mesh_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/mesh_devices/images/` as WebP.
+
+The `manufacturer` field and every `purchase_urls[].supplier` store reference-collection **slugs**, not display names (e.g., `"manufacturer": "lilygo"`, `"supplier": "rokland"`). The slug must exist in `data/mesh_manufacturers/` (or `data/manufacturers/`) / `data/suppliers/`; for a new brand, add the reference file (with `title` and `slug`) in the same PR. `pnpm validate` fails on unknown slugs and suggests the slug if you wrote a display title.
 
 The device will automatically appear in listings, detail pages, and the sitemap after the next build.
 

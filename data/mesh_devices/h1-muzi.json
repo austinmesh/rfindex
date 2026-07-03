@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "supplier": "muzi-works",
       "url": "https://muzi.works/products/h1-complete-device-heltec-v3-running-meshtastic"
     }
   ],
@@ -32,7 +32,7 @@
       "Bluetooth Low Energy (BLE)"
     ]
   },
-  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "manufacturer": "muzi-works",
   "title": "H1",
   "image": "/devices/muzi-works-h1.webp",
   "features": [

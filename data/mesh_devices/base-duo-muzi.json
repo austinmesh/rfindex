@@ -5,7 +5,7 @@
   ],
   "purchase_urls": [
     {
-      "supplier": "muzi ᴡᴏʀᴋꜱ",
+      "supplier": "muzi-works",
       "url": "https://muzi.works/products/base-duo"
     }
   ],
@@ -37,7 +37,7 @@
       "Qwiic"
     ]
   },
-  "manufacturer": "muzi ᴡᴏʀᴋꜱ",
+  "manufacturer": "muzi-works",
   "title": "Base Duo",
   "image": "/devices/muzi-works-base-duo.webp",
   "features": [
