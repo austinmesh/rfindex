@@ -157,7 +157,7 @@ export default async function DeviceDetailsPage({ params }: { params: Promise<{ 
                 <h2 className="text-xl font-semibold mb-4">Purchase Options</h2>
                 <div className="space-y-3">
                   {device.purchase_urls.map((purchase, index) => (
-                    <Button key={index} className="w-full justify-between" size="lg" asChild>
+                    <Button key={index} variant="outline" className="w-full justify-between border-primary" size="lg" asChild>
                       <a href={purchase.url} target="_blank" rel="noopener">
                         <div className="flex items-center">
                           <ShoppingCart className="mr-2 h-5 w-5" />

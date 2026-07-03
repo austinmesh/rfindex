@@ -1087,7 +1087,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                     <TableCell key={`${device.id}-purchase-links`}>
                       <div className="flex flex-col space-y-2">
                         {device.purchase_urls.map((purchase, index) => (
-                          <Button key={index} size="sm" asChild>
+                          <Button key={index} variant="outline" size="sm" className="border-primary" asChild>
                             <a
                               href={purchase.url}
                               target="_blank"
