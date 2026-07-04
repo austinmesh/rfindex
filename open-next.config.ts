@@ -1,11 +1,17 @@
 // OpenNext Cloudflare config
 // See https://opennext.js.org/cloudflare for all options.
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+import staticAssetsIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/static-assets-incremental-cache";
 
 export default {
   ...defineCloudflareConfig({
-    // For best results consider enabling R2 caching:
-    // incrementalCache: r2IncrementalCache,
+    // Read-only cache that serves the build-time prerendered SSG pages from
+    // the Workers static assets binding (free tier; no R2/KV needed). Without
+    // an incremental cache the Worker re-renders every SSG detail page on
+    // demand, and `dynamicParams = false` on those pages would 404 them all,
+    // because fallback:false forbids on-demand rendering. This site has no
+    // ISR/revalidation, so a read-only prerender-only cache is a perfect fit.
+    incrementalCache: staticAssetsIncrementalCache,
   }),
   // Validate the data against the JSON Schemas, generate data from `data/`, then
   // run the Next.js build. Validating first makes a bad contribution fail fast

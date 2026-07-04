@@ -148,6 +148,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 
 - **Pages are server components** — listing pages pass full data arrays to client filter components
 - **Detail pages use `generateStaticParams`** — all device/antenna pages are statically generated at build time
+- **Unknown detail slugs return real HTTP 404s.** Both detail pages set `dynamicParams = false`, and unknown paths render the branded `app/not-found.tsx` with a 404 status. This depends on the static-assets incremental cache configured in `open-next.config.ts`: `fallback:false` forbids on-demand rendering, so the Worker must serve the prerendered pages from that cache. Never remove the cache config while `dynamicParams = false` is set, or every detail page 404s in production (a plain `notFound()` guard without `dynamicParams = false` is not a substitute: Next serves those on-demand not-found renders with HTTP 200). Verify with `pnpm preview` + curl: valid slugs 200, unknown slugs 404.
 - **Devices use `id` field, antennas use `slug` field** as their URL parameter
 - **Devices have `supported_firmware`** — multi-select array (e.g., `["Meshtastic", "MeshCore"]`) for firmware compatibility filtering
 - **SEO**: every page exports `metadata` with title, description, and `alternates.canonical`
