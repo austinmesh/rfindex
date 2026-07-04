@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+import { ExternalLink } from "@/components/external-link"
+
 export function SiteFooter() {
   return (
     <footer className="border-t bg-background">
@@ -22,42 +24,40 @@ export function SiteFooter() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contribute</h3>
             <nav className="flex flex-col space-y-2">
-              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml" className="text-muted-foreground hover:text-foreground transition-colors">
                 Add a device
-              </Link>
-              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=remove-device.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              </ExternalLink>
+              <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=remove-device.yml" className="text-muted-foreground hover:text-foreground transition-colors">
                 Remove a device
-              </Link>
-              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=report-issue.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              </ExternalLink>
+              <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=report-issue.yml" className="text-muted-foreground hover:text-foreground transition-colors">
                 Report an issue
-              </Link>
-              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=request-update.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              </ExternalLink>
+              <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=request-update.yml" className="text-muted-foreground hover:text-foreground transition-colors">
                 Request an update
-              </Link>
-              <Link href="https://github.com/austinmesh/rfindex/issues/new?template=submit-antenna-test.yml" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              </ExternalLink>
+              <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=submit-antenna-test.yml" className="text-muted-foreground hover:text-foreground transition-colors">
                 Submit antenna test data
-              </Link>
+              </ExternalLink>
             </nav>
           </div>
         </div>
         <div className="mt-8 pt-6 border-t">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} RF Index. Code:{" "}
-            <Link
+            <ExternalLink
               href="https://github.com/austinmesh/rfindex/blob/main/LICENSE"
-              target="_blank"
               className="underline underline-offset-2 hover:text-foreground transition-colors"
             >
               PolyForm Noncommercial 1.0.0
-            </Link>{" "}
+            </ExternalLink>{" "}
             &middot; Data:{" "}
-            <Link
+            <ExternalLink
               href="https://github.com/austinmesh/rfindex/blob/main/data/LICENSE.md"
-              target="_blank"
               className="underline underline-offset-2 hover:text-foreground transition-colors"
             >
               CC BY-NC-SA 4.0
-            </Link>
+            </ExternalLink>
           </p>
         </div>
       </div>

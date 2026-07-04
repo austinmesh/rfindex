@@ -10,6 +10,8 @@ import fs from "fs"
 import path from "path"
 import sanitizeHtml from "sanitize-html"
 
+import type { Antenna, AntennaTestResult } from "@/types/antenna"
+
 // Device/antenna `commentary` is authored HTML rendered with
 // dangerouslySetInnerHTML on the detail pages. Sanitize it here, at build time,
 // against a small allowlist so the runtime stays dependency-free and no
@@ -276,6 +278,18 @@ function downsamplePoints(points: SweepPoint[], cap: number): SweepPoint[] {
 
 // --- Antenna loading ---
 
+// Authored antenna JSON as it sits in data/mesh_antennas/. Same shape as the
+// Antenna type except for what this script computes: `markers` may be absent on
+// touchstone-only tests (derived or defaulted below, required on the output
+// type) and `sweep` is never authored.
+type RawAntennaTestResult = Omit<AntennaTestResult, "markers"> & {
+  markers?: AntennaTestResult["markers"]
+}
+
+type RawAntenna = Omit<Antenna, "test_results"> & {
+  test_results: RawAntennaTestResult[]
+}
+
 const antennasDir = path.join(process.cwd(), "data", "mesh_antennas")
 const touchstoneSource = path.join(antennasDir, "touchstone")
 
@@ -285,8 +299,8 @@ if (!fs.existsSync(antennasDir)) {
 }
 
 const antennaFiles = fs.readdirSync(antennasDir).filter((f) => f.endsWith(".json"))
-const antennaData = antennaFiles.map((file) => {
-  let raw
+const antennaData = antennaFiles.map((file): Antenna => {
+  let raw: RawAntenna
   try {
     raw = JSON.parse(fs.readFileSync(path.join(antennasDir, file), "utf-8"))
   } catch (err) {
@@ -352,7 +366,9 @@ const antennaData = antennaFiles.map((file) => {
     }
   }
 
-  return raw
+  // The defaulting loop above upgraded every optional `markers` to the required
+  // array the Antenna type declares.
+  return raw as Antenna
 })
 
 // Default display order: pinned antennas first (lowest sort_order wins), then alphabetical by title.

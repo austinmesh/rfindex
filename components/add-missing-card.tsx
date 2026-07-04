@@ -1,8 +1,8 @@
-import Link from "next/link"
 import { PlusCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { ExternalLink } from "@/components/external-link"
 
 // Persistent call-to-action card shown as the last item in the device and
 // antenna listings, including when a filter yields zero results. Links to the
@@ -18,21 +18,15 @@ export function AddMissingCard({ type }: { type: "device" | "antenna" }) {
       </p>
       <div className="flex flex-col items-center gap-2">
         <Button asChild size="sm">
-          <Link
-            href="https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml"
-            target="_blank"
-          >
+          <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=add-device.yml">
             Add {article} {type}
-          </Link>
+          </ExternalLink>
         </Button>
         {type === "antenna" && (
           <Button asChild variant="outline" size="sm">
-            <Link
-              href="https://github.com/austinmesh/rfindex/issues/new?template=submit-antenna-test.yml"
-              target="_blank"
-            >
+            <ExternalLink href="https://github.com/austinmesh/rfindex/issues/new?template=submit-antenna-test.yml">
               Submit test data
-            </Link>
+            </ExternalLink>
           </Button>
         )}
       </div>
