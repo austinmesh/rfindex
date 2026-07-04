@@ -22,7 +22,7 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 - **Charts**: Recharts
 - **Icons**: Lucide React
 - **Theming**: next-themes
-- **Analytics**: Google Analytics via `@next/third-parties`
+- **Analytics**: none (Google Analytics was removed 2026-07; do not reintroduce third-party analytics without owner sign-off)
 - **Package manager**: pnpm (install command: `pnpm install`). Always use pnpm, not npm.
 - **Deployment**: Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`), deployed with Wrangler. Cloudflare Workers Builds auto-deploys on push to `main` (build command `pnpm run build`, deploy command `npx wrangler deploy`). **Operating cost must remain $0** — stay within the Cloudflare free tier; do not introduce features or dependencies that require paid services. See [Build & Deployment Pipeline](#build--deployment-pipeline).
 
@@ -35,7 +35,7 @@ All pages use the `SiteHeader` + `SiteFooter` layout wrapper pattern (not nested
 ```
 app/
 ├── page.tsx                          # Home — technology browser
-├── layout.tsx                        # Root layout (html/body, GA script)
+├── layout.tsx                        # Root layout (html/body)
 ├── mesh/
 │   ├── devices/
 │   │   ├── page.tsx                  # Device listing — server component, passes data to DeviceFilters
