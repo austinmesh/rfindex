@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 const description =
@@ -34,7 +33,6 @@ export default function RootLayout({
     <html lang="en">
       <head><meta name="apple-mobile-web-app-title" content="RF Index" /></head>
       <body>{children}</body>
-      <GoogleAnalytics gaId="G-472ZDTTS45" />
     </html>
   )
 }

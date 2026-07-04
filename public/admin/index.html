@@ -7,6 +7,13 @@
     <title>RFIndex Content Manager</title>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Pinned exact version with SRI so a compromised CDN cannot ship altered code.
+         To upgrade: bump the version, then recompute the hash from the new file:
+         curl -sL https://unpkg.com/decap-cms@<version>/dist/decap-cms.js | openssl dgst -sha384 -binary | openssl base64 -A -->
+    <script
+      src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"
+      integrity="sha384-K+E/B3QG3FJrtRXoyUjME4ilx71pYGyrvAVxYvd/p0zCPuXsc3eoEuSzUW3Ke63V"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
