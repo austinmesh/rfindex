@@ -16,9 +16,9 @@
       "service": "austinmesh-rfindex"
     }
   ],
-  "images": {
-    "binding": "IMAGES"
-  },
+  // No images binding: next.config.mjs sets images.unoptimized, so nothing
+  // consumes Cloudflare Images. Re-add only if image optimization is adopted
+  // (and check it stays within the free tier first).
   "observability": {
     "enabled": true
   }

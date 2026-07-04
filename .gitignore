@@ -17,6 +17,12 @@
 .DS_Store
 *.pem
 
+# stray root-level images (screenshots etc); real assets live in public/ or data/
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+
 # debug
 npm-debug.log*
 yarn-debug.log*
