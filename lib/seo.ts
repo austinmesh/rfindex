@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+
 import type { Antenna } from "@/types/antenna"
 import type { Device } from "@/types/device"
 
@@ -10,6 +12,46 @@ export function absoluteUrl(path: string): string {
   if (!path) return SITE_URL
   if (/^https?:\/\//.test(path)) return path
   return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`
+}
+
+// One shape for static-page metadata: title, description, canonical, and
+// matching OpenGraph/Twitter blocks. Detail pages build these per-entity in
+// generateMetadata; every other page should go through this helper so the
+// shape cannot drift. Next merges metadata shallowly per top-level key, so a
+// page defining openGraph without images silently drops the root layout's
+// site-wide default image; defaulting it here keeps every page with an image.
+export function pageMetadata({
+  title,
+  description,
+  path,
+  image = "/web-app-manifest-512x512.png",
+}: {
+  title: string
+  description: string
+  path: string
+  image?: string
+}): Metadata {
+  // The root path canonicalizes to the bare origin, matching the sitemap.
+  const url = path === "/" ? SITE_URL : absoluteUrl(path)
+  const imageUrl = absoluteUrl(image)
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      url,
+      title,
+      description,
+      images: [{ url: imageUrl, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  }
 }
 
 const CURRENCY_BY_SYMBOL: Record<string, string> = { $: "USD", "€": "EUR", "£": "GBP" }

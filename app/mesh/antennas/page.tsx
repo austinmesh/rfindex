@@ -4,15 +4,14 @@ import { SiteFooter } from "@/components/site-footer"
 import { antennas } from "@/lib/data"
 import { AntennaFilters } from "@/components/antenna-filters"
 import Link from "next/link"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Compare Mesh Antennas | RF Index",
   description:
     "Browse and compare antennas for mesh networking devices based on lab tests and real world use from the broader Mesh community.",
-  alternates: {
-    canonical: "https://www.rfindex.com/mesh/antennas",
-  },
-}
+  path: "/mesh/antennas",
+})
 
 export default function AntennaListingPage() {
   return (
