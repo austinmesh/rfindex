@@ -68,7 +68,7 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 - `schemas/*.json` define the shape of every collection (one schema per collection).
 - `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails, all fatal: `id`/`slug` uniqueness (including reference-collection slugs), referenced-image existence, and manufacturer/supplier referential integrity (every device `manufacturer` and `purchase_urls[].supplier` must be a known reference-collection slug; writing a display title instead of a slug gets a did-you-mean suggestion).
-- CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR that touches `data/`, `schemas/`, or the validator. GitHub Actions is free for public repos and does not affect the $0 hosting budget.
+- CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR (not path-filtered: `validate` is a required status check in the main-branch ruleset, and a path-filtered required check never reports on out-of-path PRs, blocking the merge). GitHub Actions is free for public repos and does not affect the $0 hosting budget.
 - When you change an allowed value (an enum), update BOTH `schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
 
 ### Content Management (Decap CMS)

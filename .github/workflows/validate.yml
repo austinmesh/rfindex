@@ -1,17 +1,14 @@
 name: Validate JSON Data
 
+# Runs on every PR, not just data paths: `validate` is a required status
+# check in the main-branch ruleset, and a path-filtered workflow never
+# reports on PRs outside its paths, leaving the required check stuck on
+# "Expected" and the PR unmergeable without an admin bypass. The check
+# takes seconds, so always running is cheaper than the footgun.
 on:
   pull_request:
-    paths:
-      - 'data/**'
-      - 'schemas/**'
-      - 'scripts/validate.js'
   push:
     branches: [main]
-    paths:
-      - 'data/**'
-      - 'schemas/**'
-      - 'scripts/validate.js'
 
 jobs:
   validate:
