@@ -6,6 +6,10 @@ allowBuilds:
   sharp: true
   workerd: true
 
+# Supply-chain cooldown: refuse package versions published less than 24h ago.
+# Without this key the exclude list below was inert.
+minimumReleaseAge: 1440
+
 minimumReleaseAgeExclude:
   - miniflare@4.20260623.0
   - wrangler@4.104.0

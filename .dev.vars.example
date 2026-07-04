@@ -1,0 +1,7 @@
+# Local Wrangler secrets for `pnpm preview` / `wrangler dev`.
+# Copy to .dev.vars and fill in real values; .dev.vars is gitignored.
+#
+# No variables are required today. This file exists so the first secret
+# (for example the future Decap CMS OAuth proxy) has a documented home.
+#
+# EXAMPLE_SECRET=changeme

@@ -73,8 +73,10 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent className="flex-1">
                   <div className="aspect-square relative mb-4 rounded-lg">
+                    {/* A tracked copy, not a generated /devices/ asset: those are
+                        rebuilt from data/ and vanish if the device is removed. */}
                     <Image
-                      src="/devices/atlavox-beacon.webp"
+                      src="/home/mesh-hero.webp"
                       alt="Mesh networking devices"
                       fill
                       className="object-cover"

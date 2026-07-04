@@ -2,6 +2,10 @@
   "name": "rfindex",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "opennextjs-cloudflare build && opennextjs-cloudflare populateCache remote",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
