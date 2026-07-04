@@ -100,7 +100,10 @@ function mapRawDevice(raw: RawDevice, file: string) {
     model: raw.model,
     description: raw.description ?? "",
     category: raw.category ?? [],
-    image_url: raw.image ? [raw.image] : [],
+    // Accept a bare filename (the convention, same as antennas) or a legacy
+    // full /devices/ path; either way the file lives in data/mesh_devices/images/
+    // and is served from /devices/ after the copy below.
+    image_url: raw.image ? [raw.image.startsWith("/") ? raw.image : `/devices/${raw.image}`] : [],
     purchase_urls: (raw.purchase_urls ?? []).map((p) => ({
       ...p,
       supplier: resolveRefTitle(supplierTitles, p.supplier, "supplier", file),

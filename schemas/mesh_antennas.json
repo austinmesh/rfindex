@@ -114,7 +114,10 @@
       "enum": ["u.FL/IPEX", "N-Type Male", "N-Type Female", "SMA Male", "RP-SMA Male", "NMO"]
     },
     "gain": { "type": "string" },
-    "image": { "type": "string" },
+    "image": {
+      "type": "string",
+      "description": "Antenna image in data/mesh_antennas/images/, referenced by bare filename (e.g. \"acme-antenna.webp\"), not a path"
+    },
     "description": { "type": "string" },
     "commentary": { "type": "string" }
   }

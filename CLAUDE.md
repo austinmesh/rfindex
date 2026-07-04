@@ -163,7 +163,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 
 ### New Device
 
-Add a JSON file to `data/mesh_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/mesh_devices/images/` as WebP.
+Add a JSON file to `data/mesh_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/mesh_devices/images/` as WebP and reference it by bare filename in the `image` field, the same rule as antennas (a full `/devices/...` path is also accepted; the CMS writes that form).
 
 The `manufacturer` field and every `purchase_urls[].supplier` store reference-collection **slugs**, not display names (e.g., `"manufacturer": "lilygo"`, `"supplier": "rokland"`). The slug must exist in `data/mesh_manufacturers/` (or `data/manufacturers/`) / `data/suppliers/`; for a new brand, add the reference file (with `title` and `slug`) in the same PR. `pnpm validate` fails on unknown slugs and suggests the slug if you wrote a display title.
 
