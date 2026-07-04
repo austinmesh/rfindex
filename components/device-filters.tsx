@@ -35,6 +35,17 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   const lastScrollY = useRef(0)
   const [showMobileSearch, setShowMobileSearch] = useState(true)
 
+  // Upper bound for the price filter, derived from the data so a newly added
+  // higher-priced device is never silently hidden by a too-low default ceiling.
+  // Rounded up to the next $10, with a $50 floor to keep a sensible minimum range.
+  const maxDevicePrice = Math.max(
+    50,
+    ...devices
+      .map((device) => Number.parseFloat(String(device.price.max).replace(/[^0-9.]/g, "")))
+      .filter((price) => !isNaN(price))
+      .map((price) => Math.ceil(price / 10) * 10),
+  )
+
   // State starts at defaults so the server render (and the static prerender)
   // emits every device card as a crawlable link. Real URL params are applied
   // after hydration by useUrlFilterSync (see below). Known tradeoff: a deep
@@ -50,7 +61,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   const [selectedMicrocontrollers, setSelectedMicrocontrollers] = useState<string[]>([])
   const [selectedLoraRadios, setSelectedLoraRadios] = useState<string[]>([])
   const [selectedFirmwares, setSelectedFirmwares] = useState<string[]>([])
-  const [priceRange, setPriceRange] = useState<number[]>([0, 500])
+  const [priceRange, setPriceRange] = useState<number[]>([0, maxDevicePrice])
   const [minTxPower, setMinTxPower] = useState<number>(0)
   const [sortOption, setSortOption] = useState<SortOption>("default")
 
@@ -222,7 +233,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedMicrocontrollers([])
     setSelectedLoraRadios([])
     setSelectedFirmwares([])
-    setPriceRange([0, 500])
+    setPriceRange([0, maxDevicePrice])
     setMinTxPower(0)
     setSortOption("default")
   }
@@ -237,12 +248,12 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedLoraRadios.length > 0 ||
     selectedFirmwares.length > 0 ||
     priceRange[0] > 0 ||
-    priceRange[1] < 500 ||
+    priceRange[1] < maxDevicePrice ||
     minTxPower > 0 ||
     sortOption !== "default"
 
-  // Set all filter state from the given URL params. Identity-stable, as
-  // useUrlFilterSync requires.
+  // Set all filter state from the given URL params. Identity-stable (the only
+  // dep is the data-derived price ceiling), as useUrlFilterSync requires.
   const applyParams = useCallback((params: URLSearchParams) => {
     setSearchQuery(params.get("q") || "")
     setSelectedCategories(params.get("categories")?.split(",").filter(Boolean) || [])
@@ -251,12 +262,12 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedMicrocontrollers(params.get("microcontrollers")?.split(",").filter(Boolean) || [])
     setSelectedLoraRadios(params.get("radios")?.split(",").filter(Boolean) || [])
     setSelectedFirmwares(params.get("firmware")?.split(",").filter(Boolean) || [])
-    setPriceRange([parseIntParam(params.get("priceMin"), 0), parseIntParam(params.get("priceMax"), 500)])
+    setPriceRange([parseIntParam(params.get("priceMin"), 0), parseIntParam(params.get("priceMax"), maxDevicePrice)])
     setMinTxPower(parseIntParam(params.get("txMin"), 0))
     setSortOption(parseSortOption(params.get("sort")))
     setSelectedForComparison(params.get("compare")?.split(",").filter(Boolean) || [])
     setIsCompareModalOpen(params.get("compareOpen") === "true")
-  }, [])
+  }, [maxDevicePrice])
 
   // Write filter state into URL params. Recreated when filter state changes;
   // the identity change triggers the hook's URL-write effect.
@@ -285,7 +296,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     if (priceRange[0] > 0) params.set("priceMin", priceRange[0].toString())
     else params.delete("priceMin")
 
-    if (priceRange[1] < 500) params.set("priceMax", priceRange[1].toString())
+    if (priceRange[1] < maxDevicePrice) params.set("priceMax", priceRange[1].toString())
     else params.delete("priceMax")
 
     if (minTxPower > 0) params.set("txMin", minTxPower.toString())
@@ -444,8 +455,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
             <div>
               <h3 className="font-semibold mb-3">Price Range</h3>
               <Slider
-                defaultValue={[0, 500]}
-                max={500}
+                defaultValue={[0, maxDevicePrice]}
+                max={maxDevicePrice}
                 step={1}
                 value={priceRange}
                 onValueChange={setPriceRange}
@@ -482,7 +493,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                     }}
                     className="w-12 p-1 text-center text-sm"
                     min={priceRange[0]}
-                    max="120"
+                    max={maxDevicePrice}
                   />
                 </div>
               </div>
@@ -660,8 +671,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                 <div>
                   <h3 className="font-semibold mb-3">Price Range</h3>
                   <Slider
-                    defaultValue={[0, 500]}
-                    max={500}
+                    defaultValue={[0, maxDevicePrice]}
+                    max={maxDevicePrice}
                     step={1}
                     value={priceRange}
                     onValueChange={setPriceRange}
@@ -698,7 +709,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                         }}
                         className="w-12 p-1 text-center text-sm"
                         min={priceRange[0]}
-                        max="120"
+                        max={maxDevicePrice}
                       />
                     </div>
                   </div>

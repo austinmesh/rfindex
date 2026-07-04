@@ -93,10 +93,51 @@ To add or edit data directly in JSON:
 
 **Add a device**
 
-1. Add a JSON file to `data/mesh_devices/` with an `id` field that matches
-   the URL slug and a `supported_firmware` array, for example
-   `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`.
-2. Add the product image to `data/mesh_devices/images/` as WebP.
+1. Copy an existing file in `data/mesh_devices/` as your starting point. Every
+   field is defined in [`schemas/mesh_devices.json`](schemas/mesh_devices.json);
+   the `id` field becomes the URL slug (`/mesh/devices/<id>`).
+2. Add the product image to `data/mesh_devices/images/` as WebP, and reference
+   it by bare filename in the `image` field (the same rule as antennas; a full
+   `/devices/...` path also works, and is what the CMS writes).
+3. The `manufacturer` field and every `purchase_urls[].supplier` hold
+   reference-collection slugs, not display names (`"manufacturer": "lilygo"`,
+   not `"LilyGo"`). For a new brand, add the reference file (with `title` and
+   `slug`) to `data/mesh_manufacturers/` or `data/suppliers/` in the same PR.
+4. For stores with a referral program, use the referral link format documented
+   in [`AFFILIATES.md`](AFFILIATES.md) when adding purchase URLs.
+
+A minimal complete device, covering every required field:
+
+```json
+{
+  "id": "acme-mesh-node",
+  "title": "Acme Mesh Node",
+  "manufacturer": "acme",
+  "model": "Mesh Node v1",
+  "description": "A compact ESP32-S3 LoRa node with a 1000 mAh battery.",
+  "image": "acme-mesh-node.webp",
+  "category": ["Complete"],
+  "supported_firmware": ["Meshtastic"],
+  "features": ["Bluetooth"],
+  "purchase_urls": [
+    { "supplier": "rokland", "url": "https://store.rokland.com/products/acme-mesh-node" }
+  ],
+  "price": { "min": 39.99, "max": 44.99, "currency": "USD" },
+  "specifications": {
+    "lora_frequencies": ["915 MHz"],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "Low",
+    "battery": { "type": "LiPo", "capacity_mAh": 1000 },
+    "antenna": "External via SMA connector",
+    "interfaces": ["USB-C", "Bluetooth Low Energy (BLE)"]
+  }
+}
+```
+
+If something is off, `pnpm validate` names the exact file and field that is
+wrong, and if you write a display name where a slug belongs it suggests the
+slug.
 
 When filling in the `features` array, reuse the values existing devices
 already use (match spelling and casing exactly). The feature list is kept
@@ -110,7 +151,8 @@ built-in panel) and `Solar Input` (you can connect one) are different.
 
 **Add an antenna**
 
-1. Add a JSON file to `data/mesh_antennas/` named after its `slug` field.
+1. Add a JSON file to `data/mesh_antennas/` named after its `slug` field. Every
+   field is defined in [`schemas/mesh_antennas.json`](schemas/mesh_antennas.json).
 2. Add the antenna image to `data/mesh_antennas/images/` as WebP, and
    reference it by bare filename in the `image` field.
 3. To include VSWR / return-loss test data, capture a Touchstone `.s1p` sweep
@@ -125,6 +167,11 @@ built-in panel) and `Solar Input` (you can connect one) are different.
 - Leave any existing purchase or affiliate URL parameters intact. These fund the
   site's hosting; do not strip or alter them.
 - Do not commit secrets, tokens, or `.env` files.
+
+By opening a pull request you agree that your contribution is licensed under
+the same terms as the project (inbound = outbound): code under the PolyForm
+Noncommercial License 1.0.0 and data under CC BY-NC-SA 4.0. See
+[License](#license) below.
 
 However you contribute, new devices and antennas appear automatically in
 listings, detail pages, and the sitemap after the next build.

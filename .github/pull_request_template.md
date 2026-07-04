@@ -18,3 +18,4 @@
 - [ ] Data changes: JSON lives in `data/mesh_devices/` or `data/mesh_antennas/`, with the correct `id`/`slug` and a WebP image
 - [ ] Any purchase or affiliate URLs are left intact (see the contributing notes in the README)
 - [ ] I have not committed any secrets, tokens, or `.env` files
+- [ ] I agree that my contribution is licensed under the same terms as the project (inbound = outbound): code under the PolyForm Noncommercial License 1.0.0 (`LICENSE`), data under CC BY-NC-SA 4.0 (`data/LICENSE.md`)

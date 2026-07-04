@@ -20,7 +20,10 @@
     "manufacturer": { "type": "string", "minLength": 1 },
     "model": { "type": "string", "minLength": 1 },
     "description": { "type": "string" },
-    "image": { "type": "string" },
+    "image": {
+      "type": "string",
+      "description": "Product image in data/mesh_devices/images/, referenced by bare filename (e.g. \"acme-node.webp\"); a full /devices/... path is also accepted"
+    },
     "category": {
       "type": "array",
       "items": {
