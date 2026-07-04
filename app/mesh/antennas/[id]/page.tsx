@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { ArrowLeft, ExternalLink, ShoppingCart, ThumbsUp, ThumbsDown, Download } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -60,20 +61,18 @@ export function generateStaticParams() {
   }))
 }
 
+// Unknown slugs return a real HTTP 404 instead of a 200 soft-404. This relies
+// on the static-assets incremental cache in open-next.config.ts: fallback:false
+// forbids on-demand rendering, so without that cache the Worker would 404
+// every detail page.
+export const dynamicParams = false
+
 // Generate metadata for each antenna page
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const antenna = antennas.find((a) => a.slug === id)
 
-  if (!antenna) {
-    return {
-      title: "Antenna Not Found | RF Index",
-      description: "The requested mesh antenna could not be found.",
-      alternates: {
-        canonical: "https://www.rfindex.com/mesh/antennas",
-      },
-    }
-  }
+  if (!antenna) notFound()
 
   const url = `https://www.rfindex.com/mesh/antennas/${id}`
   const description = antenna.description || antennaMetaDescription(antenna)
@@ -110,27 +109,7 @@ export default async function AntennaDetailsPage({ params }: { params: Promise<{
   const { id } = await params;
   const antenna = antennas.find((a) => a.slug === id)
 
-  // If antenna not found, show error
-  if (!antenna) {
-    return (
-      <div className="flex flex-col min-h-screen">
-        <SiteHeader />
-        <main className="flex-1">
-          <div className="container mx-auto px-4 py-8 text-center">
-            <h1 className="text-2xl font-bold mb-4">Antenna Not Found</h1>
-            <p className="mb-6">The antenna you are looking for does not exist.</p>
-            <Button asChild>
-              <Link href="/mesh/antennas">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Antennas
-              </Link>
-            </Button>
-          </div>
-        </main>
-        <SiteFooter />
-      </div>
-    )
-  }
+  if (!antenna) notFound()
 
   const testingSummary = antennaTestingSummary(antenna)
 
