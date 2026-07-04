@@ -57,6 +57,12 @@ For why the data is compiled to TypeScript at build time rather than read from
 
 ## Contributing
 
+The short version, along with the house rules, lives in
+[`CONTRIBUTING.md`](CONTRIBUTING.md); the full walkthrough is below. Community
+expectations are covered by the [Code of Conduct](CODE_OF_CONDUCT.md), and
+security issues should go through the [security policy](SECURITY.md) rather
+than public issues.
+
 There are three ways to contribute:
 
 ### 1. Open an issue (no code)
