@@ -1,13 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ExternalLink, ShoppingCart, ThumbsUp, ThumbsDown, Download } from "lucide-react"
+import { ArrowLeft, ExternalLinkIcon, ShoppingCart, ThumbsUp, ThumbsDown, Download } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { ExternalLink } from "@/components/external-link"
 
 import { antennas } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
@@ -54,10 +55,10 @@ function sampleSummary(s: AntennaTestSample) {
   return parts.join(", ")
 }
 
-// Generate static params for all antenna IDs
+// Generate static params for all antenna slugs
 export function generateStaticParams() {
-  return antennas.map((antenna, index) => ({
-    id: antenna.slug,
+  return antennas.map((antenna) => ({
+    slug: antenna.slug,
   }))
 }
 
@@ -68,13 +69,13 @@ export function generateStaticParams() {
 export const dynamicParams = false
 
 // Generate metadata for each antenna page
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const antenna = antennas.find((a) => a.slug === id)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const antenna = antennas.find((a) => a.slug === slug)
 
   if (!antenna) notFound()
 
-  const url = `https://www.rfindex.com/mesh/antennas/${id}`
+  const url = `https://www.rfindex.com/mesh/antennas/${slug}`
   const description = antenna.description || antennaMetaDescription(antenna)
   const ogTitle = antenna.test_results.length
     ? `${antenna.title} VSWR Test Results`
@@ -105,9 +106,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 }
 
-export default async function AntennaDetailsPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const antenna = antennas.find((a) => a.slug === id)
+export default async function AntennaDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const antenna = antennas.find((a) => a.slug === slug)
 
   if (!antenna) notFound()
 
@@ -223,21 +224,21 @@ export default async function AntennaDetailsPage({ params }: { params: Promise<{
                 <div className="space-y-3">
                   {antenna.suppliers.map((supplier, index) => (
                     <Button key={index} variant="outline" className="w-full justify-between border-primary" size="lg" asChild>
-                      <a href={supplier.url} target="_blank" rel="noopener">
+                      <ExternalLink href={supplier.url}>
                         <div className="flex items-center">
                           <ShoppingCart className="mr-2 h-5 w-5" />
                           Buy from {supplier.name} ({supplier.purchase_cost})
                         </div>
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
+                        <ExternalLinkIcon className="h-4 w-4" />
+                      </ExternalLink>
                     </Button>
                   ))}
                 </div>
                 <div className="mt-4">
                   <Button variant="outline" className="w-full" asChild>
-                    <a href={antenna.manufacturer.datasheet} target="_blank" rel="noopener">
-                      View Datasheet <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
+                    <ExternalLink href={antenna.manufacturer.datasheet}>
+                      View Datasheet <ExternalLinkIcon className="ml-2 h-4 w-4" />
+                    </ExternalLink>
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">
@@ -296,14 +297,12 @@ export default async function AntennaDetailsPage({ params }: { params: Promise<{
                       <div className="col-span-2 lg:col-span-3">
                         <h3 className="font-medium text-muted-foreground">Manufacturer Website</h3>
                         <p>
-                          <a
+                          <ExternalLink
                             href={antenna.manufacturer.url}
-                            target="_blank"
-                            rel="noopener"
                             className="text-primary hover:underline flex items-center"
                           >
-                            Visit manufacturer website <ExternalLink className="ml-1 h-3 w-3" />
-                          </a>
+                            Visit manufacturer website <ExternalLinkIcon className="ml-1 h-3 w-3" />
+                          </ExternalLink>
                         </p>
                       </div>
                     )}

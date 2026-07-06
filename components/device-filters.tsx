@@ -4,12 +4,13 @@ import type { Device } from "@/types/device"
 import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Search, Sliders, X, ExternalLink, Scale } from "lucide-react"
+import { Search, Sliders, X, ExternalLinkIcon, Scale } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import { ExternalLink } from "@/components/external-link"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
@@ -768,6 +769,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 className="pl-10 pr-4 py-6"
+                aria-label="Search devices"
                 placeholder="Search devices..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -810,6 +812,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 className="pl-10 pr-4"
+                aria-label="Search devices"
                 placeholder="Search devices..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -854,13 +857,17 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                     <div className="absolute top-2 left-2 flex items-center bg-transparent group-hover:bg-white/90 rounded px-1 py-0.5">
                       <Checkbox
                         id={`compare-${device.id}`}
+                        aria-label={`Compare ${device.name}`}
                         checked={selectedForComparison.includes(device.id)}
                         onCheckedChange={() => toggleDeviceComparison(device.id)}
                         className="h-5 w-5 border-gray-400 bg-white/90"
                       />
-                      <span className="ml-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      <label
+                        htmlFor={`compare-${device.id}`}
+                        className="ml-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                      >
                         Compare
-                      </span>
+                      </label>
                     </div>
                   </div>
                   <CardContent className="p-4">
@@ -1070,15 +1077,13 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                       <div className="flex flex-col space-y-2">
                         {device.purchase_urls.map((purchase, index) => (
                           <Button key={index} variant="outline" size="sm" className="border-primary" asChild>
-                            <a
+                            <ExternalLink
                               href={purchase.url}
-                              target="_blank"
-                              rel="noreferrer noopener"
                               className="flex items-center justify-between"
                             >
                               <span>Buy on {purchase.supplier}</span>
-                              <ExternalLink className="h-3 w-3 ml-2" />
-                            </a>
+                              <ExternalLinkIcon className="h-3 w-3 ml-2" />
+                            </ExternalLink>
                           </Button>
                         ))}
                         <Button variant="outline" size="sm" asChild>

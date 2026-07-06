@@ -1,12 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ExternalLink, ShoppingCart } from "lucide-react"
+import { ArrowLeft, ExternalLinkIcon, ShoppingCart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { ExternalLink } from "@/components/external-link"
 
 import { devices, featureDescriptions, formatTxPower } from "@/lib/data"
 import { JsonLd } from "@/components/json-ld"
@@ -137,13 +138,13 @@ export default async function DeviceDetailsPage({ params }: { params: Promise<{ 
                 <div className="space-y-3">
                   {device.purchase_urls.map((purchase, index) => (
                     <Button key={index} variant="outline" className="w-full justify-between border-primary" size="lg" asChild>
-                      <a href={purchase.url} target="_blank" rel="noopener">
+                      <ExternalLink href={purchase.url}>
                         <div className="flex items-center">
                           <ShoppingCart className="mr-2 h-5 w-5" />
                           Buy on {purchase.supplier}
                         </div>
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
+                        <ExternalLinkIcon className="h-4 w-4" />
+                      </ExternalLink>
                     </Button>
                   ))}
                 </div>

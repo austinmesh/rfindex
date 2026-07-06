@@ -553,6 +553,7 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 className="pl-10 pr-4"
+                aria-label="Search antennas"
                 placeholder="Search antennas..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -566,8 +567,8 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
             </div>
           )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sortedAntennas.map((antenna, index) => (
-                <Card key={index} className="overflow-hidden">
+            {sortedAntennas.map((antenna) => (
+                <Card key={antenna.slug} className="overflow-hidden">
                   <div className="aspect-square relative">
                     <Image
                       src={
