@@ -104,5 +104,6 @@
   "connector_type": "N-Type Male",
   "gain": "5 dBi",
   "image": "alfa-aoa-915-5acm.webp",
+  "description": "A 7\" antenna tuned for ~900mhz with an N-Type Male connector. Est true gain of 1-2dbi. Look out for fakes/knockoffs.",
   "commentary": "The Alfa is such a reliable antenna it now has many fake remakes selling for lower prices on marketplaces like Amazon and AliExpress. Generally the gain on this antenna is overstated, we estimate it to be closer to 1 or 2dbi. This is a great antenna when space is limited or you just need something you know will work. For rooftop or tower installs, spring for higher gain."
 }
