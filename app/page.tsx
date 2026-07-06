@@ -5,28 +5,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { pageMetadata } from "@/lib/seo"
 
-const homeDescription =
-  "Compare Meshtastic and MeshCore hardware side by side, with firsthand VSWR test results, SWR sweep charts, specs, pricing, and buy links for devices and antennas."
-
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Compare Mesh Networking and Radio Hardware - RF Index",
-  description: homeDescription,
-  alternates: {
-    canonical: "https://www.rfindex.com",
-  },
-  openGraph: {
-    type: "website",
-    url: "https://www.rfindex.com",
-    title: "Compare Mesh Networking and Radio Hardware - RF Index",
-    description: homeDescription,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Compare Mesh Networking and Radio Hardware - RF Index",
-    description: homeDescription,
-  },
-}
+  description:
+    "Compare Meshtastic and MeshCore hardware side by side, with firsthand VSWR test results, SWR sweep charts, specs, pricing, and buy links for devices and antennas.",
+  path: "/",
+})
 
 export default function HomePage() {
   return (

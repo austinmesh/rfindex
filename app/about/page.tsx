@@ -1,11 +1,12 @@
-import type { Metadata } from "next"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About RF Index | Your Resource for RF Device Comparisons",
   description: "Learn about RF Index, a passion project created to help compare RF devices like Meshtastic and more.",
-}
+  path: "/about",
+})
 
 export default function AboutPage() {
   return (

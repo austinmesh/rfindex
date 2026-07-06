@@ -3,15 +3,14 @@ import { SiteFooter } from "@/components/site-footer"
 
 import { devices } from "@/lib/data"
 import { DeviceFilters } from "@/components/device-filters"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Meshtastic & MeshCore Devices - Hardware Comparison | RF Index",
   description:
     "Compare Meshtastic and MeshCore devices side by side. Specs, features, pricing, and purchase links to help you choose the right LoRa mesh hardware.",
-  alternates: {
-    canonical: "https://www.rfindex.com/mesh/devices",
-  }
-}
+  path: "/mesh/devices",
+})
 
 export default function DeviceListingPage() {
   return (
