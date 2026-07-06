@@ -21,7 +21,6 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 - **UI components**: shadcn/ui (Radix UI primitives) in `components/ui/`
 - **Charts**: Recharts
 - **Icons**: Lucide React
-- **Theming**: next-themes
 - **Analytics**: none (Google Analytics was removed 2026-07; do not reintroduce third-party analytics without owner sign-off)
 - **Package manager**: pnpm (install command: `pnpm install`). Always use pnpm, not npm.
 - **Deployment**: Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`), deployed with Wrangler. Cloudflare Workers Builds auto-deploys on push to `main` (build command `pnpm run build`, deploy command `npx wrangler deploy`). **Operating cost must remain $0** — stay within the Cloudflare free tier; do not introduce features or dependencies that require paid services. See [Build & Deployment Pipeline](#build--deployment-pipeline).
@@ -93,7 +92,7 @@ Types are the single source of truth — data files import from `types/`.
 - `components/antenna-filters.tsx` — client component with search, category filters, status/suggestion filters, sort options, URL-synced filter state
 - `components/site-header.tsx` — sticky nav with "Mesh" dropdown (Devices, Antennas, Meshtastic, MeshCore), mobile sheet menu
 - `components/site-footer.tsx`
-- `components/ui/` — 48 shadcn/ui components (do not modify directly unless customizing)
+- `components/ui/` — 14 shadcn/ui components, only the ones actually imported (do not modify directly unless customizing; re-add pruned ones via the shadcn CLI when needed)
 
 ### Static Assets
 
