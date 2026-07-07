@@ -145,7 +145,7 @@ export function antennaMetaDescription(a: Antenna): string {
 
   const best = bestMeasuredVswr(a)
   const calls = testerCallsigns(a)
-  const who = calls.length ? `the mesh community (${calls.slice(0, 3).join(", ")})` : "the Austin Mesh community"
+  const who = calls.length ? `the mesh community (${calls.slice(0, 3).join(", ")})` : "the Mesh community"
   const bestStr = best ? `, best VSWR ${best.vswr.toFixed(2)}:1` : ""
   const sweeps = hasSweeps(a) ? " with downloadable nanoVNA Touchstone sweeps" : ""
   const testWord = testCount === 1 ? "test" : "tests"
@@ -162,8 +162,8 @@ export function antennaTestingSummary(a: Antenna): string | null {
   const best = bestMeasuredVswr(a)
   const calls = testerCallsigns(a)
   const who = calls.length
-    ? `the Austin Mesh community (${calls.slice(0, 4).join(", ")})`
-    : "the Austin Mesh community"
+    ? `the Mesh community (${calls.slice(0, 4).join(", ")})`
+    : "the Mesh community"
 
   const parts: string[] = [
     `This page collects ${testCount} independent VSWR ${testCount === 1 ? "test" : "tests"} of the ${brandedTitle(a)}, measured firsthand by ${who}.`,
@@ -270,7 +270,7 @@ export function antennaJsonLd(a: Antenna) {
       "@type": "Dataset",
       "@id": `${url}#measurements`,
       name: `VSWR and return loss measurements for the ${brandedTitle(a)}`,
-      description: `Firsthand vector network analyzer (nanoVNA) reflection measurements of the ${brandedTitle(a)} ${a.manufacturer.part_number} LoRa mesh antenna, collected by the Austin Mesh community.`,
+      description: `Firsthand vector network analyzer (nanoVNA) reflection measurements of the ${brandedTitle(a)} ${a.manufacturer.part_number} LoRa mesh antenna, collected by the mesh community.`,
       url,
       isAccessibleForFree: true,
       license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
