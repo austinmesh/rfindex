@@ -24,7 +24,7 @@ jobs:
       # pnpm version comes from the packageManager field in package.json;
       # specifying it here too makes the action fail on any mismatch.
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'pnpm'
