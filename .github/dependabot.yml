@@ -21,6 +21,13 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # The @types/node major must match the Node runtime pinned in the
+      # workflows (node-version) and engines, not chase Node releases. Bump it
+      # by hand together with those pins.
+      - dependency-name: "@types/node"
+        update-types:
+          - "version-update:semver-major"
 
   # The GitHub Actions used by the workflows in .github/workflows/.
   - package-ecosystem: "github-actions"
