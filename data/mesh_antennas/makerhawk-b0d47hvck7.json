@@ -1,0 +1,67 @@
+{
+  "slug": "makerhawk-b0d47hvck7",
+  "title": "MakerHawk 5dBi LoRa Omni",
+  "manufacturer": {
+    "brand_name": "MakerHawk",
+    "part_number": "B0D47HVCK7",
+    "freq_spec": [
+      "915 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "B0D47HVCK7",
+      "purchase_cost": "$11.99/2",
+      "url": "https://www.amazon.com/dp/B0D47HVCK7?tag=rfindex-20"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "straight_kg5hzc.s1p",
+      "chart_label": "Straight",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "straight"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08",
+        "sample": {
+          "supplier": "Amazon"
+        }
+      }
+    },
+    {
+      "touchstone": "90deg_kg5hzc.s1p",
+      "chart_label": "90 degree bent",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "90 degree bent"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08",
+        "sample": {
+          "supplier": "Amazon"
+        }
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "dimensions": {
+    "length": 170,
+    "width": null
+  },
+  "connector_type": "SMA Male",
+  "gain": "5 dBi (claimed)",
+  "image": "makerhawk-b0d47hvck7.webp",
+  "description": "Hinged 6.7\" whip sold as a 2-pack with u.FL/IPEX-to-SMA adapter cables.",
+  "commentary": "Mediocre/bad in both positions, roughly 2.5:1 at 915 MHz straight and worse bent. Recommend upgrading ASAP."
+}

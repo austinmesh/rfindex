@@ -1,0 +1,57 @@
+{
+  "slug": "seeed-wio-tracker-l1-pro-stock",
+  "title": "Wio Tracker L1 Pro Stock Antenna",
+  "manufacturer": {
+    "brand_name": "Seeed Studio",
+    "part_number": "UNKNOWN",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "RF Index",
+      "part_number": "UNKNOWN",
+      "purchase_cost": "$39.90 (Includes Radio)",
+      "url": "/mesh/devices/seeedstudio-wio-tracker-l1-pro"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "straight_kg5hzc.s1p",
+      "chart_label": "Straight",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "straight"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08"
+      }
+    },
+    {
+      "touchstone": "90deg_kg5hzc.s1p",
+      "chart_label": "90 degree bent",
+      "configuration": {
+        "ground_plane": "none",
+        "position": "90 degree bent"
+      },
+      "notes": "Much worse when bent",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Portable Antennas",
+  "connector_type": "RP-SMA Male",
+  "gain": "Unknown",
+  "image": "seeed-wio-tracker-l1-pro-stock.webp",
+  "description": "Hinged rubber-duck antenna included with the Seeed Wio Tracker L1 Pro. Note the RP-SMA connector.",
+  "commentary": "Terribly performing antennas. Unfortunate that seeed chooses to use RP-SMA(reverse polarity) because good antennas are harder to find. We recommend opening the case and switching out the ipex->sma pigtail to a standard SMA and getting a different antenna ASAP."
+}

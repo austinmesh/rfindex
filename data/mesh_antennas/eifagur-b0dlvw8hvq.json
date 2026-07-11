@@ -1,0 +1,97 @@
+{
+  "slug": "eifagur-b0dlvw8hvq",
+  "title": "Eifagur Soft Whip",
+  "manufacturer": {
+    "brand_name": "Eifagur",
+    "part_number": "B0DLVW8HVQ",
+    "freq_spec": [
+      "915 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "Amazon",
+      "part_number": "B0DLVW8HVQ",
+      "purchase_cost": "$16.99/2",
+      "url": "https://www.amazon.com/dp/B0DLVW8HVQ?tag=rfindex-20"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "chart_label": "Sample 1",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Best match near 948 MHz. Tuned above the band.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08",
+        "sample": {
+          "supplier": "Amazon",
+          "sample_id": "1"
+        }
+      }
+    },
+    {
+      "touchstone": "handheld_kg5hzc.s1p",
+      "chart_label": "Sample 1 held in hand",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Held in hand sample 1 improves slightly: 2.4:1 at 902 MHz down to 2.0:1 at 928 MHz.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08",
+        "sample": {
+          "supplier": "Amazon",
+          "sample_id": "1"
+        }
+      }
+    },
+    {
+      "touchstone": "gp-none_kg5hzc_sample2.s1p",
+      "chart_label": "Sample 2",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "Sample 2 measures notably better: 1.9:1 at 902 MHz, 1.75:1 at 915 MHz, 1.7:1 at 928 MHz with best match near 933 MHz.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08",
+        "sample": {
+          "supplier": "Amazon",
+          "sample_id": "2"
+        }
+      }
+    },
+    {
+      "touchstone": "handheld_kg5hzc_sample2.s1p",
+      "chart_label": "Sample 2 held in hand",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08",
+        "sample": {
+          "supplier": "Amazon",
+          "sample_id": "2"
+        }
+      }
+    }
+  ],
+  "suggested": true,
+  "category": "Portable Antennas",
+  "connector_type": "SMA Male",
+  "gain": "10 dBi (claimed)",
+  "image": "eifagur-b0dlvw8hvq.webp",
+  "description": "Flexible/soft SMA antenna with varying performance.",
+  "commentary": "The 10 dBi claim is not credible in any way. We would expect 1-3dbi max. Performance varies, so consider having a VNA on hand to test before relying on these. For a more consistent experience consider the Muzi whip instead."
+}

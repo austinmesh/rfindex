@@ -1,0 +1,55 @@
+{
+  "slug": "heltec-v3-ipex-stock",
+  "title": "Heltec V3 Stock Internal Antenna",
+  "manufacturer": {
+    "brand_name": "Heltec",
+    "part_number": "UNKNOWN",
+    "freq_spec": [
+      "902-928 MHz"
+    ],
+    "datasheet": "Unavailable"
+  },
+  "suppliers": [
+    {
+      "name": "RF Index",
+      "part_number": "UNKNOWN",
+      "purchase_cost": "$17.99 (Includes Radio)",
+      "url": "/mesh/devices/heltec-lora-32-v3"
+    }
+  ],
+  "test_results": [
+    {
+      "touchstone": "gp-none_kg5hzc.s1p",
+      "chart_label": "No ground plane",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08"
+      }
+    },
+    {
+      "touchstone": "handheld_kg5hzc.s1p",
+      "chart_label": "Held in hand",
+      "configuration": {
+        "ground_plane": "none"
+      },
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-08"
+      }
+    }
+  ],
+  "suggested": false,
+  "category": "Internal Device Antennas",
+  "connector_type": "u.FL/IPEX",
+  "gain": "Unknown",
+  "image": "heltec-v3-ipex-stock.webp",
+  "description": "Small internal-style antenna on a u.FL/IPEX pigtail included with the Heltec LoRa 32 V3 and others, small enough to tuck inside a case.",
+  "commentary": "Convenient for fully enclosed builds, but the match is mediocre across the US ISM band and tuned high. Use it for size, not performance."
+}
