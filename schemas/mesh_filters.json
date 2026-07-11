@@ -1,0 +1,105 @@
+{
+  "type": "object",
+  "required": ["slug", "title", "manufacturer", "filter_type", "connectors", "test_results"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string", "minLength": 1 },
+    "sort_order": { "type": "integer" },
+    "title": { "type": "string", "minLength": 1 },
+    "manufacturer": {
+      "type": "object",
+      "required": ["brand_name", "part_number"],
+      "additionalProperties": false,
+      "properties": {
+        "brand_name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string" },
+        "part_number": { "type": "string", "minLength": 1 },
+        "datasheet": { "type": "string" }
+      }
+    },
+    "filter_type": {
+      "type": "string",
+      "enum": ["Bandpass", "Low-pass"]
+    },
+    "connectors": {
+      "type": "string",
+      "enum": ["2x SMA Female", "SMA Male + SMA Female", "2x u.FL/IPEX"]
+    },
+    "power_handling": { "type": "string" },
+    "default_range": {
+      "type": "string",
+      "pattern": "^[0-9]+-[0-9]+$",
+      "description": "Optional. Which sweep range the detail chart opens on, as start-stop in whole MHz (e.g. \"885-930\"). Must match a measured sweep; when absent the prebuild picks the filter's custom mid sweep."
+    },
+    "suppliers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "purchase_cost", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "part_number": { "type": "string" },
+          "purchase_cost": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "test_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["touchstones", "notes", "metadata"],
+        "additionalProperties": false,
+        "properties": {
+          "touchstones": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[^/\\\\]+\\.[sS]2[pP]$" },
+            "minItems": 1
+          },
+          "chart_label": { "type": "string", "minLength": 1 },
+          "notes": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "required": ["tester", "date"],
+            "additionalProperties": false,
+            "properties": {
+              "tester": { "type": "string", "minLength": 1 },
+              "date": { "type": "string", "minLength": 1 },
+              "callsign": { "type": "string" },
+              "handle": { "type": "string" },
+              "sample": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "supplier": { "type": "string" },
+                  "purchase_date": { "type": "string" },
+                  "sample_id": { "type": "string" },
+                  "batch": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "suggested": { "type": "boolean" },
+    "dimensions": {
+      "type": "object",
+      "required": ["height", "width", "depth"],
+      "additionalProperties": false,
+      "properties": {
+        "height": { "type": "number" },
+        "width": { "type": "number" },
+        "depth": { "type": "number" }
+      }
+    },
+    "image": {
+      "type": "string",
+      "description": "Filter image in data/mesh_filters/images/, referenced by bare filename (e.g. \"acme-filter.webp\"), not a path"
+    },
+    "description": { "type": "string" },
+    "commentary": { "type": "string" }
+  }
+}

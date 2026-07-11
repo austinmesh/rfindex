@@ -11,6 +11,14 @@ import path from "path"
 import sanitizeHtml from "sanitize-html"
 
 import type { Antenna, AntennaTestResult } from "@/types/antenna"
+import type {
+  FilterMarker,
+  FilterPassband,
+  FilterRejectionPoint,
+  FilterSweep,
+  FilterSweepPoint,
+  RfFilter,
+} from "@/types/filter"
 
 // Device/antenna `commentary` is authored HTML rendered with
 // dangerouslySetInnerHTML on the detail pages. Sanitize it here, at build time,
@@ -423,4 +431,367 @@ if (fs.existsSync(touchstoneSource)) {
     }
   }
   console.log(`Copied ${touchstoneCopied} touchstone files to public/mesh/antennas/touchstone/`)
+}
+
+// --- Filters: Touchstone (.s2p) parsing ---
+
+// One raw data row of a 2-port sweep: complex S11 (input match, needed for
+// the Smith chart) plus linear magnitudes of S11 and S21. Kept linear until
+// output so interpolation and threshold searches happen on the measured
+// quantity, not on dB.
+type S2PRow = { hz: number; s11_re: number; s11_im: number; s11: number; s21: number }
+type ParsedS2P = { reference_impedance: number; rows: S2PRow[] }
+
+// Parse a Touchstone 2-port (.s2p) file. Same option-line handling as the
+// .s1p parser above (unit, RI/MA/DB format, reference impedance), but each
+// data row carries four S-parameters; only S11 and S21 are used. NanoVNA
+// exports pad S12/S22 with zeros, so those columns are ignored.
+function parseTouchstoneS2P(text: string): ParsedS2P {
+  let freqUnit = "mhz"
+  let format = "ma"
+  let reference_impedance = 50
+  const rows: S2PRow[] = []
+
+  for (const rawLine of text.split(/\r?\n/)) {
+    const line = rawLine.split("!")[0].trim()
+    if (!line) continue
+
+    if (line.startsWith("#")) {
+      const tokens = line.slice(1).trim().split(/\s+/)
+      for (let i = 0; i < tokens.length; i++) {
+        const t = tokens[i].toLowerCase()
+        if (t in FREQ_MULTIPLIER) freqUnit = t
+        else if (t === "ri" || t === "ma" || t === "db") format = t
+        else if (t === "r" && tokens[i + 1] !== undefined) {
+          const r = parseFloat(tokens[i + 1])
+          if (!Number.isNaN(r)) reference_impedance = r
+        }
+      }
+      continue
+    }
+
+    const parts = line.split(/\s+/).map(Number)
+    if (parts.length < 5 || parts.slice(0, 5).some(Number.isNaN)) continue
+
+    const complex = (a: number, b: number): { re: number; im: number } => {
+      if (format === "ri") return { re: a, im: b }
+      const mag = format === "db" ? Math.pow(10, a / 20) : a
+      const rad = (b * Math.PI) / 180
+      return { re: mag * Math.cos(rad), im: mag * Math.sin(rad) }
+    }
+
+    const s11 = complex(parts[1], parts[2])
+    const s21 = complex(parts[3], parts[4])
+    rows.push({
+      hz: Math.round(parts[0] * (FREQ_MULTIPLIER[freqUnit] ?? 1e6)),
+      s11_re: s11.re,
+      s11_im: s11.im,
+      s11: Math.hypot(s11.re, s11.im),
+      s21: Math.hypot(s21.re, s21.im),
+    })
+  }
+
+  return { reference_impedance, rows }
+}
+
+const s21Db = (mag: number) => 20 * Math.log10(Math.max(mag, 1e-5)) // floor -100 dB
+const returnLossDb = (mag: number) => -20 * Math.log10(Math.min(Math.max(mag, 1e-6), 1))
+
+const round = (n: number, places: number) => {
+  const f = Math.pow(10, places)
+  return Math.round(n * f) / f
+}
+
+// Linear interpolation of a row quantity at a target frequency; null outside
+// the sweep's range.
+function interpRow(rows: S2PRow[], targetHz: number, key: "s11" | "s21"): number | null {
+  if (!rows.length || targetHz < rows[0].hz || targetHz > rows[rows.length - 1].hz) return null
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i].hz >= targetHz) {
+      const a = rows[i - 1]
+      const b = rows[i]
+      const t = (targetHz - a.hz) / (b.hz - a.hz || 1)
+      return a[key] + t * (b[key] - a[key])
+    }
+  }
+  return rows[rows.length - 1][key]
+}
+
+// US operating frequencies the site cares about; keep in sync with the chart
+// components' FREQ_MARKERS (Meshtastic US LongFast, MeshCore US).
+const FILTER_MARKER_FREQS: { mhz: number; label: string }[] = [
+  { mhz: 906.875, label: "Meshtastic" },
+  { mhz: 910.525, label: "MeshCore" },
+]
+
+// Common interferers near the US 915 ISM band, reported as attenuation. These
+// are what a receive filter exists to knock down, so they are first-class
+// computed specs rather than something read off the wideband chart.
+const FILTER_REJECTION_FREQS: { mhz: number; label: string }[] = [
+  { mhz: 433, label: "70cm ham / ISM" },
+  { mhz: 700, label: "LTE 700" },
+  { mhz: 824, label: "Cellular uplink" },
+  { mhz: 894, label: "Cellular downlink" },
+  { mhz: 930, label: "Pagers" },
+  { mhz: 960, label: "Fixed links" },
+  { mhz: 1090, label: "ADS-B" },
+]
+
+type NamedSweep = { fileName: string; rows: S2PRow[]; stepHz: number }
+
+const sweepStep = (rows: S2PRow[]) =>
+  rows.length > 1 ? (rows[rows.length - 1].hz - rows[0].hz) / (rows.length - 1) : Infinity
+
+// Finest-resolution sweep covering a frequency. Wide 430-1500 MHz sweeps step
+// ~10.7 MHz, far too coarse on steep filter skirts, so every spot value must
+// come from the narrowest sweep that contains it.
+function finestCovering(sweeps: NamedSweep[], hz: number): NamedSweep | null {
+  let best: NamedSweep | null = null
+  for (const s of sweeps) {
+    if (!s.rows.length || hz < s.rows[0].hz || hz > s.rows[s.rows.length - 1].hz) continue
+    if (!best || s.stepHz < best.stepHz) best = s
+  }
+  return best
+}
+
+function deriveFilterMarkers(sweeps: NamedSweep[]): FilterMarker[] {
+  const markers: FilterMarker[] = []
+  for (const { mhz, label } of FILTER_MARKER_FREQS) {
+    const sweep = finestCovering(sweeps, mhz * 1e6)
+    if (!sweep) continue
+    const s21 = interpRow(sweep.rows, mhz * 1e6, "s21")
+    const s11 = interpRow(sweep.rows, mhz * 1e6, "s11")
+    if (s21 == null || s11 == null) continue
+    markers.push({
+      label,
+      frequency_mhz: mhz,
+      insertion_loss_db: round(-s21Db(s21), 2),
+      return_loss_db: round(returnLossDb(s11), 1),
+    })
+  }
+  return markers
+}
+
+// 3 dB passband from the finest sweep that brackets BOTH band edges. A sweep
+// whose response is still above the -3 dB threshold at either end (e.g. the
+// 902-928 detail sweep of a wide SAW filter, or a low-pass filter's wide
+// sweep) cannot bound the passband and is skipped.
+function derivePassband(sweeps: NamedSweep[]): FilterPassband | undefined {
+  let best: { sweep: NamedSweep; pb: FilterPassband } | null = null
+  for (const sweep of sweeps) {
+    const rows = sweep.rows
+    if (rows.length < 3) continue
+    let peak = rows[0]
+    let peakIdx = 0
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i].s21 > peak.s21) {
+        peak = rows[i]
+        peakIdx = i
+      }
+    }
+    const threshold = peak.s21 * Math.pow(10, -3 / 20)
+    let low: number | null = null
+    let high: number | null = null
+    for (let i = peakIdx; i >= 1; i--) {
+      if (rows[i - 1].s21 < threshold && rows[i].s21 >= threshold) {
+        const t = (threshold - rows[i - 1].s21) / (rows[i].s21 - rows[i - 1].s21)
+        low = rows[i - 1].hz + t * (rows[i].hz - rows[i - 1].hz)
+        break
+      }
+    }
+    for (let i = peakIdx; i < rows.length - 1; i++) {
+      if (rows[i].s21 >= threshold && rows[i + 1].s21 < threshold) {
+        const t = (rows[i].s21 - threshold) / (rows[i].s21 - rows[i + 1].s21)
+        high = rows[i].hz + t * (rows[i + 1].hz - rows[i].hz)
+        break
+      }
+    }
+    if (low == null || high == null) continue
+    const pb: FilterPassband = {
+      peak_s21_db: round(s21Db(peak.s21), 2),
+      peak_mhz: round(peak.hz / 1e6, 2),
+      low_3db_mhz: round(low / 1e6, 1),
+      high_3db_mhz: round(high / 1e6, 1),
+      bandwidth_3db_mhz: round((high - low) / 1e6, 1),
+    }
+    if (!best || sweep.stepHz < best.sweep.stepHz) best = { sweep, pb }
+  }
+  return best?.pb
+}
+
+function deriveRejection(sweeps: NamedSweep[]): FilterRejectionPoint[] {
+  const out: FilterRejectionPoint[] = []
+  for (const { mhz, label } of FILTER_REJECTION_FREQS) {
+    const sweep = finestCovering(sweeps, mhz * 1e6)
+    if (!sweep) continue
+    const s21 = interpRow(sweep.rows, mhz * 1e6, "s21")
+    if (s21 == null) continue
+    out.push({ frequency_mhz: mhz, label, rejection_db: round(-s21Db(s21), 1) })
+  }
+  return out
+}
+
+function toSweepPoints(rows: S2PRow[]): FilterSweepPoint[] {
+  return rows.map((r) => ({
+    frequency_hz: r.hz,
+    s21_db: round(s21Db(r.s21), 2),
+    return_loss_db: round(returnLossDb(r.s11), 2),
+    s11_re: round(r.s11_re, 4),
+    s11_im: round(r.s11_im, 4),
+  }))
+}
+
+// A sweep's range identity as displayed in the chart's range tabs, e.g.
+// "902-928". Must match the chart component's rangeKey exactly.
+const sweepRangeKey = (rows: S2PRow[]) =>
+  `${Math.round(rows[0].hz / 1e6)}-${Math.round(rows[rows.length - 1].hz / 1e6)}`
+
+// The range tab a filter's chart should open on: the custom mid sweep chosen
+// around that filter's passband. The meetup convention sweeps three ranges
+// (902-928 detail, a per-filter mid, 430-1500 wide); dropping the widest and
+// taking the widest remaining picks the mid, and degrades to the 902-928
+// detail sweep for filters measured without one.
+function deriveDefaultRange(ranges: Map<string, number>): string | undefined {
+  const entries = [...ranges.entries()].sort((a, b) => b[1] - a[1])
+  if (!entries.length) return undefined
+  return (entries.length > 1 ? entries[1] : entries[0])[0]
+}
+
+// --- Filter loading ---
+
+const filtersDir = path.join(process.cwd(), "data", "mesh_filters")
+const filterTouchstoneSource = path.join(filtersDir, "touchstone")
+
+if (!fs.existsSync(filtersDir)) {
+  console.error("filter data not found at", filtersDir)
+  process.exit(1)
+}
+
+const filterFiles = fs.readdirSync(filtersDir).filter((f) => f.endsWith(".json"))
+const filterData = filterFiles.map((file): RfFilter => {
+  let raw: RfFilter
+  try {
+    raw = JSON.parse(fs.readFileSync(path.join(filtersDir, file), "utf-8"))
+  } catch (err) {
+    throw new Error(`Failed to parse data/mesh_filters/${file}: ${(err as Error).message}`)
+  }
+  // Map bare image filename to full path
+  if (raw.image && !raw.image.startsWith("/")) {
+    raw.image = `/mesh/filters/${raw.image}`
+  }
+
+  // Sanitize authored commentary HTML (see COMMENTARY_SANITIZE_OPTIONS above).
+  if (raw.commentary) {
+    raw.commentary = sanitizeCommentary(raw.commentary)
+  }
+
+  // Parse each test's .s2p files into sweeps, then derive the computed summary
+  // (markers, passband, rejection). A missing file warns but does not fail the
+  // build, matching antennas; `pnpm validate` is the hard gate for that.
+  const measuredRanges = new Map<string, number>() // range key -> span (Hz), across all tests
+  for (const test of raw.test_results ?? []) {
+    const named: NamedSweep[] = []
+    const sweeps: FilterSweep[] = []
+    for (const ts of test.touchstones ?? []) {
+      if (ts.includes("/") || ts.includes("\\")) {
+        console.warn(`  ! touchstone must be a bare filename for ${raw.slug}: ${ts} (skipping sweep)`)
+        continue
+      }
+      const s2pPath = path.join(filterTouchstoneSource, raw.slug, ts)
+      if (!fs.existsSync(s2pPath)) {
+        console.warn(`  ! touchstone not found for ${raw.slug}: touchstone/${raw.slug}/${ts} (skipping sweep)`)
+        continue
+      }
+      const parsed = parseTouchstoneS2P(fs.readFileSync(s2pPath, "utf-8"))
+      if (!parsed.rows.length) {
+        console.warn(`  ! touchstone had no data points for ${raw.slug}: touchstone/${raw.slug}/${ts}`)
+        continue
+      }
+      named.push({ fileName: ts, rows: parsed.rows, stepHz: sweepStep(parsed.rows) })
+      measuredRanges.set(sweepRangeKey(parsed.rows), parsed.rows[parsed.rows.length - 1].hz - parsed.rows[0].hz)
+      sweeps.push({
+        source_file: `/mesh/filters/touchstone/${raw.slug}/${ts}`,
+        file_name: ts,
+        reference_impedance: parsed.reference_impedance,
+        point_count: parsed.rows.length,
+        start_hz: parsed.rows[0].hz,
+        stop_hz: parsed.rows[parsed.rows.length - 1].hz,
+        points: toSweepPoints(parsed.rows).slice(0, 500),
+      })
+    }
+    if (!sweeps.length) continue
+    const passband = derivePassband(named)
+    test.sweeps = sweeps
+    test.summary = {
+      markers: deriveFilterMarkers(named),
+      ...(passband ? { passband } : {}),
+      rejection: deriveRejection(named),
+    }
+  }
+
+  // Authored default_range wins when it names a measured range; otherwise the
+  // mid-sweep heuristic fills it in.
+  if (raw.default_range && !measuredRanges.has(raw.default_range)) {
+    console.warn(
+      `  ! default_range "${raw.default_range}" for ${raw.slug} matches no measured sweep ` +
+        `(have: ${[...measuredRanges.keys()].join(", ") || "none"}); using the computed default`,
+    )
+    raw.default_range = undefined
+  }
+  raw.default_range = raw.default_range ?? deriveDefaultRange(measuredRanges)
+
+  return raw
+})
+
+// Default display order: pinned filters first (lowest sort_order wins), then alphabetical by title.
+filterData.sort(
+  (a, b) =>
+    (a.sort_order ?? Number.MAX_SAFE_INTEGER) - (b.sort_order ?? Number.MAX_SAFE_INTEGER) ||
+    (a.title ?? "").localeCompare(b.title ?? ""),
+)
+
+const filterOutput = `import type { RfFilter } from "@/types/filter"
+
+// Auto-generated from data/. Do not edit manually.
+// Regenerate with: npx tsx lib/prebuild.ts
+
+export const filters: RfFilter[] = ${JSON.stringify(filterData, null, 2)}
+`
+
+const filterOutPath = path.join(process.cwd(), "data", "filters-generated.ts")
+fs.writeFileSync(filterOutPath, filterOutput)
+console.log(`Generated ${filterOutPath} with ${filterData.length} filters`)
+
+// Copy filter images to public/mesh/filters/
+const filterImagesSource = path.join(filtersDir, "images")
+const filterImagesDest = path.join(process.cwd(), "public", "mesh", "filters")
+
+if (fs.existsSync(filterImagesSource)) {
+  fs.mkdirSync(filterImagesDest, { recursive: true })
+  const filterImages = fs.readdirSync(filterImagesSource).filter((f) => f.endsWith(".webp"))
+  for (const img of filterImages) {
+    fs.copyFileSync(path.join(filterImagesSource, img), path.join(filterImagesDest, img))
+  }
+  console.log(`Copied ${filterImages.length} filter images to public/mesh/filters/`)
+}
+
+// Copy raw Touchstone (.s2p) files to public/ so they are downloadable, keeping
+// the per-filter subdirectory layout.
+const filterTouchstoneDest = path.join(process.cwd(), "public", "mesh", "filters", "touchstone")
+
+if (fs.existsSync(filterTouchstoneSource)) {
+  let filterTouchstoneCopied = 0
+  const slugDirs = fs.readdirSync(filterTouchstoneSource, { withFileTypes: true }).filter((d) => d.isDirectory())
+  for (const dir of slugDirs) {
+    const srcDir = path.join(filterTouchstoneSource, dir.name)
+    const s2pFiles = fs.readdirSync(srcDir).filter((f) => /\.s2p$/i.test(f))
+    if (!s2pFiles.length) continue
+    const destDir = path.join(filterTouchstoneDest, dir.name)
+    fs.mkdirSync(destDir, { recursive: true })
+    for (const f of s2pFiles) {
+      fs.copyFileSync(path.join(srcDir, f), path.join(destDir, f))
+      filterTouchstoneCopied++
+    }
+  }
+  console.log(`Copied ${filterTouchstoneCopied} touchstone files to public/mesh/filters/touchstone/`)
 }

@@ -318,6 +318,104 @@ collections:
         multiple: true
         required: false
 
+  - name: "mesh_filters"
+    label: "Mesh Filters"
+    label_singular: "Mesh Filter"
+    folder: "data/mesh_filters"
+    editor:
+      preview: false
+    create: true
+    extension: "json"
+    slug: "{{fields.slug}}"
+    summary: "{{manufacturer.brand_name}} - {{title}}"
+    sortable_fields: ["title"]
+    fields:
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL slug used for routing. Must be unique." }
+      - { label: "Sort Order", name: "sort_order", widget: "number", value_type: "int", required: false, hint: "Optional manual ordering; lower numbers sort first." }
+      - { name: "title", label: "Title", widget: "string" }
+      - label: "Manufacturer"
+        name: "manufacturer"
+        widget: "object"
+        fields:
+          - { name: "brand_name", label: "Brand Name", widget: "string" }
+          - { name: "url", label: "URL", widget: "string", required: false }
+          - { name: "part_number", label: "Part Number", widget: "string" }
+          - { name: "datasheet", label: "Datasheet URL", widget: "string", required: false }
+      - label: "Filter Type"
+        name: "filter_type"
+        widget: "select"
+        options: ["Bandpass", "Low-pass"]
+      - label: "Connectors"
+        name: "connectors"
+        widget: "select"
+        options: ["2x SMA Female", "SMA Male + SMA Female", "2x u.FL/IPEX"]
+      - { name: "power_handling", label: "Power Handling", widget: "string", required: false, hint: "e.g. 10 W continuous (from the datasheet)" }
+      - { name: "default_range", label: "Default Chart Range", widget: "string", required: false, pattern: ["^[0-9]+-[0-9]+$", "start-stop in whole MHz, e.g. 885-930"], hint: "Optional. Sweep range the detail chart opens on, e.g. \"885-930\". Must match a measured sweep; leave blank to let the build pick the filter's custom mid sweep." }
+      - label: "Suppliers"
+        label_singular: "Supplier"
+        name: "suppliers"
+        widget: "list"
+        required: false
+        fields:
+          - { name: "name", label: "Name", widget: "string" }
+          - { name: "part_number", label: "Part Number", widget: "string", required: false }
+          - { name: "purchase_cost", label: "Purchase Cost", widget: "string" }
+          - { name: "url", label: "URL", widget: "string" }
+      - label: "Test Results"
+        label_singular: "Test Result"
+        name: "test_results"
+        widget: "list"
+        fields:
+          - label: "Touchstone (.s2p) Files"
+            label_singular: "Touchstone (.s2p) File"
+            name: "touchstones"
+            widget: "list"
+            field:
+              name: "file"
+              label: "File"
+              widget: "file"
+              media_folder: "touchstone/{{fields.slug}}"
+            hint: "2-port VNA exports (.s2p) for one physical unit, one file per frequency range, stored under touchstone/<filter-slug>/. Insertion loss, match, bandwidth, and rejection are all computed from these."
+          - { name: "chart_label", label: "Chart Label", widget: "string", required: false, hint: "Optional. Names this test in the sweep chart legend, e.g. \"S/N 20260514001\" or \"Unit 2\"." }
+          - { name: "notes", label: "Notes", widget: "text" }
+          - label: "Metadata"
+            name: "metadata"
+            widget: "object"
+            fields:
+              - { name: "tester", label: "Tester", widget: "string" }
+              - { name: "date", label: "Date", widget: "string" }
+              - { name: "callsign", label: "Callsign", widget: "string", required: false }
+              - { name: "handle", label: "Handle", widget: "string", required: false }
+              - label: "Sample / Batch"
+                name: "sample"
+                widget: "object"
+                required: false
+                fields:
+                  - { name: "supplier", label: "Supplier", widget: "string", required: false }
+                  - { name: "purchase_date", label: "Purchase Date", widget: "string", required: false }
+                  - { name: "sample_id", label: "Sample ID", widget: "string", required: false }
+                  - { name: "batch", label: "Batch / Lot", widget: "string", required: false }
+      - { name: "suggested", label: "Suggested", widget: "boolean", required: false }
+      - label: "Dimensions"
+        name: "dimensions"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "height", label: "Height (mm)", widget: "number", value_type: "float" }
+          - { name: "width", label: "Width (mm)", widget: "number", value_type: "float" }
+          - { name: "depth", label: "Depth (mm)", widget: "number", value_type: "float" }
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        media_folder: "images"
+        media_library:
+          config:
+            multiple: false
+            max_file_size: 200000
+      - { name: "description", label: "Description", widget: "text", required: false }
+      - { name: "commentary", label: "Commentary", widget: "text", required: false }
+
   - name: "mesh_antennas"
     label: "Meshtastic Antennas"
     label_singular: "Meshtastic Antenna"

@@ -41,6 +41,8 @@ data/devices-generated.ts
 public/devices/
 data/antennas-generated.ts
 public/mesh/antennas/
+data/filters-generated.ts
+public/mesh/filters/
 
 # ai
 /docs

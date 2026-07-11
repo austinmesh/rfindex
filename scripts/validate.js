@@ -17,6 +17,7 @@ const collections = {
   mesh_features:            { schema: "mesh_features.json",            dir: "mesh_features" },
   mesh_antennas:            { schema: "mesh_antennas.json",            dir: "mesh_antennas" },
   mesh_devices:             { schema: "mesh_devices.json",             dir: "mesh_devices" },
+  mesh_filters:             { schema: "mesh_filters.json",             dir: "mesh_filters" },
 };
 
 // Convert a character offset in `raw` into a 1-based line/column.
@@ -140,6 +141,7 @@ function checkUnique(items, keyField) {
 }
 checkUnique(parsed.mesh_devices, "id");
 checkUnique(parsed.mesh_antennas, "slug");
+checkUnique(parsed.mesh_filters, "slug");
 checkUnique([...parsed.mesh_manufacturers, ...parsed.manufacturers], "slug");
 checkUnique(parsed.suppliers, "slug");
 
@@ -158,6 +160,25 @@ function checkImages(items, imagesRel) {
 }
 checkImages(parsed.mesh_devices, "data/mesh_devices/images");
 checkImages(parsed.mesh_antennas, "data/mesh_antennas/images");
+checkImages(parsed.mesh_filters, "data/mesh_filters/images");
+
+// 2b. Filter touchstone existence (FATAL). Filter pages are built around their
+//     .s2p sweeps (specs, charts, and downloads all derive from them), so a
+//     test result referencing a file that is not on disk under
+//     data/mesh_filters/touchstone/<slug>/ is a broken contribution, not a
+//     cosmetic gap like a missing antenna sweep.
+for (const { file, data } of parsed.mesh_filters) {
+  if (!data.slug || !Array.isArray(data.test_results)) continue;
+  for (const test of data.test_results) {
+    for (const ts of test.touchstones || []) {
+      const rel = path.join("data", "mesh_filters", "touchstone", data.slug, ts);
+      if (!fs.existsSync(path.join(ROOT, rel))) {
+        console.error(`MISSING TOUCHSTONE: ${file} references "${ts}" but ${rel} is not on disk`);
+        failedFiles.push(file);
+      }
+    }
+  }
+}
 
 // 3. Referential integrity (FATAL). Device manufacturer and purchase-URL
 //    supplier values are reference-collection SLUGS (the prebuild resolves them

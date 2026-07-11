@@ -1,0 +1,34 @@
+{
+  "slug": "airframes-custom-tune",
+  "title": "Airframes Custom-Tune 910.525 MHz Filter",
+  "manufacturer": {
+    "brand_name": "Airframes",
+    "part_number": "Custom Tune"
+  },
+  "filter_type": "Bandpass",
+  "connectors": "2x SMA Female",
+  "suppliers": [],
+  "test_results": [
+    {
+      "touchstones": [
+        "airframes-custom-tune-20260711-902-928.s2p",
+        "airframes-custom-tune-20260711-885-930.s2p",
+        "airframes-custom-tune-20260711-430-1500.s2p"
+      ],
+      "notes": "Four-section cavity filter custom tuned to 910.525 MHz (MeshCore US). Ports are labeled INPUT and OUTPUT.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11"
+      }
+    }
+  ],
+  "dimensions": {
+    "height": 108,
+    "width": 103,
+    "depth": 31
+  },
+  "image": "airframes-custom-tune.webp",
+  "description": "Bandpass cavity filter with ~8.5MHz passband with SMA input/output",
+  "commentary": "The airframes was the first robust cavity filter to the mesh market, so it gained a lot of popularity. They're fine filters, but the lead times tend to be long and they're rarely in stock. Tuning them isn't hard if you know how to use a VNA, but it's also not _easy_. The unit we tested here was custom tuned for the MeshCore US Default config."
+}

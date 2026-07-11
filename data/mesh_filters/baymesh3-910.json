@@ -1,0 +1,54 @@
+{
+  "slug": "baymesh3-910",
+  "title": "BayMesh 3 Bandpass Filter",
+  "manufacturer": {
+    "brand_name": "BayMesh",
+    "part_number": "BM3"
+  },
+  "filter_type": "Bandpass",
+  "connectors": "2x SMA Female",
+  "suppliers": [],
+  "test_results": [
+    {
+      "touchstones": [
+        "baymesh3-910-20260326012-902-928.s2p",
+        "baymesh3-910-20260326012-430-1500.s2p"
+      ],
+      "chart_label": "S/N 20260326012",
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11",
+        "sample": {
+          "sample_id": "20260326012"
+        }
+      }
+    },
+    {
+      "touchstones": [
+        "baymesh3-910-20260514001-902-928.s2p",
+        "baymesh3-910-20260514001-895-925.s2p",
+        "baymesh3-910-20260514001-430-1500.s2p"
+      ],
+      "chart_label": "S/N 20260514001",
+      "notes": "Factory label on this unit reads: Ideal 908.6-912.8 (4.1 MHz), Usable 907.4-914.0 (6.5 MHz), loss -1.21 dB at center 910.7 MHz.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11",
+        "sample": {
+          "sample_id": "20260514001"
+        }
+      }
+    }
+  ],
+  "dimensions": {
+    "height": 107,
+    "width": 60,
+    "depth": 41
+  },
+  "image": "baymesh3-910.webp",
+  "description": "Bandpass cavity filter with ~3.5MHz bandpass and two SMA connectors.",
+  "commentary": "If you need a serious filter, this is the choice. Hand tuned/checked and sent with a spec sheet for your specific serial number. Can be retuned as needed but requires technical knowledge and a VNA. The Baymesh 3 is one of 3 filters (BM4 and BM5 are the others) made by Nullrouten of BayMesh."
+}

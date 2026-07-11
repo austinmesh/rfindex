@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import type { Antenna } from "@/types/antenna"
 import type { Device } from "@/types/device"
+import type { FilterMarker, FilterPassband, RfFilter } from "@/types/filter"
 
 // Canonical host. Matches the canonical URLs used across the app so metadata,
 // OpenGraph, and JSON-LD all resolve to a single origin.
@@ -294,6 +295,208 @@ export function antennaJsonLd(a: Antenna) {
       ["Home", SITE_URL],
       ["Mesh Antennas", `${SITE_URL}/mesh/antennas`],
       [a.title, url],
+    ]),
+  )
+
+  return { "@context": "https://schema.org", "@graph": graph }
+}
+
+// --- Filter SEO helpers ---
+
+// Same brand-prefix logic as antennas: only prepend the brand when the title
+// does not already lead with it.
+export function brandedFilterTitle(f: RfFilter): string {
+  const brand = f.manufacturer.brand_name
+  return f.title.toLowerCase().startsWith(brand.toLowerCase()) ? f.title : `${brand} ${f.title}`
+}
+
+// Best (lowest) computed insertion-loss marker with the given label
+// ("Meshtastic" or "MeshCore") across all test results. Multiple units of the
+// same filter are often measured; picking the best mirrors bestVswrAt915.
+export function bestFilterMarker(f: RfFilter, label: string): FilterMarker | null {
+  let best: FilterMarker | null = null
+  for (const t of f.test_results) {
+    for (const m of t.summary?.markers ?? []) {
+      if (m.label !== label) continue
+      if (!best || m.insertion_loss_db < best.insertion_loss_db) best = m
+    }
+  }
+  return best
+}
+
+// First measured 3 dB passband across test results (units track each other
+// closely; the passband is a property of the design, not the sample).
+export function filterPassband(f: RfFilter): FilterPassband | null {
+  for (const t of f.test_results) {
+    if (t.summary?.passband) return t.summary.passband
+  }
+  return null
+}
+
+// Unique tester callsigns across all filter test results, in first-seen order.
+export function filterTesterCallsigns(f: RfFilter): string[] {
+  const set = new Set<string>()
+  for (const t of f.test_results) if (t.metadata.callsign) set.add(t.metadata.callsign)
+  return [...set]
+}
+
+export function filterHasSweeps(f: RfFilter): boolean {
+  return f.test_results.some((t) => t.sweeps?.length)
+}
+
+// Testing-forward meta description, leading with measured insertion loss.
+export function filterMetaDescription(f: RfFilter): string {
+  const bt = brandedFilterTitle(f)
+  const kind = f.filter_type.toLowerCase() === "low-pass" ? "low-pass filter" : "bandpass filter"
+  const mt = bestFilterMarker(f, "Meshtastic")
+  const mc = bestFilterMarker(f, "MeshCore")
+
+  if (!mt && !mc) {
+    return `${bt} 915 MHz band ${kind} for LoRa mesh radios. Compare insertion loss, match, and rejection on RF Index.`
+  }
+
+  const calls = filterTesterCallsigns(f)
+  const who = calls.length ? `the mesh community (${calls.slice(0, 3).join(", ")})` : "the mesh community"
+  const parts: string[] = []
+  if (mt) parts.push(`${mt.insertion_loss_db.toFixed(2)} dB loss at Meshtastic 906.875 MHz`)
+  if (mc) parts.push(`${mc.insertion_loss_db.toFixed(2)} dB at MeshCore 910.525 MHz`)
+  return `Firsthand VNA measurements of the ${bt} ${kind}: ${parts.join(", ")}, measured by ${who} with downloadable Touchstone sweeps. Compare loss, match, and rejection on RF Index.`
+}
+
+// Short, crawlable on-page paragraph reinforcing the firsthand-experience signal.
+export function filterTestingSummary(f: RfFilter): string | null {
+  const testCount = f.test_results.length
+  if (testCount === 0) return null
+
+  const calls = filterTesterCallsigns(f)
+  const who = calls.length
+    ? `the mesh community (${calls.slice(0, 4).join(", ")})`
+    : "the mesh community"
+  const parts: string[] = [
+    `This page collects 2-port VNA measurements of ${testCount === 1 ? "one unit" : `${testCount} units`} of the ${brandedFilterTitle(f)}, measured firsthand by ${who}.`,
+  ]
+  if (filterHasSweeps(f)) {
+    parts.push("Every sweep is charted below and downloadable as a Touchstone (.s2p) file.")
+  }
+  const pb = filterPassband(f)
+  if (pb) {
+    parts.push(
+      `Measured 3 dB passband is ${pb.low_3db_mhz}-${pb.high_3db_mhz} MHz (${pb.bandwidth_3db_mhz} MHz wide).`,
+    )
+  }
+  return parts.join(" ")
+}
+
+// schema.org graph for a filter detail page: Product (offers only when
+// suppliers exist), a Dataset describing the S-parameter measurements, and a
+// breadcrumb. Mirrors antennaJsonLd.
+export function filterJsonLd(f: RfFilter) {
+  const url = `${SITE_URL}/mesh/filters/${f.slug}`
+  const graph: Record<string, unknown>[] = []
+
+  const suppliers = f.suppliers ?? []
+  const offers = suppliers.map((s) => {
+    const p = parsePrice(s.purchase_cost)
+    return {
+      "@type": "Offer",
+      url: s.url,
+      ...(p ? { price: p.amount.toFixed(2), priceCurrency: p.currency } : {}),
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: s.name },
+    }
+  })
+  const usdPrices = suppliers
+    .map((s) => parsePrice(s.purchase_cost))
+    .filter((p): p is { amount: number; currency: string } => !!p && p.currency === "USD")
+    .map((p) => p.amount)
+
+  const additionalProperty: Record<string, unknown>[] = [
+    { "@type": "PropertyValue", name: "Filter type", value: f.filter_type },
+    { "@type": "PropertyValue", name: "Connectors", value: f.connectors },
+  ]
+  for (const label of ["Meshtastic", "MeshCore"]) {
+    const m = bestFilterMarker(f, label)
+    if (m) {
+      additionalProperty.push({
+        "@type": "PropertyValue",
+        name: `Insertion loss at ${label} (${m.frequency_mhz} MHz)`,
+        value: `${m.insertion_loss_db.toFixed(2)} dB`,
+      })
+    }
+  }
+  const pb = filterPassband(f)
+  if (pb) {
+    additionalProperty.push({
+      "@type": "PropertyValue",
+      name: "3 dB passband",
+      value: `${pb.low_3db_mhz}-${pb.high_3db_mhz} MHz`,
+    })
+  }
+
+  const product: Record<string, unknown> = {
+    "@type": "Product",
+    "@id": `${url}#product`,
+    name: brandedFilterTitle(f),
+    description: filterMetaDescription(f),
+    category: `RF ${f.filter_type} Filter`,
+    mpn: f.manufacturer.part_number,
+    sku: f.manufacturer.part_number,
+    brand: { "@type": "Brand", name: f.manufacturer.brand_name },
+    ...(f.image ? { image: absoluteUrl(f.image) } : {}),
+    url,
+    additionalProperty,
+  }
+  if (offers.length) {
+    product.offers = usdPrices.length
+      ? {
+          "@type": "AggregateOffer",
+          priceCurrency: "USD",
+          lowPrice: Math.min(...usdPrices).toFixed(2),
+          highPrice: Math.max(...usdPrices).toFixed(2),
+          offerCount: offers.length,
+          offers,
+        }
+      : offers
+  }
+  graph.push(product)
+
+  if (f.test_results.length) {
+    const distribution = f.test_results.flatMap((t) =>
+      (t.sweeps ?? []).map((s) => ({
+        "@type": "DataDownload",
+        encodingFormat: "application/x-touchstone",
+        contentUrl: absoluteUrl(s.source_file),
+      })),
+    )
+    const testers = [...new Map(f.test_results.map((t) => [t.metadata.tester, t.metadata])).values()]
+    graph.push({
+      "@type": "Dataset",
+      "@id": `${url}#measurements`,
+      name: `Insertion loss and return loss measurements for the ${brandedFilterTitle(f)}`,
+      description: `Firsthand vector network analyzer 2-port S-parameter measurements of the ${brandedFilterTitle(f)} RF filter, collected by the mesh community.`,
+      url,
+      isAccessibleForFree: true,
+      license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      measurementTechnique: "Vector network analyzer 2-port S-parameter sweep",
+      variableMeasured: ["Insertion loss (S21, dB)", "Return loss (S11, dB)", "Complex reflection coefficient (S11)"],
+      creator: [
+        { "@type": "Organization", name: "Austin Mesh", url: SITE_URL },
+        ...testers.map((m) => ({
+          "@type": "Person",
+          name: m.tester,
+          ...(m.callsign ? { alternateName: m.callsign } : {}),
+        })),
+      ],
+      about: { "@id": `${url}#product` },
+      ...(distribution.length ? { distribution } : {}),
+    })
+  }
+
+  graph.push(
+    breadcrumb([
+      ["Home", SITE_URL],
+      ["Mesh Filters", `${SITE_URL}/mesh/filters`],
+      [f.title, url],
     ]),
   )
 

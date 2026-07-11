@@ -1,0 +1,34 @@
+{
+  "slug": "nmrf-fbp-902s",
+  "title": "NMRF FBP-902S Bandpass Filter",
+  "manufacturer": {
+    "brand_name": "NMRF",
+    "part_number": "FBP-902S"
+  },
+  "filter_type": "Bandpass",
+  "connectors": "SMA Male + SMA Female",
+  "suppliers": [],
+  "test_results": [
+    {
+      "touchstones": [
+        "nmrf-fbp-902s-20260711-902-928.s2p",
+        "nmrf-fbp-902s-20260711-870-930.s2p",
+        "nmrf-fbp-902s-20260711-430-1500.s2p"
+      ],
+      "notes": "Measured passband is centered near 892 MHz, well below the 902-928 MHz ISM band, with 14-19 dB of loss and a poor match at Meshtastic and MeshCore frequencies.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11"
+      }
+    }
+  ],
+  "dimensions": {
+    "height": 34,
+    "width": 17,
+    "depth": 8
+  },
+  "image": "nmrf-fbp-902s.webp",
+  "description": "Tiny bandpass filter mistuned for the US ISM band.",
+  "commentary": "Not recommended for obvious reasons."
+}

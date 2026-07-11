@@ -1,0 +1,37 @@
+{
+  "slug": "acasom-902-928",
+  "title": "ACASOM 902-928 MHz Cavity Bandpass Filter",
+  "manufacturer": {
+    "brand_name": "ACASOM",
+    "part_number": "UNKNOWN"
+  },
+  "filter_type": "Bandpass",
+  "connectors": "2x SMA Female",
+  "suppliers": [],
+  "test_results": [
+    {
+      "touchstones": [
+        "acasom-202503040183-902-928.s2p",
+        "acasom-202503040183-875-950.s2p",
+        "acasom-202503040183-430-1500.s2p"
+      ],
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11",
+        "sample": {
+          "sample_id": "202503040183"
+        }
+      }
+    }
+  ],
+  "dimensions": {
+    "height": 123,
+    "width": 60,
+    "depth": 43
+  },
+  "image": "acasom-902-928.webp",
+  "description": "Bandpass cavity filter from ~890-935MHz with SMA input/output",
+  "commentary": "These are fine filters, we've used them pretty extensively around the Austin Mesh network because of their relatively good cost/performance ratio. As of June 2026, they are no longer available for purchase anywhere we can find online. The band pass is pretty wide, so it will only help if you're trying to block signals from outside the US ISM band, it's useless helping prevent noise from other signals inside ISM."
+}

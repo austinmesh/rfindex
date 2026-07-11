@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { deviceSitemapData, antennaSitemapData } from "@/lib/data"
+import { deviceSitemapData, antennaSitemapData, filterSitemapData } from "@/lib/data"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Canonical base URL. www is canonical; Cloudflare redirects the apex to it,
@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/mesh/filters`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -49,6 +55,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sitemapEntries.push({
       url: `${baseUrl}/mesh/antennas/${antenna.id}`,
       lastModified: antenna.lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    })
+  })
+
+  // Add filter pages to sitemap
+  filterSitemapData.forEach((filter) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/mesh/filters/${filter.id}`,
+      lastModified: filter.lastModified,
       changeFrequency: "weekly",
       priority: 0.7,
     })

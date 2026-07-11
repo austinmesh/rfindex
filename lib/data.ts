@@ -1,13 +1,18 @@
 import { devices } from "@/data/devices-generated"
 import { antennas } from "@/data/antennas-generated"
+import { filters } from "@/data/filters-generated"
 import type { AntennaSitemapItem } from "@/types/antenna"
 import type { DeviceSitemapItem } from "@/types/device"
+import type { FilterSitemapItem } from "@/types/filter"
 
 // Re-export devices (generated from data/ at prebuild)
 export { devices } from "@/data/devices-generated"
 
 // Re-export antenna data (generated from data/ at prebuild)
 export { antennas } from "@/data/antennas-generated"
+
+// Re-export filter data (generated from data/ at prebuild)
+export { filters } from "@/data/filters-generated"
 
 // Feature descriptions (UI copy, stays in this repo)
 export { featureDescriptions } from "@/data/devices"
@@ -79,6 +84,18 @@ export const antennaSitemapData: AntennaSitemapItem[] = antennas.map((antenna) =
 }))
 
 export const allAntennaCategories = Array.from(new Set(antennas.filter((a) => a.category).map((a) => a.category!))).sort()
+
+// --- Filter derived constants ---
+
+export const filterSitemapData: FilterSitemapItem[] = filters.map((filter) => ({
+  id: filter.slug,
+  name: filter.title,
+  lastModified: new Date(),
+}))
+
+export const allFilterTypes = Array.from(new Set(filters.map((f) => f.filter_type))).sort()
+
+export const allFilterConnectors = Array.from(new Set(filters.map((f) => f.connectors))).sort()
 
 // UI constants
 export const statusOptions = [

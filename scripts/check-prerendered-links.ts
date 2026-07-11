@@ -35,6 +35,7 @@ type Target = {
 const targets: Target[] = [
   { route: "mesh/devices", label: "device", dataDir: "mesh_devices" },
   { route: "mesh/antennas", label: "antenna", dataDir: "mesh_antennas" },
+  { route: "mesh/filters", label: "filter", dataDir: "mesh_filters" },
 ]
 
 let failed = false

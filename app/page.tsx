@@ -25,8 +25,8 @@ export default function HomePage() {
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">RF Index</h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl">
                 Independent, side by side comparisons of mesh networking hardware. We publish firsthand VSWR test
-                results and SWR sweep charts for antennas, plus specs, pricing, and buy links for Meshtastic and
-                MeshCore devices.
+                results and SWR sweep charts for antennas, VNA-measured insertion loss and rejection for RF filters,
+                plus specs, pricing, and buy links for Meshtastic and MeshCore devices.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                 <Button asChild size="lg">
@@ -70,8 +70,8 @@ export default function HomePage() {
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Compare devices that run Meshtastic or MeshCore firmware, from ad-hoc off-grid messaging to
-                    repeater-based regional networks, alongside antennas we test firsthand with a nanoVNA and publish as
-                    downloadable SWR sweeps.
+                    repeater-based regional networks, alongside antennas and RF filters we test firsthand with a VNA
+                    and publish as downloadable Touchstone sweeps.
                   </p>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-2">
@@ -84,6 +84,12 @@ export default function HomePage() {
                   <Button asChild variant="outline" className="w-full">
                     <Link href="/mesh/antennas">
                       Compare Tested Antennas
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/mesh/filters">
+                      Compare Tested Filters
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

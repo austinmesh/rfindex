@@ -1,0 +1,33 @@
+{
+  "slug": "gpio-labs-915-lpf",
+  "title": "GPIO Labs 915 MHz Low-Pass Filter",
+  "manufacturer": {
+    "brand_name": "GPIO Labs",
+    "part_number": "UNKNOWN"
+  },
+  "filter_type": "Low-pass",
+  "connectors": "SMA Male + SMA Female",
+  "suppliers": [],
+  "test_results": [
+    {
+      "touchstones": [
+        "gpio-labs-915-lpf-20260711-902-928.s2p",
+        "gpio-labs-915-lpf-20260711-430-1500.s2p"
+      ],
+      "notes": "Passes everything I measured up through 1500 MHz(max of my VNA.",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11"
+      }
+    }
+  ],
+  "dimensions": {
+    "height": 38,
+    "width": 8,
+    "depth": 8
+  },
+  "image": "gpio-labs-915-lpf.webp",
+  "description": "Tiny low pass filter for 915MHz",
+  "commentary": "I have no idea what this is blocking, my VNA won't go any higher and this doesn't seem to block anything below that. Also has a pretty poor impedance match."
+}

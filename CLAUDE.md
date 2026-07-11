@@ -1,12 +1,12 @@
 # RF Index
 
-RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and radio hardware — devices and antennas — with specs, pricing, test results, and purchase links. This repo hosts the production website.
+RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and radio hardware — devices, antennas, and RF filters — with specs, pricing, test results, and purchase links. This repo hosts the production website.
 
 ## Commands
 
-- `pnpm dev` — generate device + antenna data from `data/` + start dev server
+- `pnpm dev` — generate device + antenna + filter data from `data/` + start dev server
 - `pnpm dev:clean` — same as dev but clears `.next` cache first (use when dev server has stale errors)
-- `pnpm build` — production build via OpenNext (`opennextjs-cloudflare build`): regenerates device + antenna data from `data/`, runs `next build`, and bundles to `.open-next/` for Cloudflare Workers. TypeScript/ESLint errors are ignored via next.config.mjs.
+- `pnpm build` — production build via OpenNext (`opennextjs-cloudflare build`): regenerates device + antenna + filter data from `data/`, runs `next build`, and bundles to `.open-next/` for Cloudflare Workers. TypeScript/ESLint errors are ignored via next.config.mjs.
 - `pnpm deploy` — build via OpenNext and deploy to Cloudflare Workers
 - `pnpm preview` — build via OpenNext and run the Worker locally (closest to production)
 - `pnpm lint` — run ESLint
@@ -39,11 +39,14 @@ app/
 │   ├── devices/
 │   │   ├── page.tsx                  # Device listing — server component, passes data to DeviceFilters
 │   │   └── [id]/page.tsx             # Device detail — uses generateStaticParams for SSG
-│   └── antennas/
-│       ├── page.tsx                  # Antenna listing — server component, passes data to AntennaFilters
-│       └── [id]/page.tsx             # Antenna detail — uses generateStaticParams for SSG
+│   ├── antennas/
+│   │   ├── page.tsx                  # Antenna listing — server component, passes data to AntennaFilters
+│   │   └── [id]/page.tsx             # Antenna detail — uses generateStaticParams for SSG
+│   └── filters/
+│       ├── page.tsx                  # RF filter listing — server component, passes data to FilterBrowser
+│       └── [slug]/page.tsx           # RF filter detail — uses generateStaticParams for SSG
 ├── about/page.tsx
-├── sitemap.ts                        # Dynamic sitemap from device + antenna data
+├── sitemap.ts                        # Dynamic sitemap from device + antenna + filter data
 └── robots.ts
 ```
 
@@ -52,21 +55,23 @@ app/
 All data lives in the `data/` directory (device/antenna JSON files and images).
 
 - `data/mesh_devices/` — device JSON files and images
-- `data/mesh_antennas/` — antenna JSON files and images
-- `lib/prebuild.ts` — **prebuild script** that reads JSON from `data/`, generates `data/devices-generated.ts` and `data/antennas-generated.ts`, and copies images to `public/devices/` and `public/mesh/antennas/`
+- `data/mesh_antennas/` — antenna JSON files, images, and per-slug `touchstone/` VNA sweeps (.s1p)
+- `data/mesh_filters/` — RF filter JSON files, images, and per-slug `touchstone/` VNA sweeps (.s2p)
+- `lib/prebuild.ts` — **prebuild script** that reads JSON from `data/`, generates `data/devices-generated.ts`, `data/antennas-generated.ts`, and `data/filters-generated.ts`, and copies images (plus raw touchstone files for download) to `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/`. For filters it parses each test's `.s2p` files (keeping complex S11 for the Smith chart, plus S11/S21 magnitudes) and computes all displayed specs: insertion loss / return loss markers at Meshtastic US (906.875 MHz) and MeshCore US (910.525 MHz), the 3 dB passband, and out-of-band rejection at fixed interferer frequencies (VSWR is deliberately not shown for filters). Spot values always come from the finest-resolution sweep covering that frequency (wide 430-1500 MHz sweeps step ~10.7 MHz, far too coarse on steep filter skirts). It also fills each filter's `default_range` (the sweep range the detail chart opens on): the authored value wins when it matches a measured sweep; otherwise the heuristic drops the widest range and takes the widest remaining, which picks the per-filter custom mid sweep.
 - `data/devices-generated.ts` — auto-generated Device[] array (gitignored, regenerated every build)
 - `data/antennas-generated.ts` — auto-generated Antenna[] array (gitignored, regenerated every build)
+- `data/filters-generated.ts` — auto-generated RfFilter[] array (gitignored, regenerated every build)
 - `data/devices.ts` — `featureDescriptions` only (UI copy)
-- `lib/data.ts` — **single import point for all consumers.** Imports generated device and antenna data, computes all derived constants (categories, features, frequencies, microcontrollers, firmwares). All app code imports from here.
+- `lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, firmwares, filter types/connectors). All app code imports from here.
 
-Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-generated.ts`, `public/devices/`, and `public/mesh/antennas/` are all regenerated from `data/` at build time.
+Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-generated.ts`, `data/filters-generated.ts`, `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/` are all regenerated from `data/` at build time.
 
 ### Data Collections and Validation
 
-`data/` holds ten JSON collections. Only `mesh_devices` and `mesh_antennas` are rendered as pages (the prebuild turns just those two into generated TS). Of the other eight, `mesh_manufacturers`, `manufacturers`, and `suppliers` are load-bearing relation targets: device JSON stores their `slug` values in `manufacturer` and `purchase_urls[].supplier`, and the prebuild resolves each slug to its display `title` when generating `devices-generated.ts`. Renaming a brand means editing one reference file's `title`; the `slug` must never change once devices reference it. The remaining five (`bands`, `radios`, `modulations`, `antenna_connectors`, `mesh_features`) are reference data managed through the CMS and validated, but not currently used by the site.
+`data/` holds eleven JSON collections. Only `mesh_devices`, `mesh_antennas`, and `mesh_filters` are rendered as pages (the prebuild turns just those three into generated TS). Of the other eight, `mesh_manufacturers`, `manufacturers`, and `suppliers` are load-bearing relation targets: device JSON stores their `slug` values in `manufacturer` and `purchase_urls[].supplier`, and the prebuild resolves each slug to its display `title` when generating `devices-generated.ts` (antennas and filters embed their manufacturer/supplier info directly instead). Renaming a brand means editing one reference file's `title`; the `slug` must never change once devices reference it. The remaining five (`bands`, `radios`, `modulations`, `antenna_connectors`, `mesh_features`) are reference data managed through the CMS and validated, but not currently used by the site.
 
 - `schemas/*.json` define the shape of every collection (one schema per collection).
-- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails, all fatal: `id`/`slug` uniqueness (including reference-collection slugs), referenced-image existence, and manufacturer/supplier referential integrity (every device `manufacturer` and `purchase_urls[].supplier` must be a known reference-collection slug; writing a display title instead of a slug gets a did-you-mean suggestion).
+- `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails, all fatal: `id`/`slug` uniqueness (including reference-collection slugs), referenced-image existence, filter touchstone existence (every `test_results[].touchstones[]` file must exist under `data/mesh_filters/touchstone/<slug>/`), and manufacturer/supplier referential integrity (every device `manufacturer` and `purchase_urls[].supplier` must be a known reference-collection slug; writing a display title instead of a slug gets a did-you-mean suggestion).
 - CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR (not path-filtered: `validate` is a required status check in the main-branch ruleset, and a path-filtered required check never reports on out-of-path PRs, blocking the merge). GitHub Actions is free for public repos and does not affect the $0 hosting budget.
 - When you change an allowed value (an enum), update BOTH `schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
 
@@ -83,6 +88,7 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 - `types/device.ts` — `Device` (includes `supported_firmware: string[]`), `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
 - `types/antenna.ts` — `Antenna`, `AntennaMarker`, `AntennaTestResult`, `AntennaManufacturer`, `AntennaSupplier`, `AntennaDimensions`, `AntennaSitemapItem`, `StatusOption`
+- `types/filter.ts` — `RfFilter`, `FilterTestResult` (authored `touchstones` + computed `sweeps`/`summary`), `FilterSweep`, `FilterMarker`, `FilterPassband`, `FilterRejectionPoint`, `FilterSitemapItem`
 
 Types are the single source of truth — data files import from `types/`.
 
@@ -90,14 +96,18 @@ Types are the single source of truth — data files import from `types/`.
 
 - `components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/firmware filters, price slider, sort options, comparison dialog, URL-synced filter state
 - `components/antenna-filters.tsx` — client component with search, category filters, status/suggestion filters, sort options, URL-synced filter state
-- `components/site-header.tsx` — sticky nav with "Mesh" dropdown (Devices, Antennas, Meshtastic, MeshCore), mobile sheet menu
+- `components/filter-browser.tsx` — client component for the RF filter listing: search, filter-type/connector facets, loss-based sort, URL-synced state (named "browser" to avoid the FilterFilters double-word)
+- `components/filter-sweep-chart.tsx` (+ `-lazy`) — filter measurement display: combined Recharts S21 (solid) + S11 (dashed) dB chart beside a Smith chart, 50/50 on desktop and stacked on mobile, with per-range tabs (one tab per measured sweep span, narrowest first, opening on the filter's `default_range`) and one color per tested unit
+- `components/smith-chart.tsx` — hand-rolled SVG Smith chart (no charting lib): normalized R/X grid, one S11 locus per unit, Meshtastic/MeshCore dots, hover/tap readout of Z = R + jX and return loss
+- `components/site-header.tsx` — sticky nav with "Mesh" dropdown (Devices, Antennas, Filters, Meshtastic, MeshCore), mobile sheet menu
 - `components/site-footer.tsx`
 - `components/ui/` — 14 shadcn/ui components, only the ones actually imported (do not modify directly unless customizing; re-add pruned ones via the shadcn CLI when needed)
 
 ### Static Assets
 
 - `public/devices/` — device product images (WebP), copied from `data/` at build time (gitignored)
-- `public/mesh/antennas/` — antenna product images (WebP), copied from `data/` at build time (gitignored)
+- `public/mesh/antennas/` — antenna product images (WebP) + touchstone downloads, copied from `data/` at build time (gitignored)
+- `public/mesh/filters/` — filter product images (WebP) + touchstone downloads, copied from `data/` at build time (gitignored)
 - `public/` — logos, PWA manifest icons, favicon
 
 ### Path Alias
@@ -146,15 +156,15 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 ## Conventions
 
 - **Pages are server components** — listing pages pass full data arrays to client filter components
-- **Detail pages use `generateStaticParams`** — all device/antenna pages are statically generated at build time
-- **Unknown detail slugs return real HTTP 404s.** Both detail pages set `dynamicParams = false`, and unknown paths render the branded `app/not-found.tsx` with a 404 status. This depends on the static-assets incremental cache configured in `open-next.config.ts`: `fallback:false` forbids on-demand rendering, so the Worker must serve the prerendered pages from that cache. Never remove the cache config while `dynamicParams = false` is set, or every detail page 404s in production (a plain `notFound()` guard without `dynamicParams = false` is not a substitute: Next serves those on-demand not-found renders with HTTP 200). Verify with `pnpm preview` + curl: valid slugs 200, unknown slugs 404.
-- **Devices use `id` field, antennas use `slug` field** as their URL parameter
+- **Detail pages use `generateStaticParams`** — all device/antenna/filter pages are statically generated at build time
+- **Unknown detail slugs return real HTTP 404s.** All detail pages set `dynamicParams = false`, and unknown paths render the branded `app/not-found.tsx` with a 404 status. This depends on the static-assets incremental cache configured in `open-next.config.ts`: `fallback:false` forbids on-demand rendering, so the Worker must serve the prerendered pages from that cache. Never remove the cache config while `dynamicParams = false` is set, or every detail page 404s in production (a plain `notFound()` guard without `dynamicParams = false` is not a substitute: Next serves those on-demand not-found renders with HTTP 200). Verify with `pnpm preview` + curl: valid slugs 200, unknown slugs 404.
+- **Devices use `id` field, antennas and filters use `slug` field** as their URL parameter
 - **Devices have `supported_firmware`** — multi-select array (e.g., `["Meshtastic", "MeshCore"]`) for firmware compatibility filtering
 - **SEO**: every page exports `metadata` with title, description, and `alternates.canonical`
 - **Firmware filtering**: the devices page (`DeviceFilters`) reads a `?firmware=Meshtastic` or `?firmware=MeshCore` query param to pre-filter by firmware
 - **301 redirects** in `next.config.mjs` preserve old `/meshtastic/` URLs → `/mesh/`, and redirect the former `/mesh/meshtastic` and `/mesh/meshcore` landing pages → `/mesh/devices`
 - **Images are unoptimized** (`next.config.mjs` sets `images.unoptimized: true`)
-- **Filter state is URL-synced** — both filter components sync state with URL search params through `hooks/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
+- **Filter state is URL-synced** — all three listing components (devices, antennas, RF filters) sync state with URL search params through `hooks/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
 - **Contribution links go to GitHub issues** (not Google Forms). The header "Contribute" link points to the issue template chooser; footer links target specific templates in `.github/ISSUE_TEMPLATE/`. Never reintroduce the old `forms.gle` links.
 - **Device `features` is a deliberately short curated vocabulary** — reuse existing values; adding a new one must be intentional and reviewed. See [Device Features](#device-features-keep-the-list-short).
 
@@ -184,3 +194,9 @@ Rules for the `features` field:
 Add a JSON file to `data/mesh_antennas/` using the `slug` field as the filename. Place the antenna image in `data/mesh_antennas/images/` as WebP (bare filename in the `image` field, not a path).
 
 The antenna will automatically appear in listings, detail pages, and the sitemap after the next build.
+
+### New RF Filter
+
+Add a JSON file to `data/mesh_filters/` using the `slug` field as the filename. Place the filter image in `data/mesh_filters/images/` as WebP (bare filename in the `image` field, not a path). Put each 2-port VNA export in `data/mesh_filters/touchstone/<slug>/` and list the bare `.s2p` filenames in a test result's `touchstones` array — one test result per physical unit, one file per swept frequency range (the meetup convention is a 902-928 MHz detail sweep, a mid sweep around the passband, and a 430-1500 MHz wide sweep). All displayed specs (loss and return loss at Meshtastic/MeshCore, Smith chart, 3 dB passband, rejection) are computed from the `.s2p` files by the prebuild; never author them. The detail chart opens on the filter's custom mid sweep automatically; set the optional `default_range` field (e.g. `"885-930"`, whole MHz matching a measured sweep) only to override that. `manufacturer` and `suppliers` are embedded objects like antennas, not reference-collection slugs. `filter_type` and `connectors` are schema enums; extending them means updating BOTH `schemas/mesh_filters.json` and `public/admin/config.yml`.
+
+The filter will automatically appear in listings, detail pages, and the sitemap after the next build.

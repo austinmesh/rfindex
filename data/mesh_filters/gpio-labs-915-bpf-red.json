@@ -1,0 +1,34 @@
+{
+  "slug": "gpio-labs-915-bpf-red",
+  "title": "GPIO Labs 915 MHz Bandpass Filter (Red)",
+  "manufacturer": {
+    "brand_name": "GPIO Labs",
+    "part_number": "UNKNOWN"
+  },
+  "filter_type": "Bandpass",
+  "connectors": "2x SMA Female",
+  "suppliers": [],
+  "test_results": [
+    {
+      "touchstones": [
+        "gpio-labs-915-red-20260711-902-928.s2p",
+        "gpio-labs-915-red-20260711-885-970.s2p",
+        "gpio-labs-915-red-20260711-430-1500.s2p"
+      ],
+      "notes": "",
+      "metadata": {
+        "tester": "Tommy Ekstrand",
+        "callsign": "KG5HZC",
+        "date": "2026-07-11"
+      }
+    }
+  ],
+  "dimensions": {
+    "height": 44,
+    "width": 18,
+    "depth": 7
+  },
+  "image": "gpio-labs-915-bpf-red.webp",
+  "description": "Tiny bandpass filter with ~40MHz passband and 2 SMA connectors",
+  "commentary": "These are fine for low powered nodes, but we've burned multiple out trying to run them above 22dbm. Generally the WeHooper is a better option. I think the red and green are actually the same, but I don't remember where or how I got these, so I cannot verify."
+}
