@@ -8,11 +8,15 @@
     {
       "supplier": "lilygo",
       "url": "https://lilygo.cc/products/t-deck-plus?bg_ref=NMDtT4rHQo"
+    },
+    {
+      "supplier": "atlavox",
+      "url": "https://atlavox.com/products/t-deck-plus-lilygo-standalone-lora-communicator-full-keyboard-touch-screen?bg_ref=Xc9U3S3ona"
     }
   ],
   "price": {
     "min": 79,
-    "max": 99,
+    "max": 99.97,
     "currency": "USD"
   },
   "model": "T-Deck Plus",

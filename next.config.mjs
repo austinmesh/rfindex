@@ -68,6 +68,8 @@ const nextConfig = {
       // Meshtastic/MeshCore landing pages merged into the devices page
       { source: '/mesh/meshtastic', destination: '/mesh/devices', permanent: true },
       { source: '/mesh/meshcore', destination: '/mesh/devices', permanent: true },
+      // Antenna renamed: muzi whip re-cast as the branded-generic it actually is
+      { source: '/mesh/antennas/muzi-works-whip-antenna-17cm', destination: '/mesh/antennas/branded-generic-gizont-muzi-atlavox', permanent: true },
     ];
   },
 }

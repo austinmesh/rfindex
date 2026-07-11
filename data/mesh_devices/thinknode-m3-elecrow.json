@@ -7,11 +7,15 @@
     {
       "supplier": "amazon",
       "url": "https://amzn.to/4aU6g6F"
+    },
+    {
+      "supplier": "atlavox",
+      "url": "https://atlavox.com/products/thinknode-m3-meshtastic%E2%84%A2-radio?bg_ref=Xc9U3S3ona"
     }
   ],
   "price": {
     "min": 42.99,
-    "max": 42.99,
+    "max": 44.99,
     "currency": "USD"
   },
   "model": "Thinknode M3",

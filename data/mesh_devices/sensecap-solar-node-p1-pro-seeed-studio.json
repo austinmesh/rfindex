@@ -13,11 +13,15 @@
     {
       "supplier": "amazon",
       "url": "https://amzn.to/4edWGxx"
+    },
+    {
+      "supplier": "atlavox",
+      "url": "https://atlavox.com/products/sensecap-solar-node-p1-pro?bg_ref=Xc9U3S3ona"
     }
   ],
   "price": {
     "min": 74.99,
-    "max": 140.00,
+    "max": 140,
     "currency": "USD"
   },
   "model": "Solar Node P1 Pro",

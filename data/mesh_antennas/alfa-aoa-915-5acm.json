@@ -28,6 +28,11 @@
       "url": "https://alfa-network.eu/antennas/aoa-915-5acm",
       "part_number": "AOA-915-5ACM",
       "purchase_cost": "€13.85"
+    },
+    {
+      "name": "AtlaVox",
+      "purchase_cost": "$17.99",
+      "url": "https://atlavox.com/products/antenna-for-meshtastic-915mhz-n-type-outdoor-7-5dbi-alfa-aoa-915-5acm?bg_ref=Xc9U3S3ona"
     }
   ],
   "test_results": [

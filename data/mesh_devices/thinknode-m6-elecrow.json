@@ -11,10 +11,14 @@
     {
       "supplier": "elecrow",
       "url": "https://www.elecrow.com/thinknode-m6-outdoor-solar-power-for-meshtastic-powered-by-nrf52840-supports-gps.html?ref=rfindex"
+    },
+    {
+      "supplier": "atlavox",
+      "url": "https://atlavox.com/products/thinknode-m6-solar-mesh-radio?bg_ref=Xc9U3S3ona"
     }
   ],
   "price": {
-    "min": 79.90,
+    "min": 79.9,
     "max": 89.99,
     "currency": "USD"
   },

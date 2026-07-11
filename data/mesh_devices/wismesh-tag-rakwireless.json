@@ -12,11 +12,15 @@
     {
       "supplier": "rakwireless",
       "url": "https://store.rakwireless.com/products/wismesh-tag-meshtastic-gps-lora-tracker-ip66"
+    },
+    {
+      "supplier": "atlavox",
+      "url": "https://atlavox.com/products/wismesh-tag-meshtastic-meshcore-radio?bg_ref=Xc9U3S3ona"
     }
   ],
   "price": {
     "min": 29,
-    "max": 39,
+    "max": 49.99,
     "currency": "USD"
   },
   "model": "Tag",
