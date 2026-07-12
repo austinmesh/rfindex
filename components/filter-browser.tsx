@@ -306,15 +306,21 @@ export function FilterBrowser({ filters }: { filters: RfFilter[] }) {
             {sortedFilters.map((filter) => (
               <Card key={filter.slug} className="overflow-hidden group">
                 <div className="aspect-square relative">
-                  <Image
-                    src={
-                      filter.image ||
-                      `/placeholder.svg?height=300&width=300&text=${filter.manufacturer.part_number || "/placeholder.svg"}`
-                    }
-                    alt={filter.title}
-                    fill
-                    className="object-contain p-4"
-                  />
+                  <Link
+                    href={`/mesh/filters/${filter.slug}`}
+                    aria-label={filter.title}
+                    className="absolute inset-0 block"
+                  >
+                    <Image
+                      src={
+                        filter.image ||
+                        `/placeholder.svg?height=300&width=300&text=${filter.manufacturer.part_number || "/placeholder.svg"}`
+                      }
+                      alt={filter.title}
+                      fill
+                      className="object-contain p-4"
+                    />
+                  </Link>
                   <div className="absolute top-2 left-2 flex items-center rounded bg-transparent px-1 py-0.5 group-hover:bg-white/90">
                     <Checkbox
                       id={`compare-${filter.slug}`}
@@ -334,7 +340,11 @@ export function FilterBrowser({ filters }: { filters: RfFilter[] }) {
                 </div>
                 <CardContent className="p-4">
                   <div className="space-y-1">
-                    <h3 className="font-semibold text-lg">{filter.title}</h3>
+                    <h3 className="font-semibold text-lg">
+                      <Link href={`/mesh/filters/${filter.slug}`} className="hover:underline">
+                        {filter.title}
+                      </Link>
+                    </h3>
                   </div>
                   <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                     <div>

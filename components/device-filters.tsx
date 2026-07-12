@@ -848,12 +848,18 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
             {sortedDevices.map((device) => (
                 <Card key={device.id} className="overflow-hidden group">
                   <div className="aspect-square relative">
-                    <Image
-                      src={device.image_url[0] || "/placeholder.svg"}
-                      alt={device.name}
-                      fill
-                      className="object-cover"
-                    />
+                    <Link
+                      href={`/mesh/devices/${device.id}`}
+                      aria-label={device.name}
+                      className="absolute inset-0 block"
+                    >
+                      <Image
+                        src={device.image_url[0] || "/placeholder.svg"}
+                        alt={device.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </Link>
                     <div className="absolute top-2 left-2 flex items-center bg-transparent group-hover:bg-white/90 rounded px-1 py-0.5">
                       <Checkbox
                         id={`compare-${device.id}`}
@@ -872,7 +878,11 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                   </div>
                   <CardContent className="p-4">
                     <div className="space-y-1">
-                      <h3 className="font-semibold text-lg">{device.name}</h3>
+                      <h3 className="font-semibold text-lg">
+                        <Link href={`/mesh/devices/${device.id}`} className="hover:underline">
+                          {device.name}
+                        </Link>
+                      </h3>
                       <p className="text-sm text-muted-foreground">{device.manufacturer}</p>
                       <p className="text-sm line-clamp-2">{device.description}</p>
                     </div>

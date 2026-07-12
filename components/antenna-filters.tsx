@@ -570,20 +570,30 @@ export function AntennaFilters({ antennas }: { antennas: Antenna[] }) {
             {sortedAntennas.map((antenna) => (
                 <Card key={antenna.slug} className="overflow-hidden">
                   <div className="aspect-square relative">
-                    <Image
-                      src={
-                        antenna.image ||
-                        `/placeholder.svg?height=300&width=300&text=${antenna.manufacturer.part_number || "/placeholder.svg"}`
-                      }
-                      alt={antenna.title}
-                      fill
-                      className="object-contain p-4"
-                    />
+                    <Link
+                      href={`/mesh/antennas/${antenna.slug}`}
+                      aria-label={antenna.title}
+                      className="absolute inset-0 block"
+                    >
+                      <Image
+                        src={
+                          antenna.image ||
+                          `/placeholder.svg?height=300&width=300&text=${antenna.manufacturer.part_number || "/placeholder.svg"}`
+                        }
+                        alt={antenna.title}
+                        fill
+                        className="object-contain p-4"
+                      />
+                    </Link>
                     <div className="absolute top-2 right-2">{renderStatusBadge(antenna.suggested)}</div>
                   </div>
                   <CardContent className="p-4">
                     <div className="space-y-1">
-                      <h3 className="font-semibold text-lg">{antenna.title}</h3>
+                      <h3 className="font-semibold text-lg">
+                        <Link href={`/mesh/antennas/${antenna.slug}`} className="hover:underline">
+                          {antenna.title}
+                        </Link>
+                      </h3>
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                       <div>
