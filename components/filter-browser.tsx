@@ -265,14 +265,14 @@ export function FilterBrowser({ filters }: { filters: RfFilter[] }) {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                className="pl-10 pr-4"
+                className="pl-10 pr-4 py-6"
                 aria-label="Search filters"
                 placeholder="Search filters..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 rounded-lg border bg-background px-4 py-2 shadow-sm">
+            <div className="flex items-center justify-between gap-4 rounded-lg border bg-background px-4 py-1 shadow-sm">
               <div className="flex items-center">
                 {selectedForComparison.length > 0 ? (
                   <>
