@@ -48,6 +48,6 @@
     "depth": 5
   },
   "image": "wehooper-915-bpf.webp",
-  "description": "A tiny PCB filter with ipex input/output. Comes with a ipex jumper.",
+  "description": "A tiny PCB filter with ipex input/output. Comes with an ipex jumper.",
   "commentary": "Varying performance, these are 2 of the best out of a set of 16 that I purchased in bulk. These are super useful for tight enclosures like a RAK Unify enclosure or a handheld node that needs some filtering(looking at you G2/Ikoka Stick). These perform fine even at 1w, we've had a few in service on 1w nodes for multiple months now with no degredation."
 }
