@@ -39,8 +39,8 @@ const GRID_POINTS = 300
 // can be read against where each firmware actually transmits. Keep in sync
 // with the antenna chart and the prebuild's FILTER_MARKER_FREQS.
 const FREQ_MARKERS: { mhz: number; label: string }[] = [
-  { mhz: 906.875, label: "Meshtastic" },
-  { mhz: 910.525, label: "MeshCore" },
+  { mhz: 906.875, label: "Meshtastic US Default" },
+  { mhz: 910.525, label: "MeshCore US Default" },
 ]
 
 type DbKey = "s21_db" | "return_loss_db"

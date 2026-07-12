@@ -37,8 +37,8 @@ const GRID_POINTS = 300
 // Default operating frequencies (MHz) marked as vertical guides on every sweep,
 // so a curve can be read against where each firmware actually transmits.
 const FREQ_MARKERS: { mhz: number; label: string }[] = [
-  { mhz: 906.875, label: "Meshtastic" },
-  { mhz: 910.525, label: "MeshCore" },
+  { mhz: 906.875, label: "Meshtastic US Default" },
+  { mhz: 910.525, label: "MeshCore US Default" },
 ]
 
 // VSWR quality bands: green (great) -> red (poor). Rendered as translucent

@@ -29,8 +29,8 @@ const GRID_POINTS = 300
 // Vertical guides at each firmware's operating frequency. Keep in sync with the
 // single-filter sweep chart's FREQ_MARKERS.
 const FREQ_MARKERS: { mhz: number; label: string }[] = [
-  { mhz: 906.875, label: "Meshtastic" },
-  { mhz: 910.525, label: "MeshCore" },
+  { mhz: 906.875, label: "Meshtastic US Default" },
+  { mhz: 910.525, label: "MeshCore US Default" },
 ]
 
 function interpS21(points: FilterSweep["points"], targetHz: number): number | null {
