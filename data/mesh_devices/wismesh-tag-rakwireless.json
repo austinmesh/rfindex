@@ -1,5 +1,6 @@
 {
   "id": "wismesh-tag",
+  "sort_order": 60,
   "supported_firmware": [
     "Meshtastic",
     "MeshCore"

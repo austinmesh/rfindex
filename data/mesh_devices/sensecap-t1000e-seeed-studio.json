@@ -1,6 +1,6 @@
 {
   "id": "seeedstudio-sensecap-t1000e",
-  "sort_order": 60,
+  "sort_order": 120,
   "supported_firmware": [
     "Meshtastic",
     "MeshCore"
