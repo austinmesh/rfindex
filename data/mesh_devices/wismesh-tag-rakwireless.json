@@ -52,5 +52,5 @@
     "Complete"
   ],
   "description": "A waterproof card sized radio with GPS and internal antenna.",
-  "commentary": "Slightly nicer than the t1000, but less tested as of July 2026. Internal antenna devices will always underperform external antennas, but for someone who would otherwise not carry a node with them, this is a great option."
+  "commentary": "Surprisingly good RX for such a small internal antenna, as well as Bluetooth strength. It makes a great around-the-house companion. Capable of connecting through multiple walls. Transmit leaves a lot to be desired but for keeping up with the mesh at home, or small discrete carry on travel, it’s top notch. Especially after you figure out how to silence it 🤣 (triple tap is your friend)."
 }
