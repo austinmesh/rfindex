@@ -94,7 +94,9 @@ Types are the single source of truth — data files import from `types/`.
 
 ### Key Components
 
-- `components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/firmware filters, price slider, sort options, comparison dialog, URL-synced filter state
+- `components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/firmware filters, price slider, sort options, comparison dialog, URL-synced filter state, a Cards/Table view toggle (`?view=table`), and a full-width table mode (on by default in table view; `?wide=0` opts out) that hides the desktop sidebar (filters move to the slide-out sheet) and drops the centered container; DeviceFilters renders its own `container` wrapper for this reason, the page only wraps the title
+- `components/device-table.tsx` — spreadsheet-style device table (grouped headers: Device, Connectivity, Display, Build, Power, Radio, System, Price) with sortable column headers, sticky header rows and name column, compare checkboxes; columns are a config array, yes/no cells derive from the curated `features` vocabulary
+- `lib/device-sort.ts` — `SortOption` (`default` or `<key>-<asc|desc>` over name/manufacturer/price/tx/battery) and `compareDevices`, shared by the sidebar Sort By select and the table headers so one `sort` URL param covers both views
 - `components/antenna-filters.tsx` — client component with search, category filters, status/suggestion filters, sort options, URL-synced filter state
 - `components/filter-browser.tsx` — client component for the RF filter listing: search, filter-type/connector facets, loss-based sort, URL-synced state (named "browser" to avoid the FilterFilters double-word)
 - `components/filter-sweep-chart.tsx` (+ `-lazy`) — filter measurement display: combined Recharts S21 (solid) + S11 (dashed) dB chart beside a Smith chart, 50/50 on desktop and stacked on mobile, with per-range tabs (one tab per measured sweep span, narrowest first, opening on the filter's `default_range`) and one color per tested unit

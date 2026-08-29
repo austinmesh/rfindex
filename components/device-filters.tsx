@@ -4,7 +4,7 @@ import type { Device } from "@/types/device"
 import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Search, Sliders, X, ExternalLinkIcon, Scale } from "lucide-react"
+import { Search, Sliders, X, ExternalLinkIcon, Scale, Maximize2, Minimize2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
@@ -14,7 +14,7 @@ import { ExternalLink } from "@/components/external-link"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -22,14 +22,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares, maxTxPowerDbm, formatTxPower } from "@/lib/data"
 import { AddMissingCard } from "@/components/add-missing-card"
 import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
-
-type SortOption = "default" | "price-asc" | "price-desc"
-
-// Sort values arrive as plain strings (URL params, Select onValueChange);
-// anything unrecognized falls back to the default order.
-function parseSortOption(value: string | null): SortOption {
-  return value === "price-asc" || value === "price-desc" ? value : "default"
-}
+import { cn } from "@/lib/utils"
+import { compareDevices, parseSortOption, type SortOption } from "@/lib/device-sort"
+import { DeviceTable, DeviceViewToggle, parseViewMode, type DeviceViewMode } from "@/components/device-table"
 
 export function DeviceFilters({ devices }: { devices: Device[] }) {
   // Add these refs and state for scroll behavior
@@ -65,6 +60,16 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   const [priceRange, setPriceRange] = useState<number[]>([0, maxDevicePrice])
   const [minTxPower, setMinTxPower] = useState<number>(0)
   const [sortOption, setSortOption] = useState<SortOption>("default")
+  // Cards (the default, and what the static prerender ships) or the dense
+  // spreadsheet-style table. Not a filter: Clear All Filters leaves it alone.
+  const [view, setView] = useState<DeviceViewMode>("cards")
+  // Full-width table mode (the default for the table): hides the desktop
+  // filter sidebar (the slide-out sheet takes over, as on mobile) and widens
+  // the listing past the centered container. Only meaningful for the table;
+  // cards ignore it. Opting out is what gets written to the URL (?wide=0).
+  const [wide, setWide] = useState(true)
+  const wideActive = wide && view === "table"
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   // Comparison state
   const [selectedForComparison, setSelectedForComparison] = useState<string[]>([])
@@ -138,20 +143,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     )
   })
 
-  // Sort devices
-  const sortedDevices = [...filteredDevices].sort((a, b) => {
-    if (sortOption === "price-asc") {
-      const priceA = Number(typeof a.price.min === "string" ? a.price.min : a.price.min)
-      const priceB = Number(typeof b.price.min === "string" ? b.price.min : b.price.min)
-      return priceA - priceB
-    }
-    if (sortOption === "price-desc") {
-      const priceA = Number(typeof a.price.min === "string" ? a.price.min : a.price.min)
-      const priceB = Number(typeof b.price.min === "string" ? b.price.min : b.price.min)
-      return priceB - priceA
-    }
-    return 0 // Default sorting (no change)
-  })
+  // Sort devices (column sorts shared with the table view; see lib/device-sort)
+  const sortedDevices = [...filteredDevices].sort((a, b) => compareDevices(a, b, sortOption))
 
   const devicesToCompare = devices.filter((device) => selectedForComparison.includes(device.id))
 
@@ -266,6 +259,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setPriceRange([parseIntParam(params.get("priceMin"), 0), parseIntParam(params.get("priceMax"), maxDevicePrice)])
     setMinTxPower(parseIntParam(params.get("txMin"), 0))
     setSortOption(parseSortOption(params.get("sort")))
+    setView(parseViewMode(params.get("view")))
+    setWide(params.get("wide") !== "0")
     setSelectedForComparison(params.get("compare")?.split(",").filter(Boolean) || [])
     setIsCompareModalOpen(params.get("compareOpen") === "true")
   }, [maxDevicePrice])
@@ -306,6 +301,12 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     if (sortOption !== "default") params.set("sort", sortOption)
     else params.delete("sort")
 
+    if (view === "table") params.set("view", "table")
+    else params.delete("view")
+
+    if (!wide) params.set("wide", "0")
+    else params.delete("wide")
+
     if (selectedForComparison.length > 0) params.set("compare", selectedForComparison.join(","))
     else params.delete("compare")
 
@@ -322,6 +323,8 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     priceRange,
     minTxPower,
     sortOption,
+    view,
+    wide,
     selectedForComparison,
     isCompareModalOpen,
   ])
@@ -335,436 +338,453 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   return (
     <>
       {listener}
+      <div className={cn("pb-8", wideActive ? "px-4" : "container mx-auto px-4")}>
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Filters - Desktop */}
-        <div className="hidden md:block w-64 shrink-0">
-          <div className="sticky top-20 space-y-6 overflow-y-scroll h-[80vh]">
-            {hasActiveFilters && (
-              <Button variant="secondary" size="sm" className="w-full" onClick={clearAllFilters}>
-                <X className="h-4 w-4 mr-2" />
-                Clear All Filters
-              </Button>
-            )}
+        {/* Filters - Desktop (hidden in full-width table mode; the sheet takes over) */}
+        {!wideActive && (
+          <div className="hidden md:block w-64 shrink-0">
+            <div className="sticky top-20 space-y-6 overflow-y-scroll h-[80vh]">
+              {hasActiveFilters && (
+                <Button variant="secondary" size="sm" className="w-full" onClick={clearAllFilters}>
+                  <X className="h-4 w-4 mr-2" />
+                  Clear All Filters
+                </Button>
+              )}
 
-            <div>
-              <h3 className="font-semibold mb-3">Sort By</h3>
-              <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a sort option" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="default">Default</SelectItem>
-                  <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                  <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h3 className="font-semibold mb-3">Categories</h3>
-              <div className="space-y-2">
-                {allCategories.map((category) => (
-                  <div key={category} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`category-${category}`}
-                      checked={selectedCategories.includes(category)}
-                      onCheckedChange={() => toggleCategory(category)}
-                    />
-                    <Label htmlFor={`category-${category}`} className="capitalize">
-                      {category}
-                    </Label>
-                  </div>
-                ))}
+              <div>
+                <h3 className="font-semibold mb-3">Sort By</h3>
+                <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a sort option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="default">Default</SelectItem>
+                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    <SelectItem value="name-asc">Name: A to Z</SelectItem>
+                    <SelectItem value="name-desc">Name: Z to A</SelectItem>
+                    <SelectItem value="tx-desc">TX Power: High to Low</SelectItem>
+                    <SelectItem value="battery-desc">Battery: High to Low</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-            </div>
 
-            <Separator />
+              <Separator />
 
-            <div>
-              <h3 className="font-semibold mb-3">LoRa Frequencies</h3>
-              <div className="space-y-2">
-                {allLoraFrequencies.map((frequency) => (
-                  <div key={frequency} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`frequency-${frequency}`}
-                      checked={selectedLoraFrequencies.includes(frequency)}
-                      onCheckedChange={() => toggleLoraFrequency(frequency)}
-                    />
-                    <Label htmlFor={`frequency-${frequency}`}>{frequency}</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h3 className="font-semibold mb-3">Firmware</h3>
-              <div className="space-y-2">
-                {allFirmwares.map((firmware) => (
-                  <label key={firmware} className="flex items-center space-x-2 cursor-pointer">
-                    <Checkbox
-                      checked={selectedFirmwares.includes(firmware)}
-                      onCheckedChange={() => toggleFirmware(firmware)}
-                    />
-                    <span className="text-sm">{firmware}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h3 className="font-semibold mb-3">Microcontroller</h3>
-              <div className="space-y-2">
-                {allMicrocontrollers.map((microcontroller) => (
-                  <div key={microcontroller} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`microcontroller-${microcontroller}`}
-                      checked={selectedMicrocontrollers.includes(microcontroller)}
-                      onCheckedChange={() => toggleMicrocontroller(microcontroller)}
-                    />
-                    <Label htmlFor={`microcontroller-${microcontroller}`}>{microcontroller}</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h3 className="font-semibold mb-3">LoRa Radio</h3>
-              <div className="space-y-2">
-                {allLoraRadios.map((radio) => (
-                  <div key={radio} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`radio-${radio}`}
-                      checked={selectedLoraRadios.includes(radio)}
-                      onCheckedChange={() => toggleLoraRadio(radio)}
-                    />
-                    <Label htmlFor={`radio-${radio}`}>{radio}</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h3 className="font-semibold mb-3">Price Range</h3>
-              <Slider
-                defaultValue={[0, maxDevicePrice]}
-                max={maxDevicePrice}
-                step={1}
-                value={priceRange}
-                onValueChange={setPriceRange}
-                className="my-6"
-              />
-              <div className="flex items-center justify-between">
-                <div className="flex items-center border rounded-md">
-                  <span className="px-2 bg-muted text-muted-foreground">$</span>
-                  <input
-                    type="number"
-                    value={priceRange[0]}
-                    onChange={(e) => {
-                      const value = Number(e.target.value)
-                      if (!isNaN(value) && value >= 0) {
-                        setPriceRange([value, priceRange[1]])
-                      }
-                    }}
-                    className="w-12 p-1 text-center text-sm"
-                    min="0"
-                    max={priceRange[1]}
-                  />
-                </div>
-                <span className="text-muted-foreground">to</span>
-                <div className="flex items-center border rounded-md">
-                  <span className="px-2 bg-muted text-muted-foreground">$</span>
-                  <input
-                    type="number"
-                    value={priceRange[1]}
-                    onChange={(e) => {
-                      const value = Number(e.target.value)
-                      if (!isNaN(value) && value >= priceRange[0]) {
-                        setPriceRange([priceRange[0], value])
-                      }
-                    }}
-                    className="w-12 p-1 text-center text-sm"
-                    min={priceRange[0]}
-                    max={maxDevicePrice}
-                  />
+              <div>
+                <h3 className="font-semibold mb-3">Categories</h3>
+                <div className="space-y-2">
+                  {allCategories.map((category) => (
+                    <div key={category} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`category-${category}`}
+                        checked={selectedCategories.includes(category)}
+                        onCheckedChange={() => toggleCategory(category)}
+                      />
+                      <Label htmlFor={`category-${category}`} className="capitalize">
+                        {category}
+                      </Label>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mt-2">Shows devices with any price overlap in this range</p>
-            </div>
 
-            <Separator />
+              <Separator />
 
-            <div>
-              <h3 className="font-semibold mb-3">Min TX Power</h3>
-              <Slider
-                min={0}
-                max={maxTxPowerDbm}
-                step={1}
-                value={[minTxPower]}
-                onValueChange={(value) => setMinTxPower(value[0])}
-                className="my-6"
-              />
-              <p className="text-sm">{minTxPower === 0 ? "Any TX power" : `At least ${formatTxPower(minTxPower)}`}</p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Devices without a listed TX power are hidden while this is above 0.
-              </p>
-            </div>
+              <div>
+                <h3 className="font-semibold mb-3">LoRa Frequencies</h3>
+                <div className="space-y-2">
+                  {allLoraFrequencies.map((frequency) => (
+                    <div key={frequency} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`frequency-${frequency}`}
+                        checked={selectedLoraFrequencies.includes(frequency)}
+                        onCheckedChange={() => toggleLoraFrequency(frequency)}
+                      />
+                      <Label htmlFor={`frequency-${frequency}`}>{frequency}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            <Separator />
+              <Separator />
 
-            <div>
-              <h3 className="font-semibold mb-3">Features</h3>
-              <div className="space-y-2">
-                {allFeatures.map((feature) => (
-                  <div key={feature} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`feature-${feature}`}
-                      checked={selectedFeatures.includes(feature)}
-                      onCheckedChange={() => toggleFeature(feature)}
+              <div>
+                <h3 className="font-semibold mb-3">Firmware</h3>
+                <div className="space-y-2">
+                  {allFirmwares.map((firmware) => (
+                    <label key={firmware} className="flex items-center space-x-2 cursor-pointer">
+                      <Checkbox
+                        checked={selectedFirmwares.includes(firmware)}
+                        onCheckedChange={() => toggleFirmware(firmware)}
+                      />
+                      <span className="text-sm">{firmware}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Microcontroller</h3>
+                <div className="space-y-2">
+                  {allMicrocontrollers.map((microcontroller) => (
+                    <div key={microcontroller} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`microcontroller-${microcontroller}`}
+                        checked={selectedMicrocontrollers.includes(microcontroller)}
+                        onCheckedChange={() => toggleMicrocontroller(microcontroller)}
+                      />
+                      <Label htmlFor={`microcontroller-${microcontroller}`}>{microcontroller}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">LoRa Radio</h3>
+                <div className="space-y-2">
+                  {allLoraRadios.map((radio) => (
+                    <div key={radio} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`radio-${radio}`}
+                        checked={selectedLoraRadios.includes(radio)}
+                        onCheckedChange={() => toggleLoraRadio(radio)}
+                      />
+                      <Label htmlFor={`radio-${radio}`}>{radio}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Price Range</h3>
+                <Slider
+                  defaultValue={[0, maxDevicePrice]}
+                  max={maxDevicePrice}
+                  step={1}
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  className="my-6"
+                />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center border rounded-md">
+                    <span className="px-2 bg-muted text-muted-foreground">$</span>
+                    <input
+                      type="number"
+                      value={priceRange[0]}
+                      onChange={(e) => {
+                        const value = Number(e.target.value)
+                        if (!isNaN(value) && value >= 0) {
+                          setPriceRange([value, priceRange[1]])
+                        }
+                      }}
+                      className="w-12 p-1 text-center text-sm"
+                      min="0"
+                      max={priceRange[1]}
                     />
-                    <Label htmlFor={`feature-${feature}`}>{feature}</Label>
                   </div>
-                ))}
+                  <span className="text-muted-foreground">to</span>
+                  <div className="flex items-center border rounded-md">
+                    <span className="px-2 bg-muted text-muted-foreground">$</span>
+                    <input
+                      type="number"
+                      value={priceRange[1]}
+                      onChange={(e) => {
+                        const value = Number(e.target.value)
+                        if (!isNaN(value) && value >= priceRange[0]) {
+                          setPriceRange([priceRange[0], value])
+                        }
+                      }}
+                      className="w-12 p-1 text-center text-sm"
+                      min={priceRange[0]}
+                      max={maxDevicePrice}
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">Shows devices with any price overlap in this range</p>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Min TX Power</h3>
+                <Slider
+                  min={0}
+                  max={maxTxPowerDbm}
+                  step={1}
+                  value={[minTxPower]}
+                  onValueChange={(value) => setMinTxPower(value[0])}
+                  className="my-6"
+                />
+                <p className="text-sm">{minTxPower === 0 ? "Any TX power" : `At least ${formatTxPower(minTxPower)}`}</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Devices without a listed TX power are hidden while this is above 0.
+                </p>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Features</h3>
+                <div className="space-y-2">
+                  {allFeatures.map((feature) => (
+                    <div key={feature} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`feature-${feature}`}
+                        checked={selectedFeatures.includes(feature)}
+                        onCheckedChange={() => toggleFeature(feature)}
+                      />
+                      <Label htmlFor={`feature-${feature}`}>{feature}</Label>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+        )}
+
+        {/* Filters - Mobile (and desktop in full-width table mode): controlled sheet */}
+        <div className="md:hidden mb-4 flex items-center gap-2">
+          <DeviceViewToggle view={view} onChange={setView} />
+          <Button variant="outline" className="flex-1" onClick={() => setFiltersOpen(true)}>
+            <Sliders className="h-4 w-4 mr-2" />
+            Filters
+          </Button>
         </div>
+        <Sheet open={filtersOpen} onOpenChange={setFiltersOpen}>
+          <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
+            <SheetHeader>
+              <SheetTitle className="flex items-center justify-between">
+                <span>Filters</span>
+                {hasActiveFilters && (
+                  <Button variant="secondary" size="sm" className="mr-3" onClick={clearAllFilters}>
+                    <X className="h-4 w-4 mr-2" />
+                    Clear All
+                  </Button>
+                )}
+              </SheetTitle>
+              <SheetDescription>Filter devices by category, features, and price.</SheetDescription>
+            </SheetHeader>
+            <div className="space-y-6 py-4">
+              <div>
+                <h3 className="font-semibold mb-3">Sort By</h3>
+                <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a sort option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="default">Default</SelectItem>
+                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    <SelectItem value="name-asc">Name: A to Z</SelectItem>
+                    <SelectItem value="name-desc">Name: Z to A</SelectItem>
+                    <SelectItem value="tx-desc">TX Power: High to Low</SelectItem>
+                    <SelectItem value="battery-desc">Battery: High to Low</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-        {/* Filters - Mobile */}
-        <div className="md:hidden mb-4">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" className="w-full">
-                <Sliders className="h-4 w-4 mr-2" />
-                Filters
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
-              <SheetHeader>
-                <SheetTitle className="flex items-center justify-between">
-                  <span>Filters</span>
-                  {hasActiveFilters && (
-                    <Button variant="secondary" size="sm" className="mr-3" onClick={clearAllFilters}>
-                      <X className="h-4 w-4 mr-2" />
-                      Clear All
-                    </Button>
-                  )}
-                </SheetTitle>
-                <SheetDescription>Filter devices by category, features, and price.</SheetDescription>
-              </SheetHeader>
-              <div className="space-y-6 py-4">
-                <div>
-                  <h3 className="font-semibold mb-3">Sort By</h3>
-                  <Select value={sortOption} onValueChange={(value) => setSortOption(parseSortOption(value))}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a sort option" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="default">Default</SelectItem>
-                      <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                      <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              <Separator />
 
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">Categories</h3>
-                  <div className="space-y-2">
-                    {allCategories.map((category) => (
-                      <div key={category} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`mobile-category-${category}`}
-                          checked={selectedCategories.includes(category)}
-                          onCheckedChange={() => toggleCategory(category)}
-                        />
-                        <Label htmlFor={`mobile-category-${category}`} className="capitalize">
-                          {category}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">LoRa Frequencies</h3>
-                  <div className="space-y-2">
-                    {allLoraFrequencies.map((frequency) => (
-                      <div key={frequency} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`mobile-frequency-${frequency}`}
-                          checked={selectedLoraFrequencies.includes(frequency)}
-                          onCheckedChange={() => toggleLoraFrequency(frequency)}
-                        />
-                        <Label htmlFor={`mobile-frequency-${frequency}`}>{frequency}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">Firmware</h3>
-                  <div className="space-y-2">
-                    {allFirmwares.map((firmware) => (
-                      <label key={firmware} className="flex items-center space-x-2 cursor-pointer">
-                        <Checkbox
-                          checked={selectedFirmwares.includes(firmware)}
-                          onCheckedChange={() => toggleFirmware(firmware)}
-                        />
-                        <span className="text-sm">{firmware}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">Microcontroller</h3>
-                  <div className="space-y-2">
-                    {allMicrocontrollers.map((microcontroller) => (
-                      <div key={microcontroller} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`mobile-microcontroller-${microcontroller}`}
-                          checked={selectedMicrocontrollers.includes(microcontroller)}
-                          onCheckedChange={() => toggleMicrocontroller(microcontroller)}
-                        />
-                        <Label htmlFor={`mobile-microcontroller-${microcontroller}`}>{microcontroller}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">LoRa Radio</h3>
-                  <div className="space-y-2">
-                    {allLoraRadios.map((radio) => (
-                      <div key={radio} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`mobile-radio-${radio}`}
-                          checked={selectedLoraRadios.includes(radio)}
-                          onCheckedChange={() => toggleLoraRadio(radio)}
-                        />
-                        <Label htmlFor={`mobile-radio-${radio}`}>{radio}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">Price Range</h3>
-                  <Slider
-                    defaultValue={[0, maxDevicePrice]}
-                    max={maxDevicePrice}
-                    step={1}
-                    value={priceRange}
-                    onValueChange={setPriceRange}
-                    className="my-6"
-                  />
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center border rounded-md">
-                      <span className="px-2 bg-muted text-muted-foreground">$</span>
-                      <input
-                        type="number"
-                        value={priceRange[0]}
-                        onChange={(e) => {
-                          const value = Number(e.target.value)
-                          if (!isNaN(value) && value >= 0) {
-                            setPriceRange([value, priceRange[1]])
-                          }
-                        }}
-                        className="w-12 p-1 text-center text-sm"
-                        min="0"
-                        max={priceRange[1]}
+              <div>
+                <h3 className="font-semibold mb-3">Categories</h3>
+                <div className="space-y-2">
+                  {allCategories.map((category) => (
+                    <div key={category} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`mobile-category-${category}`}
+                        checked={selectedCategories.includes(category)}
+                        onCheckedChange={() => toggleCategory(category)}
                       />
+                      <Label htmlFor={`mobile-category-${category}`} className="capitalize">
+                        {category}
+                      </Label>
                     </div>
-                    <span className="text-muted-foreground">to</span>
-                    <div className="flex items-center border rounded-md">
-                      <span className="px-2 bg-muted text-muted-foreground">$</span>
-                      <input
-                        type="number"
-                        value={priceRange[1]}
-                        onChange={(e) => {
-                          const value = Number(e.target.value)
-                          if (!isNaN(value) && value >= priceRange[0]) {
-                            setPriceRange([priceRange[0], value])
-                          }
-                        }}
-                        className="w-12 p-1 text-center text-sm"
-                        min={priceRange[0]}
-                        max={maxDevicePrice}
-                      />
-                    </div>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    Shows devices with any price overlap in this range
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">Min TX Power</h3>
-                  <Slider
-                    min={0}
-                    max={maxTxPowerDbm}
-                    step={1}
-                    value={[minTxPower]}
-                    onValueChange={(value) => setMinTxPower(value[0])}
-                    className="my-6"
-                  />
-                  <p className="text-sm">
-                    {minTxPower === 0 ? "Any TX power" : `At least ${formatTxPower(minTxPower)}`}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Devices without a listed TX power are hidden while this is above 0.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="font-semibold mb-3">Features</h3>
-                  <div className="space-y-2">
-                    {allFeatures.map((feature) => (
-                      <div key={feature} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`mobile-feature-${feature}`}
-                          checked={selectedFeatures.includes(feature)}
-                          onCheckedChange={() => toggleFeature(feature)}
-                        />
-                        <Label htmlFor={`mobile-feature-${feature}`}>{feature}</Label>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">LoRa Frequencies</h3>
+                <div className="space-y-2">
+                  {allLoraFrequencies.map((frequency) => (
+                    <div key={frequency} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`mobile-frequency-${frequency}`}
+                        checked={selectedLoraFrequencies.includes(frequency)}
+                        onCheckedChange={() => toggleLoraFrequency(frequency)}
+                      />
+                      <Label htmlFor={`mobile-frequency-${frequency}`}>{frequency}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Firmware</h3>
+                <div className="space-y-2">
+                  {allFirmwares.map((firmware) => (
+                    <label key={firmware} className="flex items-center space-x-2 cursor-pointer">
+                      <Checkbox
+                        checked={selectedFirmwares.includes(firmware)}
+                        onCheckedChange={() => toggleFirmware(firmware)}
+                      />
+                      <span className="text-sm">{firmware}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Microcontroller</h3>
+                <div className="space-y-2">
+                  {allMicrocontrollers.map((microcontroller) => (
+                    <div key={microcontroller} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`mobile-microcontroller-${microcontroller}`}
+                        checked={selectedMicrocontrollers.includes(microcontroller)}
+                        onCheckedChange={() => toggleMicrocontroller(microcontroller)}
+                      />
+                      <Label htmlFor={`mobile-microcontroller-${microcontroller}`}>{microcontroller}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">LoRa Radio</h3>
+                <div className="space-y-2">
+                  {allLoraRadios.map((radio) => (
+                    <div key={radio} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`mobile-radio-${radio}`}
+                        checked={selectedLoraRadios.includes(radio)}
+                        onCheckedChange={() => toggleLoraRadio(radio)}
+                      />
+                      <Label htmlFor={`mobile-radio-${radio}`}>{radio}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Price Range</h3>
+                <Slider
+                  defaultValue={[0, maxDevicePrice]}
+                  max={maxDevicePrice}
+                  step={1}
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  className="my-6"
+                />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center border rounded-md">
+                    <span className="px-2 bg-muted text-muted-foreground">$</span>
+                    <input
+                      type="number"
+                      value={priceRange[0]}
+                      onChange={(e) => {
+                        const value = Number(e.target.value)
+                        if (!isNaN(value) && value >= 0) {
+                          setPriceRange([value, priceRange[1]])
+                        }
+                      }}
+                      className="w-12 p-1 text-center text-sm"
+                      min="0"
+                      max={priceRange[1]}
+                    />
+                  </div>
+                  <span className="text-muted-foreground">to</span>
+                  <div className="flex items-center border rounded-md">
+                    <span className="px-2 bg-muted text-muted-foreground">$</span>
+                    <input
+                      type="number"
+                      value={priceRange[1]}
+                      onChange={(e) => {
+                        const value = Number(e.target.value)
+                        if (!isNaN(value) && value >= priceRange[0]) {
+                          setPriceRange([priceRange[0], value])
+                        }
+                      }}
+                      className="w-12 p-1 text-center text-sm"
+                      min={priceRange[0]}
+                      max={maxDevicePrice}
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Shows devices with any price overlap in this range
+                </p>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Min TX Power</h3>
+                <Slider
+                  min={0}
+                  max={maxTxPowerDbm}
+                  step={1}
+                  value={[minTxPower]}
+                  onValueChange={(value) => setMinTxPower(value[0])}
+                  className="my-6"
+                />
+                <p className="text-sm">
+                  {minTxPower === 0 ? "Any TX power" : `At least ${formatTxPower(minTxPower)}`}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Devices without a listed TX power are hidden while this is above 0.
+                </p>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h3 className="font-semibold mb-3">Features</h3>
+                <div className="space-y-2">
+                  {allFeatures.map((feature) => (
+                    <div key={feature} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`mobile-feature-${feature}`}
+                        checked={selectedFeatures.includes(feature)}
+                        onCheckedChange={() => toggleFeature(feature)}
+                      />
+                      <Label htmlFor={`mobile-feature-${feature}`}>{feature}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
 
         {/* Device listing */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           {/* Desktop: Search and Compare side by side */}
           <div className="hidden md:flex gap-4 mb-8 sticky top-[8px] bg-white z-[50]">
+            {wideActive && (
+              <Button variant="outline" className="h-auto" onClick={() => setFiltersOpen(true)}>
+                <Sliders className="h-4 w-4 mr-2" />
+                Filters
+                {hasActiveFilters && <span className="ml-2 h-2 w-2 rounded-full bg-primary" aria-label="Filters active" />}
+              </Button>
+            )}
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
@@ -775,6 +795,19 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
+            <DeviceViewToggle view={view} onChange={setView} className="self-center" />
+            {view === "table" && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="self-center h-10"
+                aria-pressed={wide}
+                onClick={() => setWide((prev) => !prev)}
+              >
+                {wide ? <Minimize2 className="h-4 w-4 mr-2" /> : <Maximize2 className="h-4 w-4 mr-2" />}
+                {wide ? "Exit full width" : "Full width"}
+              </Button>
+            )}
             <div className="bg-background border rounded-lg px-4 py-1 flex items-center justify-between shadow-sm">
               <div className="flex items-center">
                 {selectedForComparison.length > 0 ? (
@@ -844,64 +877,75 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
               <p className="text-muted-foreground">Try adjusting your filters or search query</p>
             </div>
           )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sortedDevices.map((device) => (
-                <Card key={device.id} className="overflow-hidden group">
-                  <div className="aspect-square relative">
-                    <Link
-                      href={`/mesh/devices/${device.id}`}
-                      aria-label={device.name}
-                      className="absolute inset-0 block"
-                    >
-                      <Image
-                        src={device.image_url[0] || "/placeholder.svg"}
-                        alt={device.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </Link>
-                    <div className="absolute top-2 left-2 flex items-center bg-transparent group-hover:bg-white/90 rounded px-1 py-0.5">
-                      <Checkbox
-                        id={`compare-${device.id}`}
-                        aria-label={`Compare ${device.name}`}
-                        checked={selectedForComparison.includes(device.id)}
-                        onCheckedChange={() => toggleDeviceComparison(device.id)}
-                        className="h-5 w-5 border-gray-400 bg-white/90"
-                      />
-                      <label
-                        htmlFor={`compare-${device.id}`}
-                        className="ml-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+          {view === "table" ? (
+            <DeviceTable
+              devices={sortedDevices}
+              sortOption={sortOption}
+              onSortChange={setSortOption}
+              selectedForComparison={selectedForComparison}
+              onToggleComparison={toggleDeviceComparison}
+            />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sortedDevices.map((device) => (
+                  <Card key={device.id} className="overflow-hidden group">
+                    <div className="aspect-square relative">
+                      <Link
+                        href={`/mesh/devices/${device.id}`}
+                        aria-label={device.name}
+                        className="absolute inset-0 block"
                       >
-                        Compare
-                      </label>
+                        <Image
+                          src={device.image_url[0] || "/placeholder.svg"}
+                          alt={device.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </Link>
+                      <div className="absolute top-2 left-2 flex items-center bg-transparent group-hover:bg-white/90 rounded px-1 py-0.5">
+                        <Checkbox
+                          id={`compare-${device.id}`}
+                          aria-label={`Compare ${device.name}`}
+                          checked={selectedForComparison.includes(device.id)}
+                          onCheckedChange={() => toggleDeviceComparison(device.id)}
+                          className="h-5 w-5 border-gray-400 bg-white/90"
+                        />
+                        <label
+                          htmlFor={`compare-${device.id}`}
+                          className="ml-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                        >
+                          Compare
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <div className="space-y-1">
-                      <h3 className="font-semibold text-lg">
-                        <Link href={`/mesh/devices/${device.id}`} className="hover:underline">
-                          {device.name}
-                        </Link>
-                      </h3>
-                      <p className="text-sm text-muted-foreground">{device.manufacturer}</p>
-                      <p className="text-sm line-clamp-2">{device.description}</p>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0 flex justify-between items-center">
-                    <div className="font-semibold">
-                      ${typeof device.price.min === "string" ? device.price.min : device.price.min.toFixed(2)}
-                      {device.price.min !== device.price.max &&
-                        ` - ${typeof device.price.max === "string" ? device.price.max : device.price.max.toFixed(2)}`}
-                    </div>
-                    <Button variant="outline" asChild size="sm">
-                      <Link href={`/mesh/devices/${device.id}`}>View Details</Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            <AddMissingCard type="device" />
-          </div>
+                    <CardContent className="p-4">
+                      <div className="space-y-1">
+                        <h3 className="font-semibold text-lg">
+                          <Link href={`/mesh/devices/${device.id}`} className="hover:underline">
+                            {device.name}
+                          </Link>
+                        </h3>
+                        <p className="text-sm text-muted-foreground">{device.manufacturer}</p>
+                        <p className="text-sm line-clamp-2">{device.description}</p>
+                      </div>
+                    </CardContent>
+                    <CardFooter className="p-4 pt-0 flex justify-between items-center">
+                      <div className="font-semibold">
+                        ${typeof device.price.min === "string" ? device.price.min : device.price.min.toFixed(2)}
+                        {device.price.min !== device.price.max &&
+                          ` - ${typeof device.price.max === "string" ? device.price.max : device.price.max.toFixed(2)}`}
+                      </div>
+                      <Button variant="outline" asChild size="sm">
+                        <Link href={`/mesh/devices/${device.id}`}>View Details</Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                ))}
+              <AddMissingCard type="device" />
+            </div>
+          )}
         </div>
+      </div>
       </div>
 
       {/* Comparison Modal */}

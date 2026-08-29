@@ -17,7 +17,7 @@ export default function DeviceListingPage() {
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-8 mt-8 md:mt-0">
+        <div className="container mx-auto px-4 pt-8 mt-8 md:mt-0">
           {/* Page title */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">Compare Devices for Meshtastic and MeshCore</h1>
@@ -30,9 +30,11 @@ export default function DeviceListingPage() {
               useUrlFilterSync; if a bare useSearchParams() is ever reintroduced
               in this tree, the missing-suspense build error fires loudly instead
               of the grid silently vanishing from the HTML.
-              scripts/check-prerendered-links.ts backstops this after every build. */}
-          <DeviceFilters devices={devices} />
+              scripts/check-prerendered-links.ts backstops this after every build.
+              DeviceFilters renders its own container so the table's full-width
+              mode can widen past the centered column. */}
         </div>
+        <DeviceFilters devices={devices} />
       </main>
       <SiteFooter />
     </div>
