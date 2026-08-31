@@ -39,7 +39,6 @@ export type Device = {
   price: DevicePrice
   specifications: DeviceSpecifications
   features: string[]
-  supported_firmware: string[]
   commentary?: string
   sort_order?: number
 }

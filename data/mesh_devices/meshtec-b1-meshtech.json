@@ -1,8 +1,5 @@
 {
   "id": "meshtech-b1",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "meshtech",

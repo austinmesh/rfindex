@@ -1,9 +1,5 @@
 {
   "id": "seeedstudio-wio-tracker-1110",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "seeed-studio",

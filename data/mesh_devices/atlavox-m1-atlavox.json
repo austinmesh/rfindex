@@ -1,9 +1,6 @@
 {
   "id": "atlavox-m1",
   "sort_order": 50,
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "atlavox",

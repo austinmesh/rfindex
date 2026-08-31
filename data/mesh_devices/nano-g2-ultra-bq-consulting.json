@@ -1,9 +1,5 @@
 {
   "id": "bq-consulting-nano-g2-ultra",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "bq-consulting",

@@ -195,11 +195,6 @@ collections:
     fields:
       - { label: "ID", name: "id", widget: "string", hint: "URL slug used for routing (e.g. heltec-lora-32-v3). Must match existing site URLs." }
       - { label: "Sort Order", name: "sort_order", widget: "number", value_type: "int", required: false, hint: "Optional manual ordering; lower numbers sort first." }
-      - label: "Supported Firmware"
-        name: "supported_firmware"
-        widget: "select"
-        options: ["Meshtastic", "MeshCore"]
-        multiple: true
       - { name: "title", label: "Title", widget: "string" }
       - label: "Manufacturer"
         name: "manufacturer"

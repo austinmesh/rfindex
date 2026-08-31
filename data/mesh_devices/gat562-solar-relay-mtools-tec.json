@@ -1,9 +1,5 @@
 {
   "id": "mtools-tec-gat562-solar-relay",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "mtools-tec",

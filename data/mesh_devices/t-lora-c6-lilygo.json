@@ -1,9 +1,5 @@
 {
   "id": "lilygo-t-lora-c6",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "lilygo",

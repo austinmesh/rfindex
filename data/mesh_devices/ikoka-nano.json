@@ -1,8 +1,5 @@
 {
   "id": "ikoka-nano",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "github",

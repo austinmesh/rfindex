@@ -1,9 +1,5 @@
 {
   "id": "heltec-lora-32-v3",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

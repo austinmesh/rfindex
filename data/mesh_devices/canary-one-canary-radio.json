@@ -1,8 +1,5 @@
 {
   "id": "canary-radio-canary-one",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "canary-radio-co",

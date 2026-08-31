@@ -21,7 +21,6 @@ body:
         - Specifications
         - Purchase links
         - Image
-        - Firmware support
         - Other
     validations:
       required: true

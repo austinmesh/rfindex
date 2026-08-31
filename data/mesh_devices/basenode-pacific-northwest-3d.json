@@ -1,8 +1,5 @@
 {
   "id": "pacific-nw-3d-basenode",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "pacific-northwest-3d",

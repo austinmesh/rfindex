@@ -2,20 +2,12 @@
 "type": "object",
   "required": [
     "id", "title", "manufacturer", "model", "category",
-    "purchase_urls", "price", "specifications", "supported_firmware"
+    "purchase_urls", "price", "specifications"
   ],
   "additionalProperties": false,
   "properties": {
     "id": { "type": "string", "minLength": 1 },
     "sort_order": { "type": "integer" },
-    "supported_firmware": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": ["Meshtastic", "MeshCore"]
-      },
-      "minItems": 1
-    },
     "title": { "type": "string", "minLength": 1 },
     "manufacturer": { "type": "string", "minLength": 1 },
     "model": { "type": "string", "minLength": 1 },

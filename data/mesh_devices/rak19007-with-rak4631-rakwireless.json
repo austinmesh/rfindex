@@ -1,10 +1,6 @@
 {
   "id": "rak-rak19007-4631",
   "sort_order": 10,
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

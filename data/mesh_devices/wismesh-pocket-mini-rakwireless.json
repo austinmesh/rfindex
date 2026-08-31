@@ -1,9 +1,5 @@
 {
   "id": "wismesh-pocket-mini",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

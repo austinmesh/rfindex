@@ -1,10 +1,6 @@
 {
   "id": "heltec-mesh-node-t114",
   "sort_order": 20,
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

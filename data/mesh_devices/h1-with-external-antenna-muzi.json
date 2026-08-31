@@ -1,8 +1,5 @@
 {
   "id": "muzi-works-h1-heltec-v3-whip-antenna",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "muzi-works",

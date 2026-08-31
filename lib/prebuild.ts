@@ -67,7 +67,6 @@ type RawDevice = {
     interfaces: string[]
   }
   features?: string[]
-  supported_firmware: string[]
   commentary?: string
   sort_order?: number
 }
@@ -121,7 +120,6 @@ function mapRawDevice(raw: RawDevice, file: string) {
     price: raw.price,
     specifications: raw.specifications,
     features: raw.features ?? [],
-    supported_firmware: raw.supported_firmware,
     ...(raw.commentary ? { commentary: sanitizeCommentary(raw.commentary) } : {}),
     ...(raw.sort_order != null ? { sort_order: raw.sort_order } : {}),
   }

@@ -1,8 +1,5 @@
 {
   "id": "muzi-works-r1-neo",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "muzi-works",

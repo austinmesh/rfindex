@@ -1,8 +1,5 @@
 {
   "id": "circuitmess-chatter-2",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "circuitmess",

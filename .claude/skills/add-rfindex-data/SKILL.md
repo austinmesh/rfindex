@@ -40,7 +40,7 @@ With no argument, ask for the URL.
    if one was given, otherwise ask), plus name + manufacturer.
 3. **Auto-draft**: `WebFetch` the URL and extract specs. Ask the user only for
    what the page doesn't give or that's uncertain: price range, category,
-   supported firmware, commentary.
+   commentary.
 4. **Draft JSON** against `schemas/<collection>.json`: every required field,
    exact enum spelling/casing, no extra keys.
 5. **Resolve relations** (devices only): see below. Missing value → **warn
@@ -65,12 +65,11 @@ Read the schema for the full field list; these are the traps.
   `id` is a *separate* short URL routing slug (e.g. `heltec-lora-32-v3`),
   unique across devices. Check: `ls data/mesh_devices/ | grep <slug>`.
 - Required: `id, title, manufacturer, model, category, purchase_urls, price,
-  specifications, supported_firmware`.
+  specifications`.
 - `manufacturer` and each `purchase_urls[].supplier` are **reference slugs**,
   not display titles. See Relations.
 - `image` is a **public path**: `/devices/<name>.webp`.
-- Enums (full lists in the schema): `supported_firmware`
-  ["Meshtastic","MeshCore"]; `category` ["DIY","Complete","Solar","Standalone"];
+- Enums (full lists in the schema): `category` ["DIY","Complete","Solar","Standalone"];
   `features` is a fixed schema enum (see Relations); `lora_frequencies` use
   spaced form `"915 MHz"` (not `915MHz`); `specifications.max_tx_power_dbm` is
   **dBm not watts** (0.5 W=27, 1 W=30, 2 W=33); `lora_radio` goes in

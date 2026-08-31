@@ -71,10 +71,6 @@ export function formatTxPower(dbm?: number): string {
   return `${dbm} dBm (${magnitude})`
 }
 
-export const allFirmwares = Array.from(
-  new Set(devices.flatMap((device) => device.supported_firmware)),
-).sort()
-
 // --- Antenna derived constants ---
 
 export const antennaSitemapData: AntennaSitemapItem[] = antennas.map((antenna) => ({

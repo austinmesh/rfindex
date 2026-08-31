@@ -1,8 +1,5 @@
 {
   "id": "muzi-works-r1-external-antenna",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "muzi-works",

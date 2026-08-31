@@ -1,9 +1,5 @@
 {
   "id": "seeedstudio-wio-sx1262-xiao-nrf52840",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "aliexpress",

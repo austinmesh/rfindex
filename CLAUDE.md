@@ -62,7 +62,7 @@ All data lives in the `data/` directory (device/antenna JSON files and images).
 - `data/antennas-generated.ts` — auto-generated Antenna[] array (gitignored, regenerated every build)
 - `data/filters-generated.ts` — auto-generated RfFilter[] array (gitignored, regenerated every build)
 - `data/devices.ts` — `featureDescriptions` only (UI copy)
-- `lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, firmwares, filter types/connectors). All app code imports from here.
+- `lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, filter types/connectors). All app code imports from here.
 
 Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-generated.ts`, `data/filters-generated.ts`, `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/` are all regenerated from `data/` at build time.
 
@@ -86,7 +86,7 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 ### Types
 
-- `types/device.ts` — `Device` (includes `supported_firmware: string[]`), `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
+- `types/device.ts` — `Device`, `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
 - `types/antenna.ts` — `Antenna`, `AntennaMarker`, `AntennaTestResult`, `AntennaManufacturer`, `AntennaSupplier`, `AntennaDimensions`, `AntennaSitemapItem`, `StatusOption`
 - `types/filter.ts` — `RfFilter`, `FilterTestResult` (authored `touchstones` + computed `sweeps`/`summary`), `FilterSweep`, `FilterMarker`, `FilterPassband`, `FilterRejectionPoint`, `FilterSitemapItem`
 
@@ -94,14 +94,14 @@ Types are the single source of truth — data files import from `types/`.
 
 ### Key Components
 
-- `components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/firmware filters, price slider, sort options, comparison dialog, URL-synced filter state, a Cards/Table view toggle (`?view=table`), and a full-width table mode (on by default in table view; `?wide=0` opts out) that hides the desktop sidebar (filters move to the slide-out sheet) and drops the centered container; DeviceFilters renders its own `container` wrapper for this reason, the page only wraps the title
+- `components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/radio filters, price slider, sort options, comparison dialog, URL-synced filter state, a Cards/Table view toggle (`?view=table`), and a full-width table mode (on by default in table view; `?wide=0` opts out) that hides the desktop sidebar (filters move to the slide-out sheet) and drops the centered container; DeviceFilters renders its own `container` wrapper for this reason, the page only wraps the title
 - `components/device-table.tsx` — spreadsheet-style device table (grouped headers: Device, Connectivity, Display, Build, Power, Radio, System, Price) with sortable column headers, sticky header rows and name column, compare checkboxes; columns are a config array, yes/no cells derive from the curated `features` vocabulary
 - `lib/device-sort.ts` — `SortOption` (`default` or `<key>-<asc|desc>` over name/manufacturer/price/tx/battery) and `compareDevices`, shared by the sidebar Sort By select and the table headers so one `sort` URL param covers both views
 - `components/antenna-filters.tsx` — client component with search, category filters, status/suggestion filters, sort options, URL-synced filter state
 - `components/filter-browser.tsx` — client component for the RF filter listing: search, filter-type/connector facets, loss-based sort, URL-synced state (named "browser" to avoid the FilterFilters double-word)
 - `components/filter-sweep-chart.tsx` (+ `-lazy`) — filter measurement display: combined Recharts S21 (solid) + S11 (dashed) dB chart beside a Smith chart, 50/50 on desktop and stacked on mobile, with per-range tabs (one tab per measured sweep span, narrowest first, opening on the filter's `default_range`) and one color per tested unit
 - `components/smith-chart.tsx` — hand-rolled SVG Smith chart (no charting lib): normalized R/X grid, one S11 locus per unit, Meshtastic/MeshCore dots, hover/tap readout of Z = R + jX and return loss
-- `components/site-header.tsx` — sticky nav with "Mesh" dropdown (Devices, Antennas, Filters, Meshtastic, MeshCore), mobile sheet menu
+- `components/site-header.tsx` — sticky nav with "Mesh" dropdown (All Devices, Antennas, Filters), mobile sheet menu
 - `components/site-footer.tsx`
 - `components/ui/` — 14 shadcn/ui components, only the ones actually imported (do not modify directly unless customizing; re-add pruned ones via the shadcn CLI when needed)
 
@@ -161,9 +161,8 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 - **Detail pages use `generateStaticParams`** — all device/antenna/filter pages are statically generated at build time
 - **Unknown detail slugs return real HTTP 404s.** All detail pages set `dynamicParams = false`, and unknown paths render the branded `app/not-found.tsx` with a 404 status. This depends on the static-assets incremental cache configured in `open-next.config.ts`: `fallback:false` forbids on-demand rendering, so the Worker must serve the prerendered pages from that cache. Never remove the cache config while `dynamicParams = false` is set, or every detail page 404s in production (a plain `notFound()` guard without `dynamicParams = false` is not a substitute: Next serves those on-demand not-found renders with HTTP 200). Verify with `pnpm preview` + curl: valid slugs 200, unknown slugs 404.
 - **Devices use `id` field, antennas and filters use `slug` field** as their URL parameter
-- **Devices have `supported_firmware`** — multi-select array (e.g., `["Meshtastic", "MeshCore"]`) for firmware compatibility filtering
 - **SEO**: every page exports `metadata` with title, description, and `alternates.canonical`
-- **Firmware filtering**: the devices page (`DeviceFilters`) reads a `?firmware=Meshtastic` or `?firmware=MeshCore` query param to pre-filter by firmware
+- **No firmware field or filter**: devices do not record Meshtastic/MeshCore support (`supported_firmware` was removed 2026-08; nearly every board runs both and the data was not reliable). Do not reintroduce it.
 - **301 redirects** in `next.config.mjs` preserve old `/meshtastic/` URLs → `/mesh/`, and redirect the former `/mesh/meshtastic` and `/mesh/meshcore` landing pages → `/mesh/devices`
 - **Images are unoptimized** (`next.config.mjs` sets `images.unoptimized: true`)
 - **Filter state is URL-synced** — all three listing components (devices, antennas, RF filters) sync state with URL search params through `hooks/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
@@ -174,7 +173,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 
 ### New Device
 
-Add a JSON file to `data/mesh_devices/` with an `id` field matching the URL slug and a `supported_firmware` array (e.g., `["Meshtastic"]` or `["Meshtastic", "MeshCore"]`). Place the product image in `data/mesh_devices/images/` as WebP and reference it by bare filename in the `image` field, the same rule as antennas (a full `/devices/...` path is also accepted; the CMS writes that form).
+Add a JSON file to `data/mesh_devices/` with an `id` field matching the URL slug. Place the product image in `data/mesh_devices/images/` as WebP and reference it by bare filename in the `image` field, the same rule as antennas (a full `/devices/...` path is also accepted; the CMS writes that form).
 
 The `manufacturer` field and every `purchase_urls[].supplier` store reference-collection **slugs**, not display names (e.g., `"manufacturer": "lilygo"`, `"supplier": "rokland"`). The slug must exist in `data/mesh_manufacturers/` (or `data/manufacturers/`) / `data/suppliers/`; for a new brand, add the reference file (with `title` and `slug`) in the same PR. `pnpm validate` fails on unknown slugs and suggests the slug if you wrote a display title.
 

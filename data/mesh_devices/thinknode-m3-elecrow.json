@@ -1,8 +1,5 @@
 {
   "id": "elecrow-thinknode-m3",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "amazon",

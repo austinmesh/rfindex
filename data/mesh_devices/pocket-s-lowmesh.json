@@ -1,8 +1,5 @@
 {
   "id": "lowmesh-pocket-s",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

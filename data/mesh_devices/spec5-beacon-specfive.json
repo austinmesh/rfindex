@@ -1,8 +1,5 @@
 {
   "id": "spec5-beacon",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "specfive",

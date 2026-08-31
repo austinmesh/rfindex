@@ -1,8 +1,5 @@
 {
   "id": "wismesh-1w-booster",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

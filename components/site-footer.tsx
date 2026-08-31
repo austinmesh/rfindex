@@ -14,7 +14,7 @@ export function SiteFooter() {
                 Home
               </Link>
               <Link href="/mesh/devices" className="text-muted-foreground hover:text-foreground transition-colors">
-                Meshtastic
+                Devices
               </Link>
               <Link href="/mesh/antennas" className="text-muted-foreground hover:text-foreground transition-colors">
                 Antennas

@@ -1,9 +1,5 @@
 {
   "id": "seeedstudio-sensecap-indicator",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "aliexpress",

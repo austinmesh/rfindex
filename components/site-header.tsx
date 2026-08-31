@@ -17,11 +17,9 @@ export function SiteHeader() {
     {
       label: "Mesh",
       children: [
-        { href: "/mesh/devices", label: "All Devices" },
+        { href: "/mesh/devices", label: "Nodes & Devices" },
         { href: "/mesh/antennas", label: "Antennas" },
         { href: "/mesh/filters", label: "Filters" },
-        { href: "/mesh/devices", label: "Meshtastic" },
-        { href: "/mesh/devices", label: "MeshCore" },
       ],
     },
     { href: "https://www.austinmesh.org", label: "Austin Mesh", target: "_blank" },

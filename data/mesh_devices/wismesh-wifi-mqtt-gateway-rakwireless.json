@@ -1,8 +1,5 @@
 {
   "id": "wismesh-wifi-mqtt-gateway",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

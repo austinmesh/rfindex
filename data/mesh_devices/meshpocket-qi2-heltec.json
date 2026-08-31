@@ -1,8 +1,5 @@
 {
   "id": "heltec-meshpocket-qi2",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "heltec",

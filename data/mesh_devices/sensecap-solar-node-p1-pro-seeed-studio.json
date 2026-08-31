@@ -1,10 +1,6 @@
 {
   "id": "sensecap-solar-node-p1-pro",
   "sort_order": 30,
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "seeed-studio",

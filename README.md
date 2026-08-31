@@ -117,7 +117,6 @@ A minimal complete device, covering every required field:
   "description": "A compact ESP32-S3 LoRa node with a 1000 mAh battery.",
   "image": "acme-mesh-node.webp",
   "category": ["Complete"],
-  "supported_firmware": ["Meshtastic"],
   "features": ["Bluetooth"],
   "purchase_urls": [
     { "supplier": "rokland", "url": "https://store.rokland.com/products/acme-mesh-node" }

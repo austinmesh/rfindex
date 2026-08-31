@@ -1,8 +1,5 @@
 {
   "id": "mtools-tec-gat562",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "mtools-tec",

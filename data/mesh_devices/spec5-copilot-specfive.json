@@ -1,8 +1,5 @@
 {
   "id": "spec5-copilot",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "specfive",

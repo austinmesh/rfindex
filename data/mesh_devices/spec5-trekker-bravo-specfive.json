@@ -1,8 +1,5 @@
 {
   "id": "spec5-trekker-bravo",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "specfive",

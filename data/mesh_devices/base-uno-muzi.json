@@ -1,8 +1,5 @@
 {
   "id": "muzi-works-base-uno",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "muzi-works",

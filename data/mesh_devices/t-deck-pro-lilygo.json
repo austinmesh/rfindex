@@ -1,9 +1,6 @@
 {
   "id": "lilygo-t-deck-pro",
   "sort_order": 120,
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

@@ -1,10 +1,6 @@
 {
   "id": "wismesh-repeater-mini",
   "sort_order": 90,
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

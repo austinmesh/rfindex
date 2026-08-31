@@ -1,8 +1,5 @@
 {
   "id": "yeti-wurks-base-station",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "yeti-wurks",

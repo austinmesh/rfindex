@@ -1,8 +1,5 @@
 {
   "id": "pacific-nw-3d-nomad-heltec-v3",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "pacific-northwest-3d",

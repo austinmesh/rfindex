@@ -1,8 +1,5 @@
 {
   "id": "ikoka-stick",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "ndoo-sg",

@@ -1,9 +1,5 @@
 {
   "id": "elecrow-thinknode-m5",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "amazon",

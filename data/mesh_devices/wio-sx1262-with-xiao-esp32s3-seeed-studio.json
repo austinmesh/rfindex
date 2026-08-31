@@ -1,9 +1,5 @@
 {
   "id": "seeedstudio-wio-sx1262-xiao-esp32s3",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "amazon",

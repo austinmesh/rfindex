@@ -1,9 +1,6 @@
 {
   "id": "atlavox-beacon-solar",
   "sort_order": 10,
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "atlavox",
@@ -33,7 +30,7 @@
     ]
   },
   "manufacturer": "atlavox",
-  "title": "AtlaVox Beacon Solar Meshtastic Node",
+  "title": "AtlaVox Beacon Solar Node",
   "image": "/devices/atlavox-beacon.webp",
   "features": [
     "Bluetooth",
@@ -44,6 +41,6 @@
     "Complete",
     "Solar"
   ],
-  "description": "Solar-powered Meshtastic node featuring RAK19007/4631 WisBlock 915MHz module, integrated 5W solar panel, IP67 aluminum enclosure, and versatile mounting options for outdoor use.",
+  "description": "Solar-powered node featuring RAK19007/4631 WisBlock 915MHz module, integrated 5W solar panel, IP67 aluminum enclosure, and versatile mounting options for outdoor use.",
   "commentary": "We're generally big fans of Atlavox. This unit has the tried and true RAK19007 inside. While average in transmit power(22dbm) the Beacon is a robust and well thought out design, providing shading to keep temperatures down and a very strong mounting bracket for large and small antennas alike. This is one of our go-to recommendations for a pre-built solar powered mesh repeater."
 }

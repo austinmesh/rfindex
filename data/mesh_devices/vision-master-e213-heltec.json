@@ -1,9 +1,5 @@
 {
   "id": "heltec-vision-master-e213",
-  "supported_firmware": [
-    "Meshtastic",
-    "MeshCore"
-  ],
   "purchase_urls": [
     {
       "supplier": "rokland",

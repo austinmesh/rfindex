@@ -1,8 +1,5 @@
 {
   "id": "voltaic-enclosures-3w-solar-lto-basestation",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "voltaicenclosures",

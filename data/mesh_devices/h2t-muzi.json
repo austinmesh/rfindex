@@ -1,8 +1,5 @@
 {
   "id": "muzi-works-h2t-heltec-t114-gps-meshtastic",
-  "supported_firmware": [
-    "Meshtastic"
-  ],
   "purchase_urls": [
     {
       "supplier": "muzi-works",

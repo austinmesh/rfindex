@@ -19,7 +19,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, allFirmwares, maxTxPowerDbm, formatTxPower } from "@/lib/data"
+import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, maxTxPowerDbm, formatTxPower } from "@/lib/data"
 import { AddMissingCard } from "@/components/add-missing-card"
 import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
 import { cn } from "@/lib/utils"
@@ -45,7 +45,7 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   // State starts at defaults so the server render (and the static prerender)
   // emits every device card as a crawlable link. Real URL params are applied
   // after hydration by useUrlFilterSync (see below). Known tradeoff: a deep
-  // link like ?firmware=MeshCore paints the full unfiltered grid first, then
+  // link like ?categories=Solar paints the full unfiltered grid first, then
   // snaps to the filtered subset once the mount sync runs. That is the price
   // of keeping every card in the crawlable HTML; do not "fix" it by reading
   // useSearchParams() during render here, which would deopt the route back
@@ -56,7 +56,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   const [selectedLoraFrequencies, setSelectedLoraFrequencies] = useState<string[]>([])
   const [selectedMicrocontrollers, setSelectedMicrocontrollers] = useState<string[]>([])
   const [selectedLoraRadios, setSelectedLoraRadios] = useState<string[]>([])
-  const [selectedFirmwares, setSelectedFirmwares] = useState<string[]>([])
   const [priceRange, setPriceRange] = useState<number[]>([0, maxDevicePrice])
   const [minTxPower, setMinTxPower] = useState<number>(0)
   const [sortOption, setSortOption] = useState<SortOption>("default")
@@ -107,10 +106,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
       (device.specifications.lora_radio !== undefined &&
         selectedLoraRadios.includes(device.specifications.lora_radio))
 
-    // Firmware filter
-    const matchesFirmware =
-      selectedFirmwares.length === 0 || device.supported_firmware.some((fw) => selectedFirmwares.includes(fw))
-
     // Price filter
     const deviceMinPrice = Number.parseFloat(
       typeof device.price.min === "string" ? device.price.min : device.price.min.toString(),
@@ -137,7 +132,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
       matchesLoraFrequencies &&
       matchesMicrocontroller &&
       matchesLoraRadio &&
-      matchesFirmware &&
       matchesPrice &&
       matchesTxPower
     )
@@ -174,11 +168,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
   const toggleLoraRadio = (radio: string) => {
     setSelectedLoraRadios((prev) => (prev.includes(radio) ? prev.filter((r) => r !== radio) : [...prev, radio]))
   }
-
-  const toggleFirmware = (firmware: string) =>
-    setSelectedFirmwares((prev) =>
-      prev.includes(firmware) ? prev.filter((f) => f !== firmware) : [...prev, firmware],
-    )
 
   const toggleDeviceComparison = (deviceId: string) => {
     setSelectedForComparison((prev) => {
@@ -226,7 +215,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedLoraFrequencies([])
     setSelectedMicrocontrollers([])
     setSelectedLoraRadios([])
-    setSelectedFirmwares([])
     setPriceRange([0, maxDevicePrice])
     setMinTxPower(0)
     setSortOption("default")
@@ -240,7 +228,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedLoraFrequencies.length > 0 ||
     selectedMicrocontrollers.length > 0 ||
     selectedLoraRadios.length > 0 ||
-    selectedFirmwares.length > 0 ||
     priceRange[0] > 0 ||
     priceRange[1] < maxDevicePrice ||
     minTxPower > 0 ||
@@ -255,7 +242,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     setSelectedLoraFrequencies(params.get("frequencies")?.split(",").filter(Boolean) || [])
     setSelectedMicrocontrollers(params.get("microcontrollers")?.split(",").filter(Boolean) || [])
     setSelectedLoraRadios(params.get("radios")?.split(",").filter(Boolean) || [])
-    setSelectedFirmwares(params.get("firmware")?.split(",").filter(Boolean) || [])
     setPriceRange([parseIntParam(params.get("priceMin"), 0), parseIntParam(params.get("priceMax"), maxDevicePrice)])
     setMinTxPower(parseIntParam(params.get("txMin"), 0))
     setSortOption(parseSortOption(params.get("sort")))
@@ -285,9 +271,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
 
     if (selectedLoraRadios.length > 0) params.set("radios", selectedLoraRadios.join(","))
     else params.delete("radios")
-
-    if (selectedFirmwares.length > 0) params.set("firmware", selectedFirmwares.join(","))
-    else params.delete("firmware")
 
     if (priceRange[0] > 0) params.set("priceMin", priceRange[0].toString())
     else params.delete("priceMin")
@@ -319,7 +302,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
     selectedLoraFrequencies,
     selectedMicrocontrollers,
     selectedLoraRadios,
-    selectedFirmwares,
     priceRange,
     minTxPower,
     sortOption,
@@ -403,23 +385,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                       />
                       <Label htmlFor={`frequency-${frequency}`}>{frequency}</Label>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="font-semibold mb-3">Firmware</h3>
-                <div className="space-y-2">
-                  {allFirmwares.map((firmware) => (
-                    <label key={firmware} className="flex items-center space-x-2 cursor-pointer">
-                      <Checkbox
-                        checked={selectedFirmwares.includes(firmware)}
-                        onCheckedChange={() => toggleFirmware(firmware)}
-                      />
-                      <span className="text-sm">{firmware}</span>
-                    </label>
                   ))}
                 </div>
               </div>
@@ -624,23 +589,6 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                       />
                       <Label htmlFor={`mobile-frequency-${frequency}`}>{frequency}</Label>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="font-semibold mb-3">Firmware</h3>
-                <div className="space-y-2">
-                  {allFirmwares.map((firmware) => (
-                    <label key={firmware} className="flex items-center space-x-2 cursor-pointer">
-                      <Checkbox
-                        checked={selectedFirmwares.includes(firmware)}
-                        onCheckedChange={() => toggleFirmware(firmware)}
-                      />
-                      <span className="text-sm">{firmware}</span>
-                    </label>
                   ))}
                 </div>
               </div>

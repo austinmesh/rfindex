@@ -521,8 +521,6 @@ export function deviceJsonLd(d: Device) {
       name: "LoRa frequency",
       value: spec.lora_frequencies.join(", "),
     })
-  if (d.supported_firmware?.length)
-    additionalProperty.push({ "@type": "PropertyValue", name: "Firmware", value: d.supported_firmware.join(", ") })
   if (typeof spec?.max_tx_power_dbm === "number")
     additionalProperty.push({ "@type": "PropertyValue", name: "Max TX power", value: `${spec.max_tx_power_dbm} dBm` })
 
