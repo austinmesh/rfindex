@@ -99,7 +99,7 @@ export default async function DeviceDetailsPage({ params }: { params: Promise<{ 
               <div>
                 <h1 className="text-3xl font-bold">{device.name}</h1>
                 <p className="text-lg text-muted-foreground mb-2">
-                  {device.manufacturer} {device.model}
+                  {device.manufacturer}
                 </p>
                 <div className="flex items-center mb-4">
                   <span className="text-2xl font-bold">
