@@ -1,0 +1,48 @@
+{
+  "id": "seeedstudio-sensecap-meshtracker-x1",
+  "sort_order": 115,
+  "purchase_urls": [
+    {
+      "supplier": "seeed-studio",
+      "url": "https://www.seeedstudio.com/sensecap-meshtracker-x1-meshtastic-gps-tracker-p-6935.html?sensecap_affiliate=WMeIXYu&referring_service=link"
+    }
+  ],
+  "price": {
+    "min": 42.9,
+    "max": 49.9,
+    "currency": "USD"
+  },
+  "model": "SenseCAP MeshTracker X1",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "LR2021",
+    "max_tx_power_dbm": 22,
+    "power_consumption": "Low",
+    "battery": {
+      "type": "Li-ion",
+      "capacity_mAh": 1100,
+      "estimated_runtime": "2-3 days"
+    },
+    "antenna": "Internal",
+    "interfaces": [
+      "USB-C"
+    ]
+  },
+  "manufacturer": "seeed-studio",
+  "title": "SenseCAP MeshTracker X1",
+  "image": "/devices/sensecap-meshtracker-x1.webp",
+  "features": [
+    "Bluetooth",
+    "GPS",
+    "Weatherproof"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Card sized IP66 node with the new Semtech LR2021 radio, dual-band (L1+L5) GNSS, barometer, buzzer, vibration motor, and USB-C charging.",
+  "commentary": "Successor of the T1000-E. Larger (700 vs 1100mah) battery, USB-C instead of the magnetic charging cable, dual-band GPS, and most importantly the new LR2021 radio. Still in testing, but results are promising so far in Austin."
+}
