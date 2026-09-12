@@ -43,6 +43,6 @@
   "category": [
     "Complete"
   ],
-  "description": "Card sized IP66 node with the new Semtech LR2021 radio, dual-band (L1+L5) GNSS, barometer, buzzer, vibration motor, and USB-C charging.",
+  "description": "Card in an IP66 enclosure with dual-band L1+L5 GNSS, a barometer and a vibration motor.",
   "commentary": "Successor of the T1000-E. Larger (700 vs 1100mah) battery, USB-C instead of the magnetic charging cable, dual-band GPS, and most importantly the new LR2021 radio. Still in testing, but results are promising so far in Austin."
 }

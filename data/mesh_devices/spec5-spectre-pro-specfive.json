@@ -1,0 +1,45 @@
+{
+  "id": "spec5-spectre-pro",
+  "purchase_urls": [
+    {
+      "supplier": "specfive",
+      "url": "https://specfive.com/products/spec5-spectre-pro"
+    }
+  ],
+  "price": {
+    "min": 209.99,
+    "max": 309.99,
+    "currency": "USD"
+  },
+  "model": "Spectre Pro",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "nRF52",
+    "lora_radio": "SX1262",
+    "power_consumption": "High",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 250
+    },
+    "antenna": "External LoRa antenna",
+    "interfaces": [
+      "USB-C",
+      "MicroSD"
+    ]
+  },
+  "manufacturer": "specfive",
+  "title": "Spec5 Spectre Pro",
+  "image": "/devices/spec5-spectre-pro.webp",
+  "features": [
+    "Touchscreen",
+    "Color Display",
+    "External Antenna"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "Handheld in a carbon fiber reinforced PETG case with a 3.88-inch touchscreen and optional GNSS module."
+}

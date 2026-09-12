@@ -15,7 +15,7 @@
     }
   ],
   "price": {
-    "min": 33.90,
+    "min": 33.9,
     "max": 42.99,
     "currency": "USD"
   },
@@ -41,13 +41,14 @@
   "title": "Mesh Node T096",
   "image": "/devices/heltec-mesh-node-t096.webp",
   "features": [
-    "GPS",
     "Bluetooth",
-    "External Antenna"
+    "GPS",
+    "External Antenna",
+    "Solar Input"
   ],
   "category": [
     "DIY"
   ],
-  "description": "Dev board with nRF52/SX1262, GPS, Bluetooth, and 28dbm power.",
+  "description": "Dev board with a dual-band L1 and L5 GNSS module and IPEX connectors.",
   "commentary": "Not a super popular board, but the only <22dbm board available for next day delivery via Amazon Prime. We don't have enough use time on these to have a recommendation yet at this time, but they seem like capable boards. Heltec has good customer service, warranty, and generally listens to users for feedback."
 }

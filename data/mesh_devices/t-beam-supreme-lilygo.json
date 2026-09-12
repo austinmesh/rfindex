@@ -31,7 +31,7 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "lora_radio": "SX1262",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
@@ -58,6 +58,6 @@
   "category": [
     "DIY"
   ],
-  "description": "High-performance LoRa development board with ESP32-S3, GPS, and SX1262.",
+  "description": "Dev board with a GPS module, six-axis IMU and SMA connector.",
   "commentary": "The T-Beam Supreme is a cool form factor and has lots of cases available. It's generally a power hungry device, but many users on our mesh run these every day."
 }

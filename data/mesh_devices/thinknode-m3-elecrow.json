@@ -23,7 +23,7 @@
     ],
     "microcontroller": "nRF52",
     "lora_radio": "LR1110",
-    "max_tx_power_dbm": 22,
+    "max_tx_power_dbm": 20,
     "power_consumption": "Low",
     "battery": {
       "type": "LiPo",
@@ -45,5 +45,5 @@
   "category": [
     "Complete"
   ],
-  "description": "Tiny weatherproof tracker style radio with tie off and internal antenna"
+  "description": "Card in an IP66 enclosure with an internal antenna and temperature, humidity and accelerometer sensors."
 }

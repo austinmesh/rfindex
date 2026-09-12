@@ -31,9 +31,10 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "Li-ion",
+      "capacity_mAh": 3200
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via RP-SMA connector",
     "interfaces": [
       "USB-C"
     ]
@@ -44,12 +45,15 @@
   "features": [
     "Bluetooth",
     "GPS",
-    "Solar"
+    "Solar",
+    "Weatherproof"
   ],
   "category": [
     "Complete",
     "Solar"
   ],
-  "description": "Smaller version of the WisMesh Repeater with external battery support and weather-resistant design.",
-  "commentary": "Strongly recommended. These little units have been deployed all over Central Texas for the last few years and hold up grade to the rain and sun. A simple 2500mah or 18650 battery is all you need to keep this and a RAK19007 or 19003 powered indefinitely."
+  "description": "Solar node based on RAK WisBlock in an IP67 enclosure with an RP-SMA connector.",
+  "commentary": "Strongly recommended. These little units have been deployed all over Central Texas for the last few years and hold up grade to the rain and sun. A simple 2500mah or 18650 battery is all you need to keep this and a RAK19007 or 19003 powered indefinitely.",
+  "discontinued": true,
+  "replaced_by": "wismesh-repeater-mini-v2"
 }

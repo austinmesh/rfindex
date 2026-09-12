@@ -20,7 +20,7 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
-      "type": "LiPo"
+      "type": "18650 Li-ion"
     },
     "antenna": "8DBI Fiberglass Aerial",
     "interfaces": [
@@ -33,10 +33,12 @@
   "image": "/devices/spec5-relay.webp",
   "features": [
     "Bluetooth",
-    "Solar"
+    "Solar",
+    "Weatherproof"
   ],
   "category": [
+    "Complete",
     "Solar"
   ],
-  "description": "A solar-powered Meshtastic LoRa relay system designed for autonomous operation as a relay station. Built for rugged, permanent installation on poles, buildings, or towers, it ensures reliable communication in remote areas or expansive networks."
+  "description": "Relay based on RAK WisBlock in an IP67 PETG enclosure with a 12W panel and 8 dBi fiberglass antenna."
 }

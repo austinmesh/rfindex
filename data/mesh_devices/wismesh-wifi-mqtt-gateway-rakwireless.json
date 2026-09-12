@@ -3,15 +3,11 @@
   "purchase_urls": [
     {
       "supplier": "rokland",
-      "url": "https://store.rokland.com/products/rakwireless-rak11200-wifi-and-ble-espressif-esp32-wrover-pid-110023?ref=rfindex"
+      "url": "https://store.rokland.com/products/wismesh-wifi-gateway?ref=rfindex"
     },
     {
       "supplier": "aliexpress",
       "url": "https://s.click.aliexpress.com/e/_oCPUcap"
-    },
-    {
-      "supplier": "rakwireless",
-      "url": "https://rakwireless.kckb.st/rfindex-u3r"
     }
   ],
   "price": {
@@ -32,7 +28,7 @@
     "battery": {
       "type": "External"
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via RP-SMA connector",
     "interfaces": [
       "USB-C",
       "M8 5-pin connector"
@@ -49,6 +45,8 @@
   "category": [
     "Complete"
   ],
-  "description": "WiFi-connected MQTT gateway to bridge LoRa networks with the cloud.",
-  "commentary": "This is generally a subset of the RAK Repeater Mini. We avoid any use of MQTT on Austin Mesh, so we don't see this deployed often. The hardware is solid though, so if your use case calls for it, we do recommend!"
+  "description": "Gateway based on RAK WisBlock with an RP-SMA connector, optional IP65 enclosure.",
+  "commentary": "This is generally a subset of the RAK Repeater Mini. We avoid any use of MQTT on Austin Mesh, so we don't see this deployed often. The hardware is solid though, so if your use case calls for it, we do recommend!",
+  "discontinued": true,
+  "replaced_by": "wismesh-wifi-mqtt-gateway-v2"
 }

@@ -16,7 +16,7 @@
     "lora_frequencies": [
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -26,7 +26,8 @@
     "interfaces": [
       "USB-C",
       "Bluetooth Low Energy (BLE)"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "specfive",
   "title": "Spec5 MeshClip",
@@ -37,5 +38,5 @@
   "category": [
     "Complete"
   ],
-  "description": "A portable LoRa device designed for ultimate convenience and mobility. Its compact design includes a steel ring, allowing it to be magnetically attached to the back of your phone for seamless on-the-go communication. The MeshClip operates within a LoRa mesh network, enabling users to send text messages and share GPS locations."
+  "description": "Handheld in a PETG case with a magnetic phone mount, USB-C powered."
 }

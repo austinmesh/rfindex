@@ -38,11 +38,12 @@
   "title": "Nano G2 Ultra",
   "image": "/devices/nano-g2-ultra.webp",
   "features": [
-    "Bluetooth"
+    "Bluetooth",
+    "OLED Display"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Handheld built on nRF52, internal antenna with up to 3.5 days of battery life.",
+  "description": "Handheld with a 1.3-inch OLED and internal wideband antenna.",
   "commentary": "Not terrible as a handheld node, but the reset button requires battery removal which was annoying. Generally not our first pick."
 }

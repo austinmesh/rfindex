@@ -26,7 +26,7 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "lora_radio": "SX1262",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
@@ -47,10 +47,11 @@
   "image": "/devices/heltec-visionmaster-290.webp",
   "features": [
     "Bluetooth",
+    "WiFi",
     "E-Ink Display"
   ],
   "category": [
     "DIY"
   ],
-  "description": "E-Ink development kit with multiple wireless communication methods, featuring a 2.90-inch black-and-white E-Ink display."
+  "description": "Dev board with a 2.9-inch e-ink display and IPEX connectors."
 }

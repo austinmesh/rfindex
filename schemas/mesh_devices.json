@@ -8,6 +8,15 @@
   "properties": {
     "id": { "type": "string", "minLength": 1 },
     "sort_order": { "type": "integer" },
+    "discontinued": {
+      "type": "boolean",
+      "description": "True when the product is no longer sold. The device stays listed (its page and specs remain useful) but is labeled and sorted last."
+    },
+    "replaced_by": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the successor device, for discontinued devices only; validate.js checks that it exists"
+    },
     "title": { "type": "string", "minLength": 1 },
     "manufacturer": { "type": "string", "minLength": 1 },
     "model": { "type": "string", "minLength": 1 },

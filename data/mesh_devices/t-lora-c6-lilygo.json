@@ -14,6 +14,7 @@
   "model": "T-Lora C6",
   "specifications": {
     "lora_frequencies": [
+      "433 MHz",
       "868 MHz",
       "915 MHz"
     ],
@@ -24,7 +25,7 @@
     "battery": {
       "type": "External"
     },
-    "antenna": "External via SMA connector",
+    "antenna": "FPC antenna",
     "interfaces": [
       "USB-C",
       "GPIO",
@@ -43,5 +44,5 @@
   "category": [
     "DIY"
   ],
-  "description": "ESP32-C6 board with SX1262 LoRa support and external antenna interface."
+  "description": "Dev board with an FPC antenna."
 }

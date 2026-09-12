@@ -544,7 +544,7 @@ export function deviceJsonLd(d: Device) {
       lowPrice: String(d.price.min),
       highPrice: String(d.price.max),
       offerCount: d.purchase_urls.length,
-      availability: "https://schema.org/InStock",
+      availability: d.discontinued ? "https://schema.org/Discontinued" : "https://schema.org/InStock",
     }
   }
 

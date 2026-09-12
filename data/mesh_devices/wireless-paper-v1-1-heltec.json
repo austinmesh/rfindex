@@ -22,7 +22,7 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -35,17 +35,19 @@
       "I2C",
       "SPI",
       "UART"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "heltec",
   "title": "Wireless Paper V1.1",
   "image": "/devices/heltec-paper.webp",
   "features": [
     "Bluetooth",
+    "WiFi",
     "E-Ink Display"
   ],
   "category": [
     "DIY"
   ],
-  "description": "E-Ink development kit with multiple wireless communication methods, featuring a 2.13-inch black and white E-Ink display."
+  "description": "Dev board with a 2.13-inch e-ink display."
 }

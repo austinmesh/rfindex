@@ -41,6 +41,10 @@ export type Device = {
   features: string[]
   commentary?: string
   sort_order?: number
+  /** No longer sold. Still listed and labeled; sorts last in the default order. */
+  discontinued?: boolean
+  /** id of the successor device (discontinued devices only). */
+  replaced_by?: string
 }
 
 export type DeviceSitemapItem = {

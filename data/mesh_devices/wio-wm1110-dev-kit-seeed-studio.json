@@ -22,7 +22,7 @@
       "915 MHz"
     ],
     "microcontroller": "nRF52",
-    "lora_radio": "SX1262",
+    "lora_radio": "LR1110",
     "max_tx_power_dbm": 20,
     "power_consumption": "Low",
     "battery": {
@@ -47,5 +47,5 @@
   "category": [
     "DIY"
   ],
-  "description": "Development kit based on the WM1110 module with BLE, GNSS, and LoRa support for prototyping location-based solutions."
+  "description": "Dev board based on WM1110 with a temperature and humidity sensor, accelerometer, and Grove connectors."
 }

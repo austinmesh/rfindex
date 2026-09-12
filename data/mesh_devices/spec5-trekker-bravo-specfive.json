@@ -20,13 +20,14 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
-      "type": "LiPo"
+      "type": "18650 Li-ion"
     },
     "antenna": "External via SMA connector",
     "interfaces": [
       "USB-C",
       "Bluetooth Low Energy (BLE)"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "specfive",
   "title": "Spec5 Trekker BRAVO",
@@ -38,5 +39,5 @@
   "category": [
     "Complete"
   ],
-  "description": "An enhanced version of the original Trekker, the Spec5 Trekker BRAVO offers reliable LoRa network integration for text messaging and precise GPS location sharing. It includes a high-gain antenna for extended range and improved signal clarity, making it ideal for adventurers seeking uncompromised performance."
+  "description": "Handheld in a PETG case."
 }

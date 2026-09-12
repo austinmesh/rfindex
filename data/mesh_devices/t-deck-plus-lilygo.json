@@ -18,6 +18,7 @@
   "model": "T-Deck Plus",
   "specifications": {
     "lora_frequencies": [
+      "433 MHz",
       "868 MHz",
       "915 MHz"
     ],
@@ -29,7 +30,7 @@
       "type": "LiPo",
       "capacity_mAh": 2000
     },
-    "antenna": "External via IPEX/U.FL connector",
+    "antenna": "Internal antenna, external antenna variant available",
     "interfaces": [
       "USB-C",
       "Microphone",
@@ -51,6 +52,6 @@
   "category": [
     "Complete"
   ],
-  "description": "ESP32 powered node with a full keyboard, color screen, and metal case.",
+  "description": "Handheld with a QWERTY keyboard, 2.8-inch touchscreen and trackball.",
   "commentary": "Fine for what it is. The lack of external antenna limits performance. The metal case is very nice and feels great in the hand, however it also limits battery expansion which is an issue because this device will barely last you one day. The Firmware for T-Decks varies wildly. Meshtastic's is fine, but nowhere near as good as the mobile app. MeshCore's official firmware is non-existant, but many open source firmwares of varying quality exist. We do not recommend this as your only node, but it's a very cool one to have around!"
 }

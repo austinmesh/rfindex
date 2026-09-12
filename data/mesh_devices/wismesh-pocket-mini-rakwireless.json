@@ -30,9 +30,10 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 1000
     },
-    "antenna": "External via SMA connector",
+    "antenna": "Internal PCB antenna",
     "interfaces": [
       "USB-C"
     ]
@@ -41,12 +42,13 @@
   "title": "WisMesh Pocket Mini",
   "image": "/devices/wismesh-mini-pocket-2.webp",
   "features": [
-    "Bluetooth",
-    "Color Display"
+    "Bluetooth"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Discontinued. Replaced by WisMesh tag.",
-  "commentary": "Quickly discontinued. Was based around the 19003 but feature set was lacking."
+  "description": "Handheld based on RAK WisBlock in a 3D printed case with an internal antenna.",
+  "commentary": "Quickly discontinued. Was based around the 19003 but feature set was lacking.",
+  "discontinued": true,
+  "replaced_by": "wismesh-tag"
 }

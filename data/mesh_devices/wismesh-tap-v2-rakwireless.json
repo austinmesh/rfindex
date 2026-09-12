@@ -1,0 +1,51 @@
+{
+  "id": "wismesh-tap-v2",
+  "purchase_urls": [
+    {
+      "supplier": "rokland",
+      "url": "https://store.rokland.com/products/wismesh-tap-v2-touchscreen-meshtastic-client-with-tft-screen-on-screen-keyboard-sx1262-lora-pid-116209?ref=rfindex"
+    }
+  ],
+  "price": {
+    "min": 119.97,
+    "max": 119.97,
+    "currency": "USD"
+  },
+  "model": "Tap V2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 3200
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)",
+      "MicroSD"
+    ]
+  },
+  "manufacturer": "rakwireless",
+  "title": "WisMesh Tap V2",
+  "image": "/devices/wismesh-tap-v2.webp",
+  "features": [
+    "Bluetooth",
+    "GPS",
+    "Color Display",
+    "Touchscreen",
+    "Keyboard",
+    "External Antenna",
+    "Weatherproof"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "Handheld based on RAK WisBlock in an IP65 enclosure with a 320x240 TFT touchscreen, on-screen keyboard, and offline map storage."
+}

@@ -40,5 +40,7 @@
     "Complete",
     "Standalone"
   ],
-  "description": "The Spec5 Spectre is a versatile LoRa radio designed for secure communication and navigation. Featuring two-way voice communication, it allows real-time interaction with your group over off-grid channels. Its LoRa mesh network ensures reliable text messaging, enabling seamless coordination in remote areas. With an intuitive touch interface and extended battery life of up to 8 hours, the Spectre is a reliable companion for adventurers and network builders seeking advanced connectivity tools."
+  "description": "Handheld with a 2.5-inch screen.",
+  "discontinued": true,
+  "replaced_by": "spec5-spectre-mkii"
 }

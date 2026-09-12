@@ -22,7 +22,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 1200
     },
     "antenna": "External via SMA connector",
     "interfaces": [
@@ -41,6 +42,7 @@
   "category": [
     "Complete"
   ],
-  "description": "\"Rugged\" handheld nRF52/SX1262, e-ink display, GPS, 24-72 hour battery.",
-  "commentary": "Austin Mesh has no direct experience with this device. Based on price and feature set we do not recommend this."
+  "description": "Handheld with an SMA connector.",
+  "commentary": "Austin Mesh has no direct experience with this device. Based on price and feature set we do not recommend this.",
+  "discontinued": true
 }

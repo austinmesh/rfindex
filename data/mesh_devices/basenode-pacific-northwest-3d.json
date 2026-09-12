@@ -1,10 +1,6 @@
 {
   "id": "pacific-nw-3d-basenode",
   "purchase_urls": [
-    {
-      "supplier": "pacific-northwest-3d",
-      "url": "https://pacificnorthwest3d.com/products/basenode"
-    }
   ],
   "price": {
     "min": 70,
@@ -17,7 +13,7 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -27,7 +23,8 @@
     "interfaces": [
       "USB-C",
       "Bluetooth Low Energy (BLE)"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "pacific-northwest-3d",
   "title": "BASENODE",
@@ -38,5 +35,6 @@
   "category": [
     "Complete"
   ],
-  "description": "The BASENODE is a compact and rugged complete Meshtastic® device built around the Heltec V3 LoRa board. It features a precision 3D-printed case, stainless steel screws, and a MakerFocus 2000mAh LiPo battery, delivering over 10 hours of runtime. Ideal for both stationary and portable off-grid use."
+  "discontinued": true,
+  "description": "Handheld based on the Heltec V3 in a 3D printed case."
 }

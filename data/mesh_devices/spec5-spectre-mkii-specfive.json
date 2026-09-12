@@ -1,0 +1,48 @@
+{
+  "id": "spec5-spectre-mkii",
+  "purchase_urls": [
+    {
+      "supplier": "specfive",
+      "url": "https://specfive.com/products/spec5-spectre-mkii"
+    }
+  ],
+  "price": {
+    "min": 149.99,
+    "max": 149.99,
+    "currency": "USD"
+  },
+  "model": "Spectre MKII",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "max_tx_power_dbm": 28,
+    "power_consumption": "High",
+    "battery": {
+      "type": "LiPo",
+      "capacity_mAh": 1200
+    },
+    "antenna": "External 915 MHz LoRa antenna",
+    "interfaces": [
+      "USB-C",
+      "Bluetooth Low Energy (BLE)"
+    ]
+  },
+  "manufacturer": "specfive",
+  "title": "Spec5 Spectre MKII",
+  "image": "/devices/spec5-spectre-mkii.webp",
+  "features": [
+    "Bluetooth",
+    "WiFi",
+    "Touchscreen",
+    "Color Display",
+    "External Antenna"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "Handheld in a PETG case with a 3.0-inch touchscreen."
+}

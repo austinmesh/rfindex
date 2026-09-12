@@ -14,11 +14,12 @@
   "model": "Base Duo",
   "specifications": {
     "lora_frequencies": [
-      "915 MHz"
+      "915 MHz",
+      "2.4 GHz"
     ],
     "microcontroller": "nRF52",
     "lora_radio": "LR1121",
-    "max_tx_power_dbm": 22,
+    "max_tx_power_dbm": 20,
     "power_consumption": "Low",
     "battery": {
       "type": "External"
@@ -43,6 +44,6 @@
   "category": [
     "DIY"
   ],
-  "description": "muzi works BASE System, nRF52840 and LR1121 dual-band 915M/2.4G, IO expansion for GPS, display, and standalone operation.",
+  "description": "Dev board with SMA and U.FL connectors and a Qwiic port.",
   "commentary": "These boards are fairly new as of June 2026. A number of Austin Mesh members are currently testing these devices out but we don't have recommendations as of now."
 }

@@ -21,12 +21,14 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 2000
     },
     "antenna": "external whip with SMA connector",
     "interfaces": [
       "USB-C"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "muzi-works",
   "title": "H2T",
@@ -38,5 +40,5 @@
   "category": [
     "Complete"
   ],
-  "description": "A GPS-enabled Meshtastic® device powered by the Heltec T114 V2 board, featuring a unique 3D-printed PLA and PLA Carbon Fiber case for enhanced grip and ruggedness. Utilizing the power-efficient nRF52850 chipset, the H2T offers over 2 days of battery life with GPS enabled and maintains connectivity to the Meshtastic® app on your smartphone via Bluetooth Low Energy (BLE)."
+  "description": "Handheld based on the Heltec T114 in a 3D printed case with a 17cm whip antenna."
 }

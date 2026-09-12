@@ -18,7 +18,6 @@
   "model": "B1",
   "specifications": {
     "lora_frequencies": [
-      "868 MHz",
       "915 MHz"
     ],
     "microcontroller": "nRF52",
@@ -39,11 +38,11 @@
   "features": [
     "Bluetooth",
     "GPS",
-    "Color Display",
+    "OLED Display",
     "External Antenna"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Meshtastic node based on RAK WisMesh B1 with SX1262 LoRa module and 2000mAh LiPo battery in a custom enclosure."
+  "description": "Handheld based on RAK WisMesh B1 in an ABS enclosure with a 1.3-inch OLED and optional SMA connector."
 }

@@ -218,6 +218,26 @@ for (const { file, data } of parsed.mesh_devices) {
   }
 }
 
+// 4. Successor links (FATAL). A discontinued device may name its replacement
+//    by device id; the detail page and README link to it, so a dangling id
+//    would ship a broken link. replaced_by without discontinued is also an
+//    error: the site only renders the link on discontinued devices.
+const deviceIds = new Set(parsed.mesh_devices.map(({ data }) => data.id).filter(Boolean));
+for (const { file, data } of parsed.mesh_devices) {
+  if (data.replaced_by == null) continue;
+  if (!data.discontinued) {
+    console.error(`REPLACED_BY WITHOUT DISCONTINUED: ${file}: set "discontinued": true or remove "replaced_by"`);
+    failedFiles.push(file);
+  }
+  if (!deviceIds.has(data.replaced_by)) {
+    console.error(`UNKNOWN REPLACED_BY: ${file}: "${data.replaced_by}" is not any device's id`);
+    failedFiles.push(file);
+  } else if (data.replaced_by === data.id) {
+    console.error(`SELF REPLACED_BY: ${file}: a device cannot replace itself`);
+    failedFiles.push(file);
+  }
+}
+
 console.log(`\nValidated ${total} files across ${Object.keys(collections).length} collections.`);
 
 if (failedFiles.length > 0) {

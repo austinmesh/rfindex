@@ -24,7 +24,7 @@
     "battery": {
       "type": "LiPo"
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via U.FL/IPEX connector",
     "interfaces": [
       "USB-C"
     ]
@@ -38,7 +38,7 @@
     "Bluetooth"
   ],
   "category": [
-    "Complete"
+    "DIY"
   ],
-  "description": "L1 with an e-ink screen, GPS, and antenna."
+  "description": "Dev board with a 2.13-inch e-ink display and Grove connector."
 }

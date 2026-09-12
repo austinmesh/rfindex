@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ExternalLink } from "@/components/external-link"
+import { DiscontinuedBadge } from "@/components/device-table"
 
 import { devices, featureDescriptions, formatTxPower } from "@/lib/data"
 import { JsonLd } from "@/components/json-ld"
@@ -67,6 +68,8 @@ export default async function DeviceDetailsPage({ params }: { params: Promise<{ 
 
   if (!device) notFound()
 
+  const replacement = device.replaced_by ? devices.find((d) => d.id === device.replaced_by) : undefined
+
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={deviceJsonLd(device)} />
@@ -101,6 +104,23 @@ export default async function DeviceDetailsPage({ params }: { params: Promise<{ 
                 <p className="text-lg text-muted-foreground mb-2">
                   {device.manufacturer}
                 </p>
+                {device.discontinued && (
+                  <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg border border-destructive/40 bg-destructive/5 p-3 text-sm">
+                    <DiscontinuedBadge />
+                    <span>
+                      No longer sold.
+                      {replacement && (
+                        <>
+                          {" "}Replaced by{" "}
+                          <Link href={`/mesh/devices/${replacement.id}`} className="font-medium underline underline-offset-2">
+                            {replacement.name}
+                          </Link>
+                          .
+                        </>
+                      )}
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-center mb-4">
                   <span className="text-2xl font-bold">
                     ${typeof device.price.min === "string" ? device.price.min : device.price.min.toFixed(2)}

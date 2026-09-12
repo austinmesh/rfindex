@@ -22,9 +22,10 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "Li-ion"
+      "type": "18650 Li-ion",
+      "capacity_mAh": 7000
     },
-    "antenna": "External via SMA connector",
+    "antenna": "Internal",
     "interfaces": [
       "USB-C"
     ]
@@ -39,6 +40,6 @@
   "category": [
     "Complete"
   ],
-  "description": "A combination Battery Bank and Mesh radio",
+  "description": "Power bank with a built in radio, wireless charging, and temperature and humidity sensors.",
   "commentary": "A product trying to be more than one thing is generally not great at any of them. This is one of those cases."
 }

@@ -24,7 +24,7 @@
     "battery": {
       "type": "LiPo"
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via U.FL/IPEX connector",
     "interfaces": [
       "USB-C"
     ]
@@ -40,5 +40,5 @@
   "category": [
     "DIY"
   ],
-  "description": "L1 with a screen, GPS, antenna, and no case."
+  "description": "Dev board with a 1.3-inch OLED and Grove connector."
 }

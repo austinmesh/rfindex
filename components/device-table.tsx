@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowDown, ArrowUp, ArrowUpDown, Check, LayoutGrid, Minus, Table as TableIcon } from "lucide-react"
 
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ExternalLink } from "@/components/external-link"
@@ -50,6 +51,17 @@ export function DeviceViewToggle({
         </Button>
       ))}
     </div>
+  )
+}
+
+// Shared "no longer sold" label for the card grid, the table, and the detail
+// page. Discontinued devices stay listed because their specs and pages are
+// still useful, so the label is what tells a buyer to look at the successor.
+export function DiscontinuedBadge({ className }: { className?: string }) {
+  return (
+    <Badge variant="outline" className={cn("border-destructive/50 text-destructive", className)}>
+      Discontinued
+    </Badge>
   )
 }
 
@@ -342,6 +354,7 @@ export function DeviceTable({
                       </span>
                       <span className="font-medium sm:whitespace-nowrap">{device.name}</span>
                     </Link>
+                    {device.discontinued && <DiscontinuedBadge className="shrink-0" />}
                   </div>
                 </TableCell>
                 {columnGroups.flatMap((group) =>

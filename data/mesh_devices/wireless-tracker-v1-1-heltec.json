@@ -22,7 +22,7 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -35,7 +35,8 @@
       "I2C",
       "SPI",
       "UART"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "heltec",
   "title": "Wireless Tracker V1.1",
@@ -49,5 +50,5 @@
   "category": [
     "DIY"
   ],
-  "description": "Compact ESP32-S3-based LoRa GPS tracker with RGB TFT display and support for external lithium batteries"
+  "description": "Dev board with a 0.96-inch TFT and GNSS receiver."
 }

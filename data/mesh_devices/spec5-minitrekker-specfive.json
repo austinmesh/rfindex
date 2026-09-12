@@ -20,13 +20,15 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 1200
     },
     "antenna": "External via SMA connector",
     "interfaces": [
       "USB-C",
       "Bluetooth Low Energy (BLE)"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "specfive",
   "title": "Spec5 MiniTrekker",
@@ -38,5 +40,5 @@
   "category": [
     "Complete"
   ],
-  "description": "A compact LoRa radio device that delivers powerful off-grid communication capabilities in a pocket-sized form. Its durable PETG case and integrated clip make it easy to carry during hikes or outdoor missions. Designed for simplicity, it provides text messaging and GPS location sharing over a LoRa mesh network."
+  "description": "Handheld in a PETG case with a ceramic GPS antenna."
 }

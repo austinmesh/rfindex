@@ -38,5 +38,6 @@
   "category": [
     "Complete"
   ],
-  "description": "A high-performance LoRa radio designed for users requiring extended functionality. It offers enhanced battery life, built-in environmental sensors for real-time data, and an integrated speaker for audible alerts, ensuring reliable communication during extended off-grid activities."
+  "description": "Handheld.",
+  "discontinued": true
 }

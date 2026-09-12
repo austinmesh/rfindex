@@ -24,7 +24,7 @@ import { AddMissingCard } from "@/components/add-missing-card"
 import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
 import { cn } from "@/lib/utils"
 import { compareDevices, parseSortOption, type SortOption } from "@/lib/device-sort"
-import { DeviceTable, DeviceViewToggle, parseViewMode, type DeviceViewMode } from "@/components/device-table"
+import { DeviceTable, DeviceViewToggle, DiscontinuedBadge, parseViewMode, type DeviceViewMode } from "@/components/device-table"
 
 export function DeviceFilters({ devices }: { devices: Device[] }) {
   // Add these refs and state for scroll behavior
@@ -873,7 +873,10 @@ export function DeviceFilters({ devices }: { devices: Device[] }) {
                             {device.name}
                           </Link>
                         </h3>
-                        <p className="text-sm text-muted-foreground">{device.manufacturer}</p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="text-sm text-muted-foreground">{device.manufacturer}</p>
+                          {device.discontinued && <DiscontinuedBadge />}
+                        </div>
                         <p className="text-sm line-clamp-2">{device.description}</p>
                       </div>
                     </CardContent>

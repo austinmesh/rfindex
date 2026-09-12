@@ -4,7 +4,7 @@
   "purchase_urls": [
     {
       "supplier": "rokland",
-      "url": "https://store.rokland.com/products/rak-wireless-wisblock-meshtastic-starter-kit?ref=rfindex"
+      "url": "https://store.rokland.com/products/rakwireless-mini-meshtastic-starter-kit-us915-rak19003-4631-sku-115093?ref=rfindex"
     },
     {
       "supplier": "rakwireless",
@@ -55,6 +55,6 @@
   "category": [
     "DIY"
   ],
-  "description": "WisBlock compact LoRa node built with RAK19003 mini base board and RAK4631 core.",
+  "description": "Module kit based on RAK WisBlock with 2 module slots and IPEX connectors.",
   "commentary": "The RAK19003 and 19007 are the baseline for our network. Well over 100 of these are deployed throughout Central Texas. While midrange in transmit power(22dbm) they offer spectacular receive capability, and almost unbelievable battery life. A single 18650 allows a RAK to run for multiple days, and a 1w solar panel is more than enough to keep it powered indefinitely here in the Texas sun. Some of our RAK units have now been deployed 3 years continuously."
 }

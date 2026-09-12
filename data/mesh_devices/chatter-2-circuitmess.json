@@ -33,13 +33,13 @@
   "title": "Chatter 2",
   "image": "/devices/circuitmess-chatter-2.webp",
   "features": [
-    "Color Display",
-    "Keyboard",
-    "Bluetooth"
+    "Bluetooth",
+    "OLED Display",
+    "Keyboard"
   ],
   "category": [
     "DIY"
   ],
-  "description": "An DIY style device with a tradition 1-9 keyboard.",
+  "description": "Module kit with a keypad, acrylic case and piezo buzzer.",
   "commentary": "Austin Mesh does not have any direct experience with the Chatter. Support for firmwares and UI is generally unknown."
 }

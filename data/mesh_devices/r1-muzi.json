@@ -37,5 +37,7 @@
   "category": [
     "Complete"
   ],
-  "description": "A compact, ready-to-use Meshtastic device featuring a unique 3D-printed PLA Carbon Fiber case, designed for portability and multi-day battery life. It includes internal PCB antennas and is powered by the RAKwireless WisBlock RAK4631 module."
+  "description": "Handheld based on RAK WisBlock in a 3D printed case with internal antennas.",
+  "discontinued": true,
+  "replaced_by": "muzi-works-r1-neo"
 }

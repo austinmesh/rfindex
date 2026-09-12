@@ -7,8 +7,8 @@
     }
   ],
   "price": {
-    "min": 99.97,
-    "max": 129.97,
+    "min": 79.97,
+    "max": 79.97,
     "currency": "USD"
   },
   "model": "LM-PS-01",
@@ -16,12 +16,13 @@
     "lora_frequencies": [
       "915 MHz"
     ],
-    "microcontroller": "ESP32-S3",
+    "microcontroller": "nRF52",
     "lora_radio": "SX1262",
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 2000
     },
     "antenna": "Internal with u.FL/IPEX connector",
     "interfaces": [
@@ -43,5 +44,5 @@
     "Complete",
     "Solar"
   ],
-  "description": "A compact, ruggedized solar-powered Meshtastic node built around the T-Echo, featuring an e-ink display and durable 3D-printed enclosure."
+  "description": "Solar node in a 3D printed case with a 0.8W panel and internal antennas."
 }

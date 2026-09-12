@@ -10,6 +10,7 @@ import fs from "fs"
 import path from "path"
 import sanitizeHtml from "sanitize-html"
 
+import { syncReadmeDevices } from "@/scripts/readme-devices"
 import type { Antenna, AntennaTestResult } from "@/types/antenna"
 import type {
   FilterMarker,
@@ -69,6 +70,8 @@ type RawDevice = {
   features?: string[]
   commentary?: string
   sort_order?: number
+  discontinued?: boolean
+  replaced_by?: string
 }
 
 // Device JSON stores manufacturer/supplier as reference-collection slugs (the
@@ -122,6 +125,8 @@ function mapRawDevice(raw: RawDevice, file: string) {
     features: raw.features ?? [],
     ...(raw.commentary ? { commentary: sanitizeCommentary(raw.commentary) } : {}),
     ...(raw.sort_order != null ? { sort_order: raw.sort_order } : {}),
+    ...(raw.discontinued ? { discontinued: true } : {}),
+    ...(raw.discontinued && raw.replaced_by ? { replaced_by: raw.replaced_by } : {}),
   }
 }
 
@@ -133,6 +138,9 @@ if (!fs.existsSync(devicesDir)) {
 }
 
 const files = fs.readdirSync(devicesDir).filter((f) => f.endsWith(".json"))
+// id -> source filename, for the README's per-row edit links. Kept out of the
+// generated Device so the site bundle does not carry repo paths.
+const deviceFileById = new Map<string, string>()
 const devices = files.map((file) => {
   let raw: RawDevice
   try {
@@ -140,13 +148,17 @@ const devices = files.map((file) => {
   } catch (err) {
     throw new Error(`Failed to parse data/mesh_devices/${file}: ${(err as Error).message}`)
   }
+  deviceFileById.set(raw.id, file)
   return mapRawDevice(raw, file)
 })
 
-// Default display order: pinned devices first (lowest sort_order wins), then alphabetical
-// by name. Devices without sort_order fall back to the alphabetical group.
+// Default display order: in-production devices first, then discontinued ones
+// (a buyer's guide should not open on things you cannot buy). Within each
+// group, pinned devices first (lowest sort_order wins), then alphabetical by
+// name. Devices without sort_order fall back to the alphabetical group.
 devices.sort(
   (a, b) =>
+    Number(Boolean(a.discontinued)) - Number(Boolean(b.discontinued)) ||
     (a.sort_order ?? Number.MAX_SAFE_INTEGER) - (b.sort_order ?? Number.MAX_SAFE_INTEGER) ||
     a.name.localeCompare(b.name),
 )
@@ -162,6 +174,13 @@ export const devices: Device[] = ${JSON.stringify(devices, null, 2)}
 const outPath = path.join(process.cwd(), "data", "devices-generated.ts")
 fs.writeFileSync(outPath, output)
 console.log(`Generated ${outPath} with ${devices.length} devices`)
+
+// The README carries the same device catalog as a Markdown table (the GitHub
+// repo doubles as a search landing page). Regenerate it here so it can never
+// drift from data/; CI fails a PR whose committed README is stale.
+if (syncReadmeDevices(devices, deviceFileById)) {
+  console.log(`Updated README.md device table (${devices.length} devices); commit it with your data change`)
+}
 
 // Copy device images from submodule to public/devices/
 const imagesSource = path.join(devicesDir, "images")

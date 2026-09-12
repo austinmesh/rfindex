@@ -27,6 +27,7 @@
   "model": "Pocket V2",
   "specifications": {
     "lora_frequencies": [
+      "868 MHz",
       "915 MHz"
     ],
     "microcontroller": "nRF52",
@@ -34,7 +35,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 3200
     },
     "antenna": "External via SMA connector",
     "interfaces": [
@@ -46,12 +48,12 @@
   "image": "/devices/wismesh-pocket-2.webp",
   "features": [
     "Bluetooth",
-    "Color Display",
-    "GPS"
+    "GPS",
+    "OLED Display"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Fully enclosed LoRa node with display, battery, GPS, and SX1262 for plug-and-play Meshtastic use.",
+  "description": "Handheld based on RAK WisBlock with a 1.3-inch OLED, GNSS module, and SMA connector.",
   "commentary": "Solid option while slightly overpriced compared to DIY case options. They're a great option to get started with if you want something ready-to-go out of the box."
 }

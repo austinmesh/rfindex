@@ -46,6 +46,6 @@
   "category": [
     "DIY"
   ],
-  "description": "A 1w booster for the popular RAK 19003/7 boards.",
+  "description": "Module kit based on RAK WisBlock with a power amplifier and built in filter.",
   "commentary": "A bit complex to get power to, but a good upgrade for users who already have a RAK running in their setup. While we recommend these as upgrades, the jury is still out as to whether we would recommend these for new builds. We absolutely _do not_ recommend these for new users."
 }

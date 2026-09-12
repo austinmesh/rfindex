@@ -1,0 +1,47 @@
+{
+  "id": "bq-consulting-station-g3",
+  "purchase_urls": [
+    {
+      "supplier": "bq-consulting",
+      "url": "https://store.bqvoy.com/product/mesh-device-station-edition/"
+    }
+  ],
+  "price": {
+    "min": 109,
+    "max": 159,
+    "currency": "USD"
+  },
+  "model": "Station G3",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "max_tx_power_dbm": 35,
+    "power_consumption": "High",
+    "battery": {
+      "type": "External"
+    },
+    "antenna": "External via SMA connector",
+    "interfaces": [
+      "USB-C",
+      "Grove",
+      "GPIO"
+    ]
+  },
+  "manufacturer": "bq-consulting",
+  "title": "Station G3",
+  "image": "/devices/station-g3.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "OLED Display",
+    "External Antenna"
+  ],
+  "category": [
+    "DIY"
+  ],
+  "description": "Dev board with a 1.3-inch OLED, power amplifier and LNA, USB PD powered."
+}

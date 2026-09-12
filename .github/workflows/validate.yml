@@ -24,3 +24,27 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm validate
+
+  # The README device table is generated from data/ by the prebuild (see
+  # scripts/readme-devices.ts). Rerun the prebuild here and fail if the
+  # committed README.md is out of date, so a data PR cannot leave the GitHub
+  # landing page behind the website. Not a required check in the ruleset:
+  # web-UI data contributions can still merge, and the maintainer regenerates
+  # the table with the next `pnpm build`.
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: npx tsx lib/prebuild.ts
+      - name: README device table is current
+        run: |
+          if ! git diff --exit-code -- README.md; then
+            echo "::error file=README.md::The device table in README.md is stale. Run 'pnpm build' (or 'npx tsx lib/prebuild.ts') and commit README.md."
+            exit 1
+          fi

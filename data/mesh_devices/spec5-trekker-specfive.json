@@ -38,5 +38,7 @@
   "category": [
     "Complete"
   ],
-  "description": "A portable LoRa radio designed for off-grid explorers and communication enthusiasts. It offers GPS location sharing and text messaging through a robust LoRa mesh network, providing reliable connectivity even in areas with no cellular coverage."
+  "description": "Handheld.",
+  "discontinued": true,
+  "replaced_by": "spec5-trekker-bravo"
 }

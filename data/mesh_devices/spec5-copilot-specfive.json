@@ -16,7 +16,7 @@
     "lora_frequencies": [
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -28,7 +28,8 @@
     "interfaces": [
       "USB-C",
       "Bluetooth Low Energy (BLE)"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "specfive",
   "title": "Spec5 Copilot",
@@ -40,5 +41,5 @@
   "category": [
     "Complete"
   ],
-  "description": "The Spec5 Copilot is a personal LoRa assistant designed to transform your drone or unmanned aerial system (UAS) into a mobile LoRa antenna tower, significantly extending your network's range. Equipped with GPS tracking, it monitors the position of your UAS, ensuring you can track its location even if the drone's battery depletes."
+  "description": "Relay in a PETG case with drone mounting hardware."
 }

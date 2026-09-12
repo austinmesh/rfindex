@@ -1,10 +1,6 @@
 {
   "id": "pacific-nw-3d-nomad-heltec-v3",
   "purchase_urls": [
-    {
-      "supplier": "pacific-northwest-3d",
-      "url": "https://pacificnorthwest3d.com/products/nomad"
-    }
   ],
   "price": {
     "min": 70,
@@ -38,5 +34,6 @@
   "category": [
     "Complete"
   ],
-  "description": "The NOMAD device is built tough for adventures, securely housing a Heltec V3 LoRa board within a precision-crafted rugged case. It features a MakerFocus 2000mAh LiPo battery, providing over 10 hours of battery life for extended off-grid use."
+  "discontinued": true,
+  "description": "Handheld based on the Heltec V3 with an SMA connector."
 }

@@ -25,7 +25,7 @@
       "type": "LiPo",
       "capacity_mAh": 1500
     },
-    "antenna": "Internal",
+    "antenna": "External via SMA connector",
     "interfaces": [
       "USB-C"
     ]
@@ -34,13 +34,14 @@
   "title": "R1 Neo",
   "image": "/devices/muzi-works-r1-neo.webp",
   "features": [
-    "GPS",
     "Bluetooth",
+    "GPS",
+    "External Antenna",
     "Weatherproof"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Compact weatherproof node with an SMA antenna and USB C power.",
+  "description": "Handheld in an aluminum and 3D printed case with an SMA connector.",
   "commentary": "This node never really gained momentum because the choice of 3d filament(PETG-CF). This filament either absorbs or reflects RF, so the Bluetooth performance is severely lacking. If you're okay with short range bluetooth, this is a solid option, with a price to match it's features."
 }

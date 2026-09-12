@@ -42,5 +42,6 @@
   "category": [
     "Solar",
     "Complete"
-  ]
+  ],
+  "description": "Solar node in an IP65 enclosure with a 5W panel and GNSS module."
 }

@@ -59,6 +59,6 @@
     "Complete",
     "Standalone"
   ],
-  "description": "ESP32-S3 handheld with a 2.33-inch IPS strip display, full QWERTY keyboard, rotary encoder, GPS, and SX1262 LoRa. Runs Meshtastic, MeshCore.",
+  "description": "Handheld with a QWERTY keyboard, 2.33-inch display and rotary encoder.",
   "commentary": "In our experience the battery life is poor(<24h) and the user interfaces from both Meshtastic and MeshCore tend to be confusing. Be prepared for a steep learning curve, but a really cool device. The lack of external antenna will harm rf performance in weaker meshes."
 }

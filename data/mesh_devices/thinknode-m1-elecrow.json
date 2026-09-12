@@ -30,12 +30,14 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 1200
     },
-    "antenna": "SMA connector",
+    "antenna": "External via RP-SMA connector",
     "interfaces": [
       "USB-C"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "elecrow",
   "title": "Thinknode M1",
@@ -49,6 +51,6 @@
   "category": [
     "Complete"
   ],
-  "description": "Meshtastic LoRa transceiver featuring nRF52840 microcontroller, GPS support, and 1.54-inch display, designed for outdoor communications and tracking.",
+  "description": "Handheld in an ABS case with a 1.54-inch e-ink display and buzzer.",
   "commentary": "The M1 is a fairly common device to see on our mesh. Good battery life and a nice screen offer a solid combo of features. If you like the looks of this unit, we think it's a good option."
 }

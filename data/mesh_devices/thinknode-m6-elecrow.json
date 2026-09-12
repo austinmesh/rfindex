@@ -30,10 +30,10 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
-      "type": "Li-ion",
+      "type": "18650 Li-ion",
       "capacity_mAh": 7000
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via RP-SMA connector",
     "interfaces": [
       "USB-C"
     ]
@@ -51,6 +51,6 @@
     "Solar",
     "Complete"
   ],
-  "description": "Radio with a 6w solar panel with 7000mah battery. SMA connectors for both LoRa and Bluetooth.",
+  "description": "Solar node in an IP65 enclosure with a 6W panel and RP-SMA connectors.",
   "commentary": "Not recommended for areas with high temperatures(like Austin, Texas) due to coupling of solar panel with battery compartment. The SMA antennas will generally underperform so we recommend upgrading them to brand name or switching over to an N-Type fiberglass antenna for LoRa."
 }

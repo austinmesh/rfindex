@@ -21,12 +21,12 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "lora_radio": "SX1262",
-    "max_tx_power_dbm": 22,
+    "max_tx_power_dbm": 21,
     "power_consumption": "Average",
     "battery": {
-      "type": "External"
+      "type": "None"
     },
     "antenna": "External via SMA connector",
     "interfaces": [
@@ -41,13 +41,14 @@
   "title": "SenseCAP Indicator",
   "image": "/devices/sensecap-indicator.webp",
   "features": [
-    "WiFi",
     "Bluetooth",
+    "WiFi",
+    "GPS",
     "Color Display",
-    "GPS"
+    "Touchscreen"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Smart display and controller for IoT applications, supports WiFi, BLE, LoRa via WM1110 module."
+  "description": "Desktop unit with a 3.95-inch touchscreen and CO2 and tVOC sensors, USB powered."
 }

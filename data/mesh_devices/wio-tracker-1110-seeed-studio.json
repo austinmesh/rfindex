@@ -43,5 +43,5 @@
   "category": [
     "DIY"
   ],
-  "description": "LoRa-enabled development board based on WM1110 with onboard GNSS and BLE, ideal for asset tracking."
+  "description": "Dev board based on WM1110 with a temperature and humidity sensor, accelerometer, and Grove connectors."
 }

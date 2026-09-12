@@ -43,6 +43,6 @@
     "Solar",
     "Complete"
   ],
-  "description": "Outdoor solar powered mesh node with a 10w solar panel, 3 18650 batteries, and up to 1w transmit power.",
+  "description": "Solar node in an IP66 aluminum enclosure with a 10W panel and SMA connector.",
   "commentary": "Austin Mesh does not recommend the MeshTower v1 or v2. While the hardware is generally good, it requires custom firmware which makes the process of maintaining the node considerably more difficult."
 }

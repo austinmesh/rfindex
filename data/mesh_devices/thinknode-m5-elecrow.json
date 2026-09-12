@@ -33,7 +33,7 @@
       "type": "LiPo",
       "capacity_mAh": 1200
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via RP-SMA connector",
     "interfaces": [
       "USB-C"
     ]
@@ -49,6 +49,6 @@
   "category": [
     "Complete"
   ],
-  "description": "Pocket sized radio with an e-ink screen and external SMA antenna. Available in both nrf52 or esp32.",
+  "description": "Handheld in an ABS case with a 1.54-inch e-ink display, rotary encoder, and RP-SMA connector.",
   "commentary": "One of the more defined ThinkNodes, and growing in popularity. If you're looking for a pocket node with a rotary encoder for navigation this should be on your short list."
 }

@@ -38,7 +38,7 @@
     "External Antenna"
   ],
   "category": [
-    "Complete"
+    "DIY"
   ],
-  "description": "30dbm(1w) open source design with ipex for both BLE and LoRa meant for solar installs."
+  "description": "Relay with IPEX connectors, built in filter and power amplifier."
 }

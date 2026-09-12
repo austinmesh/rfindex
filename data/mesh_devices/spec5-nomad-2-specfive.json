@@ -1,0 +1,50 @@
+{
+  "id": "spec5-nomad-2",
+  "purchase_urls": [
+    {
+      "supplier": "specfive",
+      "url": "https://specfive.com/products/spec5-nomad-raspberry-pi-versions"
+    }
+  ],
+  "price": {
+    "min": 549.99,
+    "max": 679.99,
+    "currency": "USD"
+  },
+  "model": "S5 Nomad 2",
+  "specifications": {
+    "lora_frequencies": [
+      "915 MHz"
+    ],
+    "microcontroller": "Raspberry Pi 5",
+    "lora_radio": "SX1262",
+    "power_consumption": "High",
+    "battery": {
+      "type": "18650 Li-ion",
+      "estimated_runtime": "2-3 hours"
+    },
+    "antenna": "External, 17cm flexible 915 MHz antenna included",
+    "interfaces": [
+      "Ethernet",
+      "Bluetooth Low Energy (BLE)",
+      "Qwiic"
+    ]
+  },
+  "manufacturer": "specfive",
+  "title": "Spec5 Nomad 2",
+  "image": "/devices/spec5-nomad-2.webp",
+  "features": [
+    "GPS",
+    "Bluetooth",
+    "WiFi",
+    "Touchscreen",
+    "Keyboard",
+    "Color Display",
+    "External Antenna"
+  ],
+  "category": [
+    "Complete",
+    "Standalone"
+  ],
+  "description": "Handheld based on Raspberry Pi in a PETG case with a 5.0-inch touchscreen, tactile keyboard, and Ethernet."
+}

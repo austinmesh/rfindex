@@ -26,7 +26,7 @@
       "868 MHz",
       "915 MHz"
     ],
-    "microcontroller": "ESP32",
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -39,18 +39,20 @@
       "I2C",
       "SPI",
       "UART"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "heltec",
   "title": "LoRa 32 V3",
   "image": "/devices/heltec-32-v3.webp",
   "features": [
     "Bluetooth",
-    "WiFi"
+    "WiFi",
+    "OLED Display"
   ],
   "category": [
     "DIY"
   ],
-  "description": "Compact ESP32 LoRa development board with onboard OLED and battery management",
+  "description": "Dev board with a 0.96-inch OLED and IPEX connector.",
   "commentary": "The Heltec V3, as it's generally referred to, is likely the single most prolific hardware currently deployed on Mesh networks across America. It is not the best at anything, but it is adequite in most. The ESP32 chip means it will use more power than necessary, but brings nice creature comforts like WiFi. We generally steer new users towards the V4 or T114 these days."
 }

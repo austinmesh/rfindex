@@ -1,0 +1,44 @@
+{
+  "id": "wismesh-wifi-mqtt-gateway-v2",
+  "purchase_urls": [
+    {
+      "supplier": "rakwireless",
+      "url": "https://store.rakwireless.com/products/wismesh-wifi-gateway"
+    }
+  ],
+  "price": {
+    "min": 34,
+    "max": 68,
+    "currency": "USD"
+  },
+  "model": "WiFi MQTT Gateway V2",
+  "specifications": {
+    "lora_frequencies": [
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
+    "lora_radio": "SX1262",
+    "power_consumption": "Average",
+    "battery": {
+      "type": "None"
+    },
+    "antenna": "External via RP-SMA connector",
+    "interfaces": [
+      "USB-C",
+      "M8 5-pin connector"
+    ]
+  },
+  "manufacturer": "rakwireless",
+  "title": "WisMesh WiFi MQTT Gateway V2",
+  "image": "/devices/wismesh-wifi-gateway-v2.webp",
+  "features": [
+    "WiFi",
+    "Bluetooth",
+    "External Antenna"
+  ],
+  "category": [
+    "Complete"
+  ],
+  "description": "Gateway based on RAK WisBlock with an RP-SMA connector, optional IP65 enclosure."
+}

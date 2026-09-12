@@ -36,7 +36,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 850
     },
     "antenna": "External via SMA connector",
     "interfaces": [
@@ -51,13 +52,13 @@
   "title": "T-Echo",
   "image": "/devices/lilygo-t-echo.webp",
   "features": [
-    "WiFi",
     "Bluetooth",
-    "GPS"
+    "GPS",
+    "E-Ink Display"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Compact wearable LoRa communicator with GPS, microphone, speaker, and SX1262.",
+  "description": "Handheld in an ABS case with a 1.54-inch e-ink display.",
   "commentary": "The T-Echo is one of the original off the shelf nodes from early mesh days. This is a realiable device, but does have some downsides. The E-Ink screen and NRF52 chip mean the battery life is decent(1-3 days) but the buttons stick out too far and get bumped in your pocket. The antenna that comes with this is generally terrible and you should look to upgrade immediately, if not sooner. After market 3d printed cases, buttons, and larger battery enclosures offer upgrade paths that take this little unit from good to great."
 }

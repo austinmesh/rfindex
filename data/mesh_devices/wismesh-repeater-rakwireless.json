@@ -34,9 +34,10 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "Li-ion"
+      "type": "Li-ion",
+      "capacity_mAh": 5200
     },
-    "antenna": "Unknown",
+    "antenna": "External via RP-SMA connector",
     "interfaces": [
       "USB-C"
     ]
@@ -46,13 +47,13 @@
   "image": "/devices/wismesh-repeater.webp",
   "features": [
     "Bluetooth",
-    "Solar",
-    "GPS"
+    "GPS",
+    "Solar Input",
+    "Weatherproof"
   ],
   "category": [
-    "Complete",
-    "Solar"
+    "Complete"
   ],
-  "description": "Fully enclosed solar-powered repeater for Meshtastic networks, built for long uptime and range.",
+  "description": "Relay based on RAK WisBlock in an IP67 enclosure with an RP-SMA connector and optional 10W panel.",
   "commentary": "Extremely robust node with a price to match. We generally don't see many of these deployed, but those we have seen we're very impressed with. Buy with confidence, or to save money check out other pre-built solar nodes."
 }

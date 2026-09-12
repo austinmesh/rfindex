@@ -47,6 +47,6 @@
   "category": [
     "DIY"
   ],
-  "description": "Ultra-compact LoRa development board combining the XIAO nRF52840 with an onboard SX1262 module. The low-power nRF52 chipset makes it ideal for battery-powered nodes.",
+  "description": "Dev board based on XIAO with an IPEX connector and an optional GNSS module.",
   "commentary": "These are the absolute cheapest way to get started on the mesh. They are a bit trickier, requiring soldering skills for power, but are so small they fit just about anywhere. We've even put one <a href='https://www.austinmesh.org/projects/airborne-repeater-dji-air-3/' target='_blank'>inside of a DJI drone</a> to make an integrated airborne mesh node to expand the network."
 }

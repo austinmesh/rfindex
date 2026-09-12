@@ -15,6 +15,7 @@
   "model": "M1",
   "specifications": {
     "lora_frequencies": [
+      "868 MHz",
       "915 MHz"
     ],
     "microcontroller": "nRF52",
@@ -22,7 +23,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 2000
     },
     "antenna": "External via SMA connector",
     "interfaces": [
@@ -34,13 +36,12 @@
   "title": "AtlaVox M1",
   "image": "/devices/atlavox-m1.webp",
   "features": [
-    "WiFi",
     "Bluetooth",
     "GPS"
   ],
   "category": [
     "Complete"
   ],
-  "description": "Compact, rugged Meshtastic node with based on the RAK19007/4631 with an integrated rechargeable LiPo battery. Optional GPS support available.",
+  "description": "Handheld based on RAK WisBlock in a 3D printed case with an optional GPS module.",
   "commentary": "Atlavox is a solid brand. While the M1 is less common to see than it's solar powered brother, the Beacon, we are impressed by build quality. Buy with confidence."
 }

@@ -31,7 +31,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 1000
     },
     "antenna": "Internal",
     "interfaces": [
@@ -42,12 +43,12 @@
   "title": "WisMesh Tag",
   "image": "/devices/wismesh-tag.webp",
   "features": [
-    "E-Ink Display",
-    "Bluetooth"
+    "Bluetooth",
+    "Weatherproof"
   ],
   "category": [
     "Complete"
   ],
-  "description": "A waterproof card sized radio with GPS and internal antenna.",
+  "description": "Card in an IP66 enclosure with an internal antenna and GNSS module.",
   "commentary": "Surprisingly good RX for such a small internal antenna, as well as Bluetooth strength. It makes a great around-the-house companion. Capable of connecting through multiple walls. Transmit leaves a lot to be desired but for keeping up with the mesh at home, or small discrete carry on travel, it’s top notch. Especially after you figure out how to silence it 🤣 (triple tap is your friend)."
 }

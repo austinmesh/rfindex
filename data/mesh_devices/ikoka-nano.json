@@ -41,6 +41,6 @@
   "category": [
     "DIY"
   ],
-  "description": "Open Source DIY design requiring soldering components or custom order from JLCPCB",
+  "description": "Dev board based on XIAO.",
   "commentary": "We use these devices extensively on the mesh here in Austin with various radios and components. They've performed so well that many of our infrastructure nodes(rooftops, towers) are based on this and the Nano variant."
 }

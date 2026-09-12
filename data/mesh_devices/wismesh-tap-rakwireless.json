@@ -11,7 +11,7 @@
     },
     {
       "supplier": "rakwireless",
-      "url": "https://rakwireless.kckb.st/rfindex-3dl"
+      "url": "https://store.rakwireless.com/products/wismesh-tap?ref=rfindex"
     }
   ],
   "price": {
@@ -30,7 +30,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 3200
     },
     "antenna": "External via SMA connector",
     "interfaces": [
@@ -41,14 +42,17 @@
   "title": "WisMesh Tap",
   "image": "/devices/wismesh-tap.webp",
   "features": [
-    "Touchscreen",
-    "Color Display",
     "Bluetooth",
-    "GPS"
+    "GPS",
+    "Color Display",
+    "Touchscreen",
+    "Weatherproof"
   ],
   "category": [
     "Complete",
     "Standalone"
   ],
-  "description": "USB-powered LoRa node with SX1262 for always-on desktop Meshtastic communication."
+  "description": "Handheld based on RAK WisBlock in an IP65 enclosure with a 320x240 TFT touchscreen and GNSS module.",
+  "discontinued": true,
+  "replaced_by": "wismesh-tap-v2"
 }

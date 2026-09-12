@@ -22,7 +22,8 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "LiPo"
+      "type": "LiPo",
+      "capacity_mAh": 5000
     },
     "antenna": "Internal",
     "interfaces": [
@@ -39,5 +40,5 @@
   "category": [
     "Complete"
   ],
-  "description": "A compact 6000mAh Qi2-compatible magnetic power bank designed for Meshtastic devices. Features MagSafe-style mounting, LED battery indicators, and both wireless and USB-C charging, making it ideal for portable and emergency use."
+  "description": "Power bank with a 2.13-inch e-ink display and Qi2 wireless charging."
 }

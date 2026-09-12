@@ -39,5 +39,5 @@
     "Complete",
     "Solar"
   ],
-  "description": "A solar-powered LoRa base station designed for off-grid applications in extreme environments. Features special LTO batteries, charge controller, a 3W solar panel, and a robust enclosure for outdoor use."
+  "description": "Solar node with a 3W panel and N-type connector."
 }

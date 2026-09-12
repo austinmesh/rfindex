@@ -18,11 +18,13 @@
   "model": "Ikoka Stick",
   "specifications": {
     "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
       "915 MHz"
     ],
     "microcontroller": "nRF52",
     "lora_radio": "SX1262",
-    "max_tx_power_dbm": 30,
+    "max_tx_power_dbm": 33,
     "power_consumption": "Low",
     "battery": {
       "type": "Li-ion"
@@ -45,6 +47,6 @@
   "category": [
     "DIY"
   ],
-  "description": "Open Source DIY design requiring soldering components or custom order from JLCPCB",
+  "description": "Dev board based on XIAO with an optional 0.96-inch OLED.",
   "commentary": "We use these devices extensively on the mesh here in Austin with various radios and components. They've performed so well that many of our infrastructure nodes(rooftops, towers) are based on this and the Nano variant."
 }

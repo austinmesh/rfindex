@@ -3,7 +3,7 @@
   "purchase_urls": [
     {
       "supplier": "yeti-wurks",
-      "url": "https://www.yetiwurks.com/product/yeti-wurks-meshtastic-basestation/  "
+      "url": "https://www.yetiwurks.com/product/yeti-wurks-meshtastic-basestation/"
     }
   ],
   "price": {
@@ -22,9 +22,9 @@
     "max_tx_power_dbm": 22,
     "power_consumption": "Low",
     "battery": {
-      "type": "External"
+      "type": "18650 Li-ion"
     },
-    "antenna": "External via SMA connector",
+    "antenna": "External via N-type connector",
     "interfaces": [
       "USB-C"
     ]
@@ -34,12 +34,12 @@
   "image": "/devices/yeti-wurks-base-station.webp",
   "features": [
     "Bluetooth",
+    "Solar Input",
     "Weatherproof"
   ],
   "category": [
-    "Solar",
     "Complete"
   ],
-  "description": "Repeater based around RAK19003 board supporting up to 4 18650 batteries. Optional solar panel.",
+  "description": "Relay based on RAK WisBlock in an IP65 enclosure with an N-type connector.",
   "commentary": "We've seen a few of these around, although they lost popularity due to the glut of repeaters introduced in the same time period. It's a fine option, although there are many competitors available."
 }

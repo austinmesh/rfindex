@@ -41,5 +41,7 @@
     "Complete",
     "Standalone"
   ],
-  "description": "A versatile LoRa communication device built around the Raspberry Pi 5, designed for off-grid explorers and emergency scenarios. The Nomad provides reliable mesh networking capabilities including text messaging and GPS location sharing, packaged in a rugged PETG case with a high-resolution touchscreen for easy operation."
+  "description": "Handheld based on Raspberry Pi with a 5-inch touchscreen, tactile keyboard and Ethernet.",
+  "discontinued": true,
+  "replaced_by": "spec5-nomad-2"
 }

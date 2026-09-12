@@ -49,12 +49,13 @@
   "image": "/devices/heltec-t114.webp",
   "features": [
     "Bluetooth",
+    "GPS",
     "Color Display",
-    "GPS"
+    "Solar Input"
   ],
   "category": [
     "DIY"
   ],
-  "description": "Low-power development board based on nRF52840 and SX1262, supporting LoRa and Bluetooth 5.0, with optional 1.14-inch TFT display and GPS module.",
+  "description": "Dev board with an optional 1.14-inch TFT and GPS module.",
   "commentary": "We love the T114. So much so that we designed a custom enclosure and give away full radios to new users at our monthly meetups. The color screen is beautiful and the radio performs well. Check out the <a href='https://www.austinmesh.org/projects/heltec-t114/' target='_blank'>project page</a> on Austin Mesh to learn more."
 }

@@ -25,8 +25,12 @@
   },
   "model": "T-Watch",
   "specifications": {
-    "lora_frequencies": [],
-    "microcontroller": "ESP32",
+    "lora_frequencies": [
+      "433 MHz",
+      "868 MHz",
+      "915 MHz"
+    ],
+    "microcontroller": "ESP32-S3",
     "max_tx_power_dbm": 22,
     "power_consumption": "Average",
     "battery": {
@@ -37,7 +41,8 @@
       "USB-C",
       "GPIO",
       "I2C"
-    ]
+    ],
+    "lora_radio": "SX1262"
   },
   "manufacturer": "lilygo",
   "title": "T-Watch",
@@ -52,6 +57,6 @@
     "Complete",
     "Standalone"
   ],
-  "description": "ESP32-based smartwatch development board with touch display and Bluetooth/WiFi support.",
+  "description": "Watch with a microphone, speaker and haptic motor.",
   "commentary": "This is generally seen as a novelty by Austin Mesh. It's cool to play with, but we rarely see anyone actually using them day-to-day because the interfaces offered by Meshtastic and MeshCore are frustrating and slow compared to other devices or a phone app."
 }
