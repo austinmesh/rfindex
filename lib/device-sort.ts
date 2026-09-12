@@ -1,4 +1,4 @@
-import type { Device } from "@/types/device"
+import type { Device } from "@/lib/types/device"
 
 // Column-style sorting shared by the device card grid (sidebar "Sort By"
 // select) and the device table (clickable column headers). One `sort` URL

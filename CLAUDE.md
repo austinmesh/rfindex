@@ -10,7 +10,7 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 - `pnpm deploy` — build via OpenNext and deploy to Cloudflare Workers
 - `pnpm preview` — build via OpenNext and run the Worker locally (closest to production)
 - `pnpm lint` — run ESLint
-- `pnpm validate`: run `scripts/validate.js` to check every data JSON file against its JSON Schema in `schemas/` (fast; no Next build needed)
+- `pnpm validate`: run `scripts/validate.js` to check every data JSON file against its JSON Schema in `data/schemas/` (fast; no Next build needed)
 - `pnpm cms`: start the Decap CMS local backend (`decap-server`); run alongside `pnpm dev`, then open `/admin/index.html` to edit `data/` through a web UI
 - `pnpm start` — start the Next production server locally (note: production runs on Cloudflare Workers, not `next start`)
 
@@ -63,7 +63,7 @@ All data lives in the `data/` directory (device/antenna JSON files and images).
 - `data/antennas-generated.ts` — auto-generated Antenna[] array (gitignored, regenerated every build)
 - `data/filters-generated.ts` — auto-generated RfFilter[] array (gitignored, regenerated every build)
 - `data/devices.ts` — `featureDescriptions` only (UI copy)
-- `lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, filter types/connectors). All app code imports from here.
+- `lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, filter lib/types/connectors). All app code imports from here.
 
 Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-generated.ts`, `data/filters-generated.ts`, `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/` are all regenerated from `data/` at build time.
 
@@ -71,10 +71,10 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 `data/` holds eleven JSON collections. Only `mesh_devices`, `mesh_antennas`, and `mesh_filters` are rendered as pages (the prebuild turns just those three into generated TS). Of the other eight, `mesh_manufacturers`, `manufacturers`, and `suppliers` are load-bearing relation targets: device JSON stores their `slug` values in `manufacturer` and `purchase_urls[].supplier`, and the prebuild resolves each slug to its display `title` when generating `devices-generated.ts` (antennas and filters embed their manufacturer/supplier info directly instead). Renaming a brand means editing one reference file's `title`; the `slug` must never change once devices reference it. The remaining five (`bands`, `radios`, `modulations`, `antenna_connectors`, `mesh_features`) are reference data managed through the CMS and validated, but not currently used by the site.
 
-- `schemas/*.json` define the shape of every collection (one schema per collection).
+- `data/schemas/*.json` define the shape of every collection (one schema per collection).
 - `scripts/validate.js` (AJV) validates every JSON file against its schema. Run with `pnpm validate`. Beyond the per-file schema pass it also runs cross-file guardrails, all fatal: `id`/`slug` uniqueness (including reference-collection slugs), referenced-image existence, filter touchstone existence (every `test_results[].touchstones[]` file must exist under `data/mesh_filters/touchstone/<slug>/`), and manufacturer/supplier referential integrity (every device `manufacturer` and `purchase_urls[].supplier` must be a known reference-collection slug; writing a display title instead of a slug gets a did-you-mean suggestion).
 - CI: `.github/workflows/validate.yml` runs `pnpm validate` on every PR (not path-filtered: `validate` is a required status check in the main-branch ruleset, and a path-filtered required check never reports on out-of-path PRs, blocking the merge). GitHub Actions is free for public repos and does not affect the $0 hosting budget.
-- When you change an allowed value (an enum), update BOTH `schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
+- When you change an allowed value (an enum), update BOTH `data/schemas/<collection>.json` and the matching field `options` in `public/admin/config.yml`, or validation and the CMS will drift.
 
 ### Content Management (Decap CMS)
 
@@ -87,11 +87,11 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 ### Types
 
-- `types/device.ts` — `Device`, `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
-- `types/antenna.ts` — `Antenna`, `AntennaMarker`, `AntennaTestResult`, `AntennaManufacturer`, `AntennaSupplier`, `AntennaDimensions`, `AntennaSitemapItem`, `StatusOption`
-- `types/filter.ts` — `RfFilter`, `FilterTestResult` (authored `touchstones` + computed `sweeps`/`summary`), `FilterSweep`, `FilterMarker`, `FilterPassband`, `FilterRejectionPoint`, `FilterSitemapItem`
+- `lib/types/device.ts` — `Device`, `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
+- `lib/types/antenna.ts` — `Antenna`, `AntennaMarker`, `AntennaTestResult`, `AntennaManufacturer`, `AntennaSupplier`, `AntennaDimensions`, `AntennaSitemapItem`, `StatusOption`
+- `lib/types/filter.ts` — `RfFilter`, `FilterTestResult` (authored `touchstones` + computed `sweeps`/`summary`), `FilterSweep`, `FilterMarker`, `FilterPassband`, `FilterRejectionPoint`, `FilterSitemapItem`
 
-Types are the single source of truth — data files import from `types/`.
+Types are the single source of truth — data files import from `lib/types/`.
 
 ### Key Components
 
@@ -137,7 +137,7 @@ The site is built and deployed to Cloudflare Workers through the OpenNext adapte
 
 It additionally produces the Cloudflare Worker bundle in `.open-next/`, so a clean run verifies the deploy artifact too. It is heavier/slower than a bare `next build`. A successful build with no errors means the change is safe to commit.
 
-For data-only changes (editing `data/` JSON or `schemas/`), run `pnpm validate` as a fast pre-check. It is not a substitute for `pnpm build`, which remains the required verification before committing.
+For data-only changes (editing `data/` JSON or `data/schemas/`), run `pnpm validate` as a fast pre-check. It is not a substitute for `pnpm build`, which remains the required verification before committing.
 
 **Dev server caveat:** After restructuring imports or moving files, the dev server (`pnpm dev`) may show stale errors due to its incremental cache. If the dev server breaks but `pnpm build` passes, clear the cache with `rm -rf .next` and restart the dev server.
 
@@ -168,7 +168,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 - **No firmware field or filter**: devices do not record Meshtastic/MeshCore support (`supported_firmware` was removed 2026-08; nearly every board runs both and the data was not reliable). Do not reintroduce it.
 - **301 redirects** in `next.config.mjs` preserve old `/meshtastic/` URLs → `/mesh/`, and redirect the former `/mesh/meshtastic` and `/mesh/meshcore` landing pages → `/mesh/devices`
 - **Images are unoptimized** (`next.config.mjs` sets `images.unoptimized: true`)
-- **Filter state is URL-synced** — all three listing components (devices, antennas, RF filters) sync state with URL search params through `hooks/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
+- **Filter state is URL-synced** — all three listing components (devices, antennas, RF filters) sync state with URL search params through `lib/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
 - **Contribution links go to GitHub issues** (not Google Forms). The header "Contribute" link points to the issue template chooser; footer links target specific templates in `.github/ISSUE_TEMPLATE/`. Never reintroduce the old `forms.gle` links.
 - **Device `features` is a deliberately short curated vocabulary** — reuse existing values; adding a new one must be intentional and reviewed. See [Device Features](#device-features-keep-the-list-short).
 
@@ -184,7 +184,7 @@ The device will automatically appear in listings, detail pages, and the sitemap 
 
 ### Device Features (keep the list short)
 
-The device `features` array is a **deliberately short, curated controlled vocabulary** (currently a dozen values). `schemas/mesh_devices.json` now enforces this list as an `enum` on `features.items`, so `pnpm validate` rejects any off-list value and the schema is the single source of truth. `lib/data.ts` still derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering, which is why adding a value is a deliberate, reviewed change to the enum (not something you can do by accident).
+The device `features` array is a **deliberately short, curated controlled vocabulary** (currently a dozen values). `data/schemas/mesh_devices.json` now enforces this list as an `enum` on `features.items`, so `pnpm validate` rejects any off-list value and the schema is the single source of truth. `lib/data.ts` still derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering, which is why adding a value is a deliberate, reviewed change to the enum (not something you can do by accident).
 
 Rules for the `features` field:
 
@@ -201,6 +201,6 @@ The antenna will automatically appear in listings, detail pages, and the sitemap
 
 ### New RF Filter
 
-Add a JSON file to `data/mesh_filters/` using the `slug` field as the filename. Place the filter image in `data/mesh_filters/images/` as WebP (bare filename in the `image` field, not a path). Put each 2-port VNA export in `data/mesh_filters/touchstone/<slug>/` and list the bare `.s2p` filenames in a test result's `touchstones` array — one test result per physical unit, one file per swept frequency range (the meetup convention is a 902-928 MHz detail sweep, a mid sweep around the passband, and a 430-1500 MHz wide sweep). All displayed specs (loss and return loss at Meshtastic/MeshCore, Smith chart, 3 dB passband, rejection) are computed from the `.s2p` files by the prebuild; never author them. The detail chart opens on the filter's custom mid sweep automatically; set the optional `default_range` field (e.g. `"885-930"`, whole MHz matching a measured sweep) only to override that. `manufacturer` and `suppliers` are embedded objects like antennas, not reference-collection slugs. `filter_type` and `connectors` are schema enums; extending them means updating BOTH `schemas/mesh_filters.json` and `public/admin/config.yml`.
+Add a JSON file to `data/mesh_filters/` using the `slug` field as the filename. Place the filter image in `data/mesh_filters/images/` as WebP (bare filename in the `image` field, not a path). Put each 2-port VNA export in `data/mesh_filters/touchstone/<slug>/` and list the bare `.s2p` filenames in a test result's `touchstones` array — one test result per physical unit, one file per swept frequency range (the meetup convention is a 902-928 MHz detail sweep, a mid sweep around the passband, and a 430-1500 MHz wide sweep). All displayed specs (loss and return loss at Meshtastic/MeshCore, Smith chart, 3 dB passband, rejection) are computed from the `.s2p` files by the prebuild; never author them. The detail chart opens on the filter's custom mid sweep automatically; set the optional `default_range` field (e.g. `"885-930"`, whole MHz matching a measured sweep) only to override that. `manufacturer` and `suppliers` are embedded objects like antennas, not reference-collection slugs. `filter_type` and `connectors` are schema enums; extending them means updating BOTH `data/schemas/mesh_filters.json` and `public/admin/config.yml`.
 
 The filter will automatically appear in listings, detail pages, and the sitemap after the next build.

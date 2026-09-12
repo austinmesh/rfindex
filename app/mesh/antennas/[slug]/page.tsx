@@ -13,7 +13,7 @@ import { ExternalLink } from "@/components/external-link"
 import { antennas } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
 import { AntennaSweepChart, type AntennaSweepSeries } from "@/components/antenna-sweep-chart-lazy"
-import type { AntennaTestResult, AntennaTestSample } from "@/types/antenna"
+import type { AntennaTestResult, AntennaTestSample } from "@/lib/types/antenna"
 import { JsonLd } from "@/components/json-ld"
 import { antennaJsonLd, antennaMetaDescription, antennaTestingSummary, bestVswrAt915, brandedTitle } from "@/lib/seo"
 

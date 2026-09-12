@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import type { FilterSweepPoint } from "@/types/filter"
+import type { FilterSweepPoint } from "@/lib/types/filter"
 
 // One S11 locus to draw: a unit's sweep over the active range.
 export type SmithTrace = {

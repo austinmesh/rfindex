@@ -1,5 +1,5 @@
 "use client"
-import type { RfFilter } from "@/types/filter"
+import type { RfFilter } from "@/lib/types/filter"
 
 import { useCallback, useState } from "react"
 import Image from "next/image"
@@ -23,7 +23,7 @@ import { bestFilterMarker, filterPassband } from "@/lib/seo"
 import { AddMissingCard } from "@/components/add-missing-card"
 import { ExternalLink } from "@/components/external-link"
 import { FilterCompareChart } from "@/components/filter-compare-chart-lazy"
-import { useUrlFilterSync } from "@/hooks/use-url-filter-sync"
+import { useUrlFilterSync } from "@/lib/use-url-filter-sync"
 
 type SortOption = "default" | "loss-meshtastic" | "loss-meshcore"
 

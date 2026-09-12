@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
-import type { Antenna } from "@/types/antenna"
-import type { Device } from "@/types/device"
-import type { FilterMarker, FilterPassband, RfFilter } from "@/types/filter"
+import type { Antenna } from "@/lib/types/antenna"
+import type { Device } from "@/lib/types/device"
+import type { FilterMarker, FilterPassband, RfFilter } from "@/lib/types/filter"
 
 // Canonical host. Matches the canonical URLs used across the app so metadata,
 // OpenGraph, and JSON-LD all resolve to a single origin.

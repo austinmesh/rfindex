@@ -2,7 +2,7 @@
 // List (or check) the reference values a device relation can point at:
 //   - manufacturer -> a slug from data/mesh_manufacturers/ + data/manufacturers/
 //   - supplier     -> a slug from data/suppliers/
-//   - feature      -> a value in the fixed enum in schemas/mesh_devices.json
+//   - feature      -> a value in the fixed enum in data/schemas/mesh_devices.json
 //
 // A device's `manufacturer` and `purchase_urls[].supplier` store the reference
 // SLUG (not the display title), and `features` values must be in the schema
@@ -62,7 +62,7 @@ function refs(...dirs) {
 // NOT the strings derived from existing devices and NOT the mesh_features
 // collection.
 function featureEnum() {
-  const schema = readJson(join(ROOT, "schemas", "mesh_devices.json"));
+  const schema = readJson(join(ROOT, "data", "schemas", "mesh_devices.json"));
   const values = schema?.properties?.features?.items?.enum || [];
   return [...values].sort(byName);
 }
@@ -111,7 +111,7 @@ if (query) {
   console.log(`# suppliers (${suppliers.length})  [slug then title]`);
   for (const r of suppliers) console.log(`${r.slug}  (${r.title})`);
   console.log("");
-  console.log(`# features (${features.length})  [schemas/mesh_devices.json enum]`);
+  console.log(`# features (${features.length})  [data/schemas/mesh_devices.json enum]`);
   console.log(features.join("\n"));
   console.log("");
 }

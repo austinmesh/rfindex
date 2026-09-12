@@ -1,5 +1,5 @@
 "use client"
-import type { Device } from "@/types/device"
+import type { Device } from "@/lib/types/device"
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { allDeviceCategories as allCategories, allFeatures, allLoraFrequencies, allMicrocontrollers, allLoraRadios, maxTxPowerDbm, formatTxPower } from "@/lib/data"
 import { AddMissingCard } from "@/components/add-missing-card"
-import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
+import { parseIntParam, useUrlFilterSync } from "@/lib/use-url-filter-sync"
 import { cn } from "@/lib/utils"
 import { compareDevices, parseSortOption, type SortOption } from "@/lib/device-sort"
 import { DeviceTable, DeviceViewToggle, DiscontinuedBadge, parseViewMode, type DeviceViewMode } from "@/components/device-table"

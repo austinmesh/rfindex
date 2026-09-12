@@ -10,7 +10,7 @@ a manufacturer or supplier) that passes `pnpm validate` on the first real try.
 You take a product URL and a few answers; this skill turns them into correct
 JSON with the right enums, relations, referral links, and image handling.
 
-**Core principle:** the `schemas/<collection>.json` file is the source of
+**Core principle:** the `data/schemas/<collection>.json` file is the source of
 truth for shape and enums, and `pnpm validate` is the gate. Read the schema,
 match it exactly, validate, fix, repeat. Never invent fields
 (`additionalProperties: false` is set on every collection).
@@ -41,7 +41,7 @@ With no argument, ask for the URL.
 3. **Auto-draft**: `WebFetch` the URL and extract specs. Ask the user only for
    what the page doesn't give or that's uncertain: price range, category,
    commentary.
-4. **Draft JSON** against `schemas/<collection>.json`: every required field,
+4. **Draft JSON** against `data/schemas/<collection>.json`: every required field,
    exact enum spelling/casing, no extra keys.
 5. **Resolve relations** (devices only): see below. Missing value → **warn
    and stop**; offer to add it as an explicit step.
@@ -110,7 +110,7 @@ Read the schema for the full field list; these are the traps.
 
 `mesh_features` is CMS-only reference data (`{"title", "description"}`) and is
 **not** what a device's `features` values validate against. Device `features`
-validate against the `enum` in `schemas/mesh_devices.json`. Create reference
+validate against the `enum` in `data/schemas/mesh_devices.json`. Create reference
 files only as an explicit step (see Relations).
 
 ## Relations (devices only)
@@ -123,7 +123,7 @@ all constrained, and `pnpm validate` **enforces them**:
   `data/mesh_manufacturers/` (or `data/manufacturers/`) for manufacturer, or
   `data/suppliers/` for supplier. Writing the display title instead of the slug
   fails validation with a `UNKNOWN MANUFACTURER/SUPPLIER` error.
-- `features` is a fixed `enum` in `schemas/mesh_devices.json` ("the single
+- `features` is a fixed `enum` in `data/schemas/mesh_devices.json` ("the single
   source of truth"). An off-list value fails validation.
 
 Use the helper to see the existing slugs and to check one value:
@@ -142,7 +142,7 @@ node .claude/skills/add-rfindex-data/list-relations.mjs "Heltec"
   `slug`), then use that slug.
 - Feature not in the enum → **stop and confirm explicitly.** `features` is a
   deliberately short curated list; adding a value is a reviewed change to the
-  enum in `schemas/mesh_devices.json` (and the matching CMS `options` in
+  enum in `data/schemas/mesh_devices.json` (and the matching CMS `options` in
   `public/admin/config.yml`), because every value becomes a site-wide filter
   facet. Reuse the closest existing value or omit it unless the user confirms a
   genuinely new, buyer-facing distinction. (`Solar` = built-in panel;
@@ -214,7 +214,7 @@ Then re-confirm the referral params by eye before finishing.
 | Device filename vs `id` | filename = `<title>-<manufacturer>` slug; `id` = short unique routing slug |
 | Image field format | device = `/devices/x.webp` (path); antenna = `x.webp` (bare) |
 | Manufacturer/supplier as title | store the reference **slug**, not the display title; validate fails on an unknown slug |
-| New `features` value | it's a schema enum; adding one is a reviewed edit to `schemas/mesh_devices.json` + `config.yml`, not just a new string |
+| New `features` value | it's a schema enum; adding one is a reviewed edit to `data/schemas/mesh_devices.json` + `config.yml`, not just a new string |
 | Power as watts | use `max_tx_power_dbm` (0.5W=27, 1W=30, 2W=33) |
 | LoRa radio in `features` | it belongs in `specifications.lora_radio` |
 | Datasheet = storefront | use a real datasheet URL or `"Unavailable"`, never the buy page |

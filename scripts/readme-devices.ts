@@ -17,7 +17,7 @@ import fs from "fs"
 import path from "path"
 
 import { SITE_URL } from "@/lib/seo"
-import type { Device } from "@/types/device"
+import type { Device } from "@/lib/types/device"
 
 // GitHub edit link target. The device JSON is the source of truth, so every
 // row links straight to the editor for its file.

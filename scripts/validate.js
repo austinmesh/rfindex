@@ -71,15 +71,15 @@ let total = 0;
 
 for (const [name, { schema, dir }] of Object.entries(collections)) {
   parsed[name] = [];
-  const schemaPath = path.join(ROOT, "schemas", schema);
+  const schemaPath = path.join(ROOT, "data", "schemas", schema);
 
   let schemaData;
   try {
     schemaData = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
   } catch (err) {
-    console.error(`INVALID SCHEMA: schemas/${schema}`);
+    console.error(`INVALID SCHEMA: data/schemas/${schema}`);
     console.error(`  ${err.message}`);
-    failedFiles.push(`schemas/${schema}`);
+    failedFiles.push(`data/schemas/${schema}`);
     continue;
   }
   const validate = ajv.compile(schemaData);

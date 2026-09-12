@@ -166,7 +166,7 @@ committed; they are rebuilt from `data/` on every build. The same step rewrites
 the [device table](#meshtastic-and-meshcore-devices) at the top of this README,
 which is committed, so a device change shows up as a README diff too.
 
-Each collection has a JSON Schema in `schemas/`. Run `pnpm validate` to check
+Each collection has a JSON Schema in `data/schemas/`. Run `pnpm validate` to check
 every file against its schema; a GitHub Action runs the same check on every PR.
 
 For why the data is compiled to TypeScript at build time rather than read from
@@ -211,7 +211,7 @@ To add or edit data directly in JSON:
 **Add a device**
 
 1. Copy an existing file in `data/mesh_devices/` as your starting point. Every
-   field is defined in [`schemas/mesh_devices.json`](schemas/mesh_devices.json);
+   field is defined in [`data/schemas/mesh_devices.json`](data/schemas/mesh_devices.json);
    the `id` field becomes the URL slug (`/mesh/devices/<id>`).
 2. Add the product image to `data/mesh_devices/images/` as WebP, and reference
    it by bare filename in the `image` field (the same rule as antennas; a full
@@ -284,7 +284,7 @@ built-in panel) and `Solar Input` (you can connect one) are different.
 **Add an antenna**
 
 1. Add a JSON file to `data/mesh_antennas/` named after its `slug` field. Every
-   field is defined in [`schemas/mesh_antennas.json`](schemas/mesh_antennas.json).
+   field is defined in [`data/schemas/mesh_antennas.json`](data/schemas/mesh_antennas.json).
 2. Add the antenna image to `data/mesh_antennas/images/` as WebP, and
    reference it by bare filename in the `image` field.
 3. To include VSWR / return-loss test data, capture a Touchstone `.s1p` sweep
@@ -355,7 +355,7 @@ do it all at once, not halfway.
 ### Validation runs in CI, not as a pre-commit hook
 
 `pnpm validate` checks every data file against its JSON Schema. It runs in GitHub
-Actions on every PR that touches `data/`, `schemas/`, or the validator. There is
+Actions on every PR that touches `data/`, `data/schemas/`, or the validator. There is
 intentionally no pre-commit hook. CI is the authoritative gate because it covers
 every contribution path, including edits made through the GitHub web UI, runs
 server-side, and cannot be skipped or forgotten. A pre-commit hook would only

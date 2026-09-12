@@ -1,6 +1,6 @@
 "use client"
 import type { ReactNode } from "react"
-import type { Device } from "@/types/device"
+import type { Device } from "@/lib/types/device"
 
 import Image from "next/image"
 import Link from "next/link"

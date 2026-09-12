@@ -11,7 +11,7 @@ import path from "path"
 import sanitizeHtml from "sanitize-html"
 
 import { syncReadmeDevices } from "@/scripts/readme-devices"
-import type { Antenna, AntennaTestResult } from "@/types/antenna"
+import type { Antenna, AntennaTestResult } from "@/lib/types/antenna"
 import type {
   FilterMarker,
   FilterPassband,
@@ -19,7 +19,7 @@ import type {
   FilterSweep,
   FilterSweepPoint,
   RfFilter,
-} from "@/types/filter"
+} from "@/lib/types/filter"
 
 // Device/antenna `commentary` is authored HTML rendered with
 // dangerouslySetInnerHTML on the detail pages. Sanitize it here, at build time,
@@ -163,7 +163,7 @@ devices.sort(
     a.name.localeCompare(b.name),
 )
 
-const output = `import type { Device } from "@/types/device"
+const output = `import type { Device } from "@/lib/types/device"
 
 // Auto-generated from data/. Do not edit manually.
 // Regenerate with: npx tsx lib/prebuild.ts
@@ -403,7 +403,7 @@ antennaData.sort(
     (a.title ?? "").localeCompare(b.title ?? ""),
 )
 
-const antennaOutput = `import type { Antenna } from "@/types/antenna"
+const antennaOutput = `import type { Antenna } from "@/lib/types/antenna"
 
 // Auto-generated from data/. Do not edit manually.
 // Regenerate with: npx tsx lib/prebuild.ts
@@ -767,7 +767,7 @@ filterData.sort(
     (a.title ?? "").localeCompare(b.title ?? ""),
 )
 
-const filterOutput = `import type { RfFilter } from "@/types/filter"
+const filterOutput = `import type { RfFilter } from "@/lib/types/filter"
 
 // Auto-generated from data/. Do not edit manually.
 // Regenerate with: npx tsx lib/prebuild.ts

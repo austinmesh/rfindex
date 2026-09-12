@@ -3,7 +3,7 @@
 import * as React from "react"
 import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 
-import type { FilterSweep } from "@/types/filter"
+import type { FilterSweep } from "@/lib/types/filter"
 import { cn } from "@/lib/utils"
 import { SmithChart } from "@/components/smith-chart"
 import {

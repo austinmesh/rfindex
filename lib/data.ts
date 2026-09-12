@@ -1,9 +1,9 @@
 import { devices } from "@/data/devices-generated"
 import { antennas } from "@/data/antennas-generated"
 import { filters } from "@/data/filters-generated"
-import type { AntennaSitemapItem } from "@/types/antenna"
-import type { DeviceSitemapItem } from "@/types/device"
-import type { FilterSitemapItem } from "@/types/filter"
+import type { AntennaSitemapItem } from "@/lib/types/antenna"
+import type { DeviceSitemapItem } from "@/lib/types/device"
+import type { FilterSitemapItem } from "@/lib/types/filter"
 
 // Re-export devices (generated from data/ at prebuild)
 export { devices } from "@/data/devices-generated"

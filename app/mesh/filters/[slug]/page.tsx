@@ -13,7 +13,7 @@ import { ExternalLink } from "@/components/external-link"
 import { filters } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
 import { FilterSweepChart, type FilterSweepTest } from "@/components/filter-sweep-chart-lazy"
-import type { FilterTestResult, FilterTestSample } from "@/types/filter"
+import type { FilterTestResult, FilterTestSample } from "@/lib/types/filter"
 import { JsonLd } from "@/components/json-ld"
 import {
   bestFilterMarker,

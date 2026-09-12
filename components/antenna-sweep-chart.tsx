@@ -3,7 +3,7 @@
 import * as React from "react"
 import { CartesianGrid, Line, LineChart, ReferenceArea, ReferenceLine, XAxis, YAxis } from "recharts"
 
-import type { AntennaSweepPoint } from "@/types/antenna"
+import type { AntennaSweepPoint } from "@/lib/types/antenna"
 import { cn } from "@/lib/utils"
 import {
   ChartContainer,

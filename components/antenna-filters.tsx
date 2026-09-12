@@ -1,5 +1,5 @@
 "use client"
-import type { Antenna } from "@/types/antenna"
+import type { Antenna } from "@/lib/types/antenna"
 
 import { useCallback, useState, useMemo } from "react"
 import Image from "next/image"
@@ -19,7 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { allAntennaCategories as allCategories, statusOptions } from "@/lib/data"
 import { bestVswrAt915 } from "@/lib/seo"
 import { AddMissingCard } from "@/components/add-missing-card"
-import { parseIntParam, useUrlFilterSync } from "@/hooks/use-url-filter-sync"
+import { parseIntParam, useUrlFilterSync } from "@/lib/use-url-filter-sync"
 
 type SortOption = "default" | "price-asc" | "price-desc"
 
