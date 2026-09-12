@@ -7,10 +7,10 @@
  * between the two marker comments is replaced; the heading and intro copy
  * around it are hand-written and stay untouched.
  *
- * Called from lib/prebuild.ts after the device data is generated, so
+ * Called from src/lib/prebuild.ts after the device data is generated, so
  * `pnpm dev` and `pnpm build` keep the table current. CI (validate.yml) runs
  * the prebuild and fails if README.md comes out different from what is
- * committed. Run standalone with: npx tsx lib/prebuild.ts
+ * committed. Run standalone with: npx tsx src/lib/prebuild.ts
  */
 
 import fs from "fs"

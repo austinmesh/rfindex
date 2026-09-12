@@ -11,7 +11,7 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "cms": "decap-server",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "dev": "npx tsx lib/prebuild.ts && next dev",
+    "dev": "npx tsx src/lib/prebuild.ts && next dev",
     "dev:clean": "rm -rf .next && pnpm run dev",
     "lint": "next lint",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",

@@ -1,21 +1,21 @@
-import { devices } from "@/data/devices-generated"
-import { antennas } from "@/data/antennas-generated"
-import { filters } from "@/data/filters-generated"
+import { devices } from "../../data/devices-generated"
+import { antennas } from "../../data/antennas-generated"
+import { filters } from "../../data/filters-generated"
 import type { AntennaSitemapItem } from "@/lib/types/antenna"
 import type { DeviceSitemapItem } from "@/lib/types/device"
 import type { FilterSitemapItem } from "@/lib/types/filter"
 
 // Re-export devices (generated from data/ at prebuild)
-export { devices } from "@/data/devices-generated"
+export { devices } from "../../data/devices-generated"
 
 // Re-export antenna data (generated from data/ at prebuild)
-export { antennas } from "@/data/antennas-generated"
+export { antennas } from "../../data/antennas-generated"
 
 // Re-export filter data (generated from data/ at prebuild)
-export { filters } from "@/data/filters-generated"
+export { filters } from "../../data/filters-generated"
 
 // Feature descriptions (UI copy, stays in this repo)
-export { featureDescriptions } from "@/data/devices"
+export { featureDescriptions } from "../../data/devices"
 
 // --- Device derived constants ---
 

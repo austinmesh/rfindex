@@ -41,10 +41,10 @@ jobs:
           node-version: 22
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
-      - run: npx tsx lib/prebuild.ts
+      - run: npx tsx src/lib/prebuild.ts
       - name: README device table is current
         run: |
           if ! git diff --exit-code -- README.md; then
-            echo "::error file=README.md::The device table in README.md is stale. Run 'pnpm build' (or 'npx tsx lib/prebuild.ts') and commit README.md."
+            echo "::error file=README.md::The device table in README.md is stale. Run 'pnpm build' (or 'npx tsx src/lib/prebuild.ts') and commit README.md."
             exit 1
           fi

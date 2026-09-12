@@ -18,7 +18,7 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 
 - **Framework**: Next.js 15 (App Router) with React 19, TypeScript
 - **Styling**: Tailwind CSS 3 with `tailwind-merge` and `class-variance-authority`
-- **UI components**: shadcn/ui (Radix UI primitives) in `components/ui/`
+- **UI components**: shadcn/ui (Radix UI primitives) in `src/components/ui/`
 - **Charts**: Recharts
 - **Icons**: Lucide React
 - **Analytics**: none (Google Analytics was removed 2026-07; do not reintroduce third-party analytics without owner sign-off)
@@ -32,7 +32,7 @@ RF Index (rfindex.com) is a Next.js web app for comparing mesh networking and ra
 All pages use the `SiteHeader` + `SiteFooter` layout wrapper pattern (not nested layouts). 301 redirects from old `/meshtastic/` URLs to `/mesh/` are configured in `next.config.mjs`.
 
 ```
-app/
+src/app/
 ├── page.tsx                          # Home — technology browser
 ├── layout.tsx                        # Root layout (html/body)
 ├── mesh/
@@ -57,13 +57,13 @@ All data lives in the `data/` directory (device/antenna JSON files and images).
 - `data/mesh_devices/` — device JSON files and images
 - `data/mesh_antennas/` — antenna JSON files, images, and per-slug `touchstone/` VNA sweeps (.s1p)
 - `data/mesh_filters/` — RF filter JSON files, images, and per-slug `touchstone/` VNA sweeps (.s2p)
-- `lib/prebuild.ts` — **prebuild script** that reads JSON from `data/`, generates `data/devices-generated.ts`, `data/antennas-generated.ts`, and `data/filters-generated.ts`, and copies images (plus raw touchstone files for download) to `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/`. For filters it parses each test's `.s2p` files (keeping complex S11 for the Smith chart, plus S11/S21 magnitudes) and computes all displayed specs: insertion loss / return loss markers at Meshtastic US (906.875 MHz) and MeshCore US (910.525 MHz), the 3 dB passband, and out-of-band rejection at fixed interferer frequencies (VSWR is deliberately not shown for filters). Spot values always come from the finest-resolution sweep covering that frequency (wide 430-1500 MHz sweeps step ~10.7 MHz, far too coarse on steep filter skirts). It also fills each filter's `default_range` (the sweep range the detail chart opens on): the authored value wins when it matches a measured sweep; otherwise the heuristic drops the widest range and takes the widest remaining, which picks the per-filter custom mid sweep.
+- `src/lib/prebuild.ts` — **prebuild script** that reads JSON from `data/`, generates `data/devices-generated.ts`, `data/antennas-generated.ts`, and `data/filters-generated.ts`, and copies images (plus raw touchstone files for download) to `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/`. For filters it parses each test's `.s2p` files (keeping complex S11 for the Smith chart, plus S11/S21 magnitudes) and computes all displayed specs: insertion loss / return loss markers at Meshtastic US (906.875 MHz) and MeshCore US (910.525 MHz), the 3 dB passband, and out-of-band rejection at fixed interferer frequencies (VSWR is deliberately not shown for filters). Spot values always come from the finest-resolution sweep covering that frequency (wide 430-1500 MHz sweeps step ~10.7 MHz, far too coarse on steep filter skirts). It also fills each filter's `default_range` (the sweep range the detail chart opens on): the authored value wins when it matches a measured sweep; otherwise the heuristic drops the widest range and takes the widest remaining, which picks the per-filter custom mid sweep.
 - `scripts/readme-devices.ts` — called by the prebuild after device generation; rewrites the Markdown device table between the `<!-- devices-table:start -->` / `<!-- devices-table:end -->` markers in `README.md` (every device name links to its `www.rfindex.com/mesh/devices/<id>` page). The README is a search landing page for the GitHub repo ("Meshtastic devices", "MeshCore devices"), so the table is committed, not gitignored; the `readme` job in `.github/workflows/validate.yml` fails a PR whose committed table is stale. The heading and intro copy around the markers are hand-written and safe to edit.
 - `data/devices-generated.ts` — auto-generated Device[] array (gitignored, regenerated every build)
 - `data/antennas-generated.ts` — auto-generated Antenna[] array (gitignored, regenerated every build)
 - `data/filters-generated.ts` — auto-generated RfFilter[] array (gitignored, regenerated every build)
 - `data/devices.ts` — `featureDescriptions` only (UI copy)
-- `lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, filter lib/types/connectors). All app code imports from here.
+- `src/lib/data.ts` — **single import point for all consumers.** Imports generated device, antenna, and filter data, computes all derived constants (categories, features, frequencies, microcontrollers, filter src/lib/types/connectors). All app code imports from here.
 
 Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-generated.ts`, `data/filters-generated.ts`, `public/devices/`, `public/mesh/antennas/`, and `public/mesh/filters/` are all regenerated from `data/` at build time.
 
@@ -87,24 +87,24 @@ Generated files are gitignored — `data/devices-generated.ts`, `data/antennas-g
 
 ### Types
 
-- `lib/types/device.ts` — `Device`, `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
-- `lib/types/antenna.ts` — `Antenna`, `AntennaMarker`, `AntennaTestResult`, `AntennaManufacturer`, `AntennaSupplier`, `AntennaDimensions`, `AntennaSitemapItem`, `StatusOption`
-- `lib/types/filter.ts` — `RfFilter`, `FilterTestResult` (authored `touchstones` + computed `sweeps`/`summary`), `FilterSweep`, `FilterMarker`, `FilterPassband`, `FilterRejectionPoint`, `FilterSitemapItem`
+- `src/lib/types/device.ts` — `Device`, `DevicePrice`, `DeviceBattery`, `DeviceSpecifications`, `PurchaseUrl`, `DeviceSitemapItem`
+- `src/lib/types/antenna.ts` — `Antenna`, `AntennaMarker`, `AntennaTestResult`, `AntennaManufacturer`, `AntennaSupplier`, `AntennaDimensions`, `AntennaSitemapItem`, `StatusOption`
+- `src/lib/types/filter.ts` — `RfFilter`, `FilterTestResult` (authored `touchstones` + computed `sweeps`/`summary`), `FilterSweep`, `FilterMarker`, `FilterPassband`, `FilterRejectionPoint`, `FilterSitemapItem`
 
-Types are the single source of truth — data files import from `lib/types/`.
+Types are the single source of truth — data files import from `src/lib/types/`.
 
 ### Key Components
 
-- `components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/radio filters, price slider, sort options, comparison dialog, URL-synced filter state, a Cards/Table view toggle (`?view=table`), and a full-width table mode (on by default in table view; `?wide=0` opts out) that hides the desktop sidebar (filters move to the slide-out sheet) and drops the centered container; DeviceFilters renders its own `container` wrapper for this reason, the page only wraps the title
-- `components/device-table.tsx` — spreadsheet-style device table (grouped headers: Device, Connectivity, Display, Build, Power, Radio, System, Price) with sortable column headers, sticky header rows and name column, compare checkboxes; columns are a config array, yes/no cells derive from the curated `features` vocabulary
-- `lib/device-sort.ts` — `SortOption` (`default` or `<key>-<asc|desc>` over name/manufacturer/price/tx/battery) and `compareDevices`, shared by the sidebar Sort By select and the table headers so one `sort` URL param covers both views
-- `components/antenna-filters.tsx` — client component with search, category filters, status/suggestion filters, sort options, URL-synced filter state
-- `components/filter-browser.tsx` — client component for the RF filter listing: search, filter-type/connector facets, loss-based sort, URL-synced state (named "browser" to avoid the FilterFilters double-word)
-- `components/filter-sweep-chart.tsx` (+ `-lazy`) — filter measurement display: combined Recharts S21 (solid) + S11 (dashed) dB chart beside a Smith chart, 50/50 on desktop and stacked on mobile, with per-range tabs (one tab per measured sweep span, narrowest first, opening on the filter's `default_range`) and one color per tested unit
-- `components/smith-chart.tsx` — hand-rolled SVG Smith chart (no charting lib): normalized R/X grid, one S11 locus per unit, Meshtastic/MeshCore dots, hover/tap readout of Z = R + jX and return loss
-- `components/site-header.tsx` — sticky nav with "Mesh" dropdown (All Devices, Antennas, Filters), mobile sheet menu
-- `components/site-footer.tsx`
-- `components/ui/` — 14 shadcn/ui components, only the ones actually imported (do not modify directly unless customizing; re-add pruned ones via the shadcn CLI when needed)
+- `src/components/device-filters.tsx` — client component with search, category/feature/frequency/microcontroller/radio filters, price slider, sort options, comparison dialog, URL-synced filter state, a Cards/Table view toggle (`?view=table`), and a full-width table mode (on by default in table view; `?wide=0` opts out) that hides the desktop sidebar (filters move to the slide-out sheet) and drops the centered container; DeviceFilters renders its own `container` wrapper for this reason, the page only wraps the title
+- `src/components/device-table.tsx` — spreadsheet-style device table (grouped headers: Device, Connectivity, Display, Build, Power, Radio, System, Price) with sortable column headers, sticky header rows and name column, compare checkboxes; columns are a config array, yes/no cells derive from the curated `features` vocabulary
+- `src/lib/device-sort.ts` — `SortOption` (`default` or `<key>-<asc|desc>` over name/manufacturer/price/tx/battery) and `compareDevices`, shared by the sidebar Sort By select and the table headers so one `sort` URL param covers both views
+- `src/components/antenna-filters.tsx` — client component with search, category filters, status/suggestion filters, sort options, URL-synced filter state
+- `src/components/filter-browser.tsx` — client component for the RF filter listing: search, filter-type/connector facets, loss-based sort, URL-synced state (named "browser" to avoid the FilterFilters double-word)
+- `src/components/filter-sweep-chart.tsx` (+ `-lazy`) — filter measurement display: combined Recharts S21 (solid) + S11 (dashed) dB chart beside a Smith chart, 50/50 on desktop and stacked on mobile, with per-range tabs (one tab per measured sweep span, narrowest first, opening on the filter's `default_range`) and one color per tested unit
+- `src/components/smith-chart.tsx` — hand-rolled SVG Smith chart (no charting lib): normalized R/X grid, one S11 locus per unit, Meshtastic/MeshCore dots, hover/tap readout of Z = R + jX and return loss
+- `src/components/site-header.tsx` — sticky nav with "Mesh" dropdown (All Devices, Antennas, Filters), mobile sheet menu
+- `src/components/site-footer.tsx`
+- `src/components/ui/` — 14 shadcn/ui components, only the ones actually imported (do not modify directly unless customizing; re-add pruned ones via the shadcn CLI when needed)
 
 ### Static Assets
 
@@ -122,7 +122,7 @@ Types are the single source of truth — data files import from `lib/types/`.
 The site is built and deployed to Cloudflare Workers through the OpenNext adapter.
 
 - `pnpm build` runs `opennextjs-cloudflare build`, which builds the Next app in standalone mode and bundles it into `.open-next/` (gitignored), then `opennextjs-cloudflare populateCache remote`, which copies the prerendered pages into `.open-next/assets/cdn-cgi/_next_cache/` for the static-assets incremental cache. **The populateCache step must stay in the build script:** branch preview deploys run `npx wrangler versions upload`, which (unlike `wrangler deploy`) has no OpenNext delegation and uploads `.open-next/` exactly as the build left it. Without build-time population, previews ship without the cache and every detail page 404s (because of `dynamicParams = false`; see Conventions). `wrangler.jsonc` points `main` at `.open-next/worker.js` and serves static assets from `.open-next/assets`.
-- **The Next build command lives in `open-next.config.ts` as `buildCommand`, not in `package.json`.** It is set to `node scripts/validate.js && npx tsx lib/prebuild.ts && next build && npx tsx scripts/check-prerendered-links.ts` (data validation runs first so a bad contribution fails fast with a field-level diagnostic; the post-build link check asserts the listing pages still ship one crawlable detail link per data file in their prerendered HTML) for two reasons:
+- **The Next build command lives in `open-next.config.ts` as `buildCommand`, not in `package.json`.** It is set to `node scripts/validate.js && npx tsx src/lib/prebuild.ts && next build && npx tsx scripts/check-prerendered-links.ts` (data validation runs first so a bad contribution fails fast with a field-level diagnostic; the post-build link check asserts the listing pages still ship one crawlable detail link per data file in their prerendered HTML) for two reasons:
   1. It runs the data prebuild before every OpenNext build, so `deploy`, `preview`, and `upload` (which call `opennextjs-cloudflare build` directly) all regenerate data.
   2. **It prevents an infinite build loop.** Without an explicit `buildCommand`, OpenNext defaults to `pnpm build` on pnpm projects — which re-invokes `opennextjs-cloudflare build`, calling itself forever. Keep `buildCommand` pointed at `next build` (not `pnpm build`). If you ever need to skip the Next build, the real flag is `--skipNextBuild` (not `--skipBuildingNextApp`, which is silently ignored and re-triggers the loop).
 - **CI (Cloudflare Workers Builds):** build command `pnpm run build` produces `.open-next/`; deploy command `npx wrangler deploy` detects the OpenNext project and delegates to `opennextjs-cloudflare deploy`, which ships the already-built `.open-next/`. The build and deploy steps run in the same workspace, so the build output persists to deploy.
@@ -160,7 +160,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 
 - **Pages are server components** — listing pages pass full data arrays to client filter components
 - **Detail pages use `generateStaticParams`** — all device/antenna/filter pages are statically generated at build time
-- **Unknown detail slugs return real HTTP 404s.** All detail pages set `dynamicParams = false`, and unknown paths render the branded `app/not-found.tsx` with a 404 status. This depends on the static-assets incremental cache configured in `open-next.config.ts`: `fallback:false` forbids on-demand rendering, so the Worker must serve the prerendered pages from that cache. Never remove the cache config while `dynamicParams = false` is set, or every detail page 404s in production (a plain `notFound()` guard without `dynamicParams = false` is not a substitute: Next serves those on-demand not-found renders with HTTP 200). Verify with `pnpm preview` + curl: valid slugs 200, unknown slugs 404.
+- **Unknown detail slugs return real HTTP 404s.** All detail pages set `dynamicParams = false`, and unknown paths render the branded `src/app/not-found.tsx` with a 404 status. This depends on the static-assets incremental cache configured in `open-next.config.ts`: `fallback:false` forbids on-demand rendering, so the Worker must serve the prerendered pages from that cache. Never remove the cache config while `dynamicParams = false` is set, or every detail page 404s in production (a plain `notFound()` guard without `dynamicParams = false` is not a substitute: Next serves those on-demand not-found renders with HTTP 200). Verify with `pnpm preview` + curl: valid slugs 200, unknown slugs 404.
 - **Devices use `id` field, antennas and filters use `slug` field** as their URL parameter
 - **SEO**: every page exports `metadata` with title, description, and `alternates.canonical`
 - **Discontinued devices stay listed.** `discontinued: true` (optional `replaced_by: <device id>`, checked by `pnpm validate`) keeps the page and specs online but labels the device with a `DiscontinuedBadge` on cards, in the table, and on the detail page (which links to the successor), marks the JSON-LD offer `Discontinued`, sorts it last in the default order (prebuild), and annotates the README row. When a product is superseded, add the successor as its own device file and point `replaced_by` at it rather than rewriting the old entry with new hardware.
@@ -168,7 +168,7 @@ The license is source-available, not OSI open source. Describe it as "source-ava
 - **No firmware field or filter**: devices do not record Meshtastic/MeshCore support (`supported_firmware` was removed 2026-08; nearly every board runs both and the data was not reliable). Do not reintroduce it.
 - **301 redirects** in `next.config.mjs` preserve old `/meshtastic/` URLs → `/mesh/`, and redirect the former `/mesh/meshtastic` and `/mesh/meshcore` landing pages → `/mesh/devices`
 - **Images are unoptimized** (`next.config.mjs` sets `images.unoptimized: true`)
-- **Filter state is URL-synced** — all three listing components (devices, antennas, RF filters) sync state with URL search params through `lib/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
+- **Filter state is URL-synced** — all three listing components (devices, antennas, RF filters) sync state with URL search params through `src/lib/use-url-filter-sync.tsx`. **Never call `useSearchParams()` during a listing-page render** (including inside the filter components): it deopts the static prerender and strips every crawlable detail link from the HTML. The shared hook isolates that subscription in a Suspense-wrapped leaf; `scripts/check-prerendered-links.ts` fails the build if the links ever drop out.
 - **Contribution links go to GitHub issues** (not Google Forms). The header "Contribute" link points to the issue template chooser; footer links target specific templates in `.github/ISSUE_TEMPLATE/`. Never reintroduce the old `forms.gle` links.
 - **Device `features` is a deliberately short curated vocabulary** — reuse existing values; adding a new one must be intentional and reviewed. See [Device Features](#device-features-keep-the-list-short).
 
@@ -184,7 +184,7 @@ The device will automatically appear in listings, detail pages, and the sitemap 
 
 ### Device Features (keep the list short)
 
-The device `features` array is a **deliberately short, curated controlled vocabulary** (currently a dozen values). `data/schemas/mesh_devices.json` now enforces this list as an `enum` on `features.items`, so `pnpm validate` rejects any off-list value and the schema is the single source of truth. `lib/data.ts` still derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering, which is why adding a value is a deliberate, reviewed change to the enum (not something you can do by accident).
+The device `features` array is a **deliberately short, curated controlled vocabulary** (currently a dozen values). `data/schemas/mesh_devices.json` now enforces this list as an `enum` on `features.items`, so `pnpm validate` rejects any off-list value and the schema is the single source of truth. `src/lib/data.ts` still derives the feature filter facets from whatever strings appear across all devices, so **every distinct value becomes a filter checkbox on the devices page.** One typo or one casual synonym permanently lengthens the list and fragments filtering, which is why adding a value is a deliberate, reviewed change to the enum (not something you can do by accident).
 
 Rules for the `features` field:
 

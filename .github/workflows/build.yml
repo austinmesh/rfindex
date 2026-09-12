@@ -42,7 +42,7 @@ jobs:
       # the blocking gate.
       - name: Build
         run: |
-          npx tsx lib/prebuild.ts
+          npx tsx src/lib/prebuild.ts
           npx next build
 
       # Standalone type check, blocking. next.config.mjs also sets

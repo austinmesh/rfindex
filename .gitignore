@@ -53,4 +53,3 @@ public/mesh/filters/
 # wrangler files
 .wrangler
 .dev.vars*
-!.dev.vars.example

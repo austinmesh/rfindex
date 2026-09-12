@@ -10,7 +10,7 @@ import fs from "fs"
 import path from "path"
 import sanitizeHtml from "sanitize-html"
 
-import { syncReadmeDevices } from "@/scripts/readme-devices"
+import { syncReadmeDevices } from "../../scripts/readme-devices"
 import type { Antenna, AntennaTestResult } from "@/lib/types/antenna"
 import type {
   FilterMarker,

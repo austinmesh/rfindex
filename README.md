@@ -160,7 +160,7 @@ All content lives in the `data/` directory as JSON, plus images:
 - `data/mesh_devices/` - device JSON files and images
 - `data/mesh_antennas/` - antenna JSON files and images
 
-At build time, `lib/prebuild.ts` reads this JSON, generates the typed arrays the
+At build time, `src/lib/prebuild.ts` reads this JSON, generates the typed arrays the
 app imports, and copies images into `public/`. The generated files are not
 committed; they are rebuilt from `data/` on every build. The same step rewrites
 the [device table](#meshtastic-and-meshcore-devices) at the top of this README,
@@ -317,17 +317,17 @@ not "simplified" away without weighing the cost.
 
 ### Why data is compiled to TypeScript at build time
 
-`lib/prebuild.ts` does two jobs on every build: it transforms the per-file JSON
+`src/lib/prebuild.ts` does two jobs on every build: it transforms the per-file JSON
 in `data/` into generated TypeScript arrays (`data/devices-generated.ts`,
 `data/antennas-generated.ts`), and it copies images from `data/.../images/` into
 `public/`.
 
 The generated arrays are not just a convenience. The client filter components
 (`device-filters.tsx`, `antenna-filters.tsx`) import derived constants
-(`allFeatures`, `allLoraFrequencies`, and so on) from `lib/data.ts`, which means
-`lib/data.ts` is bundled for the browser. A generated array is a pure data
-literal, so `lib/data.ts` can compute those constants without importing `fs` or
-`path`. If `lib/data.ts` read the JSON directly with `fs`, the client build would
+(`allFeatures`, `allLoraFrequencies`, and so on) from `src/lib/data.ts`, which means
+`src/lib/data.ts` is bundled for the browser. A generated array is a pure data
+literal, so `src/lib/data.ts` can compute those constants without importing `fs` or
+`path`. If `src/lib/data.ts` read the JSON directly with `fs`, the client build would
 fail with `Can't resolve 'fs'`. The codegen is what keeps the data importable
 from both server and client.
 
@@ -338,11 +338,11 @@ images under `data/.../images/`, next to their JSON, keeps the licensed data (se
 the CMS writes uploads.
 
 **Accepted tradeoff:** the cost is a prebuild step, two gitignored generated
-files, and a `tsx lib/prebuild.ts &&` prefix on `pnpm dev`. In exchange we get a
+files, and a `tsx src/lib/prebuild.ts &&` prefix on `pnpm dev`. In exchange we get a
 clean client/server data boundary and data plus images colocated under `data/`.
 
 **Possible future simplification:** the prebuild could be removed entirely by
-(1) pointing the CMS `media_folder` at `public/`, (2) making `lib/data.ts`
+(1) pointing the CMS `media_folder` at `public/`, (2) making `src/lib/data.ts`
 server-only and reading the JSON directly, and (3) passing the derived constants
 into the filter components as props instead of importing them. This is a real
 refactor, not a deletion: it moves images out of `data/` (which fragments the
