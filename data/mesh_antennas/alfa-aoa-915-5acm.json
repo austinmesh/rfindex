@@ -60,7 +60,7 @@
       }
     },
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "chart_label": "Sample 1",
       "configuration": {
         "ground_plane": "none"
@@ -68,12 +68,12 @@
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01"
       }
     },
     {
-      "touchstone": "gp-none_kg5hzc_sample2.s1p",
+      "touchstone": "gp-none_n5eks_sample2.s1p",
       "chart_label": "Sample 2",
       "configuration": {
         "ground_plane": "none"
@@ -81,12 +81,12 @@
       "notes": "Second sample from the same order.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02"
       }
     },
     {
-      "touchstone": "gp-20cm_kg5hzc.s1p",
+      "touchstone": "gp-20cm_n5eks.s1p",
       "chart_label": "Sample 2 w/ 20cm ground plane",
       "configuration": {
         "ground_plane": "20cm disc"
@@ -94,7 +94,7 @@
       "notes": "Second sample from the same order.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02"
       }
     }

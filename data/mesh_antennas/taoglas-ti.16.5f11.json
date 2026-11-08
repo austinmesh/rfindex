@@ -32,7 +32,7 @@
   ],
   "test_results": [
     {
-      "touchstone": "gp-none_kg5hzc_sample1.s1p",
+      "touchstone": "gp-none_n5eks_sample1.s1p",
       "chart_label": "Sample 1, no ground plane",
       "configuration": {
         "ground_plane": "none"
@@ -40,7 +40,7 @@
       "notes": "Sample 1/3 without ground",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "OnlineComponents",
@@ -50,7 +50,7 @@
       }
     },
     {
-      "touchstone": "gp-disc-20cm_kg5hzc_sample1.s1p",
+      "touchstone": "gp-disc-20cm_n5eks_sample1.s1p",
       "chart_label": "Sample 1, 20cm disc",
       "configuration": {
         "ground_plane": "20cm disc"
@@ -58,7 +58,7 @@
       "notes": "Sample 1/3 with ground.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "OnlineComponents",
@@ -68,7 +68,7 @@
       }
     },
     {
-      "touchstone": "gp-none_kg5hzc_sample2.s1p",
+      "touchstone": "gp-none_n5eks_sample2.s1p",
       "chart_label": "Sample 2, no ground plane",
       "configuration": {
         "ground_plane": "none"
@@ -76,7 +76,7 @@
       "notes": "Sample 2/3 without ground",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "OnlineComponents",
@@ -86,7 +86,7 @@
       }
     },
     {
-      "touchstone": "gp-disc-20cm_kg5hzc_sample2.s1p",
+      "touchstone": "gp-disc-20cm_n5eks_sample2.s1p",
       "chart_label": "Sample 2, 20cm disc",
       "configuration": {
         "ground_plane": "20cm disc"
@@ -94,7 +94,7 @@
       "notes": "Sample 2/3 with ground",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "OnlineComponents",
@@ -104,7 +104,7 @@
       }
     },
     {
-      "touchstone": "gp-disc-20cm_kg5hzc_sample3.s1p",
+      "touchstone": "gp-disc-20cm_n5eks_sample3.s1p",
       "chart_label": "Sample 3, 20cm disc",
       "configuration": {
         "ground_plane": "20cm disc"
@@ -112,7 +112,7 @@
       "notes": "Sample 3/3 with ground",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "OnlineComponents",

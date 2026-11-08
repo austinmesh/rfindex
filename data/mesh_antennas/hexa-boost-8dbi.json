@@ -19,7 +19,7 @@
   ],
   "test_results": [
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "chart_label": "No arrester",
       "configuration": {
         "ground_plane": "none"
@@ -27,7 +27,7 @@
       "notes": "Tested without the lightning arrester.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "Amazon",
@@ -36,7 +36,7 @@
       }
     },
     {
-      "touchstone": "gp-none-arrestor_kg5hzc.s1p",
+      "touchstone": "gp-none-arrestor_n5eks.s1p",
       "chart_label": "With arrester",
       "configuration": {
         "ground_plane": "none"
@@ -44,7 +44,7 @@
       "notes": "Tested with the lightning arrester in line ahead of the antenna. Does seem to impact performance based on this test.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "Amazon",

@@ -18,7 +18,7 @@
       "notes": "Measured passband is centered near 892 MHz, well below the 902-928 MHz ISM band, with 14-19 dB of loss and a poor match at Meshtastic and MeshCore frequencies.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-11"
       }
     }

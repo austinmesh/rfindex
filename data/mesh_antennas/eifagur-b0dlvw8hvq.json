@@ -19,7 +19,7 @@
   ],
   "test_results": [
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "chart_label": "Sample 1",
       "configuration": {
         "ground_plane": "none"
@@ -27,7 +27,7 @@
       "notes": "Best match near 948 MHz. Tuned above the band.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-08",
         "sample": {
           "supplier": "Amazon",
@@ -36,7 +36,7 @@
       }
     },
     {
-      "touchstone": "handheld_kg5hzc.s1p",
+      "touchstone": "handheld_n5eks.s1p",
       "chart_label": "Sample 1 held in hand",
       "configuration": {
         "ground_plane": "none"
@@ -44,7 +44,7 @@
       "notes": "Held in hand sample 1 improves slightly: 2.4:1 at 902 MHz down to 2.0:1 at 928 MHz.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-08",
         "sample": {
           "supplier": "Amazon",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "touchstone": "gp-none_kg5hzc_sample2.s1p",
+      "touchstone": "gp-none_n5eks_sample2.s1p",
       "chart_label": "Sample 2",
       "configuration": {
         "ground_plane": "none"
@@ -61,7 +61,7 @@
       "notes": "Sample 2 measures notably better: 1.9:1 at 902 MHz, 1.75:1 at 915 MHz, 1.7:1 at 928 MHz with best match near 933 MHz.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-08",
         "sample": {
           "supplier": "Amazon",
@@ -70,7 +70,7 @@
       }
     },
     {
-      "touchstone": "handheld_kg5hzc_sample2.s1p",
+      "touchstone": "handheld_n5eks_sample2.s1p",
       "chart_label": "Sample 2 held in hand",
       "configuration": {
         "ground_plane": "none"
@@ -78,7 +78,7 @@
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-08",
         "sample": {
           "supplier": "Amazon",

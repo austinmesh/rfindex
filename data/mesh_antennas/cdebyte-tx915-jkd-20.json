@@ -83,26 +83,26 @@
       }
     },
     {
-      "touchstone": "straight_kg5hzc.s1p",
+      "touchstone": "straight_n5eks.s1p",
       "configuration": {
         "position": "straight"
       },
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01"
       }
     },
     {
-      "touchstone": "90deg_kg5hzc.s1p",
+      "touchstone": "90deg_n5eks.s1p",
       "configuration": {
         "position": "90 degree bent"
       },
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01"
       }
     }

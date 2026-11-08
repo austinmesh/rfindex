@@ -19,14 +19,14 @@
   ],
   "test_results": [
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "configuration": {
         "ground_plane": "none"
       },
       "notes": "Attached to PVC pipe via u-bolt in free space with nanoVNA direct to antenna, no feedline.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01",
         "sample": {
           "supplier": "RAKwireless"

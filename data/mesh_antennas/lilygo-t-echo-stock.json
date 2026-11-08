@@ -42,7 +42,7 @@
       }
     },
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "chart_label": "No ground plane",
       "configuration": {
         "ground_plane": "none"
@@ -50,12 +50,12 @@
       "notes": "Swept 890-950 MHz with no ground plane, as the antenna ships on the handheld T-Echo. VSWR sits around 13-14:1 across the ISM band and never dips below ~11:1, confirming a severe mismatch.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02"
       }
     },
     {
-      "touchstone": "gp-disc_kg5hzc.s1p",
+      "touchstone": "gp-disc_n5eks.s1p",
       "chart_label": "Held in hand",
       "configuration": {
         "ground_plane": "none"
@@ -63,7 +63,7 @@
       "notes": "Match improves when held in hand but still absolutely terrible.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02"
       }
     }

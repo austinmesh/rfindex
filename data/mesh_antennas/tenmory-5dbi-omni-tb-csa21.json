@@ -19,7 +19,7 @@
   ],
   "test_results": [
     {
-      "touchstone": "straight_kg5hzc.s1p",
+      "touchstone": "straight_n5eks.s1p",
       "configuration": {
         "ground_plane": "none",
         "position": "Straight"
@@ -27,7 +27,7 @@
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01",
         "sample": {
           "supplier": "Amazon",
@@ -36,7 +36,7 @@
       }
     },
     {
-      "touchstone": "90deg_kg5hzc.s1p",
+      "touchstone": "90deg_n5eks.s1p",
       "configuration": {
         "ground_plane": "none",
         "position": "90 degree bent"
@@ -44,7 +44,7 @@
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01",
         "sample": {
           "supplier": "Amazon",

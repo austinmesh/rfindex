@@ -49,12 +49,12 @@
       }
     },
     {
-      "touchstone": "stuck-to-plastic_kg5hzc.s1p",
+      "touchstone": "stuck-to-plastic_n5eks.s1p",
       "chart_label": "Stuck to plastic",
       "notes": "Adhesive-mounted flat against a plastic surface, set on table.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "Mouser",
@@ -63,12 +63,12 @@
       }
     },
     {
-      "touchstone": "stuck-to-plastic-holding-in-hand_kg5hzc.s1p",
+      "touchstone": "stuck-to-plastic-holding-in-hand_n5eks.s1p",
       "chart_label": "Stuck to plastic, in hand",
       "notes": "Adhesive-mounted flat against a plastic surface and held in hand during the sweep, showing the effect of body proximity.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "Mouser",
@@ -77,12 +77,12 @@
       }
     },
     {
-      "touchstone": "stuck-to-cardboard_kg5hzc.s1p",
+      "touchstone": "stuck-to-cardboard_n5eks.s1p",
       "chart_label": "Stuck to cardboard",
       "notes": "Adhesive-mounted flat against cardboard, set on table.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "Mouser",
@@ -91,12 +91,12 @@
       }
     },
     {
-      "touchstone": "stuck-to-metal_kg5hzc.s1p",
+      "touchstone": "stuck-to-metal_n5eks.s1p",
       "chart_label": "Stuck to metal",
       "notes": "Adhesive-mounted flat against metal, which severely detunes the dipole and produces a very high VSWR across the band.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-02",
         "sample": {
           "supplier": "Mouser",

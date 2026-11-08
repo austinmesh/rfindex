@@ -19,14 +19,14 @@
   ],
   "test_results": [
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "configuration": {
         "ground_plane": "none"
       },
       "notes": "Tested without a ground plane. This whip needs one, so it reads poorly across the US 902-928 MHz band, resonating down near 892 MHz instead.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01",
         "sample": {
           "supplier": "DigiKey",
@@ -35,14 +35,14 @@
       }
     },
     {
-      "touchstone": "gp-present_kg5hzc.s1p",
+      "touchstone": "gp-present_n5eks.s1p",
       "configuration": {
         "ground_plane": "present"
       },
       "notes": "Tested on a ground plane. With one, the match improves dramatically, dropping to about 1.76:1 at 915 MHz and resonating up in the 928 MHz range.",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-01",
         "sample": {
           "supplier": "DigiKey",

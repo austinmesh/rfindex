@@ -19,7 +19,7 @@
   ],
   "test_results": [
     {
-      "touchstone": "gp-none_kg5hzc.s1p",
+      "touchstone": "gp-none_n5eks.s1p",
       "chart_label": "No ground plane",
       "configuration": {
         "ground_plane": "none"
@@ -27,12 +27,12 @@
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-08"
       }
     },
     {
-      "touchstone": "handheld_kg5hzc.s1p",
+      "touchstone": "handheld_n5eks.s1p",
       "chart_label": "Held in hand",
       "configuration": {
         "ground_plane": "none"
@@ -40,7 +40,7 @@
       "notes": "",
       "metadata": {
         "tester": "Tommy Ekstrand",
-        "callsign": "KG5HZC",
+        "callsign": "N5EKS",
         "date": "2026-07-08"
       }
     }
